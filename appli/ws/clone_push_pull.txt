@@ -1,0 +1,55 @@
+pour clone :
+
+on crée un repertoire AppliSecou dans son dossier personnel avec la commande :
+mkdir AppliSecou
+
+puis on git clone le projet avec :
+git clone https://gitlab.com/emeriau/secoursae.git
+
+Apres toute les commandes git doivent etre effectuer à l'interieur du répertoire secoursae :
+
+D'abord avant de faire quoi que ce soit, on pull :
+git pull
+(toujours faire un gitpull de respect ça coute rien et ça sauve des SAE)
+
+Puis maintenant pour le push """ATTENTION""" si vous êtes attentifs vous 
+avez remarqué que votre clone ne contient pas de dossier lib. C'est normal!
+Le dossier lib contenait le dossier javafx qui faisait + de 100 Mo et qui 
+empéchait donc le push. Ainsi tous les git push doivent être fait sans le
+dossier lib.
+
+En clair, vous avez votre arborescence git nommé AppliSecour et vous avez 
+une autre arborescence (pas relier à git sur laquelle vous travaillé.)
+
+Elle se présente comme ça :
+AppliSecouAvecLib
+|--application
+	|--class
+	|
+	|--javaDoc
+	|
+	|--javaDocJUnit
+	|
+	|--lib      (celui qu'il ne faut pas copier coller dans AppliSecou)
+	|
+	|--src
+	|
+	|--ws
+
+En clair, vous travaillez sur cette arborescence puis vous copier coller 
+tous les fichiers de application sauf lib!!!!
+j'ai bien dit les fichiers de application pas application directement si 
+vous faîtes ça on n'a plus de git!!!!!!!!!
+
+Donc, vous copiez coller dans /AppliSecou/secoursae/appli (avant de copier coller toujours git pull hein)
+
+puis on peut passer au push :
+
+d'abord vous faite la commande """toujours git pull avant cette commande sinon je peux plus réparer cotre git"""" :
+git add .         (elle ajoute les nouveaux fichiers au transfert mais elle delete les anciens qui ne sont plus dans votre arborescence d'où la nécessité de git pull juste avant le git add .
+
+puis vous faites la commande :
+git commit -m "Ici il faut dire ce que vous avez changé ou ajouté au projet(genre vraiment)"
+
+pour finir vous pouvez utiliser la commande :
+git push          (c'est bon on a tous acces à votre ajout)
