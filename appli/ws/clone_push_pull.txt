@@ -52,4 +52,8 @@ puis vous faites la commande :
 git commit -m "Ici il faut dire ce que vous avez changé ou ajouté au projet(genre vraiment)"
 
 pour finir vous pouvez utiliser la commande :
-git push          (c'est bon on a tous acces à votre ajout)
+git push        
+On va alors vous demandez votre adresse email ainsi que votre mdp git donc l'oubliez pas!!!!
+
+
+Si ces derniers sont bien renseignés alors c'est bon on a tous acces à votre ajout! félicitations!!!!
