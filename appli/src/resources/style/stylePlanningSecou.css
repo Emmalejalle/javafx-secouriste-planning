@@ -1,0 +1,5 @@
+.cellule-vide {
+    -fx-border-color: rgb(173, 162, 162);
+    -fx-border-width: 0.5px;
+    -fx-background-color: white;
+}
