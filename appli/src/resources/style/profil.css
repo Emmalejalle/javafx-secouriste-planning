@@ -1,0 +1,74 @@
+
+.header-bar {
+    -fx-background-color: #f97316;
+    -fx-padding: 20px;
+}
+
+.header-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.main-content {
+    -fx-padding: 40px;
+}
+
+.profile-card {
+    -fx-background-color: white;
+    -fx-padding: 30px;
+    -fx-spacing: 15px;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 4);
+}
+
+.profile-photo {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 2);
+    -fx-clip: new javafx.scene.shape.Circle(75, 75, 75);
+}
+
+.profile-name {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.info-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.info-value {
+    -fx-font-size: 14px;
+    -fx-background-color: #e0edff;
+    -fx-padding: 4px 8px;
+    -fx-border-radius: 4px;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111;
+}
+
+.certification-button {
+    -fx-font-size: 14px;
+    -fx-border-color: #1e3a8a;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-padding: 6px 12px;
+    -fx-background-color: #e0edff;
+    -fx-text-fill: #1e3a8a;
+}
+
+.action-button {
+    -fx-background-color: #1e3a8a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 6px;
+}
+
+.footer-bar {
+    -fx-background-color: #f97316;
+    -fx-padding: 10px;
+}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+
+<BorderPane
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/8"
+            prefWidth="1920" prefHeight="1080"
+            stylesheets="@../style/Profil.css">
+
+    <!-- Barre orange haut -->
+    <top>
+        <HBox fx:id="topBar" styleClass="barre-orange" prefHeight="60" spacing="20" alignment="CENTER_LEFT">
+            <children>
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <children>
+                        <ImageView fitWidth="40" fitHeight="40">
+                            <image><Image url="@../img/svgHome.png" /></image>
+                        </ImageView>
+                        <ImageView fitWidth="40" fitHeight="40">
+                            <image><Image url="@../img/svgCalendrier.png" /></image>
+                        </ImageView>
+                        <ImageView fitWidth="40" fitHeight="40">
+                            <image><Image url="@../img/svgPlanning.png" /></image>
+                        </ImageView>
+                        <ImageView fitWidth="40" fitHeight="40">
+                            <image><Image url="@../img/svgRoue.png" /></image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <Pane HBox.hgrow="ALWAYS" />
+                <ImageView fitWidth="50" fitHeight="50">
+                    <image><Image url="@../img/svgSortie.png" /></image>
+                </ImageView>
+                <ImageView fitWidth="50" fitHeight="50">
+                    <image><Image url="@../img/svgAccueil.png" /></image>
+                </ImageView>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Barre orange bas -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" styleClass="barre-orange" prefHeight="60">
+            <Button text="← Retour" styleClass="btn-retour" />
+        </HBox>
+    </bottom>
+
+    <!-- Centre avec background montagne -->
+    <center>
+        <StackPane alignment="TOP_CENTER">
+            <VBox alignment="TOP_CENTER" spacing="20">
+                <ImageView fitWidth="1920" fitHeight="300">
+                    <image><Image url="@../img/montagneProfil.png" /></image>
+                </ImageView>
+                <HBox alignment="TOP_CENTER" spacing="80">
+                    <!-- Colonne gauche -->
+                    <VBox styleClass="bloc-gauche" spacing="15" alignment="TOP_CENTER">
+                        <children>
+                            <ImageView fitHeight="160" fitWidth="160">
+                                <image><Image url="@../img/pdp.png" /></image>
+                            </ImageView>
+                            <Label text="Patrick David ( id : 12345 )" styleClass="nom-profil" />
+
+                            <VBox spacing="5">
+                                <Label text="Téléphone :" styleClass="titre-champ" />
+                                <HBox spacing="10">
+                                    <ImageView fitWidth="24" fitHeight="24">
+                                        <image><Image url="@../img/svgTel.png" /></image>
+                                    </ImageView>
+                                    <Label text="06 14 23 72 90" styleClass="champ-info" />
+                                </HBox>
+                            </VBox>
+
+                            <VBox spacing="5">
+                                <Label text="Email :" styleClass="titre-champ" />
+                                <HBox spacing="10">
+                                    <ImageView fitWidth="24" fitHeight="24">
+                                        <image><Image url="@../img/svgMail.png" /></image>
+                                    </ImageView>
+                                    <Label text="patrick.david@gmail.com" styleClass="champ-info" />
+                                </HBox>
+                            </VBox>
+
+                            <VBox spacing="5">
+                                <Label text="Statut :" styleClass="titre-champ" />
+                                <HBox spacing="10">
+                                    <ImageView fitWidth="24" fitHeight="24">
+                                        <image><Image url="@../img/svgProfil.png" /></image>
+                                    </ImageView>
+                                    <Label text="Professionnel" styleClass="champ-info" />
+                                </HBox>
+                            </VBox>
+                        </children>
+                    </VBox>
+
+                    <!-- Colonne droite -->
+                    <VBox styleClass="bloc-droit" spacing="15" alignment="TOP_CENTER">
+                        <children>
+                            <HBox alignment="TOP_RIGHT">
+                                <Button text="Modifier le Profil" styleClass="btn-modifier" />
+                            </HBox>
+                            <TextField promptText="Cadre Opérationnel" styleClass="champ" />
+                            <HBox alignment="CENTER_RIGHT" spacing="5">
+                                <TextField promptText="Chef de Poste" styleClass="champ" />
+                                <ImageView fitWidth="24" fitHeight="24">
+                                    <image><Image url="@../img/svgTelecharger.png" /></image>
+                                </ImageView>
+                            </HBox>
+                            <HBox alignment="CENTER_RIGHT" spacing="5">
+                                <TextField promptText="Chef d'Équipe" styleClass="champ" />
+                                <ImageView fitWidth="24" fitHeight="24">
+                                    <image><Image url="@../img/svgTelecharger.png" /></image>
+                                </ImageView>
+                            </HBox>
+                            <TextField promptText="Pilote d'hélicoptère" styleClass="champ" />
+                            <TextField promptText="Pilote de moto neige" styleClass="champ" />
+                            <HBox alignment="CENTER_RIGHT" spacing="5">
+                                <TextField promptText="VPSP" styleClass="champ" />
+                                <ImageView fitWidth="24" fitHeight="24">
+                                    <image><Image url="@../img/svgTelecharger.png" /></image>
+                                </ImageView>
+                            </HBox>
+                            <HBox alignment="CENTER_RIGHT" spacing="5">
+                                <TextField promptText="PSC1" styleClass="champ" />
+                                <ImageView fitWidth="24" fitHeight="24">
+                                    <image><Image url="@../img/svgTelecharger.png" /></image>
+                                </ImageView>
+                            </HBox>
+                            <HBox alignment="CENTER_RIGHT" spacing="5">
+                                <TextField promptText="PSC2" styleClass="champ" />
+                                <ImageView fitWidth="24" fitHeight="24">
+                                    <image><Image url="@../img/svgTelecharger.png" /></image>
+                                </ImageView>
+                            </HBox>
+                            <TextField promptText="Secouriste de montagne" styleClass="champ" />
+                        </children>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

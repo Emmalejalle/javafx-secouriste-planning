@@ -1,0 +1,66 @@
+.root {
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-background-color: #ffffff;
+}
+
+/* Bande orange haut & bas */
+.barre-orange {
+    -fx-background-color: #F97316;
+}
+
+/* Carte centrale */
+.carte-mdp {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0.2, 0, 4);
+}
+
+/* Titre principal */
+.titre-grande {
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E1E1E;
+}
+
+/* Texte explicatif */
+.sous-titre {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E1E1E;
+    -fx-padding: 0 10 0 10;
+}
+
+/* Labels */
+.label {
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #1E1E1E;
+}
+
+/* Champ texte */
+.champ {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-pref-width: 500px;
+    -fx-pref-height: 36px;
+    -fx-padding: 4 10 4 10;
+    -fx-font-size: 14px;
+}
+
+/* Bouton */
+.btn-envoyer {
+    -fx-background-color: #1E3A8A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 30 10 30;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+}
+
+/* Lien de retour */
+.lien-retour {
+    -fx-font-size: 12px;
+    -fx-text-fill: #1E3A8A;
+    -fx-underline: true;
+}

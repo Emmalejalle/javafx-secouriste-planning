@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/Connexion.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+
+    <!-- Bande orange en haut -->
+    <top>
+        <HBox prefHeight="80.0" styleClass="barre-orange" />
+    </top>
+
+    <!-- Bande orange en bas -->
+    <bottom>
+        <HBox prefHeight="50.0" styleClass="barre-orange" />
+    </bottom>
+
+    <!-- Centre principal -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="40">
+            <children>
+
+                <!-- Bouton bleu "Bienvenue..." -->
+                <Button styleClass="btn-bienvenue" text="Bienvenue sur Secour Calendar" />
+
+                <!-- Zone des deux cartes -->
+                <HBox alignment="CENTER" spacing="100">
+                    <children>
+
+                        <!-- Carte Secouriste -->
+                        <VBox alignment="TOP_CENTER" spacing="20" styleClass="carte">
+                            <children>
+                                <ImageView fitHeight="153.0" fitWidth="143.0">
+                                    <image>
+                                        <Image url="@../img/Logo.png" />
+                                    </image>
+                                </ImageView>
+                                <Label styleClass="titre-carte" text="Connexion Secouriste" />
+                                <Label styleClass="sous-titre" text="Se connecter à son compte" />
+
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+   <children>
+                                       <ImageView fitHeight="24" fitWidth="24">
+                                           <image>
+                                    <Image url="@../img/svgMail.png" />
+                                 </image>
+                                       </ImageView>
+                                       <TextField promptText="Email ou numéro d'identification" styleClass="champ" />
+   </children>
+                                </HBox>
+
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+   <children>
+                                       <ImageView fitHeight="24" fitWidth="24">
+                                           <image>
+                                    <Image url="@../img/svgCle.png" />
+                                 </image>
+                                       </ImageView>
+                                       <PasswordField promptText="Mot de passe" styleClass="champ" />
+   </children>
+                                </HBox>
+
+                                <Button styleClass="btn-connecter" text="Se connecter" />
+                                <Hyperlink styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
+                                <Button styleClass="btn-creer" text="Créer un nouveau compte" />
+                            </children>
+                        </VBox>
+
+                        <!-- Carte Admin -->
+                        <VBox alignment="TOP_CENTER" spacing="20" styleClass="carte">
+                            <children>
+                                <ImageView fitHeight="140.0" fitWidth="143.0">
+                                    <image>
+                                        <Image url="@../img/Logo.png" />
+                                    </image>
+                                </ImageView>
+                                <Label styleClass="titre-carte" text="Connexion Admin" />
+                                <Label styleClass="sous-titre" text="Se connecter à son compte" />
+
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+   <children>
+                                       <ImageView fitHeight="24" fitWidth="24">
+                                           <image>
+                                    <Image url="@../img/svgMail.png" />
+                                 </image>
+                                       </ImageView>
+                                       <TextField promptText="Email ou numéro d'identification" styleClass="champ" />
+   </children>
+                                </HBox>
+
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+   <children>
+                                       <ImageView fitHeight="24" fitWidth="24">
+                                           <image>
+                                    <Image url="@../img/svgCle.png" />
+                                 </image>
+                                       </ImageView>
+                                       <PasswordField promptText="Mot de passe" styleClass="champ" />
+   </children>
+                                </HBox>
+
+                                <Button styleClass="btn-connecter" text="Se connecter" />
+                                <Hyperlink styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

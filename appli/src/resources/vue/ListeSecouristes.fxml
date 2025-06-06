@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="1080" prefWidth="1920" stylesheets="@../style/ListeSecouristes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- BARRE HAUT -->
+    <top>
+        <HBox fx:id="topBar" alignment="CENTER_LEFT" prefHeight="60" spacing="15" styleClass="barre-orange">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <children>
+                        <ImageView fitHeight="40" fitWidth="40">
+                            <image><Image url="@../img/svgHome.png" /></image>
+                        </ImageView>
+                        <ImageView fitHeight="40" fitWidth="40">
+                            <image><Image url="@../img/svgCalendrier.png" /></image>
+                        </ImageView>
+                        <ImageView fitHeight="40" fitWidth="40">
+                            <image><Image url="@../img/svgPlanning.png" /></image>
+                        </ImageView>
+                        <ImageView fitHeight="40" fitWidth="40">
+                            <image><Image url="@../img/svgRoue.png" /></image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <Pane HBox.hgrow="ALWAYS" />
+                <ImageView fitHeight="50" fitWidth="50">
+                    <image><Image url="@../img/svgSortie.png" /></image>
+                </ImageView>
+                <ImageView fitHeight="50" fitWidth="50">
+                    <image><Image url="@../img/svgAccueil.png" /></image>
+                </ImageView>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- BARRE BAS -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" prefHeight="60" styleClass="barre-orange">
+           <children>
+               <Button styleClass="btn-retour" text="← Retour" />
+           </children>
+        </HBox>
+    </bottom>
+
+    <!-- CONTENU CENTRAL -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20">
+           <children>
+               <Label styleClass="titre-page" text="Gestion secouristes - Liste secouristes" />
+   
+               <HBox alignment="CENTER" spacing="10">
+      <children>
+                      <ComboBox promptText="Disponibilités" styleClass="combo-box" />
+                      <ComboBox promptText="Localisations" styleClass="combo-box" />
+                      <ComboBox promptText="Spécialisations" styleClass="combo-box" />
+                      <ComboBox promptText="Certifications" styleClass="combo-box" />
+                      <ComboBox promptText="Expériences" styleClass="combo-box" />
+      </children>
+               </HBox>
+   
+               <ScrollPane fitToWidth="true" style="-fx-background: transparent;">
+      <content>
+                      <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+                         <children>
+                             <HBox alignment="CENTER" prefHeight="245.0" prefWidth="1862.0" spacing="50">
+                                <children>
+                                    <!-- Colonne 1 -->
+                                    <VBox spacing="20">
+                                       <children>
+                                           <HBox alignment="CENTER_LEFT" spacing="30" styleClass="carte-secouriste">
+                                              <children>
+                                                  <VBox spacing="5">
+                                                     <children>
+                                                         <Label styleClass="nom-secouriste" text="Patrick    David" />
+                                                         <Label styleClass="label-role" text="Secouriste" />
+                                                     </children>
+                                                  </VBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgTel.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="07 65 34 45 56" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgLocalisation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="Finistère" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox spacing="20">
+                                                     <children>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/svgCalendar.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/profilAffectation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                     </children>
+                                                  </HBox>
+                                              </children>
+                                           </HBox>
+                                           <HBox alignment="CENTER_LEFT" spacing="30" styleClass="carte-secouriste">
+                                              <children>
+                                                  <VBox spacing="5">
+                                                     <children>
+                                                         <Label styleClass="nom-secouriste" text="Marie    Dubois" />
+                                                         <Label styleClass="label-role" text="Secouriste" />
+                                                     </children>
+                                                  </VBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgTel.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="06 11 22 33 44" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgLocalisation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="Vannes" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox spacing="20">
+                                                     <children>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/svgCalendar.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/profilAffectation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                     </children>
+                                                  </HBox>
+                                              </children>
+                                           </HBox>
+                                       </children>
+                                    </VBox>
+            
+                                    <!-- Colonne 2 -->
+                                    <VBox spacing="20">
+               <children>
+                                           <HBox alignment="CENTER_LEFT" spacing="30" styleClass="carte-secouriste">
+                                              <children>
+                                                  <VBox spacing="5">
+                                                     <children>
+                                                         <Label styleClass="nom-secouriste" text="Emma    Le Jalle" />
+                                                         <Label styleClass="label-role" text="Secouriste" />
+                                                     </children>
+                                                  </VBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgTel.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="06 12 34 56 78" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgLocalisation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="Finistère" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox spacing="20">
+                                                     <children>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/svgCalendar.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/profilAffectation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                     </children>
+                                                  </HBox>
+                                              </children>
+                                           </HBox>
+                                           <HBox alignment="CENTER_LEFT" spacing="30" styleClass="carte-secouriste">
+                                              <children>
+                                                  <VBox spacing="5">
+                                                     <children>
+                                                         <Label styleClass="nom-secouriste" text="Jean    Marc" />
+                                                         <Label styleClass="label-role" text="Secouriste" />
+                                                     </children>
+                                                  </VBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgTel.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="06 98 76 54 32" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                                     <children>
+                                                         <ImageView fitHeight="24" fitWidth="24">
+                                                             <image>
+                                                      <Image url="@../img/svgLocalisation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <Label styleClass="texte-info" text="Lorient" />
+                                                     </children>
+                                                  </HBox>
+                                                  <HBox spacing="20">
+                                                     <children>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/svgCalendar.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                         <ImageView fitHeight="36" fitWidth="36">
+                                                             <image>
+                                                      <Image url="@../img/profilAffectation.png" />
+                                                   </image>
+                                                         </ImageView>
+                                                     </children>
+                                                  </HBox>
+                                              </children>
+                                           </HBox>
+               </children>
+                                    </VBox>
+                                </children>
+                             </HBox>
+                         </children>
+                      </VBox>
+      </content>
+               </ScrollPane>
+   
+               <Label styleClass="statistique" text="75% des secouristes en intervention actuellement." />
+           </children>
+        </VBox>
+    </center>
+
+</BorderPane>

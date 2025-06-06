@@ -1,0 +1,84 @@
+.root {
+    -fx-background-color: #F6F6F6;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.barre-orange {
+    -fx-background-color: #FF8000;
+    -fx-padding: 0 20;
+}
+
+.titre-page {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0A1F66;
+    -fx-padding: 15 0;
+}
+
+.barre-recherche {
+    -fx-background-color: #FF8000;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+    -fx-font-size: 13px;
+    -fx-padding: 6 14;
+    -fx-pref-width: 500px;
+    -fx-border-color: transparent;
+}
+
+.combo-box {
+    -fx-background-color: #0A1F66;
+    -fx-background-radius: 15;
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-padding: 5 15;
+    -fx-font-weight: bold;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+.btn-retour {
+    -fx-background-color: #0A1F66;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 6 18;
+    -fx-font-size: 13px;
+    -fx-translate-x: 10;
+}
+
+.carte-secouriste {
+    -fx-background-color: #102A72;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-max-width: 850;
+}
+
+.nom-secouriste {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.label-role {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-opacity: 0.85;
+}
+
+.texte-info {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.statistique {
+    -fx-text-fill: #0A1F66;
+    -fx-font-size: 14px;
+    -fx-padding: 10 0 20 0;
+}

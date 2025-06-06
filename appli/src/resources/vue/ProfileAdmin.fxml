@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="profilePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="profile-page" stylesheets="@../style/Profile.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- ================== HEADER (zone TOP) ================== -->
+    <top>
+        <VBox>
+           <children>
+   
+               <!-- ───────── EN‐TÊTE PRINCIPAL ───────── -->
+               <HBox fx:id="mainHeader" maxHeight="80" minHeight="80" prefHeight="80" styleClass="main-header" VBox.vgrow="NEVER">
+      <children>
+      
+                      <HBox fx:id="headerNav" alignment="CENTER_LEFT" spacing="20" styleClass="header-nav" HBox.hgrow="ALWAYS">
+         <children>
+         
+                             <!-- === CÔTÉ GAUCHE : icônes de nav === -->
+                             <HBox fx:id="navLeft" alignment="CENTER_LEFT" spacing="35" styleClass="nav-left">
+            <children>
+            
+                                    <!-- Icône “Accueil” -->
+                                    <StackPane fx:id="logoContainer" styleClass="logo-container">
+               <children>
+                                           <ImageView fx:id="logoBg" fitHeight="48" fitWidth="48" preserveRatio="true" styleClass="logo-bg">
+                                               <image>
+                                                   <Image url="@../img/svgHome.png" />
+                                               </image>
+                                           </ImageView>
+               </children>
+                                        <!-- Si vous souhaitez plutôt utiliser “svgHome.png”, remplacez l’URL par @../img/svgHome.png -->
+                                    </StackPane>
+            
+                                    <!-- Icône “Personnes” -->
+                                    <ImageView fx:id="navIcon2" fitHeight="40" preserveRatio="true" styleClass="nav-icon">
+                                        <image>
+                                            <Image url="@../img/svgPersonne.png" />
+                                        </image>
+                                    </ImageView>
+            
+                                    <!-- Icône “Calendrier” -->
+                                    <ImageView fx:id="navIcon3" fitHeight="40" preserveRatio="true" styleClass="nav-icon">
+                                        <image>
+                                            <Image url="@../img/svgCalendrier.png" />
+                                        </image>
+                                    </ImageView>
+            
+                                    <!-- Icône “Paramètres” (roue) -->
+                                    <ImageView fx:id="navIcon4" fitHeight="40" preserveRatio="true" styleClass="nav-icon">
+                                        <image>
+                                            <Image url="@../img/svgRoue.png" />
+                                        </image>
+                                    </ImageView>
+            </children>
+                             </HBox>
+         
+                             <!-- === CÔTÉ DROIT : déconnexion + profil === -->
+                             <HBox fx:id="navRight" alignment="CENTER_RIGHT" spacing="10" HBox.hgrow="ALWAYS">
+            <children>
+                                    <!-- Icône “Déconnexion” -->
+                                    <ImageView fx:id="logoutIcon" fitHeight="40" preserveRatio="true" styleClass="nav-icon">
+                                        <image>
+                                            <Image url="@../img/logout.png" />
+                                        </image>
+                                    </ImageView>
+                                    <!-- Icône “Profil” (petit bonhomme) -->
+                                    <ImageView fx:id="userIcon" fitHeight="40" preserveRatio="true" styleClass="nav-icon">
+                                        <image>
+                                            <Image url="@../img/svgProfil.png" />
+                                        </image>
+                                    </ImageView>
+            </children>
+                             </HBox>
+         </children>
+      
+                      </HBox>
+      </children>
+               </HBox>
+   
+               <!-- ───────── SÉPARATEUR SOUS‐HEADER ───────── -->
+               <ImageView fx:id="headerDivider" fitHeight="40" preserveRatio="true" styleClass="header-divider" VBox.vgrow="NEVER">
+                   <image>
+                       <Image url="@../img/header-divider.png" />
+                   </image>
+               </ImageView>
+           </children>
+        </VBox>
+    </top>
+
+    <!-- ================== CONTENU PRINCIPAL (zone CENTER) ================== -->
+    <center>
+        <ScrollPane fx:id="profileContent" fitToWidth="true" styleClass="profile-content">
+           <content>
+   
+               <VBox fx:id="contentWrapper" alignment="TOP_CENTER" prefWidth="800" spacing="20" styleClass="content-wrapper">
+      <children>
+      
+                      <!-- ───────── EN‐TÊTE DU PROFIL (PHOTO + NOM + ID + INFOS) ───────── -->
+                      <HBox fx:id="profileHeader" alignment="CENTER_LEFT" spacing="20" styleClass="profile-header">
+         <children>
+         
+                             <!-- Colonnes : gauche = photo + nom, droite = téléphone/email/statut -->
+                             <VBox fx:id="userDetails" alignment="CENTER" spacing="10" styleClass="user-details">
+            <children>
+            
+                                    <!-- Photo de profil ronde -->
+                                    <ImageView fx:id="userAvatar" fitHeight="120" fitWidth="120" preserveRatio="true" styleClass="user-avatar">
+                                        <image>
+                                            <Image url="@../img/pdp.png" />
+                                        </image>
+                                    </ImageView>
+            
+                                    <!-- Nom et prénom -->
+                                    <HBox fx:id="userNameContainer" alignment="CENTER" spacing="5" styleClass="user-name-container">
+               <children>
+                                           <Label fx:id="userFirstName" styleClass="user-first-name" text="Patrick" />
+                                           <Label fx:id="userLastName" styleClass="user-last-name" text="David" />
+               </children>
+                                    </HBox>
+            
+                                    <!-- ID utilisateur -->
+                                    <Label fx:id="userId" styleClass="user-id" text="( id : 12345 )" />
+            </children>
+                             </VBox>
+         
+                             <!-- Infos rapides (téléphone / email / statut) -->
+                             <VBox fx:id="userStats" alignment="TOP_LEFT" spacing="15" styleClass="user-stats">
+            <children>
+            
+                                    <!-- Téléphone -->
+                                    <HBox fx:id="phoneSection" alignment="CENTER_LEFT" spacing="10" styleClass="user-info-item" />
+            
+                                    <!-- Email -->
+                                    <HBox fx:id="emailSection" alignment="CENTER_LEFT" spacing="10" styleClass="user-info-item" />
+            
+                                    <!-- Statut (Professionnel) -->
+                                    <HBox fx:id="statusSection" alignment="CENTER_LEFT" spacing="10" styleClass="user-info-item" />
+            </children>
+         
+                             </VBox>
+         </children>
+                      </HBox>
+      
+                      <!-- ───────── CORPS DU PROFIL (DEUX COLONNES) ───────── -->
+                      <HBox fx:id="profileBody" alignment="TOP_CENTER" spacing="20" styleClass="profile-body">
+         <children>
+         
+                             <!-- — Colonne GAUCHE — -->
+                             <VBox fx:id="leftSection" alignment="TOP_LEFT" spacing="15" styleClass="left-section">
+            <children>
+                                    <Label styleClass="field-label" text="Téléphone :" />
+                                    <HBox fx:id="phoneField" alignment="CENTER_LEFT" spacing="8" styleClass="field-wrapper">
+                                       <children>
+                                           <ImageView fx:id="phoneIcon2" fitHeight="20" fitWidth="20" preserveRatio="true" styleClass="field-icon">
+                                               <image>
+                                                   <Image url="@../img/svgTel.png" />
+                                               </image>
+                                           </ImageView>
+                                           <Label fx:id="phoneValue2" styleClass="field-value" text="06 14 23 72 90" />
+                                       </children>
+                                    </HBox>
+            
+                                    <Label styleClass="field-label" text="Email :" />
+                                    <HBox fx:id="emailField" alignment="CENTER_LEFT" spacing="8" styleClass="field-wrapper">
+                                       <children>
+                                           <ImageView fx:id="emailIcon2" fitHeight="20" fitWidth="20" preserveRatio="true" styleClass="field-icon">
+                                               <image>
+                                                   <Image url="@../img/svgMail.png" />
+                                               </image>
+                                           </ImageView>
+                                           <Label fx:id="emailValue2" styleClass="field-value" text="patrick.david@gmail.com" />
+                                       </children>
+                                    </HBox>
+            
+                                    <Label styleClass="field-label" text="Statut :" />
+                                    <HBox fx:id="statusField" alignment="CENTER_LEFT" spacing="8" styleClass="field-wrapper">
+                                       <children>
+                                           <ImageView fx:id="statusIcon2" fitHeight="20" fitWidth="20" preserveRatio="true" styleClass="field-icon">
+                                               <image>
+                                                   <Image url="@../img/svgPersonne.png" />
+                                               </image>
+                                           </ImageView>
+                                           <Label fx:id="statusValue2" styleClass="field-value" text="Professionnel" />
+                                       </children>
+                                    </HBox>
+            </children>
+                             </VBox>
+         
+                             <!-- — Séparateur vertical — -->
+                             <Pane fx:id="verticalSeparator" prefHeight="200" prefWidth="4" styleClass="vertical-separator" />
+         
+                             <!-- — Colonne DROITE — -->
+                             <VBox fx:id="rightSection" alignment="TOP_LEFT" spacing="15" styleClass="right-section">
+            <children>
+                                    <Label styleClass="field-label" text="Adresse :" />
+                                    <HBox fx:id="addressField" alignment="CENTER_LEFT" spacing="8" styleClass="field-wrapper">
+                                       <children>
+                                           <ImageView fx:id="addressIcon" fitHeight="20" fitWidth="20" preserveRatio="true" styleClass="field-icon">
+                                               <image>
+                                                   <Image url="@../img/address.png" />
+                                               </image>
+                                           </ImageView>
+                                           <Label fx:id="addressValue" styleClass="field-value" text="34 rue du secours" />
+                                       </children>
+                                    </HBox>
+            
+                                    <Label styleClass="field-label" text="Date de naissance :" />
+                                    <HBox fx:id="birthdateField" alignment="CENTER_LEFT" spacing="8" styleClass="field-wrapper">
+                                       <children>
+                                           <ImageView fx:id="birthdateIcon" fitHeight="20" fitWidth="20" preserveRatio="true" styleClass="field-icon">
+                                               <image>
+                                                   <Image url="@../img/svgCalendrier.png" />
+                                               </image>
+                                           </ImageView>
+                                           <Label fx:id="birthdateValue" styleClass="field-value" text="02/04/1996" />
+                                       </children>
+                                    </HBox>
+            
+                                    <Label styleClass="field-label" text="Date de création de compte :" />
+                                    <HBox fx:id="creationDateField" alignment="CENTER_LEFT" spacing="8" styleClass="field-wrapper">
+                                       <children>
+                                           <ImageView fx:id="creationIcon" fitHeight="20" fitWidth="20" preserveRatio="true" styleClass="field-icon">
+                                               <image>
+                                                   <Image url="@../img/svgCalendrier.png" />
+                                               </image>
+                                           </ImageView>
+                                           <Label fx:id="creationDateValue" styleClass="field-value" text="01/01/2024" />
+                                       </children>
+                                    </HBox>
+            
+                                    <!-- Bouton “Modifier le profil” -->
+                                    <Button fx:id="modifyProfileBtn" styleClass="modify-button" text="Modifier le profil" />
+            </children>
+                             </VBox>
+         </children>
+                      </HBox>
+      </children>
+               </VBox>
+           </content>
+        </ScrollPane>
+    </center>
+
+    <!-- ================== FOOTER (zone BOTTOM) ================== -->
+    <bottom>
+        <HBox fx:id="mainFooter" alignment="CENTER_LEFT" maxHeight="60" minHeight="60" prefHeight="60" spacing="10" styleClass="main-footer">
+           <children>
+   
+               <Button fx:id="backBtn" styleClass="back-button" text="Retour">
+                   <graphic>
+                       <ImageView fx:id="backIcon" fitHeight="16" fitWidth="16" preserveRatio="true" styleClass="back-icon">
+                           <image>
+                               <Image url="@../img/back.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+           </children>
+        </HBox>
+    </bottom>
+
+</BorderPane>

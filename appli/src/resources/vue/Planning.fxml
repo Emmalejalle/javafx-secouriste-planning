@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefWidth="1920.0" prefHeight="1080.0" stylesheets="@../style/Planning.css" styleClass="main-container">
+  
+
+    
+    
+  <left>
+    
+        
+    <VBox styleClass="sidebar" prefWidth="271">
+      
+            
+            
+      <HBox styleClass="calendar-header" alignment="CENTER_LEFT" spacing="10">
+        
+                
+        <ImageView styleClass="logo-icon">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/Logo.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+                
+        <ImageView styleClass="nav-icon">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/svgHome.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+                
+        <ImageView styleClass="nav-icon">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/svgCalendrier.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+                
+        <ImageView styleClass="nav-icon">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/svgRoue.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+            
+      </HBox>
+      
+
+            
+            
+      <VBox styleClass="calendar-section" spacing="10">
+        
+                
+        <Label text="Mars 2025" styleClass="calendar-title"/>
+        
+                
+        <Label text="lun  mar  mer  jeu  ven  sam  dim" styleClass="calendar-days"/>
+        
+                
+                
+                
+        <GridPane styleClass="calendar-grid" hgap="5" vgap="5">
+          
+                    
+                    
+          <Label text="1" styleClass="calendar-date" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="2" styleClass="calendar-date" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+          
+                    
+                    
+                    
+          <Label text="3" styleClass="calendar-date" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="4" styleClass="calendar-date" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="5" styleClass="calendar-date" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="6" styleClass="calendar-date" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="7" styleClass="calendar-date" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="8" styleClass="calendar-date" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="9" styleClass="calendar-date" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+          
+                    
+                    
+                    
+          <HBox styleClass="active-week" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="7">
+            
+                        
+            <Label text="10" styleClass="calendar-date active-date"/>
+            
+                        
+            <Label text="11" styleClass="calendar-date"/>
+            
+                        
+            <Label text="12" styleClass="calendar-date"/>
+            
+                        
+            <Label text="13" styleClass="calendar-date"/>
+            
+                        
+            <Label text="14" styleClass="calendar-date"/>
+            
+                        
+            <Label text="15" styleClass="calendar-date"/>
+            
+                        
+            <Label text="16" styleClass="calendar-date"/>
+            
+                    
+          </HBox>
+          
+                    
+                    
+                    
+          <Label text="17" styleClass="calendar-date" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="18" styleClass="calendar-date" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="19" styleClass="calendar-date" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="20" styleClass="calendar-date" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="21" styleClass="calendar-date" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="22" styleClass="calendar-date" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="23" styleClass="calendar-date" GridPane.columnIndex="6" GridPane.rowIndex="3"/>
+          
+                    
+                    
+                    
+          <Label text="24" styleClass="calendar-date" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="25" styleClass="calendar-date" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="26" styleClass="calendar-date" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="27" styleClass="calendar-date" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="28" styleClass="calendar-date" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="29" styleClass="calendar-date" GridPane.columnIndex="5" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="30" styleClass="calendar-date" GridPane.columnIndex="6" GridPane.rowIndex="4"/>
+          
+                    
+                    
+                    
+          <Label text="31" styleClass="calendar-date" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+          
+                
+        </GridPane>
+        
+            
+      </VBox>
+      
+
+            
+            
+      <VBox styleClass="planning-section" spacing="15">
+        
+                
+        <Separator styleClass="section-separator"/>
+        
+                
+        <Label text="Planning de Patrick David" styleClass="section-title"/>
+        
+                
+                
+        <VBox spacing="10">
+          
+                    
+          <Label text="Un problème avec votre emploi du temps. Signalez-le ici :" styleClass="problem-text"/>
+          
+                    
+          <Button text="Signalement" styleClass="report-button"/>
+          
+                
+        </VBox>
+        
+                
+                
+        <Button styleClass="download-button">
+          
+                    
+          <graphic>
+            
+                        
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              
+                            
+              <Label text="Télécharger planning" styleClass="download-text"/>
+              
+                            
+              <ImageView styleClass="download-icon">
+                
+                                
+                <image>
+                  
+                                    
+                  <Image url="@../img/svgTelecharger.png"/>
+                  
+                                
+                </image>
+                
+                            
+              </ImageView>
+              
+                        
+            </HBox>
+            
+                    
+          </graphic>
+          
+                
+        </Button>
+        
+            
+      </VBox>
+      
+
+            
+            
+      <VBox styleClass="legend-section" spacing="10">
+        
+                
+        <VBox styleClass="legend-panel" spacing="8">
+          
+                    
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            
+                        
+            <Region styleClass="legend-dot legend-blue-dot"/>
+            
+                        
+            <Label text="Sport en intérieur, patinoire couverte" styleClass="legend-text"/>
+            
+                    
+          </HBox>
+          
+                    
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            
+                        
+            <Region styleClass="legend-dot legend-yellow-dot"/>
+            
+                        
+            <Label text="Sport en extérieur, sur neige (plateaux enneigés et tremplins)" styleClass="legend-text"/>
+            
+                    
+          </HBox>
+          
+                    
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            
+                        
+            <Region styleClass="legend-dot legend-green-dot"/>
+            
+                        
+            <Label text="Sport en extérieur, sur neige (station de ski, piste)" styleClass="legend-text"/>
+            
+                    
+          </HBox>
+          
+                    
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            
+                        
+            <Region styleClass="legend-dot legend-red-dot"/>
+            
+                        
+            <Label text="Sport en extérieur, sur piste glacée" styleClass="legend-text"/>
+            
+                    
+          </HBox>
+          
+                
+        </VBox>
+        
+                
+                
+        <Button text="Retour" styleClass="back-button"/>
+        
+            
+      </VBox>
+      
+        
+    </VBox>
+    
+    
+  </left>
+  
+
+    
+    
+  <center>
+    
+        
+    <VBox styleClass="main-content">
+      
+            
+            
+      <HBox styleClass="header" alignment="CENTER" prefHeight="99">
+        
+                
+        <ImageView styleClass="header-logo">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/Logo.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+                
+        <Label text="Planning" styleClass="header-title"/>
+        
+            
+      </HBox>
+      
+
+            
+            
+      <VBox styleClass="weekly-planning" spacing="20">
+        
+                
+        <Label text="Mars 2025 - semaine 13" styleClass="week-title"/>
+        
+                
+                
+                
+        <GridPane styleClass="schedule-grid" hgap="0" vgap="0">
+          
+                    
+                    
+          <Label text="Lundi 10" styleClass="day-header" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="Mardi 11" styleClass="day-header" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="Mercredi 12" styleClass="day-header" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="Jeudi 13" styleClass="day-header" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="Vendredi 14" styleClass="day-header" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="Samedi 15" styleClass="day-header" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+          
+                    
+          <Label text="Dimanche 16" styleClass="day-header" GridPane.columnIndex="7" GridPane.rowIndex="0"/>
+          
+                    
+                    
+                    
+          <Label text="7h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+          
+                    
+          <Label text="8h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+          
+                    
+          <Label text="9h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+          
+                    
+          <Label text="10h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+          
+                    
+          <Label text="11h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+          
+                    
+          <Label text="12h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+          
+                    
+          <Label text="13h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+          
+                    
+          <Label text="14h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+          
+                    
+          <Label text="15h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+          
+                    
+          <Label text="16h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+          
+                    
+          <Label text="17h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+          
+                    
+          <Label text="18h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+          
+                    
+          <Label text="19h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="13"/>
+          
+                    
+          <Label text="20h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="14"/>
+          
+                    
+          <Label text="21h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="15"/>
+          
+                    
+          <Label text="22h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="16"/>
+          
+                    
+          <Label text="23h" styleClass="time-label" GridPane.columnIndex="0" GridPane.rowIndex="17"/>
+          
+
+                    
+                    
+                    
+          <VBox styleClass="activity activity-red" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+            
+                        
+            <Region styleClass="activity-marker activity-red-marker"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-green" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            
+                        
+            <Region styleClass="activity-marker activity-green-marker"/>
+            
+                        
+            <HBox alignment="CENTER_LEFT" spacing="5">
+              
+                            
+              <ImageView styleClass="activity-icon">
+                
+                                
+                <image>
+                  
+                                    
+                  <Image url="@../img/ski.png"/>
+                  
+                                
+                </image>
+                
+                            
+              </ImageView>
+              
+                            
+              <Label text="Ski Alpin" styleClass="activity-title"/>
+              
+                        
+            </HBox>
+            
+                        
+            <Label text="9h-12h" styleClass="activity-time"/>
+            
+                        
+            <Label text="En savoir plus" styleClass="activity-link"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-blue" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="4">
+            
+                        
+            <Region styleClass="activity-marker activity-blue-marker"/>
+            
+                        
+            <HBox alignment="CENTER_LEFT" spacing="5">
+              
+                            
+              <ImageView styleClass="activity-icon">
+                
+                                
+                <image>
+                  
+                                    
+                  <Image url="@../img/curling.png"/>
+                  
+                                
+                </image>
+                
+                            
+              </ImageView>
+              
+                            
+              <Label text="Curling" styleClass="activity-title"/>
+              
+                        
+            </HBox>
+            
+                        
+            <Label text="12h-16h" styleClass="activity-time"/>
+            
+                        
+            <Label text="En savoir plus" styleClass="activity-link"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-yellow" GridPane.columnIndex="4" GridPane.rowIndex="5" GridPane.rowSpan="4">
+            
+                        
+            <Region styleClass="activity-marker activity-yellow-marker"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-red" GridPane.columnIndex="3" GridPane.rowIndex="10" GridPane.rowSpan="3">
+            
+                        
+            <Region styleClass="activity-marker activity-red-marker"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-red" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.rowSpan="3">
+            
+                        
+            <Region styleClass="activity-marker activity-red-marker"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-blue" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.rowSpan="3">
+            
+                        
+            <Region styleClass="activity-marker activity-blue-marker"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-blue" GridPane.columnIndex="6" GridPane.rowIndex="7" GridPane.rowSpan="3">
+            
+                        
+            <Region styleClass="activity-marker activity-blue-marker"/>
+            
+                    
+          </VBox>
+          
+
+                    
+                    
+          <VBox styleClass="activity activity-green" GridPane.columnIndex="4" GridPane.rowIndex="11" GridPane.rowSpan="2">
+            
+                        
+            <Region styleClass="activity-marker activity-green-marker"/>
+            
+                    
+          </VBox>
+          
+                
+        </GridPane>
+        
+
+                
+                
+        <Label text="Total heures : 27h30" styleClass="total-hours"/>
+        
+            
+      </VBox>
+      
+        
+    </VBox>
+    
+    
+  </center>
+  
+
+    
+    
+  <right>
+    
+        
+    <VBox styleClass="right-sidebar" prefWidth="232">
+      
+            
+            
+      <HBox styleClass="user-section" alignment="CENTER_RIGHT" spacing="10">
+        
+                
+        <ImageView styleClass="user-icon">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/svgSortie.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+                
+        <ImageView styleClass="user-avatar">
+          
+                    
+          <image>
+            
+                        
+            <Image url="@../img/svgAccueil.png"/>
+            
+                    
+          </image>
+          
+                
+        </ImageView>
+        
+            
+      </HBox>
+      
+
+            
+            
+      <VBox styleClass="availability-section" spacing="15">
+        
+                
+        <VBox styleClass="availability-panel" spacing="10">
+          
+                    
+          <Label text="Renseigner mes prochaines disponibilités :" styleClass="availability-text"/>
+          
+                    
+          <Button text="Mes disponibilités" styleClass="availability-button"/>
+          
+                
+        </VBox>
+        
+            
+      </VBox>
+      
+        
+    </VBox>
+    
+    
+  </right>
+  
+
+
+</BorderPane>

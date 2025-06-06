@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="600.0" prefWidth="800.0" stylesheets="@../ressource/style.css">
+    
+    <children>
+        <!-- Logo en haut -->
+        <ImageView fx:id="logoImage" fitHeight="80.0" fitWidth="80.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../ressource/Logo.png" />
+            </image>
+        </ImageView>
+
+        <!-- Titre principal -->
+        <Label fx:id="mainTitle" layoutX="120.0" layoutY="30.0" text="Bienvenue sur notre site !" styleClass="title-blue"/>
+
+        <!-- Image hélico -->
+        <ImageView fx:id="helicoImage" fitHeight="200.0" fitWidth="300.0" layoutX="250.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../ressource/AccueilHelico.png" />
+            </image>
+        </ImageView>
+
+        <!-- Boutons -->
+        <VBox layoutX="300.0" layoutY="350.0" spacing="10.0">
+            <children>
+                <Button fx:id="btnReinstaller" text="Réinstallation PC" styleClass="button-orange"/>
+                <Button fx:id="btnAssembleur" text="Assemblage PC" styleClass="button-orange"/>
+                <Button fx:id="btnFormation" text="Formation Particuliers" styleClass="button-orange"/>
+                <Button fx:id="btnReseau" text="Pack Réseau" styleClass="button-orange"/>
+                <Button fx:id="btnSiteWeb" text="Pack Site Internet" styleClass="button-orange"/>
+                <Button fx:id="btnAppDev" text="Développement d'app" styleClass="button-red"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

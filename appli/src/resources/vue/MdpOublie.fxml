@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/MdpOublie.css"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+    >
+
+    <!-- Bande orange en haut -->
+    <top>
+        <HBox prefHeight="60.0" styleClass="barre-orange" />
+    </top>
+
+    <!-- Bande orange en bas -->
+    <bottom>
+        <HBox prefHeight="60.0" styleClass="barre-orange" />
+    </bottom>
+
+    <!-- Centre -->
+    <center>
+        <StackPane>
+            <VBox alignment="CENTER" spacing="16" maxWidth="600" maxHeight="360" styleClass="carte-mdp">
+                <children>
+
+                    <HBox alignment="TOP_RIGHT" prefWidth="600.0">
+                        <ImageView fitWidth="80" fitHeight="80">
+                            <image>
+                                <Image url="@../img/Logo.png"/>
+                            </image>
+                        </ImageView>
+                    </HBox>
+
+                    <Label text="Mot de passe oublié ?" styleClass="titre-grande"/>
+                    <Label text="Renseignez votre adresse e-mail afin de recevoir les instructions pour le réinitialiser"
+                           wrapText="true" textAlignment="CENTER" styleClass="sous-titre"/>
+
+                    <VBox spacing="4" alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="Adresse e-mail" styleClass="label"/>
+                            <TextField fx:id="emailField" promptText="ex: secour@calendar.com" styleClass="champ"/>
+                        </children>
+                    </VBox>
+
+                    <Button text="Envoyer le code" styleClass="btn-envoyer"/>
+                    <Hyperlink text="Retour à la connexion" styleClass="lien-retour"/>
+
+                </children>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

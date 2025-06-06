@@ -1,0 +1,92 @@
+.profile-page {
+    background-color: rgba(252, 252, 252, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.main-header {
+    background-color: rgba(94, 96, 183, 1);
+    width: 100%;
+}
+
+@media (max-width: 991px) {
+    .main-header {
+        max-width: 100%;
+    }
+}
+
+.header-nav {
+    background-color: rgba(249, 115, 22, 1);
+    display: flex;
+    width: 100%;
+    padding: 0 19px;
+    align-items: start;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+    .header-nav {
+        max-width: 100%;
+    }
+}
+
+.nav-left {
+    align-self: stretch;
+    display: flex;
+    margin: auto 0;
+    align-items: stretch;
+    gap: 35px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    aspect-ratio: 1;
+    margin: auto 0;
+    width: 48px;
+    overflow: hidden;
+}
+
+.logo-bg {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.logo-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+}
+
+.nav-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 58px;
+    flex-shrink: 0;
+}
+
+.nav-icon:nth-child(3) {
+    width: 48px;
+    margin: auto 0;
+}
+
+.nav-icon:nth-child(4) {
+    aspect-ratio: 1.04;
+    width: 57px;
+    align-self: start;
+}
+
+.profile-header {
+    display: flex;
+    align-items: stretch;
+    font-family: Roboto, -apple-system, Roboto, Helvetica, sans
