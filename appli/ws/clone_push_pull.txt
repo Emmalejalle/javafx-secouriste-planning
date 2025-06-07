@@ -57,3 +57,5 @@ On va alors vous demandez votre adresse email ainsi que votre mdp git donc l'oub
 
 
 Si ces derniers sont bien renseignés alors c'est bon on a tous acces à votre ajout! félicitations!!!!
+
+prevenez que vous avez push et qu'il faut pull!!!!!
