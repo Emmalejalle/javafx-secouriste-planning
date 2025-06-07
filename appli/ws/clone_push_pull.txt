@@ -45,11 +45,11 @@ Donc, vous copiez coller dans /AppliSecou/secoursae/appli (avant de copier colle
 
 puis on peut passer au push :
 
-d'abord vous faite la commande """toujours git pull avant cette commande sinon je peux plus réparer cotre git"""" :
+d'abord vous faite la commande """toujours git pull avant cette commande sinon je peux plus réparer notre git"""" :
 git add .         (elle ajoute les nouveaux fichiers au transfert mais elle delete les anciens qui ne sont plus dans votre arborescence d'où la nécessité de git pull juste avant le git add .
 
 puis vous faites la commande :
-git commit -m "Ici il faut dire ce que vous avez changé ou ajouté au projet(genre vraiment)"
+git commit -m "Ici il faut dire ce que vous avez changé ou ajouté au projet(genre vraiment!!!)"
 
 pour finir vous pouvez utiliser la commande :
 git push        
