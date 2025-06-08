@@ -1,4 +1,4 @@
-package model;
+package modele.persistence;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;

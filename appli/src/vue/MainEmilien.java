@@ -4,11 +4,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class MainEmilien extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println(getClass().getResource("/vue/ProfileAdmin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/Profil.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/ProfileAdmin.fxml"));
         stage.setTitle("Liste des secouristes");
         stage.setScene(new Scene(root));
         stage.show();

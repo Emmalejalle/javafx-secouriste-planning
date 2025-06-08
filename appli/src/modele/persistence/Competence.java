@@ -1,4 +1,4 @@
-package model;
+package modele.persistence;
 
 import java.util.ArrayList;
 public class Competence {

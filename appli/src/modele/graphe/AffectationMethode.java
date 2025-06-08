@@ -1,4 +1,5 @@
-import java.io.*;
+package modele.graphe;
+// AffectationMethode.java
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,6 +7,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+/**
+ * Classe pour gérer l'affectation des secouristes aux DPS en utilisant un algorithme glouton.
+ * 
+ * Cette classe contient des méthodes pour vérifier si un graphe est un DAG (Directed Acyclic Graph)
+ * et pour effectuer une affectation de secouristes à des DPS en utilisant une matrice d'adjacence.
+ */
 public class AffectationMethode {
     public static void main(String[] args) {
 

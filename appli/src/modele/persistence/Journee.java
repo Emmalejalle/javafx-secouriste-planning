@@ -1,4 +1,5 @@
-package model;
+package modele.persistence;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 

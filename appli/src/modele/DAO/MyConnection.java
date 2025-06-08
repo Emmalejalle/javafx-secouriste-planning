@@ -1,8 +1,14 @@
-
+package modele.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * La classe MyConnection permet de se connecter à la base de données.
+ * Elle utilise le singleton pour ne pas créer plusieurs connexions.
+ * @author EMERIAU Emilien
+ * @version 1.0
+ */
 public class MyConnection {
     private static final String URL ="jdbc:mysql://localhost:3306/bd_iut"; //a la place du de localhost on met le nom du serv sur la vm
     private static final String LOGIN = "pham";

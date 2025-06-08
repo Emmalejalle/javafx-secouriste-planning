@@ -1,3 +1,4 @@
+package modele.persistence;
 /**
  * La classe Affectation représente une affectation de taches aux secouristes.
  * @author Elie Tardy

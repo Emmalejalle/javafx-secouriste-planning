@@ -1,4 +1,4 @@
-package model;
+package modele.persistence;
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
