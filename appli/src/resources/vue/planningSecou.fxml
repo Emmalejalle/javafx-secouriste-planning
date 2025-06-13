@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane fx:id="BorderPanePlanningSecou" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@stylePlanningSecou.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="BorderPanePlanningSecou" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox fx:id="TopPlanSecou" alignment="CENTER" prefHeight="99.0" prefWidth="1920.0" style="-fx-background-color: F97316;" stylesheets="@stylePlanningSecou.css" BorderPane.alignment="CENTER">
+      <HBox fx:id="TopPlanSecou" alignment="CENTER" prefHeight="99.0" prefWidth="1920.0" style="-fx-background-color: F97316;" stylesheets="@../style/stylePlanningSecou.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Page Planning" textAlignment="CENTER" textFill="#1e3a8a">
                <font>
@@ -19,63 +28,298 @@
          </children>
       </HBox>
    </top>
-   <bottom>
-      <HBox fx:id="BotPlanSecou" prefHeight="99.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
-   </bottom>
    <center>
-      <VBox>
+      <VBox stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
          <children>
-            <GridPane fx:id="PlanSecou" alignment="CENTER" prefHeight="726.0" prefWidth="1454.0" style="-fx-border-color: lightgray;" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="33.333343505859375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="43.666656494140625" minHeight="0.0" prefHeight="39.666656494140625" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Heures/jours" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="200.0" prefWidth="200.0" styleClass="cellule-vide" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Pane fx:id="celluleVide1" prefHeight="200.0" prefWidth="200.0" styleClass="cellule-vide" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
+      <!-- Section navigation avec titre et flèches -->
+      <HBox fx:id="hbxMoisSemaine" alignment="CENTER" spacing="20.0" style="-fx-background-color: #FFFFFF;" styleClass="header-section">
+         <children>
+            <Button fx:id="btnPrevious" mnemonicParsing="false" onAction="#onPreviousMonth" styleClass="nav-button" text="◀" />
+            <Label fx:id="lblMonthYear" styleClass="month-title" text="Mars 2025 - Semaine 13" />
+            <Button fx:id="btnNext" mnemonicParsing="false" onAction="#onNextMonth" styleClass="nav-button" text="▶" />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      
+      <!-- GridPane pour le planning -->
+      <GridPane fx:id="planningGrid" alignment="CENTER" gridLinesVisible="true" styleClass="planning-grid" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <!-- En-têtes des colonnes (jours) -->
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Lundi 10" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Mardi 11" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Mercredi 12" textAlignment="CENTER" translateX="45.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Jeudi 13" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Vendredi 14" textAlignment="CENTER" translateX="45.0" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Samedi 15" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Dimanche 16" textAlignment="CENTER" translateX="45.0" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+            
+            <!-- En-têtes des lignes (heures) -->
+            <Label alignment="CENTER" styleClass="hour-header" text="7h" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" styleClass="hour-header" text="8h" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" styleClass="hour-header" text="9h" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" styleClass="hour-header" text="10h" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" styleClass="hour-header" text="11h" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" styleClass="hour-header" text="12h" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" styleClass="hour-header" text="13h" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" styleClass="hour-header" text="14h" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <Label alignment="CENTER" styleClass="hour-header" text="15h" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <Label alignment="CENTER" styleClass="hour-header" text="16h" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+            <Label alignment="CENTER" styleClass="hour-header" text="17h" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+            <Label alignment="CENTER" styleClass="hour-header" text="18h" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+            <Label alignment="CENTER" styleClass="hour-header" text="19h" GridPane.columnIndex="0" GridPane.rowIndex="13" />
+            <Label alignment="CENTER" styleClass="hour-header" text="20h" GridPane.columnIndex="0" GridPane.rowIndex="14" />
+            <Label alignment="CENTER" styleClass="hour-header" text="21h" GridPane.columnIndex="0" GridPane.rowIndex="15" />
+            <Label alignment="CENTER" styleClass="hour-header" text="22h" GridPane.columnIndex="0" GridPane.rowIndex="16" />
+            <Label alignment="CENTER" styleClass="hour-header" text="23h" GridPane.columnIndex="0" GridPane.rowIndex="17" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </GridPane>
+      
+      <!-- Label pour le total des heures -->
+      <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #FFFFFF;" styleClass="footer-section">
+         <children>
+            <Label fx:id="lblTotalHours" styleClass="total-hours" text="Total heures : 17h00" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
       </VBox>
    </center>
    <left>
-      <VBox prefHeight="824.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="leftPanel" prefHeight="824.0" prefWidth="233.0" styleClass="left-panel" BorderPane.alignment="CENTER">
+   <children>
+      <!-- Spacer du haut pour centrer verticalement -->
+      <Region prefHeight="20.0" />
+      
+      <!-- Calendrier Mars 2025 -->
+      <VBox styleClass="calendar-section">
+               <children>
+                  <Label styleClass="calendar-title" text="Mars 2025" />
+                  <GridPane styleClass="calendar-grid">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <!-- En-têtes des jours -->
+                        <Label styleClass="calendar-day-header" text="lun" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label styleClass="calendar-day-header" text="mar" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label styleClass="calendar-day-header" text="mer" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                        <Label styleClass="calendar-day-header" text="jeu" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                        <Label styleClass="calendar-day-header" text="ven" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                        <Label styleClass="calendar-day-header" text="sam" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                        <Label styleClass="calendar-day-header" text="dim" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+                        
+                        <!-- Première semaine -->
+                        <Label styleClass="calendar-day-number" text="" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label styleClass="calendar-day-number" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label styleClass="calendar-day-number" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label styleClass="calendar-day-number" text="" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label styleClass="calendar-day-number" text="" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Label styleClass="calendar-day-number" text="1" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <Label styleClass="calendar-day-number" text="2" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        
+                        <!-- Deuxième semaine -->
+                        <Label styleClass="calendar-day-number" text="3" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label styleClass="calendar-day-number" text="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label styleClass="calendar-day-number" text="5" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label styleClass="calendar-day-number" text="6" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label styleClass="calendar-day-number" text="7" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Label styleClass="calendar-day-number" text="8" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <Label styleClass="calendar-day-number" text="9" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        
+                        <!-- Troisième semaine (avec jour sélectionné) -->
+                        <Label styleClass="calendar-day-selected" text="10" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label styleClass="calendar-day-number" text="11" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label styleClass="calendar-day-number" text="12" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label styleClass="calendar-day-number" text="13" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label styleClass="calendar-day-number" text="14" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Label styleClass="calendar-day-number" text="15" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <Label styleClass="calendar-day-number" text="16" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                        
+                        <!-- Quatrième semaine -->
+                        <Label styleClass="calendar-day-number" text="17" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label styleClass="calendar-day-number" text="18" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label styleClass="calendar-day-number" text="19" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Label styleClass="calendar-day-number" text="20" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Label styleClass="calendar-day-number" text="21" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <Label styleClass="calendar-day-number" text="22" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <Label styleClass="calendar-day-number" text="23" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                        
+                        <!-- Cinquième semaine -->
+                        <Label styleClass="calendar-day-number" text="24" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                        <Label styleClass="calendar-day-number" text="25" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label styleClass="calendar-day-number" text="26" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label styleClass="calendar-day-number" text="27" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label styleClass="calendar-day-number" text="28" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <Label styleClass="calendar-day-number" text="29" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <Label styleClass="calendar-day-number" text="30" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                        
+                        <!-- Label pour 31 -->
+                        <Label styleClass="calendar-day-number" text="31" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <StackPane>
+               <children>
+                  
+                  <!-- Spacer entre calendrier et section planning -->
+                  <Region prefHeight="30.0" />
+                  <ImageView fitHeight="5.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/svgLigneBlancheSéparation.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            
+            <!-- Section Planning de Patrick David -->
+            <VBox styleClass="planning-info-section">
+               <children>
+                  <Label styleClass="planning-title" text="Planning de Patrick David" />
+                  <ImageView fitHeight="5.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/svgLigneBlancheSéparation.png" />
+                     </image>
+                  </ImageView>
+                  <VBox styleClass="problem-section">
+                     <children>
+                        <Label styleClass="problem-text" text="Un problème avec votre" />
+                        <Label styleClass="problem-text" text="emploi du temps." />
+                        <Label styleClass="problem-text" text="Signalez-le ici :" />
+                        <StackPane prefHeight="31.0" prefWidth="250.0">
+                           <children>
+                              <Region prefHeight="0.0" prefWidth="193.0" />
+                              <Button fx:id="btnSignalementPlanningSecou" minWidth="121.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="121.0" styleClass="signalement-button">
+                                 <font>
+                                    <Font name="Liberation Sans" size="45.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="56.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/Signalementbtn.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <StackPane prefHeight="20.0" prefWidth="1020.0">
+               <children>
+                  <ImageView fitHeight="5.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/svgLigneBlancheSéparation.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane>
+               <children>
+                  
+                  <!-- Bouton Télécharger planning -->
+                  <Button fx:id="btnTelecharger" mnemonicParsing="false" opacity="0.0" styleClass="download-button" text="Télécharger planning" />
+                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/svgTéléhargerPlanningCadre.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            
+            <!-- Spacer pour pousser le bouton retour vers le bas -->
+            <Region VBox.vgrow="ALWAYS" />
+
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <StackPane>
+                     <children>
+                        <Button fx:id="btnRetour" mnemonicParsing="false" styleClass="retour-button" />
+                        <ImageView fitHeight="16.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/svgRetourBouton.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <Region prefHeight="10.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
    </left>
    <right>
-      <VBox prefHeight="824.0" prefWidth="233.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="rightPanel" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="233.0" spacing="15.0" styleClass="right-panel" BorderPane.alignment="CENTER">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+        </padding>
+        <children>
+
+            <Region prefHeight="528.0" prefWidth="213.0" VBox.vgrow="ALWAYS" />
+
+         <VBox fx:id="dispoSection" alignment="CENTER" spacing="15.0" styleClass="dispo-section">
+            <children>
+               <Label styleClass="dispo-label" text="Renseigner mes prochaines disponibilités :" textAlignment="CENTER" wrapText="true" />
+               <Button fx:id="btnMesDisponibilites" mnemonicParsing="false" styleClass="dispo-button" text="Mes disponibilités" />
+            </children>
+         </VBox>
+
+        </children>
+    </VBox>
    </right>
 </BorderPane>

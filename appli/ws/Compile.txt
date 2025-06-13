@@ -1,5 +1,4 @@
-javac -d class -sourcepath src --module-path lib/javafx --add-modules javafx.controls,javafx.fxm
-l `find . -name '*.java'`
+javac -d class -sourcepath src --module-path lib/javafx --add-modules javafx.controls,javafx.fxml `find . -name '*.java'`
 
 java -cp class:src/resources --module-path lib/javafx --add-modules javafx.controls,javafx.fxml 
 MainEmilien
