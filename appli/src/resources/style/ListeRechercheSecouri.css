@@ -1,0 +1,21 @@
+.root {
+    -fx-font-family: 'Poppins', 'Roboto', sans-serif;
+    -fx-background-color: #FCFCFC;
+}
+
+.blocBleuSecouriste {
+	-fx-background-color: #1A2A60;
+	-fx-background-radius: 10;
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
+	-fx-font-color: white;
+}
+
+.nomPrenomSecouriste {
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif, gras;
+	-fx-font-color: white;
+}
+
+.texteBoxFondFoncé {
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
+	-fx-font-color: white;
+}
