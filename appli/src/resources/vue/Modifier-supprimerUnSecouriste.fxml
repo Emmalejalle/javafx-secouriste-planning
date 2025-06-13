@@ -1,51 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </center>
-   <left>
-      <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <content>
-            <VBox prefHeight="876.0" prefWidth="195.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" styleClass="blocBleuSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <HBox id="HBoxNomPrenomSecouriste" prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <Label id="PrenomSecouriste" styleClass="nomPrenomSecouriste" text="Patrick">
-                                       <padding>
-                                          <Insets left="5.0" right="5.0" />
-                                       </padding>
-                                    </Label>
-                                    <Label id="NomSecouriste" styleClass="nomPrenomSecouriste" stylesheets="@../style/ListeRechercheSecouri.css" text="Davidou" />
-                                 </children>
-                              </HBox>
-                              <Label text="Secouriste" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </content>
-      </ScrollPane>
-   </left>
    <top>
       <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
       <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </bottom>
+   <left>
+      <VBox>
+         <children>
+            <HBox prefHeight="43.0" prefWidth="395.0" styleClass="BarDeRechercheSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
+               <children>
+                  <ImageView fx:id="LogoRechercherEntry" fitHeight="33.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/loupeRecherche.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="8.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="RechercheSecouristeTextFil" alignment="CENTER" prefHeight="20.0" prefWidth="309.0" promptText="Rechercher un secouriste" styleClass="BarDeRechercheSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="55.0" top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <StackPane prefHeight="791.0" styleClass="shadow" stylesheets="@../style/ListeRechercheSecouri.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane id="RechercheSecouristeScroller" fx:id="ScrollPaneRechercheSecou" fitToWidth="true" prefHeight="200.0" prefWidth="413.0" styleClass="scrollContour" stylesheets="@../style/ListeRechercheSecouri.css">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="876.0" prefWidth="413.0">
+                           <children>
+                              <HBox id="SecouristePatrickDavidou" prefHeight="76.0" prefWidth="286.0" spacing="5.0" styleClass="blocBleuSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="95.0" prefWidth="266.0">
+                                       <children>
+                                          <HBox id="HBoxNomPrenomSecouriste" prefHeight="21.0" prefWidth="258.0">
+                                             <children>
+                                                <Label id="PrenomSecouriste" styleClass="nomPrenomSecouriste" text="Patrick">
+                                                   <HBox.margin>
+                                                      <Insets left="8.0" right="8.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <Label id="NomSecouriste" styleClass="nomPrenomSecouriste" stylesheets="@../style/ListeRechercheSecouri.css" text="Davidou">
+                                                   <HBox.margin>
+                                                      <Insets left="8.0" right="8.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Label styleClass="jsp" stylesheets="@../style/ListeRechercheSecouri.css" text="Secouriste" textFill="#303030">
+                                             <VBox.margin>
+                                                <Insets bottom="8.0" left="24.0" right="8.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets right="25.0" top="8.0" />
+                                       </HBox.margin>
+                                       <image>
+                                          <Image url="@../img/profilAffectation.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" left="30.0" right="60.0" top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="30.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="4.0" top="-3.0" />
+               </padding>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
 </BorderPane>
