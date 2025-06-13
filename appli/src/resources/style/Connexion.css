@@ -1,70 +1,81 @@
 .root {
     -fx-background-color: white;
     -fx-font-family: 'Poppins', sans-serif;
-}
-
-.barre-orange {
+    }
+    
+    .barre-orange {
     -fx-background-color: #F97316;
-}
-
-.btn-bienvenue {
-    -fx-font-size: 18px;
+    }
+    
+    .btn-exit {
+    -fx-background-color: black;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 90px;
+    -fx-background-radius: 6px;
+    -fx-graphic: url('@../img/icon-exit.png');
+    }
+    
+    .btn-bienvenue {
+    -fx-pref-width: 565px;
+    -fx-pref-height: 90px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-background-color: #1E3A8A;
     -fx-text-fill: white;
-    -fx-background-radius: 10;
-    -fx-padding: 10px 30px;
-}
-
-.carte {
+    -fx-background-radius: 10px;
+    }
+    
+    .carte {
     -fx-background-color: white;
     -fx-effect: dropshadow(gaussian, #1E3A8A, 10, 0.5, 4, 4);
+    -fx-pref-width: 525px;
+    -fx-pref-height: 745px;
+    -fx-background-radius: 12px;
     -fx-padding: 30px;
-    -fx-spacing: 15px;
-    -fx-background-radius: 12;
-    -fx-pref-width: 420px;
-}
-
-.titre-carte {
-    -fx-font-size: 20px;
+    -fx-spacing: 20px;
+    }
+    
+    .titre-carte {
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
     -fx-text-fill: #1E3A8A;
-}
-
-.sous-titre {
-    -fx-font-size: 14px;
+    }
+    
+    .sous-titre {
+    -fx-font-size: 16px;
     -fx-text-fill: black;
-}
-
-.champ {
+    }
+    
+    .champ {
     -fx-background-color: #E5E7EB;
-    -fx-font-size: 14px;
-    -fx-pref-width: 300px;
-    -fx-background-radius: 6;
-    -fx-padding: 8px;
-}
-
-.btn-connecter {
+    -fx-background-radius: 6px;
+    -fx-padding: 0 20px;
+    }
+    
+    .btn-connecter {
     -fx-background-color: #1E3A8A;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 6;
-    -fx-padding: 10px 20px;
-    -fx-pref-width: 300px;
-}
-
-.lien-oublie {
+    -fx-background-radius: 6px;
+    -fx-pref-width: 461px;
+    -fx-pref-height: 65px;
+    -fx-font-size: 16px;
+    }
+    
+    .lien-oublie {
     -fx-text-fill: #F97316;
     -fx-font-size: 12px;
-}
-
-.btn-creer {
+    }
+    
+    .btn-creer {
     -fx-background-color: transparent;
     -fx-border-color: #1E3A8A;
     -fx-text-fill: #1E3A8A;
     -fx-font-weight: bold;
-    -fx-border-radius: 6;
-    -fx-background-radius: 6;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
     -fx-padding: 10px 20px;
     -fx-pref-width: 300px;
-}
+    }
+    
+    

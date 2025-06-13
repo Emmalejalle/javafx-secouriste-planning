@@ -1,200 +1,58 @@
-/* ================== BASE CONTAINER ================== */
-.profile-page {
-    -fx-background-color: rgba(252, 252, 252, 1);
+/* profil.css */
+
+/* Police et fond global */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f5f5f5;
 }
 
-/* ================== HEADER ================== */
-.main-header {
-    -fx-background-color: rgba(94, 96, 183, 1);
-    -fx-pref-height: 80;
+/* Image de profil ronde avec ombre */
+.profile-image {
+    -fx-clip: 
+        <Path>
+            M80,0 a80,80 0 1,1 -0.1,0 Z
+        </Path>;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.5, 0, 2);
 }
 
-.header-nav {
-    -fx-background-color: rgba(249, 115, 22, 1);
-    -fx-padding: 0 19 0 19; /* top, right, bottom, left */
-    -fx-spacing: 20;
-    -fx-alignment: center-left;
-    -fx-pref-width: 100%;
-}
-
-.nav-left {
-    -fx-spacing: 35;
-    -fx-alignment: center-left;
-}
-
-/* Logo container */
-.logo-container {
-    -fx-pref-width: 48;
-    -fx-pref-height: 48;
-}
-.logo-bg {
-    -fx-fit-width: 48;
-    -fx-fit-height: 48;
-    -fx-preserve-ratio: true;
-}
-.logo-icon {
-    -fx-fit-width: 48;
-    -fx-fit-height: 48;
-    -fx-preserve-ratio: true;
-}
-
-/* All nav icons share these */
-.nav-icon {
-    -fx-fit-height: 40;
-    -fx-preserve-ratio: true;
-    -fx-focus-traversable: false;
-}
-
-/* ================== HEADER DIVIDER ================== */
-.header-divider {
-    -fx-fit-height: 40;
-    -fx-preserve-ratio: true;
-}
-
-/* ================== MAIN CONTENT ================== */
-.profile-content {
-    -fx-background-color: transparent;
-    -fx-padding: 20;
-}
-
-.content-wrapper {
-    -fx-spacing: 20;
-    -fx-alignment: top-center;
-    -fx-pref-width: 800;
-}
-
-.profile-header {
-    -fx-spacing: 20;
-    -fx-alignment: center-left;
-    -fx-font-family: "Roboto", "Helvetica", sans-serif;
-}
-
-/* ------- User Details (left side of header) ------- */
-.user-details {
-    -fx-alignment: center;
-    -fx-spacing: 10;
-}
-
-.user-avatar {
-    -fx-fit-width: 120;
-    -fx-fit-height: 120;
-    -fx-preserve-ratio: true;
-    -fx-background-radius: 60;
-}
-
-.user-name-container {
-    -fx-alignment: center;
-    -fx-spacing: 5;
-}
-
-.user-first-name, .user-last-name {
-    -fx-font-size: 20px;
+/* Nom de l'utilisateur */
+.profile-name {
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2E2D8C;
+    -fx-text-fill: #1e40af;
 }
 
-.user-id {
-    -fx-font-size: 14px;
-    -fx-text-fill: #2E2D8C;
-}
-
-/* ------- User Stats (right side of header) ------- */
-.user-stats {
-    -fx-alignment: top-left;
-    -fx-spacing: 15;
-}
-
-.user-info-item {
-    -fx-alignment: center-left;
-    -fx-spacing: 10;
-}
-
-.user-info-icon {
-    -fx-fit-width: 20;
-    -fx-fit-height: 20;
-    -fx-preserve-ratio: true;
-}
-
-.user-info-text {
-    -fx-font-size: 14px;
-    -fx-text-fill: #2E2D8C;
-}
-
-/* ================== PROFILE BODY ================== */
-.profile-body {
-    -fx-spacing: 20;
-    -fx-alignment: top-center;
-}
-
-/* — Left Section — */
-.left-section {
-    -fx-alignment: top-left;
-    -fx-spacing: 15;
-}
-
+/* Labels au-dessus des champs */
 .field-label {
-    -fx-font-size: 16px;
-    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 0 4 0;
 }
 
-.field-wrapper {
-    -fx-background-color: rgba(187, 211, 255, 1);
-    -fx-background-radius: 4;
-    -fx-padding: 8 12 8 12; /* top right bottom left */
-    -fx-spacing: 8;
-    -fx-alignment: center-left;
+/* Conteneur des valeurs (rectangles bleus) */
+.info-box {
+    -fx-background-color: #d0e4ff;
+    -fx-background-radius: 4px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12;
 }
 
-.field-icon {
-    -fx-fit-width: 20;
-    -fx-fit-height: 20;
-    -fx-preserve-ratio: true;
-}
-
+/* Texte des valeurs */
 .field-value {
     -fx-font-size: 14px;
-    -fx-text-fill: #2E2D8C;
+    -fx-text-fill: #1e40af;
 }
 
-/* — Vertical Separator — */
-.vertical-separator {
-    -fx-background-color: #2E2D8C;
-    -fx-pref-width: 4;
-    -fx-pref-height: 200;
-}
-
-/* — Right Section — */
-.right-section {
-    -fx-alignment: top-left;
-    -fx-spacing: 15;
-}
-
-/* — “Modifier le profil” button — */
-.modify-button {
-    -fx-background-color: #2E2D8C;
-    -fx-text-fill: white;
-    -fx-background-radius: 24;
-    -fx-padding: 10 20 10 20; /* top right bottom left */
-    -fx-font-size: 16px;
-}
-
-/* ================== FOOTER ================== */
-.main-footer {
-    -fx-background-color: rgba(249, 115, 22, 1);
-    -fx-alignment: center-left;
-    -fx-spacing: 10;
-    -fx-padding: 10;
-}
-
+/* Bouton Retour en bas */
 .back-button {
-    -fx-background-color: #2E2D8C;
+    -fx-background-color: #1e40af;
     -fx-text-fill: white;
-    -fx-background-radius: 4;
-    -fx-padding: 8 12 8 12;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 4px;
 }
 
-.back-icon {
-    -fx-fit-width: 16;
-    -fx-fit-height: 16;
-    -fx-preserve-ratio: true;
+/* Barre bleue verticale de séparation (si besoin via style inline) */
+.separator-vertical {
+    -fx-background-color: #1e40af;
 }

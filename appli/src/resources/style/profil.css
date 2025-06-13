@@ -1,74 +1,79 @@
+/* profil.css */
 
-.header-bar {
-    -fx-background-color: #f97316;
-    -fx-padding: 20px;
+/* Racine et fond global */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f5f5f5;
 }
 
-.header-title {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
+/* Photo de profil ronde avec ombre */
+.profile-image {
+    -fx-clip: 
+        <Path>
+            M80,0
+            a80,80 0 1,1 -0.1,0
+            Z
+        </Path>;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.5, 0, 2);
 }
 
-.main-content {
-    -fx-padding: 40px;
-}
-
-.profile-card {
-    -fx-background-color: white;
-    -fx-padding: 30px;
-    -fx-spacing: 15px;
-    -fx-border-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 4);
-}
-
-.profile-photo {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 2);
-    -fx-clip: new javafx.scene.shape.Circle(75, 75, 75);
-}
-
+/* Nom */
 .profile-name {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
+    -fx-text-fill: #333333;
 }
 
-.info-label {
-    -fx-font-size: 14px;
-    -fx-text-fill: #333;
+/* Encadrés info (téléphone, email, statut) */
+.info-box {
+    -fx-background-color: #d0e4ff;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 12px;
+    -fx-alignment: CENTER_LEFT;
 }
 
-.info-value {
-    -fx-font-size: 14px;
-    -fx-background-color: #e0edff;
-    -fx-padding: 4px 8px;
-    -fx-border-radius: 4px;
-}
-
-.section-title {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111;
-}
-
-.certification-button {
-    -fx-font-size: 14px;
-    -fx-border-color: #1e3a8a;
-    -fx-border-width: 1px;
-    -fx-border-radius: 6px;
-    -fx-padding: 6px 12px;
-    -fx-background-color: #e0edff;
-    -fx-text-fill: #1e3a8a;
-}
-
-.action-button {
+/* Bouton “Modifier le Profil” */
+.edit-button {
     -fx-background-color: #1e3a8a;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 6px;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 4px;
 }
 
-.footer-bar {
-    -fx-background-color: #f97316;
-    -fx-padding: 10px;
+/* Bouton “Retour” */
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* Boutons de certification */
+.cert-button {
+    -fx-border-color: #1e3a8a;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-background-color: #d0e4ff;
+    -fx-pref-width: 377px;
+    -fx-alignment: CENTER;
+    -fx-padding: 8px 12px;
+}
+
+/* Icônes dans les boutons */
+.cert-button .image-view,
+.info-box .image-view {
+    -fx-preserve-ratio: true;
+}
+/* Boutons “outline” : pas de fond, juste un contour bleu et texte bleu */
+.cert-button-outline {
+    -fx-background-color: transparent ;
+    -fx-border-color: #1e3a8a ;
+    -fx-border-width: 1.5px ;
+    -fx-border-radius: 4px ;
+    -fx-background-radius: 4px ;
+    -fx-text-fill: #1e3a8a ;
+    -fx-font-size: 14px ;
+    /* facultatif : dimensions fixes si vous voulez forcer */
+    -fx-pref-width: 377px ;
+    -fx-pref-height: 50px ;
 }

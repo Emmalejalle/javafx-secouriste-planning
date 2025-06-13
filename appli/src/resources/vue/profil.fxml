@@ -1,129 +1,252 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane prefHeight="1080" prefWidth="1920" stylesheets="@../style/profil.css"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../style/profil.css"
+            prefWidth="1920" prefHeight="1080">
+
+    <!-- HEADER : zone blanche de 100px -->
     <top>
-        <HBox styleClass="header-bar" spacing="20" alignment="CENTER_LEFT">
-            <ImageView fitWidth="48" fitHeight="48">
-                <image><Image url="@../img/svgHome.png"/></image>
-            </ImageView>
-            <ImageView fitWidth="48" fitHeight="48">
-                <image><Image url="@../img/svgPlanning.png"/></image>
-            </ImageView>
-            <ImageView fitWidth="48" fitHeight="48">
-                <image><Image url="@../img/svgCalendrier.png"/></image>
-            </ImageView>
-            <Label text="Profil secouriste - vue admin" styleClass="header-title"/>
-        </HBox>
+        <Pane prefHeight="100" style="-fx-background-color: white;" />
     </top>
 
+    <!-- CENTRE : image + deux ScrollPane côte à côte -->
     <center>
-        <HBox alignment="CENTER" spacing="50" styleClass="main-content">
-            <!-- Profil à gauche -->
-            <VBox styleClass="profile-card" spacing="15" alignment="CENTER">
-                <ImageView fitWidth="150" fitHeight="150" styleClass="profile-photo">
-                    <image><Image url="@../img/pdp.png"/></image>
-                </ImageView>
-                <Label text="Patrick David" styleClass="profile-name"/>
-                <VBox spacing="10">
-                    <Label text="Téléphone :" styleClass="info-label"/>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <ImageView fitWidth="24" fitHeight="24">
-                            <image><Image url="@../img/svgTel.png"/></image>
-                        </ImageView>
-                        <Label text="06 14 23 72 90" styleClass="info-value"/>
-                    </HBox>
+        <VBox spacing="0">
+            <!-- Bannière sous le header -->
+            <ImageView fx:id="banner"
+                       fitWidth="1920" fitHeight="275" preserveRatio="false">
+                <image>
+                    <Image url="@../img/montagneProfil.png"/>
+                </image>
+            </ImageView>
 
-                    <Label text="Email :" styleClass="info-label"/>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <ImageView fitWidth="24" fitHeight="24">
-                            <image><Image url="@../img/svgMail.png"/></image>
-                        </ImageView>
-                        <Label text="patrick.david@gmail.com" styleClass="info-value"/>
-                    </HBox>
+            <!-- Zone principale 750px de haut -->
+            <HBox spacing="20" alignment="TOP_CENTER">
 
-                    <Label text="Statut :" styleClass="info-label"/>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <ImageView fitWidth="24" fitHeight="24">
-                            <image><Image url="@../img/svgProfil.png"/></image>
-                        </ImageView>
-                        <Label text="Professionnel" styleClass="info-value"/>
-                    </HBox>
-                </VBox>
-            </VBox>
+                 <!-- ScrollPane GAUCHE : profil utilisateur -->
+                <ScrollPane fx:id="leftScroll"
+                            prefWidth="454" prefHeight="750"
+                            fitToWidth="true" vbarPolicy="AS_NEEDED"
+                            hbarPolicy="NEVER">
+                    <content>
+                        <VBox spacing="20" alignment="TOP_CENTER">
+                            <padding>
+                                <Insets top="20" right="20" bottom="20" left="20"/>
+                            </padding>
 
-            <!-- Certifications à droite -->
-            <VBox spacing="20" alignment="TOP_LEFT">
-                <Label text="Certifications" styleClass="section-title"/>
-                <VBox spacing="10">
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Cadre Opérationnel" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Chef de Poste" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Chef d’Équipe" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Pilote d’hélicoptère" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Pilote de moto neige" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="VPSP" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="PSC1" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="PSC2" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                    <HBox spacing="10" alignment="CENTER_LEFT">
-                        <Label text="Secouriste de montagne" styleClass="certification-button"/>
-                        <ImageView fitWidth="20" fitHeight="20">
-                            <image><Image url="@../img/svgTelecharger.png"/></image>
-                        </ImageView>
-                    </HBox>
-                </VBox>
-                <Button text="Modifier les compétences" styleClass="action-button"/>
-            </VBox>
-        </HBox>
+                            <!-- Photo de profil -->
+                            <ImageView fx:id="profileImage"
+                                       fitWidth="160" fitHeight="160"
+                                       preserveRatio="true"
+                                       styleClass="profile-image">
+                                <image>
+                                    <Image url="@../img/pdp.png"/>
+                                </image>
+                            </ImageView>
+                            <!-- Nom avec ID intégré -->
+                            <Label text="Patrick David ( id : 12345 )" styleClass="profile-name"/>
+
+                            <!-- Champs : label au-dessus de chaque rectangle -->
+                            <VBox spacing="16" alignment="TOP_LEFT">
+                                <!-- Téléphone -->
+                                <Label text="Téléphone :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgTel.png"/></image>
+                                    </ImageView>
+                                    <Label text="06 14 23 72 90"/>
+                                </HBox>
+                                <!-- Email -->
+                                <Label text="Email :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgMail.png"/></image>
+                                    </ImageView>
+                                    <Label text="patrick.david@gmail.com"/>
+                                </HBox>
+                                <!-- Statut -->
+                                <Label text="Statut :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgProfil.png"/></image>
+                                    </ImageView>
+                                    <Label text="Professionnel"/>
+                                </HBox>
+                                <!-- ID -->
+                                <Label text="ID :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgId.png"/></image>
+                                    </ImageView>
+                                    <Label text="12345"/>
+                                </HBox>
+                                <!-- Mot de passe -->
+                                <Label text="Mot de passe :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgMdp.png"/></image>
+                                    </ImageView>
+                                    <Label text="••••••••"/>
+                                </HBox>
+                                <!-- Adresse -->
+                                <Label text="Adresse :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgLocation.png"/></image>
+                                    </ImageView>
+                                    <Label text="123 Rue de la Paix"/>
+                                </HBox>
+                                <!-- Date de naissance -->
+                                <Label text="Date de naissance :" styleClass="field-label"/>
+                                <HBox spacing="8" styleClass="info-box"
+                                      prefWidth="415" prefHeight="65">
+                                    <ImageView fitWidth="20" fitHeight="20">
+                                        <image><Image url="@../img/svgAnniv.png"/></image>
+                                    </ImageView>
+                                    <Label text="01/01/1980"/>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+                <!-- Zone DROITE : StackPane avec ScrollPane et bouton fixe -->
+                <StackPane prefWidth="1060" prefHeight="750">
+                    <!-- ScrollPane DROITE : certifications -->
+                    <ScrollPane fx:id="rightScroll"
+                                prefWidth="1060" prefHeight="750"
+                                fitToWidth="true" vbarPolicy="AS_NEEDED"
+                                hbarPolicy="NEVER">
+                        <content>
+                            <VBox spacing="12" alignment="TOP_CENTER">
+                                <padding>
+                                    <Insets top="20" right="20" bottom="20" left="20" />
+                                </padding>
+                                <!-- 9 compétences avec icône de téléchargement -->
+                                <Button text="Cadre Opérationnel" styleClass="cert-button-outline"
+                                        prefWidth="377" prefHeight="50"/>
+                                <Button text="Chef de Poste" styleClass="cert-button-outline"
+                                        prefWidth="377" prefHeight="50"/>
+                                <Button text="Cadre Opérationnel" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="Chef de Poste" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="Chef d’Équipe" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="Pilote d’hélicoptère" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="Pilote de moto neige" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="VPSP" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="PSC1" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="PSC2" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button text="Secouriste de montagne" styleClass="cert-button"
+                                        prefWidth="377" prefHeight="50" contentDisplay="RIGHT">
+                                    <graphic>
+                                        <ImageView fitWidth="16" fitHeight="16">
+                                            <image>
+                                                <Image url="@../img/svgTelecharger.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                    <!-- Bouton fixe “Modifier le Profil” à l'intérieur du rectangle droite -->
+                    <Button text="Modifier le Profil" styleClass="edit-button"
+                            StackPane.alignment="TOP_RIGHT" translateX="-20" translateY="20"/>
+                </StackPane>
+
+            </HBox>
+        </VBox>
     </center>
 
+    <!-- FOOTER : orange 100px avec bouton Retour à gauche -->
     <bottom>
-        <HBox alignment="CENTER_LEFT" styleClass="footer-bar">
-            <Button text="Retour"/>
+        <HBox prefHeight="100" alignment="CENTER_LEFT"
+              style="-fx-background-color: #FF6600; padding-left: 20;">
+            <Button text="Retour" fx:id="backButton"
+                    style="-fx-background-color: #1e3a8a; -fx-text-fill: white;"
+            />
         </HBox>
     </bottom>
 </BorderPane>
