@@ -9,11 +9,10 @@
 }
 
 .scrollContour {
-	-fx-border-color: black;
+	-fx-border-color: #AAAAAA;
 	-fx-border-width: 1px;
 	-fx-background-insets: 0;
 	-fx-background-color: transparent;
-	
 }
 
 .blocBleuSecouriste {
@@ -30,7 +29,8 @@
 	-fx-text-fill: #FFFFFF;
 	-fx-font-size: 24;
 }
-/*Jsp pourquoi il n'accepte pas le nom : texteBoxFondFoncé */
+
+/*Jsp pourquoi il n'accepte pas le nom sur scene builder : texteBoxFondFoncé */
 .jsp {
 	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
 	-fx-text-fill: #FFFFFF;
@@ -44,4 +44,16 @@
 	-fx-background-color: #D9D9D9;
 	-fx-background-radius: 10;
 }
+
+.BlocBleuAjouterSecouriste {
+	-fx-background-color: #1A2A60;
+	-fx-background-radius: 30;
+	-fx-border-radius: 30;
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
+	-fx-text-fill: #FFFFFF;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-background-insets: 0;
+}
+
 

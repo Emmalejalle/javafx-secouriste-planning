@@ -1,0 +1,51 @@
+.root {
+    -fx-font-family: 'Poppins', 'Roboto', sans-serif;
+    -fx-background-color: #FCFCFC;
+}
+
+.shadow {
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.1, 0, 2);
+	-fx-background-insets: 0;
+	-fx-background-color: transparent;
+}
+
+.texteBoxFondFoncé {
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 16;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 2, 2);
+}
+
+.FichePersonelle {
+	-fx-font-family: 'Poppins', sans-serif;
+	-fx-text-fill: black;
+	-fx-font-size: 40;
+	/*En plus pour être sur qu'il n'y a pas de fond */
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+	-fx-border-color: transparent;
+}
+
+.titreAttributRemplissageSecouriste {
+	-fx-font-family: 'Poppins', sans-serif;
+	-fx-text-fill: black;
+	-fx-font-size: 14;
+	-fx-font-weight: bold;
+	/*En plus pour être sur qu'il n'y a pas de fond */
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+	-fx-border-color: transparent;
+}
+
+.textFieldAttributSecouriste {
+	-fx-background-color: transparent;         /* pas de fond blanc */
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+
+    -fx-border-color: transparent transparent black transparent; /* trait juste en bas */	/* Haut, Droite, Bas, Gauche */
+    -fx-border-width: 0 0 1 0;					/* Haut, Droite, Bas, Gauche */
+
+    -fx-prompt-text-fill: grey;                /* texte temporaire gris */
+    -fx-text-fill: black;                      /* texte tapé */
+    -fx-font-size: 14;
+}
