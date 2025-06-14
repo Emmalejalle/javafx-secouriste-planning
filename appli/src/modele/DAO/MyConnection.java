@@ -10,9 +10,9 @@ import java.sql.SQLException;
  * @version 1.0
  */
 public class MyConnection {
-    private static final String URL ="jdbc:mysql://localhost:3306/bd_iut"; //a la place du de localhost on met le nom du serv sur la vm
-    private static final String LOGIN = "pham";
-    private static final String PWD = "mdp_pham";
+    private static final String URL ="jdbc:mysql://localhost:3306/sae_secours"; //a la place du de localhost on met le nom du serv sur la vm
+    private static final String LOGIN = "admin";
+    private static final String PWD = "mdp_admin";
     private Connection conn = null;
     private static MyConnection myConnection = new MyConnection();
 

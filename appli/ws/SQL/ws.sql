@@ -1,7 +1,7 @@
 use sae_secours;
 
 DROP TABLE IF EXISTS Affectation;
-DROP TABLE IF EXISTS ListCompUser;
+DROP TABLE IF EXISTS ListCompSecouriste;
 DROP TABLE IF EXISTS Besoin;
 DROP TABLE IF EXISTS DPS;
 DROP TABLE IF EXISTS Sport;
@@ -94,7 +94,7 @@ CREATE TABLE Besoin (
     FOREIGN KEY (idBesoinComp) REFERENCES Competence(idComp)
 );
 
-CREATE TABLE ListCompUser (
+CREATE TABLE ListCompSecouriste (
     idSecouCompList BIGINT,
     idCompList INT,
     
@@ -223,7 +223,6 @@ INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser
 (23242526, 'test456', 'Lopez', 'Nathan', '1995-05-25', 'nathan.lopez@example.com', '06-22-22-22-22', '16 rue des Écoles, Limoges', 0),
 (24252627, 'pass910', 'Henry', 'Léa', '1997-03-17', 'lea.henry@example.com', '06-23-23-23-23', '27 avenue Gustave Eiffel, Besançon', 0),
 (25262728, 'mdp5566', 'Perrot', 'Tom', '1992-10-11', 'tom.perrot@example.com', '06-24-24-24-24', '8 rue des Peupliers, Saint-Étienne', 0),
-(26272829, 'azqswx12', 'Guillaume', 'Lina', '1996-08-05', 'lina.guillaume@example.com', '06-25-25-25-25', '12 boulevard des Alpes, Annecy', 0),
 (27282930, 'open1234', 'Moreau', 'Lucas', '1994-09-29', 'lucas.moreau@example.com', '06-26-26-26-26', '3 chemin des Bois, Chambéry', 0);
 
 -- INSERT DE LA TABLE DPS :
@@ -340,3 +339,215 @@ INSERT INTO Besoin VALUES
 (88898217, 3, 1),
 (88898217, 4, 1),
 (88898217, 5, 1);
+
+-- INSERT DE LA TABLE Dispo
+-- Disponibilités des secouristes les 22, 23 et 25 juin
+INSERT INTO Dispo VALUES
+('10111223', 22, 6, 2025),
+('10111223', 23, 6, 2025),
+('10111223', 25, 6, 2025),
+
+('12131415', 22, 6, 2025),
+('12131415', 23, 6, 2025),
+('12131415', 25, 6, 2025),
+
+('12345678', 22, 6, 2025),
+('12345678', 23, 6, 2025),
+('12345678', 25, 6, 2025),
+
+('13141516', 22, 6, 2025),
+('13141516', 23, 6, 2025),
+('13141516', 25, 6, 2025),
+
+('14151617', 22, 6, 2025),
+('14151617', 23, 6, 2025),
+('14151617', 25, 6, 2025),
+
+('15161718', 22, 6, 2025),
+('15161718', 23, 6, 2025),
+('15161718', 25, 6, 2025),
+
+('16171819', 22, 6, 2025),
+('16171819', 23, 6, 2025),
+('16171819', 25, 6, 2025),
+
+('17181920', 22, 6, 2025),
+('17181920', 23, 6, 2025),
+('17181920', 25, 6, 2025),
+
+('18192021', 22, 6, 2025),
+('18192021', 23, 6, 2025),
+('18192021', 25, 6, 2025),
+
+('19202122', 22, 6, 2025),
+('19202122', 23, 6, 2025),
+('19202122', 25, 6, 2025),
+
+('20212223', 22, 6, 2025),
+('20212223', 23, 6, 2025),
+('20212223', 25, 6, 2025),
+
+('21222324', 22, 6, 2025),
+('21222324', 23, 6, 2025),
+('21222324', 25, 6, 2025),
+
+('22232425', 22, 6, 2025),
+('22232425', 23, 6, 2025),
+('22232425', 25, 6, 2025),
+
+('22334455', 22, 6, 2025),
+('22334455', 23, 6, 2025),
+('22334455', 25, 6, 2025),
+
+('23242526', 22, 6, 2025),
+('23242526', 23, 6, 2025),
+('23242526', 25, 6, 2025),
+
+('24252627', 22, 6, 2025),
+('24252627', 23, 6, 2025),
+('24252627', 25, 6, 2025),
+
+('25262728', 22, 6, 2025),
+('25262728', 23, 6, 2025),
+('25262728', 25, 6, 2025),
+
+('27282930', 22, 6, 2025),
+('27282930', 23, 6, 2025),
+('27282930', 25, 6, 2025),
+
+('33445566', 22, 6, 2025),
+('33445566', 23, 6, 2025),
+('33445566', 25, 6, 2025),
+
+('44556677', 22, 6, 2025),
+('44556677', 23, 6, 2025),
+('44556677', 25, 6, 2025),
+
+('55667788', 22, 6, 2025),
+('55667788', 23, 6, 2025),
+('55667788', 25, 6, 2025),
+
+('66778899', 22, 6, 2025),
+('66778899', 23, 6, 2025),
+('66778899', 25, 6, 2025),
+
+('77889900', 22, 6, 2025),
+('77889900', 23, 6, 2025),
+('77889900', 25, 6, 2025),
+
+('88990011', 22, 6, 2025),
+('88990011', 23, 6, 2025),
+('88990011', 25, 6, 2025),
+
+('99001122', 22, 6, 2025),
+('99001122', 23, 6, 2025),
+('99001122', 25, 6, 2025);
+
+-- INSERT DE LA TABLE SECOURISTE :
+-- Secouriste 1 : '12345678' → Cadre Opérationnel (1)
+INSERT INTO ListCompSecouriste VALUES 
+('12345678', 7), ('12345678', 8), ('12345678', 3), ('12345678', 2), ('12345678', 1);
+
+-- Secouriste 2 : '10111223' → Chef de Poste (2)
+INSERT INTO ListCompSecouriste VALUES 
+('10111223', 7), ('10111223', 8), ('10111223', 3), ('10111223', 2);
+
+-- Secouriste 3 : '12131415' → Chef d’Équipe (3)
+INSERT INTO ListCompSecouriste VALUES 
+('12131415', 7), ('12131415', 8), ('12131415', 3);
+
+-- Secouriste 4 : '13141516' → VPSP (6)
+INSERT INTO ListCompSecouriste VALUES 
+('13141516', 7), ('13141516', 8), ('13141516', 6);
+
+-- Secouriste 5 : '14151617' → VPSP (6)
+INSERT INTO ListCompSecouriste VALUES 
+('14151617', 7), ('14151617', 8), ('14151617', 6);
+
+-- Secouriste 6 : '15161718' → VPSP (6)
+INSERT INTO ListCompSecouriste VALUES 
+('15161718', 7), ('15161718', 8), ('15161718', 6);
+
+-- Secouriste 7 : '16171819' → Secouriste montagne (9)
+INSERT INTO ListCompSecouriste VALUES 
+('16171819', 7), ('16171819', 9);
+
+-- Secouriste 8 : '17181920' → Secouriste montagne (9)
+INSERT INTO ListCompSecouriste VALUES 
+('17181920', 7), ('17181920', 9);
+
+-- Secouriste 9 : '18192021' → Pilote motoneige (5)
+INSERT INTO ListCompSecouriste VALUES 
+('18192021', 5);
+
+-- Secouriste 10 : '19202122' → Pilote hélico (4)
+INSERT INTO ListCompSecouriste VALUES 
+('19202122', 5), ('19202122', 4);
+
+-- Secouriste 11 : '20212223' → Chef d’Équipe (3)
+INSERT INTO ListCompSecouriste VALUES 
+('20212223', 7), ('20212223', 8), ('20212223', 3);
+
+-- Secouriste 12 : '21222324' → Chef de Poste (2)
+INSERT INTO ListCompSecouriste VALUES 
+('21222324', 7), ('21222324', 8), ('21222324', 3), ('21222324', 2);
+
+-- Secouriste 13 : '22232425' → Cadre Opérationnel (1)
+INSERT INTO ListCompSecouriste VALUES 
+('22232425', 7), ('22232425', 8), ('22232425', 3), ('22232425', 2), ('22232425', 1);
+
+-- Secouriste 14 : '22334455' → VPSP (6)
+INSERT INTO ListCompSecouriste VALUES 
+('22334455', 7), ('22334455', 8), ('22334455', 6);
+
+-- Secouriste 15 : '23242526' → Secouriste montagne (9)
+INSERT INTO ListCompSecouriste VALUES 
+('23242526', 7), ('23242526', 9);
+
+-- Secouriste 16 : '24252627' → Secouriste montagne (9)
+INSERT INTO ListCompSecouriste VALUES 
+('24252627', 7), ('24252627', 9);
+
+-- Secouriste 17 : '25262728' → Chef de Poste (2)
+INSERT INTO ListCompSecouriste VALUES 
+('25262728', 7), ('25262728', 8), ('25262728', 3), ('25262728', 2);
+
+-- Secouriste 18 : '27282930' → Chef d’Équipe (3)
+INSERT INTO ListCompSecouriste VALUES 
+('27282930', 7), ('27282930', 8), ('27282930', 3);
+
+-- Secouriste 19 : '33445566' → VPSP (6)
+INSERT INTO ListCompSecouriste VALUES 
+('33445566', 7), ('33445566', 8), ('33445566', 6);
+
+-- Secouriste 20 : '44556677' → Chef de Poste (2)
+INSERT INTO ListCompSecouriste VALUES 
+('44556677', 7), ('44556677', 8), ('44556677', 3), ('44556677', 2);
+
+-- Secouriste 21 : '55667788' → Pilote hélico (4)
+INSERT INTO ListCompSecouriste VALUES 
+('55667788', 5), ('55667788', 4);
+
+-- Secouriste 22 : '66778899' → Pilote motoneige (5)
+INSERT INTO ListCompSecouriste VALUES 
+('66778899', 5);
+
+-- Secouriste 23 : '77889900' → Cadre Opérationnel (1)
+INSERT INTO ListCompSecouriste VALUES 
+('77889900', 7), ('77889900', 8), ('77889900', 3), ('77889900', 2), ('77889900', 1);
+
+-- Secouriste 24 : '88990011' → Chef de Poste (2)
+INSERT INTO ListCompSecouriste VALUES 
+('88990011', 7), ('88990011', 8), ('88990011', 3), ('88990011', 2);
+
+-- Secouriste 25 : '99001122' → VPSP (6)
+INSERT INTO ListCompSecouriste VALUES 
+('99001122', 7), ('99001122', 8), ('99001122', 6);
+
+-- INSERT DE LA TABLE AFFECTATION
+INSERT INTO Affectation VALUES (14151617, 8, 59922115); -- PSE2
+INSERT INTO Affectation VALUES (15161718, 8, 59922115); -- PSE2
+INSERT INTO Affectation VALUES (16171819, 8, 59922115); -- PSE2
+INSERT INTO Affectation VALUES (17181920, 8, 59922115); -- PSE2
+INSERT INTO Affectation VALUES (18192021, 8, 59922115); -- PSE2
+
