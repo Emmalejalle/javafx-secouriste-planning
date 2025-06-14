@@ -34,9 +34,9 @@
       <!-- Section navigation avec titre et flèches -->
       <HBox fx:id="hbxMoisSemaine" alignment="CENTER" spacing="20.0" style="-fx-background-color: #FFFFFF;" styleClass="header-section">
          <children>
-            <Button fx:id="btnPrevious" mnemonicParsing="false" onAction="#onPreviousMonth" styleClass="nav-button" text="◀" />
+            <Button fx:id="btnPrevious" mnemonicParsing="false" styleClass="nav-button" text="◀" />
             <Label fx:id="lblMonthYear" styleClass="month-title" text="Mars 2025 - Semaine 13" />
-            <Button fx:id="btnNext" mnemonicParsing="false" onAction="#onNextMonth" styleClass="nav-button" text="▶" />
+            <Button fx:id="btnNext" mnemonicParsing="false" styleClass="nav-button" text="▶" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -226,7 +226,7 @@
                   <Label styleClass="dps-title" text="Ski Alpin" />
                   <Label styleClass="dps-time" text="9h-11h" />
                   <Region VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+                  <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
             <VBox fx:id="dpsCurling" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="4">
@@ -234,7 +234,7 @@
                   <Label styleClass="dps-title" text="Curling" />
                   <Label styleClass="dps-time" text="12h-16h" />
                   <Region VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+                  <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
             <VBox fx:id="dpsPatinoire" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="6" GridPane.rowIndex="7" GridPane.rowSpan="4">
@@ -242,7 +242,7 @@
                   <Label styleClass="dps-title" text="Patinoire" />
                   <Label styleClass="dps-time" text="13h-17h" />
                   <Region VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+                  <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
             <VBox fx:id="dpsFormation" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-jaune, dps-card-selected" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="5">
@@ -251,7 +251,7 @@
                   <Label styleClass="dps-subtitle" text="Plateaux &amp; Trampolines" />
                   <Label styleClass="dps-time" text="16h-21h" />
                   <Region VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+                  <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
             <VBox fx:id="dpsGarde" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-rouge" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.rowSpan="3">
@@ -260,7 +260,7 @@
                   <Label styleClass="dps-subtitle" text="Sarcophage Paddle" />
                   <Label styleClass="dps-time" text="20h-23h" />
                   <Region VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+                  <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
          </children>
