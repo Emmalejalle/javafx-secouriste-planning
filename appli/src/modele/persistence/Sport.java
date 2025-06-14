@@ -100,8 +100,8 @@ public class Sport{
    public Site[] voirSiteSport(){
         Site [] tabSite = new Site[dpsMap.size()];
         int i = 0;
-        for (Site site : dpsMap.values()) {
-            tabSite[i] = site.getSite();
+        for (DPS dps : dpsMap.values()) {
+            tabSite[i] = dps.getSite();
             i++;
         }
         return tabSite;

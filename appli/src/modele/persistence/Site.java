@@ -130,7 +130,7 @@ public class Site {
      * @param latitude la latitude du site
      */
     public void setLatitude(float latitude) {
-        if(latitude < 0){ {
+        if(latitude < 0){
             throw new IllegalArgumentException("Le nom ou le code du site est null");
         } else {
             this.latitude = latitude;
@@ -143,6 +143,7 @@ public class Site {
      */
     public String toString() {
         String ret = "Site{" + "nom=" + nom + ", code=" + code + ", longitude=" + longitude + ", latitude=" + latitude + '}';
+        return ret;
     }
 
     /**
@@ -154,10 +155,11 @@ public class Site {
         if (autreSite == null) {
             throw new IllegalArgumentException("Le site est null");
         }
-        double lat1 = Double.parseDouble(this.latitude);
-        double lon1 = Double.parseDouble(this.longitude);
-        double lat2 = Double.parseDouble(autreSite.getLatitude());
-        double lon2 = Double.parseDouble(autreSite.getLongitude());
+
+        double lat1 = Math.toRadians(this.latitude);
+        double lon1 = Math.toRadians(this.longitude);
+        double lat2 = Math.toRadians(autreSite.getLatitude());
+        double lon2 = Math.toRadians(autreSite.getLongitude());
 
         double dx = lat2 - lat1;
         double dy = lon2 - lon1;

@@ -33,7 +33,7 @@ public class DPS{
     /**
      * Le sport
      */
-    private ArrayList<Sport> sports = new ArrayList<Sport>();
+    private Sport sport;
 
     /**
      * La journee
@@ -101,6 +101,23 @@ public class DPS{
      */
     public Journee getJournee() {
         Journee ret = this.journee;
+        return ret;
+    }
+
+    /**
+     * Retourne le site du DPS
+     * @return le site du DPS
+     */
+    public Site getSite() {
+        Site ret = this.site;
+        return ret;
+    }
+    /**
+     * Retourne la liste des sports du DPS
+     * @return la liste des sports du DPS
+     */
+    public Sport getSport() {
+        Sport ret = this.sport;
         return ret;
     }
 
@@ -174,32 +191,4 @@ public class DPS{
         int ret = this.horaireFin - this.horaireDepart;
         return ret;
     }
-
-    /**
-     * Ajoute un sport au DPS.
-     * @param sport le sport a ajouter
-     */
-    public void ajouterSport(Sport sport) {
-        if(sport == null || sports.contains(sport)) {
-            throw new IllegalArgumentException("Le sport est null");
-        } else {
-            this.sports.add(sport);
-        }
-    }
-
-    /**
-     * Retire un sport au DPS
-     * @param sport le sport a retirer
-     * @throws IllegalArgumentException si le sport ne peut pas etre retirer
-    */
-    public void retirerSport(Sport sport) {
-        if(sport == null || !sports.contains(sport)) {
-            throw new IllegalArgumentException("Le sport ne peut pas etre retirer");
-        } else {
-            this.sports.remove(sport);
-        }
-    }
-
-
-
 }
