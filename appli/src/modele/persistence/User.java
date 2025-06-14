@@ -76,14 +76,14 @@ public abstract class User {
             this.mdp = mdp;
         }
         
-        if (nom == null) {
-            throw new IllegalArgumentException("Le nom de l'utilisateur ne peut pas être null");
+        if (nom == null || nom.length() < 2 || nom.length() > 20) {
+            throw new IllegalArgumentException("Le nom de l'utilisateur est invalide");
         } else {
             this.nom = nom;
         }
         
-        if (prenom == null) {
-            throw new IllegalArgumentException("Le prénom de l'utilisateur ne peut pas être null");
+        if (prenom == null || prenom.length() < 2 || prenom.length() > 20) {
+            throw new IllegalArgumentException("Le prénom de l'utilisateur est invalide");
         } else {
             this.prenom = prenom;
         }
@@ -93,6 +93,7 @@ public abstract class User {
         } else {
             this.dateNaissance = dateNaissance;
         }
+
         boolean verifMail = isValidEmail(email);
         if (verifMail == false) {
             throw new IllegalArgumentException("L'email de l'utilisateur ne peut pas être null");
@@ -102,7 +103,7 @@ public abstract class User {
         
         if (tel == null) {
             throw new IllegalArgumentException("Le téléphone de l'utilisateur ne peut pas être null");
-        } else if (tel.length() != 10 || tel.charAt(0) != '0') {
+        } else if (tel == null || tel.length() != 15 || !tel.matches("[0-9]+") || !tel.startsWith("0")) {
             throw new IllegalArgumentException("Le téléphone de l'utilisateur doit avoir 10 chiffres");
         
         }else {
@@ -122,7 +123,8 @@ public abstract class User {
      * @return l'id de l'utilisateur
      */
     public long getId() {
-        return this.id;
+        long ret = this.id;
+        return ret;
     }
 
     /**
@@ -130,7 +132,8 @@ public abstract class User {
      * @return le mot de passe de l'utilisateur
      */
     public String getMdp() {
-        return this.mdp;
+        String ret = this.mdp;
+        return ret;
     }
 
     /**
@@ -138,7 +141,8 @@ public abstract class User {
      * @return le nom de l'utilisateur
      */
     public String getNom() {
-        return this.nom;
+        String ret = this.nom;
+        return ret;
     }
 
     /**
@@ -146,7 +150,8 @@ public abstract class User {
      * @return le prénom de l'utilisateur
      */
     public String getPrenom() {
-        return this.prenom;
+        String ret = this.prenom;
+        return ret;
     }
 
 
@@ -155,7 +160,8 @@ public abstract class User {
      * @return la date de naissance de l'utilisateur
      */
     public LocalDate getDateNaissance() {
-        return this.dateNaissance;
+        LocalDate ret = this.dateNaissance;
+        return ret;
     }
 
     /**
@@ -163,7 +169,8 @@ public abstract class User {
      * @return l'email de l'utilisateur
      */
     public String getEmail() {
-        return this.email;
+        String ret = this.email;
+        return ret;
     }
 
     /**
@@ -171,7 +178,8 @@ public abstract class User {
      * @return le tel de l'utilisateur
      */
     public String getTel() {
-        return this.tel;
+        String ret = this.tel;
+        return ret;
     }
 
     /**
@@ -179,7 +187,8 @@ public abstract class User {
      * @return l'adresse de l'utilisateur
      */
     public String getAdresse() {
-        return this.adresse;
+        String ret = this.adresse;
+        return ret;
     }
 
     /**
@@ -214,7 +223,7 @@ public abstract class User {
      * @throws IllegalArgumentException si le nom est null
      */
     public void setNom(String nom) throws IllegalArgumentException {
-        if (nom == null) {
+        if (nom == null || nom.length() < 2 || nom.length() > 20) {
             throw new IllegalArgumentException("Le nom de l'utilisateur ne peut pas être null");
         } else {
             this.nom = nom;
@@ -227,7 +236,7 @@ public abstract class User {
      * @throws IllegalArgumentException si le prénom est null
      */
     public void setPrenom(String prenom) throws IllegalArgumentException {
-        if (prenom == null) {
+        if (prenom == null || prenom.length() < 2 || prenom.length() > 20) {
             throw new IllegalArgumentException("Le prénom de l'utilisateur ne peut pas être null");
         } else {
             this.prenom = prenom;
@@ -267,7 +276,7 @@ public abstract class User {
      * @throws IllegalArgumentException si le tel est null
      */
     public void setTel(String tel) throws IllegalArgumentException {
-        if (tel == null || tel.length() != 10 || !tel.matches("[0-9]+")) {
+        if (tel == null || tel.length() != 15 || !tel.matches("[0-9]+") || !tel.startsWith("0")) {
             throw new IllegalArgumentException("Le tel de l'utilisateur ne peut pas être null");
         } else {
             this.tel = tel;
@@ -280,7 +289,7 @@ public abstract class User {
      * @throws IllegalArgumentException si l'adresse est null
      */
     public void setAdresse(String adresse) throws IllegalArgumentException {
-        if (adresse == null) {
+        if (adresse == null || adresse.length() < 2 || adresse.length() > 50) {
             throw new IllegalArgumentException("L'adresse de l'utilisateur ne peut pas être null");
         } else {
             this.adresse = adresse;
@@ -319,9 +328,10 @@ public abstract class User {
      */
     public static boolean isValidEmail(String email) {
         boolean ret = true;
-        if (email == null) {
+        if (email == null || email.length() == 0 || email.length() > 50) {
             ret = false;
         }
+
         Matcher matcher = pattern.matcher(email);
         if (!matcher.matches()) {
             ret = false;

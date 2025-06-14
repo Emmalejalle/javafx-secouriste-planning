@@ -9,55 +9,151 @@ package modele.persistence;
 
 public class Site {
 
+    /**
+     * Le nom du site
+     */
     private String nom;
+
+    /**
+     * Le code du site
+     */
     private String code;
-    private String longitude;
-    private String latitude;
+
+    /**
+     * La longitude du site
+     */
+    private float longitude;
+
+    /**
+     * La latitude du site
+     */
+    private float latitude;
 
 
-    //constructeur
-    public Site(String nom, String code, String longitude, String latitude) {
-        this.nom = nom;
-        this.code = code;
-        this.longitude = longitude;
-        this.latitude = latitude;
+    /**
+     * Constructeur de la classe Site
+     * @param nom le nom du site
+     * @param code le code du site
+     * @param longitude la longitude du site
+     * @param latitude la latitude du site
+     */
+    public Site(String nom, String code, float longitude, float latitude) {
+        if (code == null || code.length() > 10) {
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.code = code;
+        }
+
+        if (nom == null || nom.length() > 50) {
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.nom = nom;
+        }
+
+        if(longitude < 0 || latitude < 0){
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.longitude = longitude;
+            this.latitude = latitude;
+        }
+        
     }
+
+    /**
+     * Retourne le nom du site
+     * @return le nom du site
+     */
     public String getNom() {
-        return nom;
+        String ret = this.nom;
+        return ret;
     }
+
+    /**
+     * Retourne le code du site
+     * @return le code du site
+     */
     public String getCode() {
         return code;
     }
-    public String getLongitude() {
-        return longitude;
+
+    /**
+     * Retourne la longitude du site
+     * @return la longitude du site
+     */
+    public float getLongitude() {
+        float ret = this.longitude;
+        return ret;
     }
-    public String getLatitude() {
-        return latitude;
+
+    /**
+     * Retourne la latitude du site
+     * @return la latitude du site
+     */
+    public float getLatitude() {
+        float ret = this.latitude;
+        return ret;
     }
+
+    /**
+     * Met le nom du site
+     * @param nom le nom du site
+     */
     public void setNom(String nom) {
-        this.nom = nom;
+        if (nom == null || nom.length() > 50) {
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.nom = nom;
+        }
     }
+
+    /**
+     * Met le code du site
+     * @param code le code du site
+     */
     public void setCode(String code) {
-        this.code = code;
+        if (code == null || code.length() > 10) {
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.code = code;
+        }
     }
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setLongitude(float longitude) {
+        if(longitude < 0){
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.longitude = longitude;
+        }
     }
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+
+    /**
+     * Met la latitude du site
+     * @param latitude la latitude du site
+     */
+    public void setLatitude(float latitude) {
+        if(latitude < 0){ {
+            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        } else {
+            this.latitude = latitude;
+        }
     }
     
+    /**
+     * Retourne une chaine de caractères décrivant le site
+     * @return une chaine de caractères décrivant le site
+     */
     public String toString() {
-        return "Site{" +
-                "nom='" + nom + '\n' +
-                ", code='" + code + '\n' +
-                ", longitude='" + longitude + '\n' +
-                ", latitude='" + latitude + '\n' +
-                '}';
+        String ret = "Site{" + "nom=" + nom + ", code=" + code + ", longitude=" + longitude + ", latitude=" + latitude + '}';
     }
 
+    /**
+     * Calcule la distance entre deux sites
+     * @param autreSite le site dont on veut calculer la distance
+     * @return la distance entre les deux sites
+     */
     public float calculerDistance(Site autreSite) {
-
+        if (autreSite == null) {
+            throw new IllegalArgumentException("Le site est null");
+        }
         double lat1 = Double.parseDouble(this.latitude);
         double lon1 = Double.parseDouble(this.longitude);
         double lat2 = Double.parseDouble(autreSite.getLatitude());
@@ -66,7 +162,9 @@ public class Site {
         double dx = lat2 - lat1;
         double dy = lon2 - lon1;
 
-        return (float) Math.sqrt(dx * dx + dy * dy);
+        float ret = (float) Math.sqrt(dx * dx + dy * dy);
+
+        return ret;
     }
 
 

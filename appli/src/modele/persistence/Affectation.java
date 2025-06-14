@@ -6,14 +6,16 @@ package modele.persistence;
  */
 public class Affectation {
 
+
+
     /**
      * Constructeur de la classe Affectation.
      */
     Affectation() {}
 
 
-    public boolean estNecessaire() {
-        return false;
+    public void estNecessaire() {
+        
     }
 
     

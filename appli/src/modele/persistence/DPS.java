@@ -3,92 +3,203 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * La classe DPS sert à implémenter un DPS
+ * @author Elie Tardy
+ * @version 1.0
+ */
 public class DPS{
     
-
+    /**
+     * L'id du DPS
+     */
     private long id;
+
+    /**
+     * Le horaire de depart
+     */
     private int horaireDepart;
+
+    /**
+     * Le horaire de fin
+     */
     private int horaireFin;
 
-    
+    /**
+     * Le site
+     */
     private Site site;
-    private Sport sport;
+
+    /**
+     * Le sport
+     */
+    private ArrayList<Sport> sports = new ArrayList<Sport>();
+
+    /**
+     * La journee
+     */
     private Journee journee;
-    //private HashMap<Competence, Integer> besoins = new HashMap<>();
+    
+    /**
+     * Les besoins
+     */
+    private HashMap<Competence, Integer> besoins = null;
    
 
-
-    //je mets pas journee car c'est initialisé par la classe Journee
+    /**
+     * Le constructeur de la classe
+     * @param id l'id du DPS
+     * @param horaireDepart l'horaire de depart
+     * @param horaireFin l'horaire de fin
+     */
     public DPS(long id, int horaireDepart, int horaireFin) {
-        this.id = id;
-        this.horaireDepart = horaireDepart;
-        this.horaireFin = horaireFin;
+        if (id < 0) {
+            throw new IllegalArgumentException("L'id du DPS doit etre superieur a 0");
+        } else {
+            this.id = id;
+        }
+
+        if(horaireDepart < 0 || horaireFin < 0 || horaireFin < horaireDepart) {
+            throw new IllegalArgumentException("L'horaire de DPS est invalide");
+        } else {
+            this.horaireDepart = horaireDepart;
+            this.horaireFin = horaireFin;
+        }
     }
 
    
+    /**
+     * Retourne l'id du DPS
+     * @return l'id du DPS
+     */
     public long getId() {
-        return id;
+        long ret = this.id;
+        return ret;
     }
+
+    /**
+     * Retourne l'horaire de depart du DPS
+     * @return l'horaire de depart du DPS
+     */
     public int getHoraireDepart() {
-        return horaireDepart;
+        int ret = this.horaireDepart;
+        return ret;
     }
 
+    /**
+     * Retourne l'horaire de fin du DPS
+     * @return l'horaire de fin du DPS
+     */
     public int getHoraireFin() {
-        return horaireFin;
+        int ret = this.horaireFin;
+        return ret;
     }
 
+    /**
+     * Retourne la journee du DPS
+     * @return la journee du DPS
+     */
     public Journee getJournee() {
         Journee ret = this.journee;
         return ret;
     }
 
 
+    /**
+     * Modifie l'id du DPS
+     * @param id l'id du DPS
+     */
     public void setId(long id) {
-        this.id = id;
+        if (id < 0) {
+            throw new IllegalArgumentException("L'id du DPS doit etre superieur a 0");
+        } else {
+            this.id = id;
+        }
     }
 
+    /**
+     * Modifie l'horaire de depart du DPS
+     * @param horaireDepart l'horaire de depart du DPS
+     */
     public void setHoraireDepart(int horaireDepart) {
-        this.horaireDepart = horaireDepart;
+        if (horaireDepart < 0 || horaireFin < horaireDepart) {
+            throw new IllegalArgumentException("L'horaire de DPS est invalide");
+        } else {
+            this.horaireDepart = horaireDepart;
+        }
     }
+    /**
+     * Modifie l'horaire de fin du DPS
+     * @param horaireFin l'horaire de fin du DPS
+     * @throws IllegalArgumentException si l'horaire de fin est inférieur à l'horaire de départ
+     */
     public void setHoraireFin(int horaireFin) {
-        this.horaireFin = horaireFin;
+        if(horaireFin < horaireDepart) {
+            throw new IllegalArgumentException("L'horaire de DPS est invalide");
+        } else {
+            this.horaireFin = horaireFin;
+        }
     }
+
+    /**
+     * Modifie la journee du DPS
+     * @param journee la nouvelle journee du DPS
+     */
     public void setJournee(Journee journee) {
-        this.journee = journee;
+        if(journee == null) {
+            throw new IllegalArgumentException("La journee est null");
+        } else {
+            this.journee = journee;
+        }
     }
 
 
 
      
+    /**
+     * Retourne une chaine de caractères décrivant le DPS.
+     * @return une chaine de caractères décrivant le DPS
+     */
     public String toString() {
-        return "DPS{" +
-                "id=" + id +
-                ", horaireDepart=" + horaireDepart +
-                ", horaireFin=" + horaireFin +
-                ", journee=" + journee +
-                '}';
+        String ret = "DPS{" + "id=" + id + ", horaireDepart=" + horaireDepart + ", horaireFin=" + horaireFin + '}';
+        return ret;
     }
 
   
+    /**
+     * Retourne la durée du DPS en heures.
+     * @return la durée du DPS en heures
+     */
     public int getDuree() {
-        return horaireFin - horaireDepart;
+        int ret = this.horaireFin - this.horaireDepart;
+        return ret;
     }
 
-    /**    // retourne vrai si le dps est deja placé sur une journée
-    public boolean estComplet(){
-
-        for (Integer besoin : besoins.values()) {
-            if (besoin > 0) {
-                return false; // si un besoin est inférieur ou égal à 0, le DPS n'est pas complet
-            }
+    /**
+     * Ajoute un sport au DPS.
+     * @param sport le sport a ajouter
+     */
+    public void ajouterSport(Sport sport) {
+        if(sport == null || sports.contains(sport)) {
+            throw new IllegalArgumentException("Le sport est null");
+        } else {
+            this.sports.add(sport);
         }
-        return true; // tous les besoins sont satisfaits
     }
-*/
 
+    /**
+     * Retire un sport au DPS
+     * @param sport le sport a retirer
+     * @throws IllegalArgumentException si le sport ne peut pas etre retirer
+    */
+    public void retirerSport(Sport sport) {
+        if(sport == null || !sports.contains(sport)) {
+            throw new IllegalArgumentException("Le sport ne peut pas etre retirer");
+        } else {
+            this.sports.remove(sport);
+        }
+    }
 
-
-    
 
 
 }
