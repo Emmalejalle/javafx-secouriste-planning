@@ -11,26 +11,30 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="AjoutSecouriste" alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="310.0" style="-fx-font-size:: 24;" stylesheets="@../style/ListeRechercheSecouri.css" text="Ajouter un secouriste" translateX="1100.0">
+            <Button fx:id="pCreationAjouterSecouriste" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="56.0" prefWidth="310.0" stylesheets="@../style/ListeRechercheSecouri.css" text="Ajouter un secouriste" textAlignment="CENTER" translateX="1024.0">
+               <VBox.margin>
+                  <Insets bottom="55.0" right="40.0" top="30.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="24.0" />
+               </padding>
                <styleClass>
                   <String fx:value="BlocBleuAjouterSecouriste" />
                   <String fx:value="nomPrenomSecouriste" />
                </styleClass>
-               <padding>
-                  <Insets right="24.0" />
-               </padding>
+            </Button>
+            <StackPane prefHeight="876.0" stylesheets="@../style/ListeRechercheSecouri.css">
                <VBox.margin>
-                  <Insets bottom="55.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <StackPane prefHeight="876.0" prefWidth="1060.0" stylesheets="@../style/ListeRechercheSecouri.css">
-               <VBox.margin>
-                  <Insets left="100.0" right="70.0" top="10.0" />
+                  <Insets left="100.0" right="300.0" top="10.0" />
                </VBox.margin>
                <styleClass>
                   <String fx:value="scrollContour" />
                   <String fx:value="shadow" />
                </styleClass>
+               <children>
+   			   <!-- Ton fx:include ici -->
+   			   <fx:include source="CreationProfilSecouriste.fxml" />
+               </children>
             </StackPane>
          </children>
       </VBox>
@@ -38,12 +42,6 @@
    <top>
       <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </top>
-   <bottom>
-      <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin></Pane>
-   </bottom>
    <left>
       <VBox>
          <children>
@@ -71,7 +69,7 @@
                <children>
                   <ScrollPane id="RechercheSecouristeScroller" fx:id="ScrollPaneRechercheSecou" fitToWidth="true" prefHeight="791.0" prefWidth="413.0" styleClass="scrollContour" stylesheets="@../style/ListeRechercheSecouri.css">
                      <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="409.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="409.0" style="-fx-background-color: white;">
                            <children>
                               <HBox id="SecouristePatrickDavidou" prefHeight="76.0" prefWidth="286.0" spacing="5.0" styleClass="blocBleuSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
                                  <padding>
@@ -138,4 +136,11 @@
          </BorderPane.margin>
       </VBox>
    </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #F97316;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="16.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
 </BorderPane>

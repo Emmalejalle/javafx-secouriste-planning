@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane prefHeight="876.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="876.0" prefWidth="1040.0" style="-fx-background-color: white;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+         <children>
+            <Label contentDisplay="CENTER" styleClass="FichePersonelle" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Fiche Personnelle">
+               <VBox.margin>
+                  <Insets left="24.0" top="24.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="1060.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="ID" />
+                        <TextField fx:id="TextFieldID" promptText="ex : p.david" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Mot de passe" />
+                        <TextField promptText="votre_mot-de-passe!" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" top="32.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Nom" />
+                        <TextField fx:id="TextFieldID1" promptText="Patrick" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Prénom" />
+                        <TextField promptText="David" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Email" />
+                        <TextField fx:id="TextFieldID2" promptText="patrick.david@gmail.com" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Téléphone" />
+                        <TextField promptText="07 57 23 51 39" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Adresse" />
+                        <TextField fx:id="TextFieldID21" promptText="6 rue de l'ami 56000 Vannes" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Date de naissance" />
+                        <TextField promptText="10/07/1980" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox fillWidth="false" prefHeight="77.0" prefWidth="431.0" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                     <children>
+                        <TitledPane animated="true" style="-fx-border-color: transparent transparent black transparent; -fx-font-weight: bold; -fx-padding: 8; -fx-collapsible: true; -fx-animated: true; -fx-background-insets: 0; -fx-region-background: white;" styleClass="titled-style" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Compétences" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" styleClass="btnCreer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Créer" translateX="800.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

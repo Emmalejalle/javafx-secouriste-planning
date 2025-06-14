@@ -49,3 +49,49 @@
     -fx-text-fill: black;                      /* texte tapé */
     -fx-font-size: 14;
 }
+
+.textfield-modern:focused {
+    -fx-border-color: transparent transparent #2196F3 transparent; /* bleu au focus */
+}
+
+.resized-image {
+    -fx-fit-width: 84px; 		/* Définit la largeur de l'image */
+    -fx-fit-height: 71px; 		/* Définit la hauteur de l'image */
+    -fx-preserve-ratio: true; 	/* Conserve le ratio de l'image */
+}
+
+.btnCreer {
+	-fx-background-color: #1A2A60;
+	-fx-background-radius: 10;
+	-fx-font-family: 'Poppins', sans-serif;
+	-fx-font-size: 22;
+	-fx-font-weight: bold;
+	-fx-text-fill: #FFFFFF;
+	
+	-fx-fit-width: 165;
+	-fx-fit-height: 42px
+}
+.titled-style {
+    /* Fond du TitledPane */
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+
+    /* Titre */
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+
+    /* Marges et espacements */
+    -fx-padding: 8;
+
+    /* Flèche */
+    -fx-collapsible: true; /* important si elle ne se replie pas */
+    -fx-animated: true;
+}
+
+
+
+
+
