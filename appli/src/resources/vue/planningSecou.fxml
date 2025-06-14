@@ -44,7 +44,7 @@
       </HBox>
       
       <!-- GridPane pour le planning -->
-      <GridPane fx:id="planningGrid" alignment="CENTER" gridLinesVisible="true" styleClass="planning-grid" VBox.vgrow="ALWAYS">
+      <GridPane fx:id="planningGrid" alignment="CENTER" gridLinesVisible="false" styleClass="planning-grid" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints hgrow="NEVER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -76,33 +76,193 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <!-- En-têtes des colonnes (jours) -->
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Lundi 10" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Mardi 11" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Mercredi 12" textAlignment="CENTER" translateX="45.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Jeudi 13" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Vendredi 14" textAlignment="CENTER" translateX="45.0" GridPane.columnIndex="5" GridPane.rowIndex="0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Samedi 15" textAlignment="CENTER" translateX="55.0" GridPane.columnIndex="6" GridPane.rowIndex="0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="day-header" text="Dimanche 16" textAlignment="CENTER" translateX="45.0" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="2" GridPane.rowIndex="17" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="3" GridPane.rowIndex="17" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="4" GridPane.rowIndex="17" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="5" GridPane.rowIndex="17" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="6" GridPane.rowIndex="17" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="11" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="12" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="13" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="14" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="15" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="16" />
+            <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="17" />
+
+            <Label alignment="CENTER" styleClass="day-header" text="Lundi 10" translateX="55.0" GridPane.columnIndex="1" />
+            <Label alignment="CENTER" styleClass="day-header" text="Mardi 11" translateX="55.0" GridPane.columnIndex="2" />
+            <Label alignment="CENTER" styleClass="day-header" text="Mercredi 12" translateX="45.0" GridPane.columnIndex="3" />
+            <Label alignment="CENTER" styleClass="day-header" text="Jeudi 13" translateX="60.0" GridPane.columnIndex="4" />
+            <Label alignment="CENTER" styleClass="day-header" text="Vendredi 14" translateX="45.0" GridPane.columnIndex="5" />
+            <Label alignment="CENTER" styleClass="day-header" text="Samedi 15" translateX="55.0" GridPane.columnIndex="6" />
+            <Label alignment="CENTER" styleClass="day-header" text="Dimanche 16" translateX="45.0" GridPane.columnIndex="7" />
+            <Label alignment="CENTER" styleClass="hour-header" text="7h" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" styleClass="hour-header" text="8h" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" styleClass="hour-header" text="9h" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" styleClass="hour-header" text="10h" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" styleClass="hour-header" text="11h" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" styleClass="hour-header" text="12h" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" styleClass="hour-header" text="13h" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" styleClass="hour-header" text="14h" GridPane.rowIndex="8" />
+            <Label alignment="CENTER" styleClass="hour-header" text="15h" GridPane.rowIndex="9" />
+            <Label alignment="CENTER" styleClass="hour-header" text="16h" GridPane.rowIndex="10" />
+            <Label alignment="CENTER" styleClass="hour-header" text="17h" GridPane.rowIndex="11" />
+            <Label alignment="CENTER" styleClass="hour-header" text="18h" GridPane.rowIndex="12" />
+            <Label alignment="CENTER" styleClass="hour-header" text="19h" GridPane.rowIndex="13" />
+            <Label alignment="CENTER" styleClass="hour-header" text="20h" GridPane.rowIndex="14" />
+            <Label alignment="CENTER" styleClass="hour-header" text="21h" GridPane.rowIndex="15" />
+            <Label alignment="CENTER" styleClass="hour-header" text="22h" GridPane.rowIndex="16" />
+            <Label alignment="CENTER" styleClass="hour-header" text="23h" GridPane.rowIndex="17" />
             
-            <!-- En-têtes des lignes (heures) -->
-            <Label alignment="CENTER" styleClass="hour-header" text="7h" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" styleClass="hour-header" text="8h" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" styleClass="hour-header" text="9h" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <Label alignment="CENTER" styleClass="hour-header" text="10h" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" styleClass="hour-header" text="11h" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <Label alignment="CENTER" styleClass="hour-header" text="12h" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <Label alignment="CENTER" styleClass="hour-header" text="13h" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <Label alignment="CENTER" styleClass="hour-header" text="14h" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-            <Label alignment="CENTER" styleClass="hour-header" text="15h" GridPane.columnIndex="0" GridPane.rowIndex="9" />
-            <Label alignment="CENTER" styleClass="hour-header" text="16h" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-            <Label alignment="CENTER" styleClass="hour-header" text="17h" GridPane.columnIndex="0" GridPane.rowIndex="11" />
-            <Label alignment="CENTER" styleClass="hour-header" text="18h" GridPane.columnIndex="0" GridPane.rowIndex="12" />
-            <Label alignment="CENTER" styleClass="hour-header" text="19h" GridPane.columnIndex="0" GridPane.rowIndex="13" />
-            <Label alignment="CENTER" styleClass="hour-header" text="20h" GridPane.columnIndex="0" GridPane.rowIndex="14" />
-            <Label alignment="CENTER" styleClass="hour-header" text="21h" GridPane.columnIndex="0" GridPane.rowIndex="15" />
-            <Label alignment="CENTER" styleClass="hour-header" text="22h" GridPane.columnIndex="0" GridPane.rowIndex="16" />
-            <Label alignment="CENTER" styleClass="hour-header" text="23h" GridPane.columnIndex="0" GridPane.rowIndex="17" />
+            <VBox fx:id="dpsSkiAlpin" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-vert" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <Label styleClass="dps-title" text="Ski Alpin" />
+                  <Label styleClass="dps-time" text="9h-11h" />
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+               </children>
+            </VBox>
+            <VBox fx:id="dpsCurling" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="4">
+               <children>
+                  <Label styleClass="dps-title" text="Curling" />
+                  <Label styleClass="dps-time" text="12h-16h" />
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+               </children>
+            </VBox>
+            <VBox fx:id="dpsPatinoire" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="6" GridPane.rowIndex="7" GridPane.rowSpan="4">
+               <children>
+                  <Label styleClass="dps-title" text="Patinoire" />
+                  <Label styleClass="dps-time" text="13h-17h" />
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+               </children>
+            </VBox>
+            <VBox fx:id="dpsFormation" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-jaune, dps-card-selected" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="5">
+               <children>
+                  <Label styleClass="dps-title" text="Formation" />
+                  <Label styleClass="dps-subtitle" text="Plateaux &amp; Trampolines" />
+                  <Label styleClass="dps-time" text="16h-21h" />
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+               </children>
+            </VBox>
+            <VBox fx:id="dpsGarde" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-rouge" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.rowSpan="3">
+               <children>
+                  <Label styleClass="dps-title" text="TestRien" />
+                  <Label styleClass="dps-subtitle" text="Sarcophage Paddle" />
+                  <Label styleClass="dps-time" text="20h-23h" />
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#showDpsDetails" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
+               </children>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -246,7 +406,7 @@
                                     <Font name="Liberation Sans" size="45.0" />
                                  </font>
                               </Button>
-                              <ImageView fitHeight="56.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="22.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/Signalementbtn.png" />
                                  </image>
@@ -279,15 +439,15 @@
                </children>
             </StackPane>
             
-            <!-- Spacer pour pousser le bouton retour vers le bas -->
+                        <!-- Spacer pour pousser le bouton retour vers le bas -->
             <Region VBox.vgrow="ALWAYS" />
 
             <HBox alignment="CENTER_LEFT">
                <children>
                   <StackPane>
                      <children>
-                        <Button fx:id="btnRetour" mnemonicParsing="false" styleClass="retour-button" />
-                        <ImageView fitHeight="16.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="btnRetour" mnemonicParsing="false" prefHeight="56.0" prefWidth="90.0" styleClass="retour-button" />
+                        <ImageView fitHeight="13.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/svgRetourBouton.png" />
                            </image>
@@ -304,22 +464,55 @@
       </VBox>
    </left>
    <right>
-      <VBox fx:id="rightPanel" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="233.0" spacing="15.0" styleClass="right-panel" BorderPane.alignment="CENTER">
-        <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-        </padding>
-        <children>
-
-            <Region prefHeight="528.0" prefWidth="213.0" VBox.vgrow="ALWAYS" />
-
-         <VBox fx:id="dispoSection" alignment="CENTER" spacing="15.0" styleClass="dispo-section">
-            <children>
-               <Label styleClass="dispo-label" text="Renseigner mes prochaines disponibilités :" textAlignment="CENTER" wrapText="true" />
-               <Button fx:id="btnMesDisponibilites" mnemonicParsing="false" styleClass="dispo-button" text="Mes disponibilités" />
-            </children>
-         </VBox>
-
-        </children>
-    </VBox>
+      <VBox fx:id="rightPanel" alignment="TOP_CENTER" prefWidth="233.0" spacing="15.0" styleClass="right-panel">
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+         <children>
+            <VBox fx:id="dpsDetailsSection" managed="true" spacing="12.0" styleClass="dps-details-section" visible="true">
+               <children>
+                  <Label fx:id="lblDpsDetailsTitle" styleClass="dps-detail-title" text="Détails du DPS" />
+                  <Separator prefWidth="200.0" />
+                  <GridPane hgap="8.0" vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="dps-detail-label" text="Activité :" GridPane.rowIndex="0" />
+                        <Label fx:id="lblDpsActivite" styleClass="dps-detail-text" text="Formation" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label styleClass="dps-detail-label" text="Date :" GridPane.rowIndex="1" />
+                        <Label fx:id="lblDpsDate" styleClass="dps-detail-text" text="Jeudi 13" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label styleClass="dps-detail-label" text="Horaires :" GridPane.rowIndex="2" />
+                        <Label fx:id="lblDpsHoraires" styleClass="dps-detail-text" text="16h00 - 21h00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label styleClass="dps-detail-label" text="Lieu :" GridPane.rowIndex="3" />
+                        <Label fx:id="lblDpsLieu" styleClass="dps-detail-text" text="Gymnase municipal" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label alignment="TOP_LEFT" styleClass="dps-detail-label" text="Équipe :" GridPane.rowIndex="4" />
+                        <VBox fx:id="vboxCoequipiers" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <children>
+                              <Label styleClass="dps-detail-text" text="Martin Dubois" />
+                              <Label styleClass="dps-detail-text" text="Léa Garcia" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <Region VBox.vgrow="ALWAYS" />
+            <VBox fx:id="dispoSection" alignment="CENTER" spacing="15.0" styleClass="dispo-section">
+               <children>
+                  <Label styleClass="dispo-label" text="Renseigner mes prochaines disponibilités :" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="btnMesDisponibilites" mnemonicParsing="false" styleClass="dispo-button" text="Mes disponibilités" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
    </right>
 </BorderPane>
