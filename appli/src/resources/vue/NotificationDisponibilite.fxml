@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/disponibilite.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+      <fx:include source="PatronHeaderAdmin.fxml" />
+   </top>
+   <bottom>
+      <Pane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
+   </bottom>  
+   <center>
+      <VBox alignment="CENTER" spacing="30.0" styleClass="main-content">
+         <children>
+            <!-- Navigation du mois -->
+            <HBox alignment="CENTER" spacing="20.0" styleClass="month-navigation">
+               <children>
+                  <Button fx:id="btnPreviousMonth" styleClass="nav-button" text="◀">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lblMonthYear" styleClass="month-label" text="Janvier 2025">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnNextMonth" styleClass="nav-button" text="▶">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            
+            <!-- Calendrier complet -->
+            <VBox alignment="CENTER" spacing="10.0" styleClass="calendar-container">
+               <children>
+                  <!-- En-têtes des jours -->
+                  <GridPane alignment="CENTER" hgap="5.0" styleClass="day-headers-grid">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="38.0" prefWidth="298.0" styleClass="day-header" text="Lundi" GridPane.columnIndex="0" />
+                        <Label prefHeight="38.0" prefWidth="304.0" styleClass="day-header" text="Mardi" GridPane.columnIndex="1" />
+                        <Label prefHeight="38.0" prefWidth="424.0" styleClass="day-header" text="Mercredi" GridPane.columnIndex="2" />
+                        <Label prefHeight="38.0" prefWidth="391.0" styleClass="day-header" text="Jeudi" GridPane.columnIndex="3" />
+                        <Label prefHeight="38.0" prefWidth="385.0" styleClass="day-header" text="Vendredi" GridPane.columnIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="421.0" styleClass="day-header" text="Samedi" GridPane.columnIndex="5" />
+                        <Label prefHeight="38.0" prefWidth="388.0" styleClass="day-header" text="Dimanche" GridPane.columnIndex="6" />
+                     </children>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
+                  </GridPane>
+                  
+                  <!-- Grille des jours (35 cases) -->
+                  <GridPane fx:id="calendarGrid" alignment="CENTER" hgap="5.0" styleClass="calendar-grid" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <!-- Ligne 1 -->
+                        <StackPane fx:id="day1" prefHeight="82.0" prefWidth="160.0" styleClass="day-cell" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="245.0">
+                                 <children>
+                                    <Label fx:id="dayNumber1" styleClass="day-number" text="1" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day2" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber2" styleClass="day-number" text="2" />
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="24.0" prefWidth="247.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="85.0" styleClass="status-text" text="Dispo" />
+                                    <Rectangle fill="#22C55E" height="20.0" width="20.0" />
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets bottom="5.0" right="5.0" />
+                                 </StackPane.margin>
+                              </HBox>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day3" styleClass="day-cell" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber3" styleClass="day-number" text="3" />
+                              <!-- Exemple : jour non disponible -->
+                              <Circle fill="#EF4444" radius="8.0" StackPane.alignment="BOTTOM_RIGHT">
+                                 <StackPane.margin>
+                                    <Insets bottom="8.0" right="8.0" />
+                                 </StackPane.margin>
+                              </Circle>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day4" styleClass="day-cell" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber4" styleClass="day-number" text="4" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day5" styleClass="day-cell" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber5" styleClass="day-number" text="5" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day6" styleClass="day-cell" GridPane.columnIndex="5" GridPane.rowIndex="0">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber6" styleClass="day-number" text="6" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day7" styleClass="day-cell" GridPane.columnIndex="6" GridPane.rowIndex="0">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber7" styleClass="day-number" text="7" />
+                           </children>
+                        </StackPane>
+                        
+                        <!-- Ligne 2 -->
+                        <StackPane fx:id="day8" styleClass="day-cell" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="82.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber8" styleClass="day-number" text="8" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day9" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber9" styleClass="day-number" text="9" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day10" styleClass="day-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber10" styleClass="day-number" text="10" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day11" styleClass="day-cell" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber11" styleClass="day-number" text="11" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day12" styleClass="day-cell" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber12" styleClass="day-number" text="12" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day13" styleClass="day-cell" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber13" styleClass="day-number" text="13" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day14" styleClass="day-cell" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber14" styleClass="day-number" text="14" />
+                           </children>
+                        </StackPane>
+                        
+                        <!-- Ligne 3 -->
+                        <StackPane fx:id="day15" styleClass="day-cell" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber15" styleClass="day-number" text="15" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day16" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber16" styleClass="day-number" text="16" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day17" styleClass="day-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber17" styleClass="day-number" text="17" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day18" styleClass="day-cell" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber18" styleClass="day-number" text="18" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day19" styleClass="day-cell" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber19" styleClass="day-number" text="19" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day20" styleClass="day-cell" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber20" styleClass="day-number" text="20" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day21" styleClass="day-cell" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber21" styleClass="day-number" text="21" />
+                           </children>
+                        </StackPane>
+                        
+                        <!-- Ligne 4 -->
+                        <StackPane fx:id="day22" styleClass="day-cell" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber22" styleClass="day-number" text="22" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day23" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber23" styleClass="day-number" text="23" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day24" styleClass="day-cell" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber24" styleClass="day-number" text="24" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day25" styleClass="day-cell" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber25" styleClass="day-number" text="25" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day26" styleClass="day-cell" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber26" styleClass="day-number" text="26" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day27" styleClass="day-cell" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber27" styleClass="day-number" text="27" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day28" styleClass="day-cell" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber28" styleClass="day-number" text="28" />
+                           </children>
+                        </StackPane>
+                        
+                        <!-- Ligne 5 -->
+                        <StackPane fx:id="day29" styleClass="day-cell" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber29" styleClass="day-number" text="29" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day30" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber30" styleClass="day-number" text="30" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day31" styleClass="day-cell" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
+                              <Label fx:id="dayNumber31" styleClass="day-number" text="31" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day32" styleClass="day-cell" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="#F5F5F5" height="80.0" stroke="#CCCCCC" strokeWidth="1.0" width="245.0" />
+                              <Label fx:id="dayNumber32" styleClass="day-number-inactive" text="1" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day33" styleClass="day-cell" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="#F5F5F5" height="80.0" stroke="#CCCCCC" strokeWidth="1.0" width="245.0" />
+                              <Label fx:id="dayNumber33" styleClass="day-number-inactive" text="2" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day34" styleClass="day-cell" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="#F5F5F5" height="80.0" stroke="#CCCCCC" strokeWidth="1.0" width="245.0" />
+                              <Label fx:id="dayNumber34" styleClass="day-number-inactive" text="3" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="day35" styleClass="day-cell" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                           <children>
+                              <Rectangle fill="#F5F5F5" height="80.0" stroke="#CCCCCC" strokeWidth="1.0" width="245.0" />
+                              <Label fx:id="dayNumber35" styleClass="day-number-inactive" text="4" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            
+            <!-- Légende -->
+            <HBox alignment="CENTER" spacing="50.0" styleClass="legend-container">
+               <children>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Rectangle fill="#22C55E" height="20.0" width="20.0" />
+                        <Label styleClass="legend-text" text="Disponible">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Circle fill="#EF4444" radius="10.0" />
+                        <Label styleClass="legend-text" text="Non disponible">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
