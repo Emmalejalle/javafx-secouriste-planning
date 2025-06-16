@@ -122,9 +122,13 @@
     -fx-cursor: hand;
 }
 .dps-btn-savoir-plus:hover { -fx-background-color: rgba(0, 0, 0, 0.4); }
-.dps-card-selected {
-    -fx-effect: dropshadow(gaussian, #F97316, 20, 0.7, 0, 0);
-}
+
+
+/* === EFFET DE SÉLECTION ADAPTATIF === */
+.dps-selected-vert { -fx-effect: dropshadow(gaussian, #A7F3D0, 20, 0.8, 0, 0); }
+.dps-selected-bleu { -fx-effect: dropshadow(gaussian, #93C5FD, 20, 0.8, 0, 0); }
+.dps-selected-jaune { -fx-effect: dropshadow(gaussian, #FDE047, 20, 0.8, 0, 0); }
+.dps-selected-rouge { -fx-effect: dropshadow(gaussian, #FCA5A5, 20, 0.8, 0, 0); }
 
 /* ======================================= */
 /* ===       PANNEAUX LATÉRAUX         === */

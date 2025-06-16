@@ -126,3 +126,8 @@
 .weekend {
     -fx-background-color: #FEF3C7;
 }
+
+/* Dans ton fichier .css */
+.jour-disponible {
+    -fx-background-color: #a9c993;
+}

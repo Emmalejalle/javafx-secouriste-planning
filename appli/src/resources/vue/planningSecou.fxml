@@ -34,9 +34,9 @@
       <!-- Section navigation avec titre et flèches -->
       <HBox fx:id="hbxMoisSemaine" alignment="CENTER" spacing="20.0" style="-fx-background-color: #FFFFFF;" styleClass="header-section">
          <children>
-            <Button fx:id="btnPrevious" mnemonicParsing="false" styleClass="nav-button" text="◀" />
+            <Button fx:id="btnPrevious" mnemonicParsing="false" onAction="#onPreviousMonth" styleClass="nav-button" text="◀" />
             <Label fx:id="lblMonthYear" styleClass="month-title" text="Mars 2025 - Semaine 13" />
-            <Button fx:id="btnNext" mnemonicParsing="false" styleClass="nav-button" text="▶" />
+            <Button fx:id="btnNext" mnemonicParsing="false" onAction="#onNextMonth" styleClass="nav-button" text="▶" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -196,13 +196,13 @@
             <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="16" />
             <Pane styleClass="planning-cell-background" GridPane.columnIndex="7" GridPane.rowIndex="17" />
 
-            <Label alignment="CENTER" styleClass="day-header" text="Lundi 10" translateX="55.0" GridPane.columnIndex="1" />
-            <Label alignment="CENTER" styleClass="day-header" text="Mardi 11" translateX="55.0" GridPane.columnIndex="2" />
-            <Label alignment="CENTER" styleClass="day-header" text="Mercredi 12" translateX="45.0" GridPane.columnIndex="3" />
-            <Label alignment="CENTER" styleClass="day-header" text="Jeudi 13" translateX="60.0" GridPane.columnIndex="4" />
-            <Label alignment="CENTER" styleClass="day-header" text="Vendredi 14" translateX="45.0" GridPane.columnIndex="5" />
-            <Label alignment="CENTER" styleClass="day-header" text="Samedi 15" translateX="55.0" GridPane.columnIndex="6" />
-            <Label alignment="CENTER" styleClass="day-header" text="Dimanche 16" translateX="45.0" GridPane.columnIndex="7" />
+            <Label fx:id="jour1Label" alignment="CENTER" styleClass="day-header" text="Lundi 10" translateX="55.0" GridPane.columnIndex="1" />
+            <Label fx:id="jour2Label" alignment="CENTER" styleClass="day-header" text="Mardi 11" translateX="55.0" GridPane.columnIndex="2" />
+            <Label fx:id="jour3Label" alignment="CENTER" styleClass="day-header" text="Mercredi 12" translateX="45.0" GridPane.columnIndex="3" />
+            <Label fx:id="jour4Label" alignment="CENTER" styleClass="day-header" text="Jeudi 13" translateX="60.0" GridPane.columnIndex="4" />
+            <Label fx:id="jour5Label" alignment="CENTER" styleClass="day-header" text="Vendredi 14" translateX="45.0" GridPane.columnIndex="5" />
+            <Label fx:id="jour6Label" alignment="CENTER" styleClass="day-header" text="Samedi 15" translateX="55.0" GridPane.columnIndex="6" />
+            <Label fx:id="jour7Label" alignment="CENTER" styleClass="day-header" text="Dimanche 16" translateX="45.0" GridPane.columnIndex="7" />
             <Label alignment="CENTER" styleClass="hour-header" text="7h" GridPane.rowIndex="1" />
             <Label alignment="CENTER" styleClass="hour-header" text="8h" GridPane.rowIndex="2" />
             <Label alignment="CENTER" styleClass="hour-header" text="9h" GridPane.rowIndex="3" />
@@ -221,7 +221,7 @@
             <Label alignment="CENTER" styleClass="hour-header" text="22h" GridPane.rowIndex="16" />
             <Label alignment="CENTER" styleClass="hour-header" text="23h" GridPane.rowIndex="17" />
             
-            <VBox fx:id="dpsSkiAlpin" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-vert" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+            <VBox fx:id="dpsSkiAlpin" alignment="TOP_CENTER" onMouseClicked="#onDpsClicked" spacing="5.0" styleClass="dps-card, dps-vert" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
                <children>
                   <Label styleClass="dps-title" text="Ski Alpin" />
                   <Label styleClass="dps-time" text="9h-11h" />
@@ -229,7 +229,7 @@
                   <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
-            <VBox fx:id="dpsCurling" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="4">
+            <VBox fx:id="dpsCurling" alignment="TOP_CENTER" onMouseClicked="#onDpsClicked" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="4">
                <children>
                   <Label styleClass="dps-title" text="Curling" />
                   <Label styleClass="dps-time" text="12h-16h" />
@@ -237,7 +237,7 @@
                   <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
-            <VBox fx:id="dpsPatinoire" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="6" GridPane.rowIndex="7" GridPane.rowSpan="4">
+            <VBox fx:id="dpsPatinoire" alignment="TOP_CENTER" onMouseClicked="#onDpsClicked" spacing="5.0" styleClass="dps-card, dps-bleu" GridPane.columnIndex="6" GridPane.rowIndex="7" GridPane.rowSpan="4">
                <children>
                   <Label styleClass="dps-title" text="Patinoire" />
                   <Label styleClass="dps-time" text="13h-17h" />
@@ -245,7 +245,7 @@
                   <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
-            <VBox fx:id="dpsFormation" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-jaune, dps-card-selected" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="5">
+            <VBox fx:id="dpsFormation" alignment="TOP_CENTER" onMouseClicked="#onDpsClicked" spacing="5.0" styleClass="dps-card, dps-jaune, dps-card-selected" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="5">
                <children>
                   <Label styleClass="dps-title" text="Formation" />
                   <Label styleClass="dps-subtitle" text="Plateaux &amp; Trampolines" />
@@ -254,9 +254,9 @@
                   <Button mnemonicParsing="false" styleClass="dps-btn-savoir-plus" text="En savoir plus" />
                </children>
             </VBox>
-            <VBox fx:id="dpsGarde" alignment="TOP_CENTER" spacing="5.0" styleClass="dps-card, dps-rouge" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.rowSpan="3">
+            <VBox fx:id="dpsGarde" alignment="TOP_CENTER" onMouseClicked="#onDpsClicked" spacing="5.0" styleClass="dps-card, dps-rouge" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.rowSpan="3">
                <children>
-                  <Label styleClass="dps-title" text="TestRien" />
+                  <Label styleClass="dps-title" text="Garde" />
                   <Label styleClass="dps-subtitle" text="Sarcophage Paddle" />
                   <Label styleClass="dps-time" text="20h-23h" />
                   <Region VBox.vgrow="ALWAYS" />
@@ -291,7 +291,7 @@
       <VBox styleClass="calendar-section">
                <children>
                   <Label styleClass="calendar-title" text="Mars 2025" />
-                  <GridPane styleClass="calendar-grid">
+                  <GridPane fx:id="calendarGrid" styleClass="calendar-grid">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -509,7 +509,7 @@
             <VBox fx:id="dispoSection" alignment="CENTER" spacing="15.0" styleClass="dispo-section">
                <children>
                   <Label styleClass="dispo-label" text="Renseigner mes prochaines disponibilités :" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="btnMesDisponibilites" mnemonicParsing="false" styleClass="dispo-button" text="Mes disponibilités" />
+                  <Button fx:id="btnMesDisponibilites" mnemonicParsing="false" onAction="#afficherMesDispos" styleClass="dispo-button" text="Mes disponibilités" />
                </children>
             </VBox>
          </children>

@@ -111,14 +111,14 @@
                               </VBox>
                            </children>
                         </StackPane>
-                        <StackPane fx:id="day2" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <StackPane fx:id="day2" style="-fx-background-color: #a9c993;" styleClass="day-cell" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <children>
                               <Rectangle fill="WHITE" height="80.0" stroke="#1E3A8A" strokeWidth="2.0" width="245.0" />
                               <Label fx:id="dayNumber2" styleClass="day-number" text="2" />
                               <HBox alignment="BOTTOM_RIGHT" prefHeight="24.0" prefWidth="247.0">
                                  <children>
                                     <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="85.0" styleClass="status-text" text="Dispo" />
-                                    <Rectangle fill="#22C55E" height="20.0" width="20.0" />
+                                    <Rectangle fill="#22C55E" height="20.0" opacity="0.5" width="20.0" />
                                  </children>
                                  <StackPane.margin>
                                     <Insets bottom="5.0" right="5.0" />
