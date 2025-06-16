@@ -216,12 +216,11 @@
     </center>
 
     <bottom>
-        <HBox prefHeight="100.0"
-              style="-fx-background-color: #F97316;"
-              BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets top="16.0"/>
-            </BorderPane.margin>
+        <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
+            <padding><Insets bottom="10" left="10" right="10" top="10"/></padding>
+            <children>
+                <Button fx:id="btnReturn" styleClass="back-button" text="← Retour" onAction="#onReturn"/>
+            </children>
         </HBox>
     </bottom>
 
