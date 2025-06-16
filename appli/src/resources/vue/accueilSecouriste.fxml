@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AccueilSecoureiste">
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilSecouristeController">
    <top>
       <Pane prefHeight="100.0" prefWidth="1920.0" BorderPane.alignment="CENTER" />
    </top>
@@ -47,7 +47,7 @@
                                           <Image url="@../img/imagePlannongSecouristeccueil.png" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="btnPlanningGlobal" mnemonicParsing="false" opacity="0.0" prefHeight="602.0" prefWidth="839.0" text="Button">
+                                    <Button fx:id="btnPlanningGlobal" mnemonicParsing="false" onAction="#goPlanning" opacity="0.0" prefHeight="602.0" prefWidth="839.0" text="Button">
                                        <StackPane.margin>
                                           <Insets bottom="55.0" />
                                        </StackPane.margin></Button>
@@ -99,7 +99,7 @@
                                     <Insets />
                                  </StackPane.margin>
                               </ImageView>
-                              <Button fx:id="btnDisponibilite" mnemonicParsing="false" opacity="0.0" prefHeight="600.0" prefWidth="914.0" text="Button" />
+                              <Button fx:id="btnDisponibilite" mnemonicParsing="false" onAction="#goDisponibilite" opacity="0.0" prefHeight="600.0" prefWidth="914.0" text="Button" />
                               <ImageView fitHeight="76.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/AccueilSecouristeDispoBouton.png" />
