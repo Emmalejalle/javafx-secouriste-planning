@@ -1,7 +1,11 @@
 package modele.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import modele.persistence.User;
 
 /**
  * La classe MyConnection permet de se connecter à la base de données.
@@ -26,13 +30,13 @@ public class MyConnection {
         }
         
         if (conn == null || conn.isClosed()) {
-
+            try {
+                conn = DriverManager.getConnection(URL, LOGIN, PWD);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            conn = DriverManager.getConnection(URL, LOGIN, PWD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
         return conn;
     }
 
@@ -47,6 +51,14 @@ public class MyConnection {
         try {
             MyConnection myConnection = new MyConnection();
             Connection connection = myConnection.getConnection();
+
+            Statement st = connection.createStatement ();
+            ResultSet rs = st.executeQuery("SELECT * FROM User");
+            while (rs.next()) {
+                String nom = rs.getString(1);
+                String pwd = rs.getString(2);
+                System.out.println("Login: " + nom + ", Password: " + pwd);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

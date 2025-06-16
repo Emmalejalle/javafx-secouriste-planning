@@ -43,14 +43,14 @@ CREATE TABLE Dispo (
 
 
 CREATE TABLE Competence (
-	idComp INT PRIMARY KEY,
+	idComp BIGINT PRIMARY KEY AUTO_INCREMENT,
     intitule VARCHAR(40),
 	abreviationIntitule VARCHAR(5)
 );
 
 CREATE TABLE PrerequisComp (
-    idCompPre INT,
-    idPrerequis INT,
+    idCompPre BIGINT,
+    idPrerequis BIGINT,
     PRIMARY KEY (idCompPre, idPrerequis),
     FOREIGN KEY (idCompPre) REFERENCES Competence(idComp),
     FOREIGN KEY (idPrerequis) REFERENCES Competence(idComp)
@@ -86,7 +86,7 @@ CREATE TABLE DPS (
 
 CREATE TABLE Besoin (
     idBesoinDPS BIGINT,
-    idBesoinComp INT,
+    idBesoinComp BIGINT,
     nombre INT CHECK (nombre >= 1),
 
     PRIMARY KEY (idBesoinDPS, idBesoinComp),
@@ -96,7 +96,7 @@ CREATE TABLE Besoin (
 
 CREATE TABLE ListCompSecouriste (
     idSecouCompList BIGINT,
-    idCompList INT,
+    idCompList BIGINT,
     
     PRIMARY KEY (idSecouCompList, idCompList),
     FOREIGN KEY (idSecouCompList) REFERENCES User(idUser),
@@ -105,7 +105,7 @@ CREATE TABLE ListCompSecouriste (
 
 CREATE TABLE Affectation (
 	idSecouAffect BIGINT,
-    idCompAffect int,
+	idCompAffect BIGINT,
 	idDPSAffect BIGINT,
 	
     PRIMARY KEY (idSecouAffect, idCompAffect, idDPSAffect),
@@ -171,15 +171,15 @@ INSERT INTO Site (codeSite, nomSite, longitude, latitude) VALUES
 
 -- INSERT DE LA TABLE COMPETENCE :
 INSERT INTO Competence (idComp, intitule, abreviationIntitule) VALUES
-(1, 'Cadre Opérationnel', 'CADRE'),
-(2, 'Chef de Poste', 'CDPOS'),
-(3, 'Chef d’Equipe', 'CDEQP'),
-(4, 'Pilote d’hélicoptère', 'HELIC'),
-(5, 'Pilote de moto neige', 'MOTON'),
+(1, 'Cadre Opérationnel', 'CO'),
+(2, 'Chef de Poste', 'CP'),
+(3, 'Chef d’Equipe', 'CE'),
+(4, 'Pilote d’hélicoptère', 'PHL'),
+(5, 'Pilote de moto neige', 'PMN'),
 (6, 'VPSP', 'VPSP'),
 (7, 'PSE1', 'PSE1'),
 (8, 'PSE2', 'PSE2'),
-(9, 'Secouriste de montagne', 'MNTAG');
+(9, 'Secouriste de montagne', 'SDM');
 
 -- INSERT DE LA TABLE PREREQUIS COMPETENCE
 INSERT INTO PrerequisComp (idCompPre, idPrerequis) VALUES
