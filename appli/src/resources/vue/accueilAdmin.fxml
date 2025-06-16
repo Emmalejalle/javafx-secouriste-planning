@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AccueilAdminController">
    <top>
       <fx:include source="PatronHeaderAdmin.fxml" />
    </top>
@@ -15,120 +15,78 @@
       <Pane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox style="-fx-background-color: FFFFFF;">
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="60.0" prefWidth="1920.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="880.0" prefWidth="960.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="440.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="60.0" fitWidth="488.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/accueil_Admin_liste.png" />
-                           </image>
-                        </ImageView>
-                        <Pane prefHeight="50.0" prefWidth="1920.0" />
-                        <StackPane>
+                        <HBox prefHeight="100.0" prefWidth="935.0">
                            <children>
-                              <ImageView fitHeight="587.0" fitWidth="1006.0" pickOnBounds="true" preserveRatio="true">
+                              <Pane prefHeight="111.0" prefWidth="100.0" />
+                              <ImageView fitHeight="50.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/Accueil_imp_list.png" />
+                                    <Image url="@../img/AccueilListeSecouriste.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets top="50.0" />
+                                 </HBox.margin>
                               </ImageView>
-                              <Button fx:id="btnImageListe" mnemonicParsing="false" opacity="0.0" prefHeight="592.0" prefWidth="1284.0" text="Button">
-                                 <StackPane.margin>
-                                    <Insets left="10.0" />
-                                 </StackPane.margin></Button>
                            </children>
-                        </StackPane>
-                        <Pane prefHeight="50.0" prefWidth="1920.0" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        </HBox>
+                        <HBox>
                            <children>
-                              <Pane prefHeight="50.0" prefWidth="1920.0" />
-                              <StackPane>
+                              <Pane prefHeight="268.0" prefWidth="130.0" />
+                              <StackPane prefHeight="360.0" prefWidth="510.0">
                                  <children>
-                                    <ImageView fitHeight="81.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="320.0" fitWidth="580.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/mgListeSecouriste.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../img/Accueil_Liste_btn.png" />
                                        </image>
+                                       <StackPane.margin>
+                                          <Insets left="350.0" top="230.0" />
+                                       </StackPane.margin>
                                     </ImageView>
-                                    <Button fx:id="btnListeSecouriste" mnemonicParsing="false" opacity="0.0" prefHeight="105.0" prefWidth="323.0" text="Button" />
+                                    <Button fx:id="btnListeSecouristes" mnemonicParsing="false" onAction="#goListeSecouriste" opacity="0.0" prefHeight="410.0" prefWidth="600.0" text="Button" />
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
+                        <HBox prefHeight="40.0" prefWidth="935.0" />
                      </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="880.0" prefWidth="1179.0">
+                  <VBox prefHeight="440.0" prefWidth="100.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="60.0" prefWidth="935.0">
                            <children>
-                              <VBox>
-                                 <children>
-                                    <ImageView fitHeight="120.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../img/admin_accueil_lisye_Planning.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Pane prefHeight="50.0" prefWidth="260.0" />
-                                    <HBox>
-                                       <children>
-                                          <Pane prefHeight="81.0" prefWidth="48.0" />
-                                          <StackPane>
-                                             <children>
-                                                <Button fx:id="btnListePlanning" mnemonicParsing="false" opacity="0.0" prefHeight="81.0" prefWidth="227.0" text="Button" />
-                                                <ImageView fitHeight="81.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../img/admin_button_planning.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </children>
-                                          </StackPane>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <ImageView fitHeight="278.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <StackPane>
-                                 <children>
-                                    <ImageView fitHeight="280.0" fitWidth="300.0">
-                                       <image>
-                                          <Image url="@../img/Img_planning.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="btnImagePlanning" mnemonicParsing="false" opacity="0.0" prefHeight="280.0" prefWidth="300.0" text="Button" />
-                                 </children>
-                              </StackPane>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Pane prefHeight="80.0" prefWidth="919.0" />
-                        <HBox>
-                           <children>
-                              <Pane prefHeight="58.0" prefWidth="90.0" />
-                              <ImageView fitHeight="75.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+                              <Pane prefHeight="60.0" prefWidth="100.0" />
+                              <ImageView fitHeight="50.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/admin_profil_accueil.png" />
+                                    <Image url="@../img/gererSecouristeAdmin.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </HBox>
                         <HBox>
                            <children>
-                              <Pane prefHeight="297.0" prefWidth="139.0" />
+                              <Pane prefHeight="243.0" prefWidth="130.0" />
                               <StackPane>
                                  <children>
-                                    <ImageView fitHeight="297.0" fitWidth="613.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="300.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/img_admin_profil.png" />
+                                          <Image url="@../img/gererSecouristeAdminImage.png" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="btnImageGestionSecour" mnemonicParsing="false" opacity="0.0" prefHeight="297.0" prefWidth="613.0" text="Button" />
+                                    <StackPane>
+                                       <children>
+                                          <Button fx:id="btnGererSecouristes" mnemonicParsing="false" onAction="#goGererSecouriste" opacity="0.0" prefHeight="357.0" prefWidth="636.0" text="Button" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </StackPane>
                            </children>
@@ -136,8 +94,69 @@
                      </children>
                   </VBox>
                </children>
-            </HBox>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="880.0" prefWidth="960.0">
+               <children>
+                  <VBox prefHeight="440.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="196.0" prefWidth="935.0">
+                           <children>
+                              <Pane prefHeight="118.0" prefWidth="100.0" />
+                              <ImageView fitHeight="50.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/GererDpsTexte.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets top="50.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="367.0" prefWidth="935.0">
+                           <children>
+                              <Pane prefHeight="222.0" prefWidth="100.0" />
+                              <ImageView fx:id="btnGererDPS" fitHeight="343.0" fitWidth="602.0" onDragDetected="#goGererDPS" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/GererDPSImage.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="440.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="75.0" prefWidth="935.0">
+                           <children>
+                              <Pane prefHeight="100.0" prefWidth="100.0" />
+                              <ImageView fx:id="btnAffecterDPS" fitHeight="50.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/AffecterDPSTexte.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="281.0" prefWidth="100.0" />
+                              <ImageView fx:id="btnAffecterDPS" fitHeight="327.0" fitWidth="600.0" onDragDetected="#goAffecterDPS" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/AffecterDPSImage.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </center>
 </BorderPane>
