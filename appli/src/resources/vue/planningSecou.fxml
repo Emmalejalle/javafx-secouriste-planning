@@ -16,7 +16,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="BorderPanePlanningSecou" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="BorderPanePlanningSecou" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.PlanningController">
    <top>
       <HBox fx:id="TopPlanSecou" alignment="CENTER" prefHeight="99.0" prefWidth="1920.0" style="-fx-background-color: F97316;" stylesheets="@../style/stylePlanningSecou.css" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
       </HBox>
    </top>
    <center>
-      <VBox stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      <VBox stylesheets="@../style/stylePlanningSecou.css">
          <children>
       <!-- Section navigation avec titre et flèches -->
       <HBox fx:id="hbxMoisSemaine" alignment="CENTER" spacing="20.0" style="-fx-background-color: #FFFFFF;" styleClass="header-section">
@@ -446,7 +446,7 @@
                <children>
                   <StackPane>
                      <children>
-                        <Button fx:id="btnRetour" mnemonicParsing="false" prefHeight="56.0" prefWidth="90.0" styleClass="retour-button" />
+                        <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#retourAccueilAdmin" prefHeight="56.0" prefWidth="90.0" styleClass="retour-button" />
                         <ImageView fitHeight="13.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/svgRetourBouton.png" />

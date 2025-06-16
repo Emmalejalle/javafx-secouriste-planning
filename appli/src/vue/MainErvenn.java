@@ -1,3 +1,5 @@
+package vue;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +10,7 @@ public class MainErvenn extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println(getClass().getResource("/vue/ProfileAdmin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/TestErvenn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/planningSecou.fxml"));
         stage.setTitle("Liste des secouristes");
         stage.setScene(new Scene(root));
         stage.show();
