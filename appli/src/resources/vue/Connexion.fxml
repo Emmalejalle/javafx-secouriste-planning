@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="rootPane" prefHeight="1080" prefWidth="1920" stylesheets="@../style/Connexion.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootPane" prefHeight="1080" prefWidth="1920" fx:controller="controller.ConnexionController" stylesheets="@../style/Connexion.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
     <!-- HEADER : zone blanche de 100px -->
     <top>
@@ -28,7 +28,7 @@
          <children>
                      <StackPane style="-fx-background-color: #000000;">
                         <children>
-                               <Button fx:id="btnExit" opacity="0.0" prefHeight="90" prefWidth="90" />
+                               <Button fx:id="btnExit" onAction="#onQuitter" opacity="0.0" prefHeight="90" prefWidth="90" />
                                  <ImageView fx:id="BouttonSortie" fitHeight="90" fitWidth="90" preserveRatio="true">
                                      <image>
                                  <Image url="@../img/svgSortie.png" />
@@ -78,10 +78,10 @@
                                            <PasswordField fx:id="pfPasswordSecourist" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
                                        </children>
                                     </HBox>
-                                    <Button fx:id="BoutonConnexionSecour" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
+                                    <Button fx:id="BoutonConnexionSecour" onAction="#onConnexionSecouriste" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
                                 </children>
                              </VBox>
-                             <Hyperlink fx:id="MdpOubliéSecour" styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
+                             <Hyperlink fx:id="MdpOubliéSecour" onAction="#onMdpOublie"  styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
          </children>
                       </VBox>
       
@@ -117,10 +117,10 @@
                                            <PasswordField fx:id="pfPasswordAdmin" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
                                        </children>
                                     </HBox>
-                                    <Button fx:id="BoutonConnexionAdmin" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
+                                    <Button fx:id="BoutonConnexionAdmin" onAction="#onConnexionAdmin" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
                                 </children>
                              </VBox>
-                             <Hyperlink fx:id="MdpOublieAdmin" styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
+                             <Hyperlink fx:id="MdpOublieAdmin" onAction="#onMdpOublie"  styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
          </children>
                       </VBox>
       </children>
