@@ -32,9 +32,18 @@ public class ProfileAdminController {
         }
     }
 
+    /**
+     * Bouton Retour revient à l'accueil sans sauvegarder.
+     */
     @FXML
     void onReturn(ActionEvent event) {
-        // par exemple revenir à l'accueil (ou fermer la fenêtre)
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilAdmin.fxml"));
+        Scene scene = ((Node) event.getSource()).getScene();
+        scene.setRoot(root);
+    } catch (IOException e) {
+        System.err.println("ERREUR : Impossible de charger accueilSecouriste.fxml");
+        e.printStackTrace();
     }
+}
 }

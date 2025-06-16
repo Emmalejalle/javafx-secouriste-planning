@@ -8,7 +8,7 @@ public class MainEmma extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println(getClass().getResource("/vue/ProfileAdmin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/ProfileAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/profil.fxml"));
         stage.setTitle("Liste des secouristes");
         stage.setScene(new Scene(root));
         stage.show();
