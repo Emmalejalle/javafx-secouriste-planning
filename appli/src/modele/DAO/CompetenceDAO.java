@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class CompetenceDAO extends DAO<Competence> {
 
@@ -46,16 +47,18 @@ public class CompetenceDAO extends DAO<Competence> {
             System.out.println(c.getIntitule());
         }
         // Test create 
-        /** 
+        
         ArrayList<Competence> prerequis = new ArrayList<>();
         prerequis.add(new Competence(1, "Cadre Opérationnel", "CO"));
         Competence newCompetence = new Competence(0, "Nouvelle Compétence", "NC");        
         newCompetence.setPrerequis(prerequis);
         System.out.println("Création de la compétence : " + newCompetence.getIntitule());
         competenceDAO.create(newCompetence);
-        System.out.println("Compétence crée : " + newCompetence.getIntitule()); */
+        System.out.println("Compétence crée : " + newCompetence.getIntitule());
+        System.out.println("ID de la compétence créée : " + newCompetence.getIdComp());
 
         // Test update
+        /** 
         Competence updateCompetence = competenceDAO.findByID(10);
         if (updateCompetence != null) {
             updateCompetence.setIntitule("Compétence Mise à Jour");
@@ -66,9 +69,73 @@ public class CompetenceDAO extends DAO<Competence> {
             System.out.println("Nombre de lignes mises à jour : " + rowsUpdated);
         } else {
             System.out.println("Aucune compétence trouvée pour la mise à jour.");
-        }
+        } */
     }
 
+    /**
+     * Findprerequis renvoie les prerequis d'une competence sous forme d'une liste de Long (IDs des compétences).
+     * @param idComp L'identifiant de la compétence dont on veut les prérequis.
+     * @return Une liste de Long représentant les IDs des compétences prérequis.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    public ArrayList<Long> findPrerequis(Competence competence) throws SQLException {
+        ArrayList<Long> prerequisIds = new ArrayList<>();
+        String sql = "SELECT idPrerequis FROM PrerequisComp WHERE idCompPre = ?";
+
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, competence.getIdComp());
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    prerequisIds.add(rs.getLong("idPrerequis"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des prérequis : " + e.getMessage());
+        }
+        return prerequisIds;
+    }
+
+    /**
+     * findAll récupère toutes les compétences de la base de données.
+     * Cette méthode est utilisée pour obtenir une liste de toutes les compétences, y compris leurs prérequis.
+     * @return Une liste de toutes les compétences.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    @Override
+    public ArrayList<Competence> findAll() throws SQLException {
+        // TreeMap pour stocker les competences et leur identifiant
+        // dans l'ordre de l'intitulé
+        TreeMap<Long, Competence> competencesTreeMap = new TreeMap<>();
+
+
+        // Utilisation d'un ArrayList pour stocker les compétences
+        // et les retourner dans l'ordre de l'intitulé
+        ArrayList<Competence> competences = new ArrayList<>();
+        String sql = "SELECT * FROM Competence ORDER BY intitule";
+
+        try (Statement st = this.connect.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                // Création d'une nouvelle competence
+                Competence tmp = new Competence(
+                    rs.getLong("idComp"),
+                    rs.getString("intitule"),
+                    rs.getString("abreviationIntitule")
+                );
+                competencesTreeMap.put(tmp.getIdComp(), tmp);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des compétences : " + e.getMessage());
+        }
+        return competences;
+    }
+
+    /**
+     * FindByID recherche une compétence par son identifiant.
+     * @param id L'identifiant de la compétence à rechercher.
+     * @return La compétence trouvée, ou null si aucune compétence n'est trouvée avec cet identifiant.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public Competence findByID(long id) throws SQLException {
         String sql = "SELECT * FROM Competence WHERE idComp = ?";
@@ -89,9 +156,14 @@ public class CompetenceDAO extends DAO<Competence> {
         return competence;
     }
 
-    @Override
-    public List<Competence> findAll() throws SQLException {
-        List<Competence> competences = new ArrayList<>();
+    /**
+     * findAllParresseux récupère toutes les compétences de la base de données.
+     * Cette méthode est utilisée pour obtenir une liste de toutes les compétences sans charger les prérequis.
+     * @return Une liste de toutes les compétences.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    public ArrayList<Competence> findAllParresseux() throws SQLException {
+        ArrayList<Competence> competences = new ArrayList<>();
         String sql = "SELECT * FROM Competence ORDER BY intitule";
 
         try (Statement st = this.connect.createStatement();
@@ -181,22 +253,24 @@ public class CompetenceDAO extends DAO<Competence> {
     public int update(Competence obj) throws SQLException {
         // La mise à jour ne gère que les champs de la table Competence
         String sql = "UPDATE Competence SET intitule = ?, abreviationIntitule = ? WHERE idComp = ?";
+        int rowsAffected = 0;
         
-        
-        // On gere les prerequis ici aussi
-        // Supprimer les anciens prérequis
-        deletePrerequisFor(obj); // Supprime les prérequis existants avant de les recréer
-        // Ajouter les nouveaux prérequis
-        for (Competence prerequis : obj.getPrerequis()) {
-            createPrerequis(obj, prerequis);
-        }
+        //On delete la competence avant de la mettre à jour
+        delete(obj);
 
+        // On met à jour la compétence dans la table principale
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setString(1, obj.getIntitule());
             st.setString(2, obj.getAbrevComp());
             st.setLong(3, obj.getIdComp());
-            return st.executeUpdate();
+
+            rowsAffected = st.executeUpdate();
         }
+
+        for (Competence prerequis : obj.getPrerequis()) {
+            createPrerequis(obj, prerequis);
+        }
+        return rowsAffected;
 
     }
 
@@ -204,8 +278,7 @@ public class CompetenceDAO extends DAO<Competence> {
     public int delete(Competence obj) throws SQLException {
         // Attention: la suppression doit gérer les contraintes de clé étrangère
         // Il faut d'abord supprimer les liens dans la table de jointure des prérequis.
-        String sql = "DELETE FROM Competence WHERE idComp = ?";
-        deletePrerequisFor(obj); // Supprime les prérequis avant de supprimer la compétence
+        String sql = "DELETE FROM Competence WHERE idComp = ?"; 
         // Supprime la compétence de la table principale
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, obj.getIdComp());
@@ -213,77 +286,5 @@ public class CompetenceDAO extends DAO<Competence> {
         }
     }
 
-    /**
-     * Delete les prérequis d'une compétence donnée. Ainsique les liens dans la table de jointure.
-     * Cette méthode est utilisée pour nettoyer les prérequis avant de supprimer une compétence.
-     * @param competence
-     * @throws SQLException
-     */
-    public void deletePrerequisFor(Competence competence) throws SQLException {
-        String sql = "DELETE FROM PrerequisComp WHERE idCompPre = ?";
 
-        
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setLong(1, competence.getIdComp());
-            st.executeUpdate();
-        }
-
-        // On delete aussi relation dont elle est le prérequis
-        sql = "DELETE FROM PrerequisComp WHERE idPrerequis = ?";
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setLong(1, competence.getIdComp());
-            st.executeUpdate();
-        }
-
-        // On delete aussi les competences dans les secouristes
-        sql = "DELETE FROM ListCompSecouriste WHERE idCompList = ?";
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setLong(1, competence.getIdComp());
-            st.executeUpdate();
-        }
-
-        // On delete aussi les affectations qui sont liées à cette compétence
-        sql = "DELETE FROM Affectation WHERE idCompAffect = ?";
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setLong(1, competence.getIdComp());
-            st.executeUpdate();
-        }
-
-        // On delete aussi les competences dans les besoins
-        sql = "DELETE FROM Besoin WHERE idCompList = ?";
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setLong(1, competence.getIdComp());
-            st.executeUpdate();
-        }
-    }
-
-    /**
-     * Charge la liste des prérequis pour un objet Competence donné.
-     * C'est la méthode de "chargement paresseux".
-     * @param competence L'objet Competence dont il faut charger les prérequis.
-     * @throws SQLException En cas d'erreur BDD.
-     */
-    public void loadPrerequisFor(Competence competence) throws SQLException {
-        ArrayList<Competence> prerequisList = new ArrayList<>();
-        
-        // NOTE : Adaptez le nom de la table ('Prerequis') et des colonnes.
-        String sql = "SELECT idPrerequis FROM PrerequisComp WHERE idCompPre = ?";
-
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setLong(1, competence.getIdComp());
-            
-            try (ResultSet rs = st.executeQuery()) {
-                while(rs.next()) {
-                    long prerequisId = rs.getLong("idPrerequis");
-                    // On réutilise la méthode findByID pour ne pas dupliquer le code !
-                    Competence prerequis = this.findByID(prerequisId);
-                    if (prerequis != null) {
-                        prerequisList.add(prerequis);
-                    }
-                }
-            }
-        }
-        // Met à jour la liste dans l'objet Competence original
-        competence.setPrerequis(prerequisList);
-    }
 }

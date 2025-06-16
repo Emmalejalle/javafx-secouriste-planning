@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS Journee;
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE User (
-	idUser BIGINT Primary key,
+	idUser BIGINT Primary KEY AUTO_INCREMENT,
     mdpUser VARCHAR(20),
     nomUser VARCHAR(20),
     prenomUser VARCHAR(20),
@@ -25,20 +25,18 @@ CREATE TABLE User (
 );
 
 CREATE TABLE Journee (
+	idJournee BIGINT PRIMARY KEY AUTO_INCREMENT,
 	jour int,
     mois int,
-    annee int,
-	PRIMARY KEY (jour, mois, annee)
+    annee int
 );
 
 CREATE TABLE Dispo (
     idSecouriste BIGINT,
-    jour INT,
-    mois INT,
-    annee INT,
-    PRIMARY KEY (idSecouriste, jour, mois, annee),
+    idJourneeDispo BIGINT,
+    PRIMARY KEY (idSecouriste, idJourneeDispo),
     FOREIGN KEY (idSecouriste) REFERENCES User(idUser) ON DELETE CASCADE, 
-    FOREIGN KEY (jour, mois, annee) REFERENCES Journee(jour, mois, annee) ON DELETE CASCADE
+    FOREIGN KEY (idJourneeDispo) REFERENCES Journee(idJournee) ON DELETE CASCADE
 );
 
 
@@ -57,37 +55,35 @@ CREATE TABLE PrerequisComp (
 );
 
 CREATE TABLE Site (
-    codeSite VARCHAR(10) PRIMARY KEY,
+    codeSite BIGINT PRIMARY KEY AUTO_INCREMENT,
     nomSite VARCHAR(50),
     longitude FLOAT,
     latitude FLOAT
 );
 
 CREATE TABLE Sport (
-    codeSport VARCHAR(10) PRIMARY KEY,
+    codeSport BIGINT PRIMARY KEY AUTO_INCREMENT,
     nomSport VARCHAR(50)
 );
 
 CREATE TABLE DPS (
-    idDPS BIGINT PRIMARY KEY,
+    idDPS BIGINT PRIMARY KEY AUTO_INCREMENT,
     horaireDepart INT,
     horaireFin INT,
     
-    codeSiteDPS VARCHAR(10),
-    codeSportDPS VARCHAR(10),
-    jourDPS INT,
-    moisDPS INT,
-    anneeDPS INT,
+    codeSiteDPS BIGINT(10),
+    codeSportDPS BIGINT(10),
+    idJourneeDPS BIGINT(10),
     
-    FOREIGN KEY (codeSiteDPS) REFERENCES Site(codeSite),
-    FOREIGN KEY (codeSportDPS) REFERENCES Sport(codeSport),
-    FOREIGN KEY (jourDPS, moisDPS, anneeDPS) REFERENCES Journee(jour, mois, annee)
+    FOREIGN KEY (codeSiteDPS) REFERENCES Site(codeSite) ON DELETE CASCADE,
+    FOREIGN KEY (codeSportDPS) REFERENCES Sport(codeSport) ON DELETE CASCADE,
+    FOREIGN KEY (idJourneeDPS) REFERENCES Journee(idJournee) ON DELETE CASCADE
 );
 
 CREATE TABLE Besoin (
     idBesoinDPS BIGINT,
     idBesoinComp BIGINT,
-    nombre INT CHECK (nombre >= 1),
+    nombre INT CHECK (nombre >= 0),
 
     PRIMARY KEY (idBesoinDPS, idBesoinComp),
     FOREIGN KEY (idBesoinDPS) REFERENCES DPS(idDPS) ON DELETE CASCADE,
@@ -117,57 +113,62 @@ CREATE TABLE Affectation (
 -- INSERT DE LA TABLE JOURNEE :
 -- Juin 2025
 INSERT INTO Journee VALUES
-(1, 6, 2025), (2, 6, 2025), (3, 6, 2025), (4, 6, 2025), (5, 6, 2025), (6, 6, 2025), (7, 6, 2025),
-(8, 6, 2025), (9, 6, 2025), (10, 6, 2025), (11, 6, 2025), (12, 6, 2025), (13, 6, 2025), (14, 6, 2025),
-(15, 6, 2025), (16, 6, 2025), (17, 6, 2025), (18, 6, 2025), (19, 6, 2025), (20, 6, 2025), (21, 6, 2025),
-(22, 6, 2025), (23, 6, 2025), (24, 6, 2025), (25, 6, 2025), (26, 6, 2025), (27, 6, 2025), (28, 6, 2025),
-(29, 6, 2025), (30, 6, 2025);
+(1, 1, 6, 2025), (2, 2, 6, 2025), (3, 3, 6, 2025), (4, 4, 6, 2025), (5, 5, 6, 2025), (6, 6, 6, 2025), (7, 7, 6, 2025),
+(8, 8, 6, 2025), (9, 9, 6, 2025), (10, 10, 6, 2025), (11, 11, 6, 2025), (12, 12, 6, 2025), (13, 13, 6, 2025), (14, 14, 6, 2025),
+(15, 15, 6, 2025), (16, 16, 6, 2025), (17, 17, 6, 2025), (18, 18, 6, 2025), (19, 19, 6, 2025), (20, 20, 6, 2025),
+(21, 21, 6, 2025), (22, 22, 6, 2025), (23, 23, 6, 2025), (24, 24, 6, 2025), (25, 25, 6, 2025), (26, 26, 6, 2025),
+(27, 27, 6, 2025), (28, 28, 6, 2025), (29, 29, 6, 2025), (30, 30, 6, 2025);
+
 
 -- Juillet 2025
 INSERT INTO Journee VALUES
-(1, 7, 2025), (2, 7, 2025), (3, 7, 2025), (4, 7, 2025), (5, 7, 2025), (6, 7, 2025), (7, 7, 2025),
-(8, 7, 2025), (9, 7, 2025), (10, 7, 2025), (11, 7, 2025), (12, 7, 2025), (13, 7, 2025), (14, 7, 2025),
-(15, 7, 2025), (16, 7, 2025), (17, 7, 2025), (18, 7, 2025), (19, 7, 2025), (20, 7, 2025), (21, 7, 2025),
-(22, 7, 2025), (23, 7, 2025), (24, 7, 2025), (25, 7, 2025), (26, 7, 2025), (27, 7, 2025), (28, 7, 2025),
-(29, 7, 2025), (30, 7, 2025), (31, 7, 2025);
+(31, 1, 7, 2025), (32, 2, 7, 2025), (33, 3, 7, 2025), (34, 4, 7, 2025), (35, 5, 7, 2025), (36, 6, 7, 2025), (37, 7, 7, 2025),
+(38, 8, 7, 2025), (39, 9, 7, 2025), (40, 10, 7, 2025), (41, 11, 7, 2025), (42, 12, 7, 2025), (43, 13, 7, 2025), (44, 14, 7, 2025),
+(45, 15, 7, 2025), (46, 16, 7, 2025), (47, 17, 7, 2025), (48, 18, 7, 2025), (49, 19, 7, 2025), (50, 20, 7, 2025),
+(51, 21, 7, 2025), (52, 22, 7, 2025), (53, 23, 7, 2025), (54, 24, 7, 2025), (55, 25, 7, 2025), (56, 26, 7, 2025),
+(57, 27, 7, 2025), (58, 28, 7, 2025), (59, 29, 7, 2025), (60, 30, 7, 2025), (61, 31, 7, 2025);
+
 
 -- Août 2025
 INSERT INTO Journee VALUES
-(1, 8, 2025), (2, 8, 2025), (3, 8, 2025), (4, 8, 2025), (5, 8, 2025), (6, 8, 2025), (7, 8, 2025),
-(8, 8, 2025), (9, 8, 2025), (10, 8, 2025), (11, 8, 2025), (12, 8, 2025), (13, 8, 2025), (14, 8, 2025),
-(15, 8, 2025), (16, 8, 2025), (17, 8, 2025), (18, 8, 2025), (19, 8, 2025), (20, 8, 2025), (21, 8, 2025),
-(22, 8, 2025), (23, 8, 2025), (24, 8, 2025), (25, 8, 2025), (26, 8, 2025), (27, 8, 2025), (28, 8, 2025),
-(29, 8, 2025), (30, 8, 2025), (31, 8, 2025);
+(62, 1, 8, 2025), (63, 2, 8, 2025), (64, 3, 8, 2025), (65, 4, 8, 2025), (66, 5, 8, 2025), (67, 6, 8, 2025), (68, 7, 8, 2025),
+(69, 8, 8, 2025), (70, 9, 8, 2025), (71, 10, 8, 2025), (72, 11, 8, 2025), (73, 12, 8, 2025), (74, 13, 8, 2025), (75, 14, 8, 2025),
+(76, 15, 8, 2025), (77, 16, 8, 2025), (78, 17, 8, 2025), (79, 18, 8, 2025), (80, 19, 8, 2025), (81, 20, 8, 2025),
+(82, 21, 8, 2025), (83, 22, 8, 2025), (84, 23, 8, 2025), (85, 24, 8, 2025), (86, 25, 8, 2025), (87, 26, 8, 2025),
+(88, 27, 8, 2025), (89, 28, 8, 2025), (90, 29, 8, 2025), (91, 30, 8, 2025), (92, 31, 8, 2025);
 
 -- INSERT DE LA TABLE SPORT 
+-- Table Sport avec codes numériques
 INSERT INTO Sport (codeSport, nomSport) VALUES
-('SKIALP', 'Ski alpin'),
-('SKIFON', 'Ski de fond'),
-('BIATHL', 'Biathlon'),
-('SAUTSKI', 'Saut à ski'),
-('COMBSKI', 'Combiné nordique'),
-('SNOWBX', 'Snowboard cross'),
-('HALFPN', 'Half-pipe snowboard'),
-('BOSS', 'Ski de bosses'),
-('SKICRX', 'Ski cross'),
-('PATART', 'Patinage artistique'),
-('PATVIT', 'Patinage de vitesse'),
-('SHORTRK', 'Short track'),
-('HOCKEY', 'Hockey sur glace'),
-('LUGE', 'Luge'),
-('BOBSLEI', 'Bobsleigh'),
-('SKELETN', 'Skeleton');
+(1001, 'Ski alpin'),         -- SKIALP
+(1002, 'Ski de fond'),       -- SKIFON
+(1003, 'Biathlon'),          -- BIATHL
+(1004, 'Saut à ski'),        -- SAUTSKI
+(1005, 'Combiné nordique'),  -- COMBSKI
+(1006, 'Snowboard cross'),   -- SNOWBX
+(1007, 'Half-pipe snowboard'), -- HALFPN
+(1008, 'Ski de bosses'),     -- BOSS
+(1009, 'Ski cross'),         -- SKICRX
+(1010, 'Patinage artistique'), -- PATART
+(1011, 'Patinage de vitesse'), -- PATVIT
+(1012, 'Short track'),       -- SHORTRK
+(1013, 'Hockey sur glace'),  -- HOCKEY
+(1014, 'Luge'),              -- LUGE
+(1015, 'Bobsleigh'),         -- BOBSLEI
+(1016, 'Skeleton');          -- SKELETN
 
--- INSERT DE LA TABLE SITE :
+
+-- Table Site avec codes numériques
 INSERT INTO Site (codeSite, nomSite, longitude, latitude) VALUES
-('TIGNES', 'Tignes', 6.9247, 45.4690),
-('VALDISER', 'Val d\'Isère', 6.9798, 45.4482),
-('LA_PLAGNE', 'La Plagne', 6.6770, 45.5075),
-('LESARCS', 'Les Arcs', 6.8285, 45.5724),
-('CHAMONIX', 'Chamonix', 6.8694, 45.9237),
-('MONTGENV', 'Montgenèvre', 6.7258, 44.9337),
-('ALBERTVL', 'Albertville Halle Olympique', 6.3894, 45.6753),
-('LAUSANNE', 'Lausanne Vaudoise Arena', 6.6045, 46.5286); -- (Suisse, proche, ex-JOJ 2020)
+(2001, 'Tignes', 6.9247, 45.4690),                       -- TIGNES
+(2002, 'Val d''Isère', 6.9798, 45.4482),                 -- VALDISER
+(2003, 'La Plagne', 6.6770, 45.5075),                    -- LA_PLAGNE
+(2004, 'Les Arcs', 6.8285, 45.5724),                     -- LESARCS
+(2005, 'Chamonix', 6.8694, 45.9237),                     -- CHAMONIX
+(2006, 'Montgenèvre', 6.7258, 44.9337),                  -- MONTGENV
+(2007, 'Albertville Halle Olympique', 6.3894, 45.6753),  -- ALBERTVL
+(2008, 'Lausanne Vaudoise Arena', 6.6045, 46.5286);      -- LAUSANNE
+
 
 -- INSERT DE LA TABLE COMPETENCE :
 INSERT INTO Competence (idComp, intitule, abreviationIntitule) VALUES
@@ -226,22 +227,23 @@ INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser
 (27282930, 'open1234', 'Moreau', 'Lucas', '1994-09-29', 'lucas.moreau@example.com', '06-26-26-26-26', '3 chemin des Bois, Chambéry', 0);
 
 -- INSERT DE LA TABLE DPS :
-INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, jourDPS, moisDPS, anneeDPS) VALUES
-(59745529, 15, 18, 'ALBERTVL', 'LUGE', 22, 6, 2025),
-(83283564, 9, 14, 'TIGNES', 'BIATHL', 22, 6, 2025),
-(98884217, 19, 23, 'VALDISER', 'LUGE', 22, 6, 2025),
-(22214528, 15, 19, 'LAUSANNE', 'BIATHL', 22, 6, 2025),
-(27082804, 19, 22, 'VALDISER', 'SAUTSKI', 22, 6, 2025),
-(61961487, 11, 14, 'CHAMONIX', 'BIATHL', 23, 6, 2025),
-(19759657, 9, 14, 'ALBERTVL', 'PATVIT', 23, 6, 2025),
-(80658124, 9, 13, 'VALDISER', 'SNOWBX', 23, 6, 2025),
-(52459582, 10, 14, 'LA_PLAGNE', 'PATART', 23, 6, 2025),
-(72616091, 15, 18, 'MONTGENV', 'SKIALP', 25, 6, 2025),
-(84427660, 10, 13, 'VALDISER', 'SNOWBX', 25, 6, 2025),
-(20412536, 18, 22, 'TIGNES', 'SHORTRK', 25, 6, 2025),
-(12814297, 13, 17, 'CHAMONIX', 'SKIALP', 25, 6, 2025),
-(59922115, 13, 17, 'CHAMONIX', 'SKIFON', 25, 6, 2025),
-(88898217, 15, 19, 'CHAMONIX', 'SKIFON', 25, 6, 2025);
+-- Insertion dans la table DPS avec ID numériques
+INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
+(59745529, 15, 18, 2007, 1014, 22),  -- Albertville, Luge
+(83283564, 9, 14, 2001, 1003, 22),   -- Tignes, Biathlon
+(98884217, 19, 23, 2002, 1014, 22),  -- Val d'Isère, Luge
+(22214528, 15, 19, 2008, 1003, 22),  -- Lausanne, Biathlon
+(27082804, 19, 22, 2002, 1004, 22),  -- Val d'Isère, Saut à ski
+(61961487, 11, 14, 2005, 1003, 23),  -- Chamonix, Biathlon
+(19759657, 9, 14, 2007, 1011, 23),   -- Albertville, Patinage vitesse
+(80658124, 9, 13, 2002, 1006, 23),   -- Val d'Isère, Snowboard cross
+(52459582, 10, 14, 2003, 1010, 23),  -- La Plagne, Patinage artistique
+(72616091, 15, 18, 2006, 1001, 25),  -- Montgenèvre, Ski alpin
+(84427660, 10, 13, 2002, 1006, 25),  -- Val d'Isère, Snowboard cross
+(20412536, 18, 22, 2001, 1012, 25),  -- Tignes, Short track
+(12814297, 13, 17, 2005, 1001, 25),  -- Chamonix, Ski alpin
+(59922115, 13, 17, 2005, 1002, 25),  -- Chamonix, Ski de fond
+(88898217, 15, 19, 2005, 1002, 25);  -- Chamonix, Ski de fond
 
 -- INSERT DE LA TABLE Besoin	
 -- DPS 59745529 (5 personnes sur 3 compétences)
@@ -341,107 +343,107 @@ INSERT INTO Besoin VALUES
 (88898217, 5, 1);
 
 -- INSERT DE LA TABLE Dispo
--- Disponibilités des secouristes les 22, 23 et 25 juin
+-- Disponibilités des secouristes les 22, 23 et 25 juin (idJournee)
 INSERT INTO Dispo VALUES
-('10111223', 22, 6, 2025),
-('10111223', 23, 6, 2025),
-('10111223', 25, 6, 2025),
+('10111223', 22),
+('10111223', 23),
+('10111223', 25),
 
-('12131415', 22, 6, 2025),
-('12131415', 23, 6, 2025),
-('12131415', 25, 6, 2025),
+('12131415', 22),
+('12131415', 23),
+('12131415', 25),
 
-('12345678', 22, 6, 2025),
-('12345678', 23, 6, 2025),
-('12345678', 25, 6, 2025),
+('12345678', 22),
+('12345678', 23),
+('12345678', 25),
 
-('13141516', 22, 6, 2025),
-('13141516', 23, 6, 2025),
-('13141516', 25, 6, 2025),
+('13141516', 22),
+('13141516', 23),
+('13141516', 25),
 
-('14151617', 22, 6, 2025),
-('14151617', 23, 6, 2025),
-('14151617', 25, 6, 2025),
+('14151617', 22),
+('14151617', 23),
+('14151617', 25),
 
-('15161718', 22, 6, 2025),
-('15161718', 23, 6, 2025),
-('15161718', 25, 6, 2025),
+('15161718', 22),
+('15161718', 23),
+('15161718', 25),
 
-('16171819', 22, 6, 2025),
-('16171819', 23, 6, 2025),
-('16171819', 25, 6, 2025),
+('16171819', 22),
+('16171819', 23),
+('16171819', 25),
 
-('17181920', 22, 6, 2025),
-('17181920', 23, 6, 2025),
-('17181920', 25, 6, 2025),
+('17181920', 22),
+('17181920', 23),
+('17181920', 25),
 
-('18192021', 22, 6, 2025),
-('18192021', 23, 6, 2025),
-('18192021', 25, 6, 2025),
+('18192021', 22),
+('18192021', 23),
+('18192021', 25),
 
-('19202122', 22, 6, 2025),
-('19202122', 23, 6, 2025),
-('19202122', 25, 6, 2025),
+('19202122', 22),
+('19202122', 23),
+('19202122', 25),
 
-('20212223', 22, 6, 2025),
-('20212223', 23, 6, 2025),
-('20212223', 25, 6, 2025),
+('20212223', 22),
+('20212223', 23),
+('20212223', 25),
 
-('21222324', 22, 6, 2025),
-('21222324', 23, 6, 2025),
-('21222324', 25, 6, 2025),
+('21222324', 22),
+('21222324', 23),
+('21222324', 25),
 
-('22232425', 22, 6, 2025),
-('22232425', 23, 6, 2025),
-('22232425', 25, 6, 2025),
+('22232425', 22),
+('22232425', 23),
+('22232425', 25),
 
-('22334455', 22, 6, 2025),
-('22334455', 23, 6, 2025),
-('22334455', 25, 6, 2025),
+('22334455', 22),
+('22334455', 23),
+('22334455', 25),
 
-('23242526', 22, 6, 2025),
-('23242526', 23, 6, 2025),
-('23242526', 25, 6, 2025),
+('23242526', 22),
+('23242526', 23),
+('23242526', 25),
 
-('24252627', 22, 6, 2025),
-('24252627', 23, 6, 2025),
-('24252627', 25, 6, 2025),
+('24252627', 22),
+('24252627', 23),
+('24252627', 25),
 
-('25262728', 22, 6, 2025),
-('25262728', 23, 6, 2025),
-('25262728', 25, 6, 2025),
+('25262728', 22),
+('25262728', 23),
+('25262728', 25),
 
-('27282930', 22, 6, 2025),
-('27282930', 23, 6, 2025),
-('27282930', 25, 6, 2025),
+('27282930', 22),
+('27282930', 23),
+('27282930', 25),
 
-('33445566', 22, 6, 2025),
-('33445566', 23, 6, 2025),
-('33445566', 25, 6, 2025),
+('33445566', 22),
+('33445566', 23),
+('33445566', 25),
 
-('44556677', 22, 6, 2025),
-('44556677', 23, 6, 2025),
-('44556677', 25, 6, 2025),
+('44556677', 22),
+('44556677', 23),
+('44556677', 25),
 
-('55667788', 22, 6, 2025),
-('55667788', 23, 6, 2025),
-('55667788', 25, 6, 2025),
+('55667788', 22),
+('55667788', 23),
+('55667788', 25),
 
-('66778899', 22, 6, 2025),
-('66778899', 23, 6, 2025),
-('66778899', 25, 6, 2025),
+('66778899', 22),
+('66778899', 23),
+('66778899', 25),
 
-('77889900', 22, 6, 2025),
-('77889900', 23, 6, 2025),
-('77889900', 25, 6, 2025),
+('77889900', 22),
+('77889900', 23),
+('77889900', 25),
 
-('88990011', 22, 6, 2025),
-('88990011', 23, 6, 2025),
-('88990011', 25, 6, 2025),
+('88990011', 22),
+('88990011', 23),
+('88990011', 25),
 
-('99001122', 22, 6, 2025),
-('99001122', 23, 6, 2025),
-('99001122', 25, 6, 2025);
+('99001122', 22),
+('99001122', 23),
+('99001122', 25);
 
 -- INSERT DE LA TABLE SECOURISTE :
 -- Secouriste 1 : '12345678' → Cadre Opérationnel (1)
@@ -550,5 +552,3 @@ INSERT INTO Affectation VALUES (15161718, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (16171819, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (17181920, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (18192021, 8, 59922115); -- PSE2
-
-SELECT * FROM Competence WHERE abreviationIntitule = 'NC';

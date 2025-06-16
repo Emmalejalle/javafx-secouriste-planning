@@ -35,14 +35,14 @@ public class AccueilAdminController {
     @FXML private Button btnAffecterDPS;
 
     @FXML
-    void initialize() {
+    public void initialize() {
         System.out.println("Le contrôleur AccueilAdminController est initialisé.");
     }
 
     
 
     @FXML
-    void goListeSecouriste(ActionEvent event) {
+    public void goListeSecouriste(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers Modifier-supprimerUnSecouriste.fxml");
         try {
             changerDeVue(event, "Modifier-supprimerUnSecouriste.fxml");
@@ -53,7 +53,7 @@ public class AccueilAdminController {
     }
 
     @FXML
-    void goGererSecouriste(ActionEvent event) {
+    public void goGererSecouriste(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
         try {
             changerDeVue(event, "accueilSecouriste.fxml");
@@ -64,7 +64,7 @@ public class AccueilAdminController {
     }
 
     @FXML
-    void goGererDPS(ActionEvent event) {
+    public void goGererDPS(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
         try {
             changerDeVue(event, "accueilSecouriste.fxml");
@@ -75,7 +75,7 @@ public class AccueilAdminController {
     }
 
     @FXML
-    void goAffecterDPS(ActionEvent event) {
+    public void goAffecterDPS(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
         try {
             changerDeVue(event, "accueilSecouriste.fxml");

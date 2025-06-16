@@ -51,10 +51,10 @@ public class PlanningController {
 
     @FXML private VBox vboxCoequipiers;
 
+    @FXML private Label lblTotalHours;
     // === Variable pour gérer la date ===
     private LocalDate dateActuelle;
 
-    @FXML private Label lblTotalHours;
 
     private VBox dpsSelectionne; // Va mémoriser la dernière vignette cliquée
     
@@ -177,10 +177,10 @@ public class PlanningController {
     void onDpsClicked(MouseEvent event) {
         VBox vignetteCliquee = (VBox) event.getSource();
 
-        // --- 1. GESTION DE LA SURBRILLANCE ---
+        
         // S'il y avait déjà une vignette sélectionnée...
         if (dpsSelectionne != null) {
-            // ... on lui enlève TOUTES les classes de sélection possibles
+            //  on lui enlève TOUTES les classes de sélection possibles
             dpsSelectionne.getStyleClass().removeAll("dps-selected-vert", "dps-selected-bleu", "dps-selected-jaune", "dps-selected-rouge");
         }
 
