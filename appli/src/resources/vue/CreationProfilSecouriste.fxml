@@ -155,37 +155,36 @@
                   <Insets left="48.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+            <HBox prefHeight="104.0" prefWidth="833.0" spacing="40.0">
                <children>
-                  <VBox fillWidth="false" prefHeight="77.0" prefWidth="431.0">
+                  <VBox fillWidth="false" prefHeight="72.0" prefWidth="220.0">
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Compétences" />
-                        <TextField fx:id="TextFieldID211" prefWidth="358.0" promptText="Pilote Hélicoptère" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <Label prefHeight="21.0" prefWidth="211.0" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Pilote Hélicoptère">
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="3.0" left="8.0" />
+                           </padding>
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
                            </styleClass>
-                        </TextField>
+                        </Label>
                      </children>
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
                   </VBox>
+                  <CheckBox mnemonicParsing="false" prefHeight="19.0" prefWidth="0.0" styleClass="larger-checkbox" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                     <HBox.margin>
+                        <Insets top="48.0" />
+                     </HBox.margin>
+                  </CheckBox>
                   <VBox prefHeight="77.0" prefWidth="426.0">
                      <children>
-                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Compétences">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
                         <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <ImageView fitHeight="41.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/BtnAjoutCompétence.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                            <VBox.margin>
                               <Insets left="16.0" />
                            </VBox.margin>
