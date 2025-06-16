@@ -1,0 +1,105 @@
+/* ListeRechercheSecouri.css */
+
+/* ----------------------------------------
+   Barre de recherche (HBox) 
+---------------------------------------- */
+.BarDeRechercheSecouriste {
+  -fx-background-color: white;
+  -fx-background-radius: 8;
+  -fx-border-color: #cbd5e1;
+  -fx-border-radius: 8;
+  -fx-padding: 8 12;
+}
+
+/* ----------------------------------------
+   Contour du ScrollPane principal 
+---------------------------------------- */
+.scrollContour {
+  -fx-background-color: white;
+  -fx-border-color: #1e3a8a;
+  -fx-border-width: 2;
+  -fx-border-radius: 8;
+}
+
+/* ----------------------------------------
+   Ombre portée pour cadres 
+---------------------------------------- */
+.shadow {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2);
+}
+
+/* ----------------------------------------
+   Fiche secouriste (HBox) 
+---------------------------------------- */
+.blocBleuSecouriste {
+  -fx-background-color: #bfdbfe;
+  -fx-background-radius: 8;
+  -fx-padding: 8;
+}
+
+/* ----------------------------------------
+   Nom & Prénom dans la fiche 
+---------------------------------------- */
+.nomPrenomSecouriste {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #1e3a8a;
+}
+
+/* ----------------------------------------
+   Label “Secouriste” sous le nom 
+---------------------------------------- */
+.jsp {
+  -fx-font-size: 14px;
+  -fx-text-fill: #475569;
+}
+
+/* ----------------------------------------
+   Boutons d’action (Clear, Auto, Modifier) 
+---------------------------------------- */
+.action-button, .edit-button {
+  -fx-background-color: #1e3a8a;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-background-radius: 30;
+  -fx-cursor: hand;
+  -fx-padding: 0 20;
+}
+
+/* ----------------------------------------
+   ComboBox (Jour, Mois, Année) 
+---------------------------------------- */
+.combo-box {
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+  -fx-border-color: #cbd5e1;
+}
+
+/* ----------------------------------------
+   Style global pour ScrollPane (supprime lignes) 
+---------------------------------------- */
+.scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+.scroll-pane {
+  -fx-border-color: transparent;
+}
+
+.dps-checkbox {
+    -fx-background-color: #1e3a8a;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-background-radius: 15px;
+    -fx-padding: 0 20 0 20;
+    -fx-cursor: hand;
+  }
+  .dps-checkbox .box {
+    -fx-border-color: white;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 24px;
+    -fx-pref-height: 24px;
+  }
+  .dps-checkbox:selected {
+    -fx-background-color: #1e3a8a;
+  }

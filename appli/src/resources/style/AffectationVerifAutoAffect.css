@@ -1,0 +1,77 @@
+/* Creation-GestionProfilSecouriste.css */
+
+/* TITRE PRINCIPAL */
+.FichePersonelle {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111;
+    -fx-padding: 16 0 8 0;
+  }
+  
+  /* LABELS DES ATTRIBUTS */
+  .titreAttributRemplissageSecouriste {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111;
+    -fx-padding: 0 0 4 0;
+  }
+  
+  /* TEXTFIELDS : style « underlined » */
+  .textFieldAttributSecouriste {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #555;
+    -fx-padding: 4 0 4 0;
+  }
+  
+  
+  /* TEXTFIELD focusé (bordure bleue) */
+  .textfield-modern:focused {
+    -fx-border-color: #3b82f6;
+  }
+  
+  /* COMBOBOX : sous-ligne identique à TextField */
+  .combo-box {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #555;
+    -fx-padding: 4 0 4 0;
+  }
+  
+  
+  
+  /* CHECKBOX agrandie si nécessaire */
+  .larger-checkbox .box {
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+  }
+  
+  /* ESPACEMENT GLOBAL */
+  VBox {
+    -fx-spacing: 8px;
+  }
+  HBox {
+    -fx-spacing: 8px;
+  
+  }
+  .btnAnnuler {
+      -fx-background-color: #EF4444;      /* Rouge PSE1 */
+      -fx-text-fill: white;
+      -fx-background-radius: 30;          /* bords arrondis */
+      -fx-border-radius: 30;
+    }
+    
+    .btnValider {
+      -fx-background-color: #1E40AF;      /* Bleu foncé */
+      -fx-text-fill: white;
+      -fx-background-radius: 30;
+      -fx-border-radius: 30;
+    }
+  /* sous-ligne identique à TextField */
+.textFieldAttributSecouriste {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #555;
+    -fx-padding: 4 0 4 0;
+  }
+    
