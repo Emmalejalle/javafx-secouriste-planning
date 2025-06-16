@@ -115,6 +115,34 @@
 }
 
 
+.combo-box.combo-style {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent black transparent; /* ligne en bas */
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 4 0 4 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: #888;
+}
+/* Bouton flèche à droite */
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+/* Icône de la flèche */
+.combo-box .arrow {
+    -fx-background-color: black;
+}
+/* Liste déroulante */
+.combo-box .list-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+
+
+
+
 
 
 
