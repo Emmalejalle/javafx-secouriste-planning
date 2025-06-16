@@ -1,8 +1,7 @@
 package modele.persistence;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * La classe Competence sert à implémenter une competence
@@ -75,7 +74,7 @@ public class Competence {
      * Le getter des prerequis de la competence
      * @return les prerequis de la competence
      */
-    public List<Competence> getPrerequis() { 
+    public ArrayList<Competence> getPrerequis() { 
         return this.prerequis; 
     }
     /**
