@@ -31,7 +31,7 @@
                        <!-- ScrollPane GAUCHE : profil utilisateur -->
                       <ScrollPane fx:id="leftScroll" fitToWidth="true" hbarPolicy="NEVER" prefHeight="750" prefWidth="454" vbarPolicy="AS_NEEDED">
                           <content>
-                              <VBox alignment="TOP_CENTER" spacing="20">
+                              <VBox fx:id="VBoxInfoSecouriste" alignment="TOP_CENTER" spacing="20">
                                   <padding>
                                       <Insets bottom="20" left="20" right="20" top="20" />
                                   </padding>
@@ -47,7 +47,7 @@
                                      <Label styleClass="profile-name" text="Patrick David ( id : 12345 )" />
          
                                      <!-- Champs : label au-dessus de chaque rectangle -->
-                                     <VBox alignment="TOP_LEFT" spacing="16">
+                                     <VBox fx:id="InfosDuSecouriste" alignment="TOP_LEFT" spacing="16">
             <children>
                                             <!-- Téléphone -->
                                             <Label styleClass="field-label" text="Téléphone :" />
@@ -123,7 +123,7 @@
                                             </HBox>
                                             <!-- Date de naissance -->
                                             <Label styleClass="field-label" text="Date de naissance :" />
-                                            <HBox prefHeight="65" prefWidth="415" spacing="8" styleClass="info-box">
+                                            <HBox fx:id="MDP" prefHeight="65" prefWidth="415" spacing="8" styleClass="info-box">
                                                <children>
                                                    <ImageView fitHeight="20" fitWidth="20">
                                                        <image>
@@ -146,7 +146,7 @@
                              <!-- ScrollPane DROITE : certifications -->
                              <ScrollPane fx:id="rightScroll" fitToWidth="true" hbarPolicy="NEVER" prefHeight="750" prefWidth="1060" vbarPolicy="AS_NEEDED">
                                  <content>
-                                     <VBox alignment="TOP_CENTER" spacing="12">
+                                     <VBox fx:id="VboxCompétence" alignment="TOP_CENTER" spacing="12">
                                          <padding>
                                              <Insets bottom="20" left="20" right="20" top="20" />
                                          </padding>
@@ -240,7 +240,7 @@
                                  </content>
                              </ScrollPane>
                              <!-- Bouton fixe “Modifier le Profil” à l'intérieur du rectangle droite -->
-                             <Button styleClass="edit-button" text="Modifier le Profil" translateX="-20" translateY="20" StackPane.alignment="TOP_RIGHT" />
+                             <Button fx:id="BoutonModifProfil" styleClass="edit-button" text="Modifier le Profil" translateX="-20" translateY="20" StackPane.alignment="TOP_RIGHT" />
          </children>
                       </StackPane>
       </children>
