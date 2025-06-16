@@ -8,14 +8,11 @@
 
 /* Photo de profil ronde avec ombre */
 .profile-image {
-    -fx-clip: 
-        <Path>
-            M80,0
-            a80,80 0 1,1 -0.1,0
-            Z
-        </Path>;
+    /* clip retiré pour compatibilité JavaFX CSS */
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.5, 0, 2);
+    /* pour un contour rond, on utilisera plutôt le code Java ou un Circle clip dans le contrôleur */
 }
+
 
 /* Nom */
 .profile-name {
@@ -42,9 +39,12 @@
 }
 
 /* Bouton “Retour” */
-.back-button {
-    -fx-background-color: transparent;
+.bouton-retour {
+    -fx-background-color: #1E3A8A;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 8;
     -fx-font-size: 14px;
 }
 

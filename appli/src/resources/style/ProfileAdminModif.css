@@ -1,0 +1,94 @@
+/* Profile.css */
+
+/* Effet d'ombre pour l'image de profil */
+.profile-image {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 2);
+  }
+  
+  /* Style du nom sous l'avatar */
+  .profile-name {
+    -fx-font-size: 20px;
+    -fx-text-fill: #1e40af;
+    -fx-font-weight: bold;
+  }
+  
+  /* Style des labels de champs */
+  .field-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #334155;
+  }
+  
+  /* Style des TextField et PasswordField pour les données */
+  .info-box {
+    -fx-background-color: #bfdbfe;
+    -fx-background-radius: 8px;
+    -fx-padding: 0 12;
+  }
+  
+  /* Texte à l'intérieur des info-box */
+  .field-value, .text-field, .password-field {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e3a8a;
+  }
+  
+  /* Bouton "Modifier le Profil" */
+  .edit-button {
+    -fx-background-color: #1e40af;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 20px;
+    -fx-padding: 0 20;
+    -fx-cursor: hand;
+  }
+  
+  /* Bouton "Valider" */
+  .validate-button {
+    -fx-background-color: #16a34a;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8px;
+    -fx-padding: 0 16;
+    -fx-cursor: hand;
+  }
+  
+  /* Bouton "Annuler" */
+  .cancel-button {
+    -fx-background-color: #dc2626;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8px;
+    -fx-padding: 0 16;
+    -fx-cursor: hand;
+  }
+  
+  /* Bouton "Retour" */
+  .back-button {
+    -fx-background-color: #1e3a8a;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+  }
+  
+  /* Style pour ScrollPane blanc sans bordure */
+  .scroll-pane {
+    -fx-background: white;
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+  }
+
+  /* Dans Profile.css */
+
+.info-box .text-field,
+.info-box .password-field {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+
+  
+  .scroll-pane .viewport {
+    -fx-background: white;
+  }
+  

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../style/ProfileAdminModif.css"
+            prefWidth="1920" prefHeight="1080">
+
+    <!-- HEADER -->
+    <top>
+        <Pane fx:id="headerPane" prefHeight="100" style="-fx-background-color: white;"/>
+    </top>
+
+    <!-- CENTER -->
+    <center>
+        <VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="0">
+
+            <!-- Banner -->
+            <ImageView fx:id="bannerImage" fitWidth="1920" fitHeight="275" preserveRatio="false">
+                <image><Image url="@../img/montagneProfil.png"/></image>
+            </ImageView>
+
+            <!-- Main content -->
+            <StackPane fx:id="contentStack" prefWidth="1480" prefHeight="753">
+                <children>
+                    <!-- White ScrollPane -->
+                    <ScrollPane fx:id="mainScroll"
+                                fitToWidth="true" fitToHeight="true"
+                                prefWidth="1480" prefHeight="753"
+                                hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                                style="-fx-background: white; -fx-background-color: white;">
+                        <content>
+                            <VBox fx:id="infoBox" alignment="TOP_CENTER" spacing="30">
+
+                                <!-- Avatar + Name -->
+                                <VBox fx:id="avatarBox" alignment="CENTER" spacing="10">
+                                    <ImageView fx:id="avatarImage" fitWidth="160" fitHeight="160" preserveRatio="true" styleClass="profile-image">
+                                        <image><Image url="@../img/pdp.png"/></image>
+                                    </ImageView>
+                                    <Label fx:id="lblName" styleClass="profile-name" text="Patrick David"/>
+                                </VBox>
+
+                                <!-- Fields columns -->
+                                <HBox fx:id="fieldsBox" alignment="TOP_CENTER" spacing="40">
+
+                                    <!-- Left column -->
+                                    <VBox fx:id="leftCol" alignment="TOP_LEFT" spacing="24">
+                                        <padding><Insets top="0" right="0" bottom="20" left="20"/></padding>
+                                        
+                                        <!-- Phone -->
+                                        <Label fx:id="lblPhoneTitle" styleClass="field-label" text="Téléphone :"/>
+
+                                        <HBox fx:id="TelBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgTel.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="TelValue"
+                                                    promptText="06 14 23 72 90"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+                            
+                                        <!-- Email -->
+                                       <Label fx:id="lblEmailTitle" styleClass="field-label" text="Email :"/>
+
+                                        <HBox fx:id="emailBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgMail.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="tfEmailValue"
+                                                    promptText="patrick.david@gmail.com"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+
+                                        <!-- Statut -->
+                                        <Label fx:id="lblStatusTitle" styleClass="field-label" text="Statut :"/>
+
+                                        <HBox fx:id="StatutBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgProfil.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="StatusValue"
+                                                    promptText="Professionnel"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+
+
+                                        <!-- ID -->
+                                        <Label fx:id="lblIdTitle" styleClass="field-label" text="ID :"/>
+
+                                        <HBox fx:id="StatutBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgId.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="IdValue"
+                                                    promptText="12345"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+
+                                    </VBox>
+
+                                    <!-- Separator -->
+                                    <Pane fx:id="separatorPane" prefWidth="8" style="-fx-background-color: #1e40af;"/>
+
+                                    <!-- Right column -->
+                                    <VBox fx:id="rightCol" alignment="TOP_LEFT" spacing="24">
+                                        <padding><Insets top="0" right="20" bottom="20" left="0"/></padding>
+                                        
+                                        <!-- Address -->
+                                        <Label fx:id="lblAddressTitle" styleClass="field-label" text="Adresse :"/>
+
+                                        <HBox fx:id="AdressBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgLocation.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="AdressValue"
+                                                    promptText="34 rue du secours"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+
+
+                                        <!-- Anniv -->
+                                        <Label fx:id="lblBirthTitle" styleClass="field-label" text="Date de naissance :"/>
+
+                                        <HBox fx:id="AnnivBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgAnniv.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="AnnivValue"
+                                                    promptText="02/04/1996"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+
+
+                                        <!-- Created date -->
+                                        <Label fx:id="lblCreatedTitle" styleClass="field-label" text="Date de création de compte :"/>
+
+                                        <HBox fx:id="CreationProfileBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgCalendrier.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="CreationCompteValue"
+                                                    promptText="01/01/2024"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+
+                                        <!-- Password -->
+                                        <Label fx:id="lblPwdTitle" styleClass="field-label" text="Mot de passe :"/>
+
+                                        <HBox fx:id="MDPBox"
+                                            styleClass="info-box"
+                                            prefWidth="450" minWidth="450" maxWidth="450"
+                                            prefHeight="70" minHeight="70" maxHeight="70"
+                                            spacing="8" alignment="CENTER_LEFT">
+
+                                            <!-- Icône à gauche dans le même conteneur -->
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgMdp.png"/></image>
+                                            </ImageView>
+
+                                            <!-- Puis le champ éditable -->
+                                            <TextField fx:id="MDPValue"
+                                                    promptText="••••••••"
+                                                    HBox.hgrow="ALWAYS"
+                                                    styleClass="field-value"/>
+                                        </HBox>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+
+                    <!-- Buttons: Modify, Validate, Cancel -->
+                    <Button fx:id="btnModifyProfile"
+                            style="-fx-background-color: gray; -fx-text-fill: white;"
+                            text="Modifier le Profil"
+                            styleClass="edit-button"
+                            prefWidth="250" prefHeight="60"
+                            StackPane.alignment="TOP_RIGHT">
+                        <StackPane.margin><Insets top="20" right="200"/></StackPane.margin>
+                    </Button>
+                    <Button fx:id="btnValidate" text="Valider" styleClass="validate-button"
+                            prefWidth="120" prefHeight="50"
+                            StackPane.alignment="TOP_RIGHT">
+                        <StackPane.margin><Insets top="100" right="200"/></StackPane.margin>
+                    </Button>
+                    <Button fx:id="btnCancel" text="Annuler" styleClass="cancel-button"
+                            prefWidth="120" prefHeight="50"
+                            StackPane.alignment="TOP_RIGHT">
+                        <StackPane.margin><Insets top="160" right="200"/></StackPane.margin>
+                    </Button>
+                </children>
+            </StackPane>
+        </VBox>
+    </center>
+
+    <!-- FOOTER -->
+    <bottom>
+        <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
+            <padding><Insets bottom="10" left="10" right="10" top="10"/></padding>
+            <Button fx:id="btnReturn" styleClass="back-button" text="← Retour"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

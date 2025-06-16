@@ -1,115 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@../style/Connexion.css"
-            prefWidth="1920" prefHeight="1080">
+<BorderPane fx:id="rootPane" prefHeight="1080" prefWidth="1920" stylesheets="@../style/Connexion.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
     <!-- HEADER : zone blanche de 100px -->
     <top>
-        <Pane prefHeight="100" style="-fx-background-color: white;" />
+        <Pane fx:id="headerPane" prefHeight="100" style="-fx-background-color: white;" />
     </top>
 
     <center>
-        <VBox alignment="TOP_CENTER" spacing="20">
-            <!-- Espace pour remonter les cartes par rapport au footer -->
+        <VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="20">
             <padding>
-                <Insets top="20" right="0" bottom="80" left="0"/>
+                <Insets bottom="80" left="0" right="0" top="20" />
             </padding>
-
-            <!-- Bouton Exit à gauche -->
-            <HBox prefWidth="1920" alignment="TOP_LEFT">
-                <padding>
-                    <Insets top="20" left="20"/>
-                </padding>
-                <Button fx:id="btnExit" prefWidth="90" prefHeight="90">
-                    <graphic>
-                        <ImageView fitWidth="90" fitHeight="90" preserveRatio="true">
-                            <image><Image url="@../img/svgSortie.png"/></image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </HBox>
-
-            <!-- Titre Bienvenue -->
-            <Button text="Bienvenue sur Secour Calendar"
-                    styleClass="btn-bienvenue"
-                    prefWidth="565" prefHeight="90"/>
-
-            <!-- Cartes de connexion avec plus d'espace vertical -->
-            <HBox spacing="100" alignment="TOP_CENTER">
-
-                <!-- Carte Secouriste -->
-                <VBox styleClass="carte" alignment="TOP_CENTER"
-                      prefWidth="525" prefHeight="650">
-                    <!-- Logo agrandi -->
-                    <ImageView fitWidth="147" fitHeight="147" preserveRatio="true">
-                        <image><Image url="@../img/Logo.png"/></image>
-                    </ImageView>
-                    <Label text="Connexion Secouriste" styleClass="titre-carte"/>
-                    <Label text="Se connecter à son compte" styleClass="sous-titre"/>
-                    <!-- Formulaire -->
-                    <VBox spacing="20" alignment="CENTER">
-                        <HBox styleClass="champ" prefWidth="461" prefHeight="65" alignment="CENTER_LEFT" spacing="10">
-                            <ImageView fitWidth="24" fitHeight="24">
-                                <image><Image url="@../img/svgMailGris.png"/></image>
-                            </ImageView>
-                            <TextField promptText="Email ou numéro d'identification"
-                                       style="-fx-background-color: transparent; -fx-border-width: 0;"/>
-                        </HBox>
-                        <HBox styleClass="champ" prefWidth="461" prefHeight="65" alignment="CENTER_LEFT" spacing="10">
-                            <ImageView fitWidth="24" fitHeight="24">
-                                <image><Image url="@../img/svgClé.png"/></image>
-                            </ImageView>
-                            <PasswordField promptText="Mot de passe"
-                                           style="-fx-background-color: transparent; -fx-border-width: 0;"/>
-                        </HBox>
-                        <Button text="Se connecter" styleClass="btn-connecter"
-                                prefWidth="461" prefHeight="65"/>
-                    </VBox>
-                    <Hyperlink text="Mot de passe oublié? Cliquez ici!" styleClass="lien-oublie"/>
-                </VBox>
-
-                <!-- Carte Admin -->
-                <VBox styleClass="carte" alignment="TOP_CENTER"
-                      prefWidth="525" prefHeight="650">
-                    <ImageView fitWidth="147" fitHeight="147" preserveRatio="true">
-                        <image><Image url="@../img/Logo.png"/></image>
-                    </ImageView>
-                    <Label text="Connexion Admin" styleClass="titre-carte"/>
-                    <Label text="Se connecter à son compte" styleClass="sous-titre"/>
-                    <VBox spacing="20" alignment="CENTER">
-                        <HBox styleClass="champ" prefWidth="461" prefHeight="65" alignment="CENTER_LEFT" spacing="10">
-                            <ImageView fitWidth="24" fitHeight="24">
-                                <image><Image url="@../img/svgMailGris.png"/></image>
-                            </ImageView>
-                            <TextField promptText="Email ou numéro d'identification"
-                                       style="-fx-background-color: transparent; -fx-border-width: 0;"/>
-                        </HBox>
-                        <HBox styleClass="champ" prefWidth="461" prefHeight="65" alignment="CENTER_LEFT" spacing="10">
-                            <ImageView fitWidth="24" fitHeight="24">
-                                <image><Image url="@../img/svgClé.png"/></image>
-                            </ImageView>
-                            <PasswordField promptText="Mot de passe"
-                                           style="-fx-background-color: transparent; -fx-border-width: 0;"/>
-                        </HBox>
-                        <Button text="Se connecter" styleClass="btn-connecter"
-                                prefWidth="461" prefHeight="65"/>
-                    </VBox>
-                    <Hyperlink text="Mot de passe oublié? Cliquez ici!" styleClass="lien-oublie"/>
-                </VBox>
-
-            </HBox>
+           <children>
+   
+               <!-- Bouton Exit à gauche -->
+                  <HBox alignment="TOP_LEFT" prefWidth="1920">
+                      <padding>
+                          <Insets left="20" top="20" />
+                      </padding>
+         <children>
+                     <StackPane style="-fx-background-color: #000000;">
+                        <children>
+                               <Button fx:id="btnExit" opacity="0.0" prefHeight="90" prefWidth="90" />
+                                 <ImageView fx:id="BouttonSortie" fitHeight="90" fitWidth="90" preserveRatio="true">
+                                     <image>
+                                 <Image url="@../img/svgSortie.png" />
+                              </image>
+                                 </ImageView>
+                        </children>
+                     </StackPane>
+         </children>
+                  </HBox>
+   
+               <!-- Titre Bienvenue -->
+               <Label fx:id="TitreBienvenue" alignment="CENTER" prefHeight="90" prefWidth="565" styleClass="btn-bienvenue" text="Bienvenue sur Secour Calendar" />
+   
+               <!-- Cartes de connexion -->
+               <HBox fx:id="cardsContainer" alignment="TOP_CENTER" spacing="100">
+      <children>
+      
+                      <!-- Carte Secouriste -->
+                      <VBox fx:id="cardSecourist" alignment="TOP_CENTER" prefHeight="650" prefWidth="525" styleClass="carte">
+         <children>
+                             <ImageView fx:id="imgLogoSecour" fitHeight="147" fitWidth="147" preserveRatio="true">
+                                 <image>
+                              <Image url="@../img/Logo.png" />
+                           </image>
+                             </ImageView>
+                             <Label fx:id="TitreConnexSecour" styleClass="titre-carte" text="Connexion Secouriste" />
+                             <Label fx:id="SsTitreConnexSecour" styleClass="sous-titre" text="Se connecter à son compte" />
+                             <VBox fx:id="formSecourist" alignment="CENTER" spacing="20">
+                                <children>
+                                    <HBox fx:id="EmailConnexoinSecour" alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
+                                       <children>
+                                           <ImageView fitHeight="24" fitWidth="24">
+                                               <image>
+                                          <Image url="@../img/svgMailGris.png" />
+                                       </image>
+                                           </ImageView>
+                                           <TextField fx:id="tfEmailSecourist" promptText="Email ou numéro d'identification" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="MdpConnexionSecour" alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
+                                       <children>
+                                           <ImageView fitHeight="24" fitWidth="24">
+                                               <image>
+                                          <Image url="@../img/svgClé.png" />
+                                       </image>
+                                           </ImageView>
+                                           <PasswordField fx:id="pfPasswordSecourist" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="BoutonConnexionSecour" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
+                                </children>
+                             </VBox>
+                             <Hyperlink fx:id="MdpOubliéSecour" styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
+         </children>
+                      </VBox>
+      
+                      <!-- Carte Admin -->
+                      <VBox fx:id="cardAdmin" alignment="TOP_CENTER" prefHeight="650" prefWidth="525" styleClass="carte">
+         <children>
+                             <ImageView fx:id="imgLogoAdmin" fitHeight="147" fitWidth="147" preserveRatio="true">
+                                 <image>
+                              <Image url="@../img/Logo.png" />
+                           </image>
+                             </ImageView>
+                             <Label fx:id="TitreConnexAdmin" styleClass="titre-carte" text="Connexion Admin" />
+                             <Label fx:id="SsTitreConeAdmin" styleClass="sous-titre" text="Se connecter à son compte" />
+                             <VBox fx:id="formAdmin" alignment="CENTER" spacing="20">
+                                <children>
+                                    <HBox fx:id="MailConnexionAdmin" alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
+                                       <children>
+                                           <ImageView fitHeight="24" fitWidth="24">
+                                               <image>
+                                          <Image url="@../img/svgMailGris.png" />
+                                       </image>
+                                           </ImageView>
+                                           <TextField fx:id="tfEmailAdmin" promptText="Email ou numéro d'identification" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="MdpConnexionAdmin" alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
+                                       <children>
+                                           <ImageView fitHeight="24" fitWidth="24">
+                                               <image>
+                                          <Image url="@../img/svgClé.png" />
+                                       </image>
+                                           </ImageView>
+                                           <PasswordField fx:id="pfPasswordAdmin" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="BoutonConnexionAdmin" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
+                                </children>
+                             </VBox>
+                             <Hyperlink fx:id="MdpOublieAdmin" styleClass="lien-oublie" text="Mot de passe oublié? Cliquez ici!" />
+         </children>
+                      </VBox>
+      </children>
+   
+               </HBox>
+           </children>
         </VBox>
     </center>
 
     <!-- FOOTER orange 100px -->
     <bottom>
-        <Pane prefHeight="100" style="-fx-background-color: #F97316;" />
+        <Pane fx:id="footer" prefHeight="100" style="-fx-background-color: #F97316;" />
     </bottom>
 
 </BorderPane>
