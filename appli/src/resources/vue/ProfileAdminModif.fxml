@@ -8,7 +8,8 @@
 <BorderPane fx:id="rootPane"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@../style/ProfileAdminModif.css"
+            fx:controller="controller.ProfileAdminModifController"
+            stylesheets="@../style/ProfilAdminModif.css"
             prefWidth="1920" prefHeight="1080">
 
     <!-- HEADER -->
@@ -246,12 +247,12 @@
                             StackPane.alignment="TOP_RIGHT">
                         <StackPane.margin><Insets top="20" right="200"/></StackPane.margin>
                     </Button>
-                    <Button fx:id="btnValidate" text="Valider" styleClass="validate-button"
+                    <Button fx:id="btnValidate" onAction="#onValidate" text="Valider" styleClass="validate-button"
                             prefWidth="120" prefHeight="50"
                             StackPane.alignment="TOP_RIGHT">
                         <StackPane.margin><Insets top="100" right="200"/></StackPane.margin>
                     </Button>
-                    <Button fx:id="btnCancel" text="Annuler" styleClass="cancel-button"
+                    <Button fx:id="btnCancel" onAction="#onCancel" text="Annuler" styleClass="cancel-button"
                             prefWidth="120" prefHeight="50"
                             StackPane.alignment="TOP_RIGHT">
                         <StackPane.margin><Insets top="160" right="200"/></StackPane.margin>
@@ -265,7 +266,7 @@
     <bottom>
         <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
             <padding><Insets bottom="10" left="10" right="10" top="10"/></padding>
-            <Button fx:id="btnReturn" styleClass="back-button" text="← Retour"/>
+            <Button fx:id="btnReturn" onAction="#onReturn" styleClass="back-button" text="← Retour"/>
         </HBox>
     </bottom>
 

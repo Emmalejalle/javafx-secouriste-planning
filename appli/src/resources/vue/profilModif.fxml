@@ -8,6 +8,7 @@
 <BorderPane fx:id="bordureModif"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ProfilModifController"
             stylesheets="@../style/profil.css"
             prefWidth="1920" prefHeight="1080">
 
@@ -267,8 +268,8 @@
                         <VBox fx:id="actionContainerModif" alignment="TOP_RIGHT" spacing="5" translateX="-20" translateY="20">
                             <children>
                                 <Button fx:id="btnModifierProfilModif" styleClass="edit-button" text="Modifier le Profil" style="-fx-background-color: gray; -fx-text-fill: white;"/>
-                                <Button fx:id="btnValiderModif" text="Valider" style="-fx-background-color: #16a34a; -fx-text-fill: white;"/>
-                                <Button fx:id="btnAnnulerModif" text="Annuler" style="-fx-background-color: #dc2626; -fx-text-fill: white;"/>
+                                <Button fx:id="btnValiderModif" onAction="#onValider" text="Valider" style="-fx-background-color: #16a34a; -fx-text-fill: white;"/>
+                                <Button fx:id="btnAnnulerModif" onAction="#onAnnuler" text="Annuler" style="-fx-background-color: #dc2626; -fx-text-fill: white;"/>
                             </children>
                         </VBox>
                     </children>
@@ -283,7 +284,7 @@
     <bottom>
         <HBox fx:id="footerPaneModif" alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
             <padding><Insets bottom="10" left="8" right="10" top="10"/></padding>
-            <Button fx:id="btnRetourModif" styleClass="bouton-retour" text="← Retour" />
+            <Button fx:id="btnRetourModif" onAction="#onRetour" styleClass="bouton-retour" text="← Retour" />
         </HBox>
     </bottom>
 
