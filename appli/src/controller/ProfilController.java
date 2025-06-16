@@ -39,11 +39,18 @@ public class ProfilController {
     }
 
     /**
-     * Bouton Retour ferme la fenêtre.
+     * Bouton Retour revient à l'accueil sans sauvegarder.
      */
     @FXML
     void onRetour(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilSecouriste.fxml"));
+        Scene scene = ((Node) event.getSource()).getScene();
+        scene.setRoot(root);
+    } catch (IOException e) {
+        System.err.println("ERREUR : Impossible de charger accueilSecouriste.fxml");
+        e.printStackTrace();
     }
+}
+
 }

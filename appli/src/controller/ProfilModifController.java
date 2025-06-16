@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+
 /**
  * Contrôleur pour la vue de profil en modification (profilModif.fxml).
  */
@@ -46,14 +48,7 @@ public class ProfilModifController {
      */
     @FXML
     void onRetour(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilSecouriste.fxml"));
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
-        } catch (IOException e) {
-            System.err.println("ERREUR : Impossible de charger accueilSecouriste.fxml");
-            e.printStackTrace();
-        }
+        retourLecture(event);
     }
 
     /**
