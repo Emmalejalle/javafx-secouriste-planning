@@ -91,6 +91,30 @@
     -fx-animated: true;
 }
 
+.larger-checkbox .box {
+    -fx-border-radius: 10;
+    -fx-pref-width: 41;
+    -fx-pref-height: 41;
+    -fx-background-color: transparent;
+    -fx-border-color: #1E3A8A;
+    -fx-border-width: 3.5;
+}
+/*
+.larger-checkbox:selected .mark {
+    -fx-shape: "M-1.0,5.0 L4.0,9.0 L9.0,-1.0";
+}
+*/
+
+
+.larger-checkbox .mark {
+	-fx-stroke-color: #1E3A8A;
+	/*
+    -fx-stroke-width: 2;
+    -fx-scale-shape: true;
+    */
+}
+
+
 
 
 
