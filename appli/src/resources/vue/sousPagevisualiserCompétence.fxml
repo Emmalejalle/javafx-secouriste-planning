@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane prefHeight="876.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="876.0" prefWidth="1040.0" style="-fx-background-color: white;">
+         <children>
+            <HBox>
+               <children>
+                  <Label contentDisplay="CENTER" styleClass="FichePersonelle" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Fiche technique compétence">
+                     <VBox.margin>
+                        <Insets left="24.0" top="24.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Pane prefHeight="92.0" prefWidth="215.0" />
+                  <VBox>
+                     <children>
+                        <Button fx:id="btnModifVoirComp" mnemonicParsing="false" prefHeight="38.0" prefWidth="246.0" styleClass="button-modifier" stylesheets="@modif-suprrVuecompétence.css" text="Modifier la compétence" />
+                        <Button fx:id="btnSupprVoirComp" mnemonicParsing="false" styleClass="button-supprimer" stylesheets="@modif-suprrVuecompétence.css" text="Supprimer la compétence">
+                           <VBox.margin>
+                              <Insets top="16.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" top="40.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="152.0" prefWidth="992.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="159.0" prefWidth="430.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label prefHeight="40.0" prefWidth="100.0" styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="intitulé" />
+                        <TextField fx:id="TextFieldIDVoirComp" prefHeight="50.0" prefWidth="430.0" promptText="comp10" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Comp10">
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" top="32.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="148.0" prefWidth="992.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <children>
+                        <Label prefHeight="40.0" prefWidth="200.0" styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Compétences requise" />
+                        <TextField fx:id="TextFieldCompReqVoirComp" prefHeight="50.0" prefWidth="430.0" promptText="comp10" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Comp1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <styleClass>
+                              <String fx:value="textFieldAttributSecouriste" />
+                              <String fx:value="textfield-modern" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="104.0" prefWidth="833.0" spacing="40.0">
+               <children>
+                  <VBox fillWidth="false" prefHeight="72.0" prefWidth="145.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <Pane prefHeight="210.0" prefWidth="1040.0" />
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

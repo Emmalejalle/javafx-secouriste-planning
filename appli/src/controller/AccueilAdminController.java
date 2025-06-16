@@ -27,7 +27,7 @@ import javafx.geometry.Pos;
 import java.time.YearMonth;
 
 
-class AccueilAdminController {
+public class AccueilAdminController {
 
     @FXML private Button btnListeSecouristes;
     @FXML private Button btnGererSecouristes;

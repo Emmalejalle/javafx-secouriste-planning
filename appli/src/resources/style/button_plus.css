@@ -1,0 +1,24 @@
+/* button_plus.css */
+
+/* Style du bouton avec un contour bleu foncé et un + centré */
+.button-plus {
+    -fx-background-color: transparent;         /* Pas de fond */
+    -fx-border-color: #1e3a8a;                 /* Couleur du contour (bleu foncé) */
+    -fx-border-width: 4px;                     /* Épaisseur du contour */
+    -fx-border-radius: 10px;                   /* Coins arrondis */
+    -fx-background-radius: 10px;               /* Coins arrondis du fond (même valeur) */
+    
+    -fx-text-fill: #1e3a8a;                    /* Couleur du texte (+) */
+    -fx-font-size: 20px;                       /* Taille du + */
+    -fx-font-weight: bold;                     /* + en gras */
+    -fx-alignment: center;                     /* Centrage du texte */
+
+    -fx-pref-width: 40px;                      /* Largeur préférée */
+    -fx-pref-height: 40px;                     /* Hauteur préférée */
+    -fx-cursor: hand;                          /* Curseur main au survol */
+}
+
+/* Optionnel : effet au survol */
+.button-plus:hover {
+    -fx-background-color: rgba(30, 58, 138, 0.1);  /* Léger fond bleu au survol */
+}
