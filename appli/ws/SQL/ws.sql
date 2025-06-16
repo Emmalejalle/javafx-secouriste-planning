@@ -37,8 +37,8 @@ CREATE TABLE Dispo (
     mois INT,
     annee INT,
     PRIMARY KEY (idSecouriste, jour, mois, annee),
-    FOREIGN KEY (idSecouriste) REFERENCES User(idUser),
-    FOREIGN KEY (jour, mois, annee) REFERENCES Journee(jour, mois, annee)
+    FOREIGN KEY (idSecouriste) REFERENCES User(idUser) ON DELETE CASCADE, 
+    FOREIGN KEY (jour, mois, annee) REFERENCES Journee(jour, mois, annee) ON DELETE CASCADE
 );
 
 
@@ -52,8 +52,8 @@ CREATE TABLE PrerequisComp (
     idCompPre BIGINT,
     idPrerequis BIGINT,
     PRIMARY KEY (idCompPre, idPrerequis),
-    FOREIGN KEY (idCompPre) REFERENCES Competence(idComp),
-    FOREIGN KEY (idPrerequis) REFERENCES Competence(idComp)
+    FOREIGN KEY (idCompPre) REFERENCES Competence(idComp) ON DELETE CASCADE,
+    FOREIGN KEY (idPrerequis) REFERENCES Competence(idComp) ON DELETE CASCADE
 );
 
 CREATE TABLE Site (
@@ -90,8 +90,8 @@ CREATE TABLE Besoin (
     nombre INT CHECK (nombre >= 1),
 
     PRIMARY KEY (idBesoinDPS, idBesoinComp),
-    FOREIGN KEY (idBesoinDPS) REFERENCES DPS(idDPS),
-    FOREIGN KEY (idBesoinComp) REFERENCES Competence(idComp)
+    FOREIGN KEY (idBesoinDPS) REFERENCES DPS(idDPS) ON DELETE CASCADE,
+    FOREIGN KEY (idBesoinComp) REFERENCES Competence(idComp) ON DELETE CASCADE
 );
 
 CREATE TABLE ListCompSecouriste (
@@ -99,8 +99,8 @@ CREATE TABLE ListCompSecouriste (
     idCompList BIGINT,
     
     PRIMARY KEY (idSecouCompList, idCompList),
-    FOREIGN KEY (idSecouCompList) REFERENCES User(idUser),
-    FOREIGN KEY (idCompList) REFERENCES Competence(idComp)
+    FOREIGN KEY (idSecouCompList) REFERENCES User(idUser) ON DELETE CASCADE,
+    FOREIGN KEY (idCompList) REFERENCES Competence(idComp) ON DELETE CASCADE
 );
 
 CREATE TABLE Affectation (
@@ -109,9 +109,9 @@ CREATE TABLE Affectation (
 	idDPSAffect BIGINT,
 	
     PRIMARY KEY (idSecouAffect, idCompAffect, idDPSAffect),
-    FOREIGN KEY (idSecouAffect) REFERENCES User(idUser),
-    FOREIGN KEY (idCompAffect) REFERENCES Competence(idComp),
-    FOREIGN KEY (idDPSAffect) REFERENCES DPS(idDPS)
+    FOREIGN KEY (idSecouAffect) REFERENCES User(idUser) ON DELETE CASCADE,
+    FOREIGN KEY (idCompAffect) REFERENCES Competence(idComp) ON DELETE CASCADE,
+    FOREIGN KEY (idDPSAffect) REFERENCES DPS(idDPS) ON DELETE CASCADE
 );
 
 -- INSERT DE LA TABLE JOURNEE :
@@ -551,3 +551,4 @@ INSERT INTO Affectation VALUES (16171819, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (17181920, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (18192021, 8, 59922115); -- PSE2
 
+SELECT * FROM Competence WHERE abreviationIntitule = 'NC';
