@@ -6,18 +6,19 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/MdpOublie.css"
+            fx:controller="controller.MdpOublieController"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
     >
 
     <!-- Bande orange en haut -->
     <top>
-        <HBox prefHeight="100.0" styleClass="barre-orange" />
+        <HBox prefHeight="60.0" styleClass="barre-orange" />
     </top>
 
     <!-- Bande orange en bas -->
     <bottom>
-        <HBox prefHeight="100.0" styleClass="barre-orange" />
+        <HBox prefHeight="60.0" styleClass="barre-orange" />
     </bottom>
 
     <!-- Centre -->
@@ -46,7 +47,7 @@
                     </VBox>
 
                     <Button text="Envoyer le code" styleClass="btn-envoyer"/>
-                    <Hyperlink text="Retour à la connexion" styleClass="lien-retour"/>
+                    <Hyperlink text="Retour à la connexion" onAction="#onRetourConnexion" styleClass="lien-retour"/>
 
                 </children>
             </VBox>
