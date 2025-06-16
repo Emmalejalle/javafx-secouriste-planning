@@ -2,6 +2,7 @@ package modele.DAO;
 
 import modele.persistence.Competence;
 
+import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class CompetenceDAO extends DAO<Competence> {
      */    
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         CompetenceDAO competenceDAO = new CompetenceDAO();
-        
+        /** 
         // Test findByID
         Competence competence = competenceDAO.findByID(1);
         if (competence != null) {
@@ -44,6 +45,10 @@ public class CompetenceDAO extends DAO<Competence> {
         System.out.println("Liste de toutes les compétences :");
         for (Competence c : competences) {
             System.out.println(c.getIntitule());
+            System.out.println("Pré-requis : ");
+            for (Competence prerequis : c.getPrerequis()) {
+                System.out.println(" - " + prerequis.getIntitule());
+            }
         }
         // Test create 
         
@@ -55,20 +60,35 @@ public class CompetenceDAO extends DAO<Competence> {
         competenceDAO.create(newCompetence);
         System.out.println("Compétence crée : " + newCompetence.getIntitule());
         System.out.println("ID de la compétence créée : " + newCompetence.getIdComp());
-
+        */
         // Test update
-        /** 
-        Competence updateCompetence = competenceDAO.findByID(10);
-        if (updateCompetence != null) {
-            updateCompetence.setIntitule("Compétence Mise à Jour");
-            updateCompetence.setAbrevComp("CMU");
-            ArrayList<Competence> prerequis = new ArrayList<>(competenceDAO.findByID(1).getPrerequis());
-            updateCompetence.setPrerequis(prerequis); // Charge les prérequis avant la mise à jour
-            int rowsUpdated = competenceDAO.update(updateCompetence);
-            System.out.println("Nombre de lignes mises à jour : " + rowsUpdated);
-        } else {
-            System.out.println("Aucune compétence trouvée pour la mise à jour.");
-        } */
+        
+        CompetenceDAO cDao = new CompetenceDAO();
+        Competence competence = new Competence(12, "Feu", "Feur");
+        Competence competence2 = new Competence( 13, "Coubeh", "abc");
+        Competence competence3 = new Competence( 14, "Crampte", "url");
+        cDao.create(competence2);
+        ArrayList<Competence> prerequis = new ArrayList<>();
+        prerequis.add(competence2);
+        competence.setPrerequis(prerequis);
+        cDao.create(competence);
+        cDao.create(competence3);
+
+        ArrayList<Competence> all = (ArrayList<Competence>) cDao.findAll();
+
+        for (Competence c : all) {
+            System.out.println("la comp : " + c.toString());   
+        }
+
+        prerequis.add(competence3);
+        competence.setPrerequis(prerequis);
+        cDao.update(competence);
+
+        ArrayList<Competence> all2 = (ArrayList<Competence>) cDao.findAll();
+
+        for (Competence c : all2) {
+            System.out.println("la comp : " + c.toString());
+        }
     }
 
     /**
@@ -275,27 +295,15 @@ public class CompetenceDAO extends DAO<Competence> {
      */
     @Override
     public int update(Competence obj) throws SQLException {
-        // La mise à jour ne gère que les champs de la table Competence
-        String sql = "UPDATE Competence SET intitule = ?, abreviationIntitule = ? WHERE idComp = ?";
         int rowsAffected = 0;
         
         //On delete la competence avant de la mettre à jour
         delete(obj);
 
-        // On met à jour la compétence dans la table principale
-        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
-            st.setString(1, obj.getIntitule());
-            st.setString(2, obj.getAbrevComp());
-            st.setLong(3, obj.getIdComp());
-
-            rowsAffected = st.executeUpdate();
-        }
-
-        for (Competence prerequis : obj.getPrerequis()) {
-            createPrerequis(obj, prerequis);
-        }
+        // On prépare créer
+        create(obj);
+        
         return rowsAffected;
-
     }
 
     @Override

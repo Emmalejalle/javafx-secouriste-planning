@@ -16,7 +16,7 @@ public class JourneeDAO extends DAO<Journee> {
 
     @Override
     public Journee findByID(long id) throws SQLException {
-        String sql = "SELECT * FROM Journee WHERE id = ?";
+        String sql = "SELECT * FROM Journee WHERE idJournee = ?";
         Journee journee = null;
 
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
@@ -80,7 +80,7 @@ public class JourneeDAO extends DAO<Journee> {
 
     @Override
     public int update(Journee obj) throws SQLException {
-        String sql = "UPDATE Journee SET jour = ?, mois = ?, annee = ? WHERE id = ?";
+        String sql = "UPDATE Journee SET jour = ?, mois = ?, annee = ? WHERE idJournee = ?";
         
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setInt(1, obj.getJour());
@@ -95,7 +95,7 @@ public class JourneeDAO extends DAO<Journee> {
     public int delete(Journee obj) throws SQLException {
         // Pour que cela fonctionne, la table de jointure des disponibilités
         // doit avoir ON DELETE CASCADE sur la clé étrangère idJournee.
-        String sql = "DELETE FROM Journee WHERE id = ?";
+        String sql = "DELETE FROM Journee WHERE idJournee = ?";
         
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, obj.getId());

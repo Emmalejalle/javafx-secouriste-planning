@@ -30,6 +30,31 @@ public class Competence {
      */
     private ArrayList<Competence> prerequis;
 
+
+    /**
+     * Le constructeur de la classe sans id
+     * @param intitule l'intitule de la competence
+     * @param abrevComp l'abreviation de l'intitule de la competence
+     */
+    public Competence(String intitule, String abrevComp) {
+        //si -1 la compétence est en cours de création
+        this.idComp = -1;
+
+        if(intitule == null || intitule.length() < 2 || intitule.length() > 40) {
+            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 20 caracteres");
+        } else {
+            this.intitule = intitule;
+        }
+        
+        if (abrevComp == null || abrevComp.length() > 5) {
+            throw new IllegalArgumentException("L'abreviation de l'intitule de la competence doit etre inferieur a 5 caracteres");
+        } else {
+            this.abrevComp = abrevComp;
+        }
+
+        this.prerequis = new ArrayList<Competence>();
+    }
+    
     /**
      * Le constructeur de la classe
      * @param idComp l'id de la competence

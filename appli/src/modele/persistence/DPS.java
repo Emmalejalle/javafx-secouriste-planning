@@ -1,194 +1,140 @@
 package modele.persistence;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.HashMap;
+import java.util.Map;
 
 /**
- * La classe DPS sert à implémenter un DPS
- * @author Elie Tardy
- * @version 1.0
+ * La classe DPS (Dispositif Prévisionnel de Secours) représente un événement
+ * nécessitant des secours à une date, un lieu et pour un sport donnés.
  */
-public class DPS{
+public class DPS {
     
     /**
-     * L'id du DPS
+     * L'ID unique du DPS, auto-généré par la BDD.
      */
     private long id;
 
     /**
-     * Le horaire de depart
+     * L'horaire de début, en minutes depuis minuit (ex: 8h30 -> 510).
      */
     private int horaireDepart;
 
     /**
-     * Le horaire de fin
+     * L'horaire de fin, en minutes depuis minuit.
      */
     private int horaireFin;
 
-    /**
-     * Le site
-     */
+    // Objets liés qui seront chargés par le DAO
     private Site site;
-
-    /**
-     * Le sport
-     */
     private Sport sport;
-
-    /**
-     * La journee
-     */
     private Journee journee;
     
     /**
-     * Les besoins
+     * Les besoins en personnel pour ce DPS.
+     * La clé est la Compétence requise, la valeur est le nombre de secouristes nécessaires.
      */
-    private HashMap<Competence, Integer> besoins = null;
-   
+    private Map<Competence, Integer> besoins;
 
     /**
-     * Le constructeur de la classe
-     * @param id l'id du DPS
-     * @param horaireDepart l'horaire de depart
-     * @param horaireFin l'horaire de fin
+     * Constructeur principal utilisé par le DAO pour créer l'objet.
+     * @param id L'ID du DPS.
+     * @param horaireDepart L'horaire de début en minutes.
+     * @param horaireFin L'horaire de fin en minutes.
+     * @param site L'objet Site associé.
+     * @param sport L'objet Sport associé.
+     * @param journee L'objet Journee associé.
      */
-    public DPS(long id, int horaireDepart, int horaireFin) {
-        if (id < 0) {
-            throw new IllegalArgumentException("L'id du DPS doit etre superieur a 0");
-        } else {
-            this.id = id;
+    public DPS(long id, int horaireDepart, int horaireFin, Site site, Sport sport, Journee journee) {
+        this.id = id;
+        this.setHoraireDepart(horaireDepart);
+        this.setHoraireFin(horaireFin);
+        this.setSite(site);
+        this.setSport(sport);
+        this.setJournee(journee);
+        this.besoins = new HashMap<>(); // La liste des besoins est initialisée vide.
+    }
+
+    // --- Getters ---
+    public long getId() { 
+        return id; 
+    }
+    public int getHoraireDepart() { 
+        return horaireDepart; 
+    }
+    public int getHoraireFin() { 
+        return horaireFin; 
+    }
+    public Site getSite() { 
+        return site; 
+    }
+    public Sport getSport() { 
+        return sport; 
+    }
+    public Journee getJournee() { 
+        return journee; 
+    }
+    public Map<Competence, Integer> getBesoins() { 
+        return besoins; 
+    }
+    
+    // --- Setters ---
+    public void setId(long id) { this.id = id; }
+    
+    public final void setHoraireDepart(int horaireDepart) {
+        if (horaireDepart < 0 || horaireDepart >= 24 * 60) {
+            throw new IllegalArgumentException("L'horaire de départ est invalide.");
         }
+        this.horaireDepart = horaireDepart;
+    }
 
-        if(horaireDepart < 0 || horaireFin < 0 || horaireFin < horaireDepart) {
-            throw new IllegalArgumentException("L'horaire de DPS est invalide");
-        } else {
-            this.horaireDepart = horaireDepart;
-            this.horaireFin = horaireFin;
+    public final void setHoraireFin(int horaireFin) {
+        if (horaireFin < 0 || horaireFin >= 24 * 60 || horaireFin < this.horaireDepart) {
+            throw new IllegalArgumentException("L'horaire de fin est invalide ou antérieur au départ.");
         }
+        this.horaireFin = horaireFin;
+    }
+    
+    public final void setSite(Site site) {
+        if (site == null) throw new IllegalArgumentException("Le site ne peut pas être nul.");
+        this.site = site;
     }
 
-   
-    /**
-     * Retourne l'id du DPS
-     * @return l'id du DPS
-     */
-    public long getId() {
-        long ret = this.id;
-        return ret;
+    public final void setSport(Sport sport) {
+        if (sport == null) throw new IllegalArgumentException("Le sport ne peut pas être nul.");
+        this.sport = sport;
     }
 
-    /**
-     * Retourne l'horaire de depart du DPS
-     * @return l'horaire de depart du DPS
-     */
-    public int getHoraireDepart() {
-        int ret = this.horaireDepart;
-        return ret;
+    public final void setJournee(Journee journee) {
+        if (journee == null) throw new IllegalArgumentException("La journée ne peut pas être nulle.");
+        this.journee = journee;
     }
 
-    /**
-     * Retourne l'horaire de fin du DPS
-     * @return l'horaire de fin du DPS
-     */
-    public int getHoraireFin() {
-        int ret = this.horaireFin;
-        return ret;
+    public void setBesoins(Map<Competence, Integer> besoins) {
+        this.besoins = besoins;
     }
 
     /**
-     * Retourne la journee du DPS
-     * @return la journee du DPS
+     * Méthode de traitement qui retourne la durée du DPS en minutes.
+     * @return la durée du DPS en minutes.
      */
-    public Journee getJournee() {
-        Journee ret = this.journee;
-        return ret;
+    public int getDureeEnMinutes() {
+        return this.horaireFin - this.horaireDepart;
     }
 
     /**
-     * Retourne le site du DPS
-     * @return le site du DPS
+     * Affiche l'horaire de manière lisible (ex: "08:30").
+     * @param horaireEnMinutes l'horaire en minutes depuis minuit.
+     * @return Une chaîne de caractères formatée.
      */
-    public Site getSite() {
-        Site ret = this.site;
-        return ret;
-    }
-    /**
-     * Retourne la liste des sports du DPS
-     * @return la liste des sports du DPS
-     */
-    public Sport getSport() {
-        Sport ret = this.sport;
-        return ret;
+    private String formatHoraire(int horaireEnMinutes) {
+        int heures = horaireEnMinutes / 60;
+        int minutes = horaireEnMinutes % 60;
+        return String.format("%02d:%02d", heures, minutes);
     }
 
-
-    /**
-     * Modifie l'id du DPS
-     * @param id l'id du DPS
-     */
-    public void setId(long id) {
-        if (id < 0) {
-            throw new IllegalArgumentException("L'id du DPS doit etre superieur a 0");
-        } else {
-            this.id = id;
-        }
-    }
-
-    /**
-     * Modifie l'horaire de depart du DPS
-     * @param horaireDepart l'horaire de depart du DPS
-     */
-    public void setHoraireDepart(int horaireDepart) {
-        if (horaireDepart < 0 || horaireFin < horaireDepart) {
-            throw new IllegalArgumentException("L'horaire de DPS est invalide");
-        } else {
-            this.horaireDepart = horaireDepart;
-        }
-    }
-    /**
-     * Modifie l'horaire de fin du DPS
-     * @param horaireFin l'horaire de fin du DPS
-     * @throws IllegalArgumentException si l'horaire de fin est inférieur à l'horaire de départ
-     */
-    public void setHoraireFin(int horaireFin) {
-        if(horaireFin < horaireDepart) {
-            throw new IllegalArgumentException("L'horaire de DPS est invalide");
-        } else {
-            this.horaireFin = horaireFin;
-        }
-    }
-
-    /**
-     * Modifie la journee du DPS
-     * @param journee la nouvelle journee du DPS
-     */
-    public void setJournee(Journee journee) {
-        if(journee == null) {
-            throw new IllegalArgumentException("La journee est null");
-        } else {
-            this.journee = journee;
-        }
-    }
-
-
-
-     
-    /**
-     * Retourne une chaine de caractères décrivant le DPS.
-     * @return une chaine de caractères décrivant le DPS
-     */
+    @Override
     public String toString() {
-        String ret = "DPS{" + "id=" + id + ", horaireDepart=" + horaireDepart + ", horaireFin=" + horaireFin + '}';
-        return ret;
-    }
-
-  
-    /**
-     * Retourne la durée du DPS en heures.
-     * @return la durée du DPS en heures
-     */
-    public int getDuree() {
-        int ret = this.horaireFin - this.horaireDepart;
-        return ret;
+        return "DPS " + id + " [" + sport.getNom() + " à " + site.getNom() + "] le " + journee 
+                + " de " + formatHoraire(horaireDepart) + " à " + formatHoraire(horaireFin);
     }
 }

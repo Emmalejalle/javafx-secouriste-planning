@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * DAO concret pour l'entité 'Site'.
@@ -23,7 +22,7 @@ public class SiteDAO extends DAO<Site> {
      */
     @Override
     public Site findByID(long id) throws SQLException {
-        String sql = "SELECT * FROM Site WHERE code = ?";
+        String sql = "SELECT * FROM Site WHERE codeSite = ?";
         Site site = null;
 
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
@@ -50,7 +49,7 @@ public class SiteDAO extends DAO<Site> {
     @Override
     public ArrayList<Site> findAll() throws SQLException {
         ArrayList<Site> sites = new ArrayList<>();
-        String sql = "SELECT * FROM Site ORDER BY nom";
+        String sql = "SELECT * FROM Site ORDER BY nomSite";
 
         try (Statement st = this.connect.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
@@ -76,7 +75,7 @@ public class SiteDAO extends DAO<Site> {
     @Override
     public int create(Site obj) throws SQLException {
         // Comme 'code' est une clé primaire non auto-générée, on l'insère directement.
-        String sql = "INSERT INTO Site (code, nom, longitude, latitude) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Site (codeSite, nomSite, longitude, latitude) VALUES (?, ?, ?, ?)";
         
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, obj.getCode());
@@ -95,7 +94,7 @@ public class SiteDAO extends DAO<Site> {
      */
     @Override
     public int update(Site obj) throws SQLException {
-        String sql = "UPDATE Site SET nom = ?, longitude = ?, latitude = ? WHERE code = ?";
+        String sql = "UPDATE Site SET nomSite = ?, longitude = ?, latitude = ? WHERE codeSite = ?";
         
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setString(1, obj.getNom());
@@ -116,7 +115,7 @@ public class SiteDAO extends DAO<Site> {
     public int delete(Site obj) throws SQLException {
         // Assurez-vous que ON DELETE CASCADE est configuré pour les tables qui utilisent
         // le code du site comme clé étrangère (ex: la table DPS).
-        String sql = "DELETE FROM Site WHERE code = ?";
+        String sql = "DELETE FROM Site WHERE codeSite = ?";
         
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, obj.getCode());
