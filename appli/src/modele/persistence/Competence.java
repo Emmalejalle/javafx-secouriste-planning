@@ -1,6 +1,8 @@
 package modele.persistence;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * La classe Competence sert à implémenter une competence
@@ -12,7 +14,7 @@ public class Competence {
     /**
      * L'id de la competence
      */
-    private int idComp;
+    private long idComp;
 
     /**
      * L'intitule de la competence
@@ -27,12 +29,7 @@ public class Competence {
     /**
      * Les prerequis de la competence
      */
-    private String prerequis;
-
-    /**
-     * Les secouristes ayant cette competence
-     */
-    private ArrayList<Secouriste> secouristes = new ArrayList<Secouriste>();
+    private ArrayList<Competence> prerequis;
 
     /**
      * Le constructeur de la classe
@@ -41,14 +38,14 @@ public class Competence {
      * @param abrevComp l'abreviation de l'intitule de la competence
      * @param prerequis les prerequis de la competence
      */
-    public Competence(int idComp, String intitule,String abrevComp, String prerequis) {
+    public Competence(long idComp, String intitule,String abrevComp) {
         if(idComp < 0) {
             throw new IllegalArgumentException("L'id de la competence doit etre superieur a 0");
         } else {
             this.idComp = idComp;
         }
 
-        if(intitule == null || intitule.length() < 2 || intitule.length() > 40) {
+        if(intitule == null || intitule.length() < -1 || intitule.length() > 40) {
             throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 20 caracteres");
         } else {
             this.intitule = intitule;
@@ -59,49 +56,42 @@ public class Competence {
         } else {
             this.abrevComp = abrevComp;
         }
-        
-        if(prerequis == null || prerequis.length() > 100) {
-            throw new IllegalArgumentException("Les prerequis de la competence doivent etre inferieurs a 100 caracteres");
-        } else {
-            this.prerequis = prerequis;
-        }
+
+        this.prerequis = new ArrayList<Competence>();   
     }
 
     /**
-     * Ajoute un secouriste à la liste des secouristes possédant cette compétence.
-     * @param secouriste le secouriste à ajouter
+     * Le constructeur de la classe sans prerequis
+     * @param idComp l'id de la competence
+     * @param intitule l'intitule de la competence
+     * @param abrevComp l'abreviation de l'intitule de la competence
      */
-    public void ajouterSecouriste(Secouriste secouriste) {
-        if (secouriste == null) {
-            throw new IllegalArgumentException("Le secouriste est null");
-        } else if(secouristes.contains(secouriste)) {
-            throw new IllegalArgumentException("Le secouriste existe deja");
-        }
-        secouristes.add(secouriste);
+    public boolean estPrerequis(Competence autreCompetence) {
+        return this.prerequis.contains(autreCompetence);
     }
 
+    // Pour le chargement paresseux
     /**
-     * Retire un secouriste de la liste des secouristes possédant cette compétence.
-     * @param secouriste le secouriste à retirer
+     * Le getter des prerequis de la competence
+     * @return les prerequis de la competence
      */
-    public void retirerSecouriste(Secouriste secouriste) {
-        if (secouriste == null) {
-            throw new IllegalArgumentException("Le secouriste est null");
-        } else if(secouristes.contains(secouriste)) {
-            secouristes.remove(secouriste);
-        } else {
-            throw new IllegalArgumentException("Le secouriste n'existe pas");
-        }
+    public List<Competence> getPrerequis() { 
+        return this.prerequis; 
     }
-
-
+    /**
+     * Le setter des prerequis de la competence
+     * @param prerequis les prerequis de la competence
+     */
+    public void setPrerequis(ArrayList<Competence> prerequis) {
+        this.prerequis = prerequis; 
+    }
 
     /**
      * Le getter de l'id de la competence
      * @return l'id de la competence
      */
-    public int getIdComp() {
-        int ret = this.idComp;
+    public long getIdComp() {
+        long ret = this.idComp;
         return ret;
     }
 
@@ -115,11 +105,20 @@ public class Competence {
     }
 
     /**
+     * Le getter de l'abréviation de l'intitulé de la compétence
+     * @return l'abréviation de l'intitulé de la compétence
+     */
+    public String getAbrevComp() {
+        String ret = this.abrevComp;
+        return ret;
+    }
+
+    /**
      * Modifie l'id de la competence.
      * @param idComp l'id de la competence
      * @throws IllegalArgumentException si l'id de la competence est inferieur a 0
      */
-    public void setIdComp(int idComp) {
+    public void setIdComp(long idComp) {
         if(idComp < 0) {
             throw new IllegalArgumentException("L'id de la competence doit etre superieur a 0");
         } else {
@@ -139,6 +138,17 @@ public class Competence {
         }
     }  
 
+    /**
+     * Modifie l'abréviation de l'intitulé de la competence.
+     * @param abrevComp l'abréviation de l'intitulé de la competence
+     */
+    public void setAbrevComp(String abrevComp) {
+        if (abrevComp == null || abrevComp.length() > 5) {
+            throw new IllegalArgumentException("L'abreviation de l'intitule de la competence doit etre inferieur a 5 caracteres");
+        } else {
+            this.abrevComp = abrevComp;
+        }
+    }
 
     /**
      * Retourne une chaine de caracteres qui decrit la competence
@@ -149,7 +159,9 @@ public class Competence {
         ret += "ID : " + this.idComp + "\n";
         ret += "Intitule : " + this.intitule + "\n";
         ret += "Abreviation : " + this.abrevComp + "\n";
-        ret += "Prerequis : " + this.prerequis + "\n";
+        for (Competence c : this.prerequis) {
+            ret += "Prerequis : " + c.getIntitule() + "\n";
+        }
         return ret;
     }
 

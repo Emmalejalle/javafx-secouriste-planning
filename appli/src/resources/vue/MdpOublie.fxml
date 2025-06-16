@@ -12,12 +12,12 @@
 
     <!-- Bande orange en haut -->
     <top>
-        <HBox prefHeight="60.0" styleClass="barre-orange" />
+        <HBox prefHeight="100.0" styleClass="barre-orange" />
     </top>
 
     <!-- Bande orange en bas -->
     <bottom>
-        <HBox prefHeight="60.0" styleClass="barre-orange" />
+        <HBox prefHeight="100.0" styleClass="barre-orange" />
     </bottom>
 
     <!-- Centre -->

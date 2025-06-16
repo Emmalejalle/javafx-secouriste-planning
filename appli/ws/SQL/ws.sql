@@ -37,23 +37,23 @@ CREATE TABLE Dispo (
     mois INT,
     annee INT,
     PRIMARY KEY (idSecouriste, jour, mois, annee),
-    FOREIGN KEY (idSecouriste) REFERENCES User(idUser),
-    FOREIGN KEY (jour, mois, annee) REFERENCES Journee(jour, mois, annee)
+    FOREIGN KEY (idSecouriste) REFERENCES User(idUser) ON DELETE CASCADE, 
+    FOREIGN KEY (jour, mois, annee) REFERENCES Journee(jour, mois, annee) ON DELETE CASCADE
 );
 
 
 CREATE TABLE Competence (
-	idComp INT PRIMARY KEY,
+	idComp BIGINT PRIMARY KEY AUTO_INCREMENT,
     intitule VARCHAR(40),
 	abreviationIntitule VARCHAR(5)
 );
 
 CREATE TABLE PrerequisComp (
-    idCompPre INT,
-    idPrerequis INT,
+    idCompPre BIGINT,
+    idPrerequis BIGINT,
     PRIMARY KEY (idCompPre, idPrerequis),
-    FOREIGN KEY (idCompPre) REFERENCES Competence(idComp),
-    FOREIGN KEY (idPrerequis) REFERENCES Competence(idComp)
+    FOREIGN KEY (idCompPre) REFERENCES Competence(idComp) ON DELETE CASCADE,
+    FOREIGN KEY (idPrerequis) REFERENCES Competence(idComp) ON DELETE CASCADE
 );
 
 CREATE TABLE Site (
@@ -86,32 +86,32 @@ CREATE TABLE DPS (
 
 CREATE TABLE Besoin (
     idBesoinDPS BIGINT,
-    idBesoinComp INT,
+    idBesoinComp BIGINT,
     nombre INT CHECK (nombre >= 1),
 
     PRIMARY KEY (idBesoinDPS, idBesoinComp),
-    FOREIGN KEY (idBesoinDPS) REFERENCES DPS(idDPS),
-    FOREIGN KEY (idBesoinComp) REFERENCES Competence(idComp)
+    FOREIGN KEY (idBesoinDPS) REFERENCES DPS(idDPS) ON DELETE CASCADE,
+    FOREIGN KEY (idBesoinComp) REFERENCES Competence(idComp) ON DELETE CASCADE
 );
 
 CREATE TABLE ListCompSecouriste (
     idSecouCompList BIGINT,
-    idCompList INT,
+    idCompList BIGINT,
     
     PRIMARY KEY (idSecouCompList, idCompList),
-    FOREIGN KEY (idSecouCompList) REFERENCES User(idUser),
-    FOREIGN KEY (idCompList) REFERENCES Competence(idComp)
+    FOREIGN KEY (idSecouCompList) REFERENCES User(idUser) ON DELETE CASCADE,
+    FOREIGN KEY (idCompList) REFERENCES Competence(idComp) ON DELETE CASCADE
 );
 
 CREATE TABLE Affectation (
 	idSecouAffect BIGINT,
-    idCompAffect int,
+	idCompAffect BIGINT,
 	idDPSAffect BIGINT,
 	
     PRIMARY KEY (idSecouAffect, idCompAffect, idDPSAffect),
-    FOREIGN KEY (idSecouAffect) REFERENCES User(idUser),
-    FOREIGN KEY (idCompAffect) REFERENCES Competence(idComp),
-    FOREIGN KEY (idDPSAffect) REFERENCES DPS(idDPS)
+    FOREIGN KEY (idSecouAffect) REFERENCES User(idUser) ON DELETE CASCADE,
+    FOREIGN KEY (idCompAffect) REFERENCES Competence(idComp) ON DELETE CASCADE,
+    FOREIGN KEY (idDPSAffect) REFERENCES DPS(idDPS) ON DELETE CASCADE
 );
 
 -- INSERT DE LA TABLE JOURNEE :
@@ -171,15 +171,15 @@ INSERT INTO Site (codeSite, nomSite, longitude, latitude) VALUES
 
 -- INSERT DE LA TABLE COMPETENCE :
 INSERT INTO Competence (idComp, intitule, abreviationIntitule) VALUES
-(1, 'Cadre Opérationnel', 'CADRE'),
-(2, 'Chef de Poste', 'CDPOS'),
-(3, 'Chef d’Equipe', 'CDEQP'),
-(4, 'Pilote d’hélicoptère', 'HELIC'),
-(5, 'Pilote de moto neige', 'MOTON'),
+(1, 'Cadre Opérationnel', 'CO'),
+(2, 'Chef de Poste', 'CP'),
+(3, 'Chef d’Equipe', 'CE'),
+(4, 'Pilote d’hélicoptère', 'PHL'),
+(5, 'Pilote de moto neige', 'PMN'),
 (6, 'VPSP', 'VPSP'),
 (7, 'PSE1', 'PSE1'),
 (8, 'PSE2', 'PSE2'),
-(9, 'Secouriste de montagne', 'MNTAG');
+(9, 'Secouriste de montagne', 'SDM');
 
 -- INSERT DE LA TABLE PREREQUIS COMPETENCE
 INSERT INTO PrerequisComp (idCompPre, idPrerequis) VALUES
@@ -551,3 +551,4 @@ INSERT INTO Affectation VALUES (16171819, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (17181920, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (18192021, 8, 59922115); -- PSE2
 
+SELECT * FROM Competence WHERE abreviationIntitule = 'NC';

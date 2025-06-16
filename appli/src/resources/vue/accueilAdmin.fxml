@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -8,13 +9,13 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <fx:include source="PatronHeaderAdmin.fxml"/>
+      <fx:include source="PatronHeaderAdmin.fxml" />
    </top>
    <bottom>
       <Pane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox>
+      <VBox style="-fx-background-color: FFFFFF;">
          <children>
             <Pane prefHeight="60.0" prefWidth="1920.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -34,7 +35,10 @@
                                     <Image url="@../img/Accueil_imp_list.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btnImageListe" mnemonicParsing="false" opacity="0.0" prefHeight="592.0" prefWidth="1284.0" text="Button" />
+                              <Button fx:id="btnImageListe" mnemonicParsing="false" opacity="0.0" prefHeight="592.0" prefWidth="1284.0" text="Button">
+                                 <StackPane.margin>
+                                    <Insets left="10.0" />
+                                 </StackPane.margin></Button>
                            </children>
                         </StackPane>
                         <Pane prefHeight="50.0" prefWidth="1920.0" />
@@ -54,6 +58,9 @@
                            </children>
                         </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
                   </VBox>
                   <VBox prefHeight="880.0" prefWidth="1179.0">
                      <children>
@@ -95,8 +102,10 @@
                                     <Button fx:id="btnImagePlanning" mnemonicParsing="false" opacity="0.0" prefHeight="280.0" prefWidth="300.0" text="Button" />
                                  </children>
                               </StackPane>
-                              <Pane prefHeight="110.0" prefWidth="54.0" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
                         </HBox>
                         <Pane prefHeight="80.0" prefWidth="919.0" />
                         <HBox>
