@@ -1,9 +1,17 @@
 
-public package controller;
+package controller;
 
 import java.io.IOException;
 
 import org.w3c.dom.Node;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
 
 class AccueilAdminController {
 
@@ -21,11 +29,11 @@ class AccueilAdminController {
 
     @FXML
     void goListeSecouriste(ActionEvent event) {
-        System.out.println("Clic sur Retour. Chargement vers ListeSecouristes.fxml");
+        System.out.println("Clic sur Retour. Chargement vers Modifier-supprimerUnSecouriste.fxml");
         try {
-            changerDeVue(event, "ListeSecouristes.fxml");
+            changerDeVue(event, "Modifier-supprimerUnSecouriste.fxml");
         } catch (IOException e) {
-            System.err.println("ERREUR: Impossible de charger la vue ListeSecouristes.fxml");
+            System.err.println("ERREUR: Impossible de charger la vue Modifier-supprimerUnSecouriste.fxml");
             e.printStackTrace();
         }
     }
