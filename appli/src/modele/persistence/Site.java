@@ -10,14 +10,14 @@ package modele.persistence;
 public class Site {
 
     /**
+     * Le code du site
+     */
+    private long code;
+
+    /**
      * Le nom du site
      */
     private String nom;
-
-    /**
-     * Le code du site
-     */
-    private String code;
 
     /**
      * La longitude du site
@@ -29,6 +29,11 @@ public class Site {
      */
     private float latitude;
 
+    /**
+     * Rayon moyen de la Terre en kilomètres.
+     */
+    private static final double RAYON_TERRE_KM = 6371.0;
+
 
     /**
      * Constructeur de la classe Site
@@ -37,27 +42,23 @@ public class Site {
      * @param longitude la longitude du site
      * @param latitude la latitude du site
      */
-    public Site(String nom, String code, float longitude, float latitude) {
-        if (code == null || code.length() > 10) {
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
-        } else {
-            this.code = code;
-        }
-
+    public Site(long code ,String nom, float longitude, float latitude) {
         if (nom == null || nom.length() > 50) {
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
+            throw new IllegalArgumentException("Le nom du site est null");
         } else {
             this.nom = nom;
         }
 
-        if(longitude < 0 || latitude < 0){
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
+        if (code == 0 || code < 0 ) {
+            throw new IllegalArgumentException("Le code du site est null");
         } else {
-            this.longitude = longitude;
-            this.latitude = latitude;
+            this.code = code;
         }
-        
+
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
+        
 
     /**
      * Retourne le nom du site
@@ -72,7 +73,7 @@ public class Site {
      * Retourne le code du site
      * @return le code du site
      */
-    public String getCode() {
+    public long getCode() {
         return code;
     }
 
@@ -110,8 +111,8 @@ public class Site {
      * Met le code du site
      * @param code le code du site
      */
-    public void setCode(String code) {
-        if (code == null || code.length() > 10) {
+    public void setCode(long code) {
+        if (code <= -1) {
             throw new IllegalArgumentException("Le nom ou le code du site est null");
         } else {
             this.code = code;
@@ -147,28 +148,33 @@ public class Site {
     }
 
     /**
-     * Calcule la distance entre deux sites
-     * @param autreSite le site dont on veut calculer la distance
-     * @return la distance entre les deux sites
+     * Calcule la distance à vol d'oiseau entre ce site et un autre en utilisant la formule de Haversine.
+     * @param autreSite Le site avec lequel calculer la distance.
+     * @return La distance en kilomètres.
      */
-    public float calculerDistance(Site autreSite) {
+    public double calculerDistance(Site autreSite) {
         if (autreSite == null) {
-            throw new IllegalArgumentException("Le site est null");
+            throw new IllegalArgumentException("L'autre site ne peut pas être nul pour calculer la distance.");
         }
 
-        double lat1 = Math.toRadians(this.latitude);
-        double lon1 = Math.toRadians(this.longitude);
-        double lat2 = Math.toRadians(autreSite.getLatitude());
-        double lon2 = Math.toRadians(autreSite.getLongitude());
+        // Conversion des degrés en radians pour les calculs trigonométriques
+        double lat1Rad = Math.toRadians(this.latitude);
+        double lon1Rad = Math.toRadians(this.longitude);
+        double lat2Rad = Math.toRadians(autreSite.latitude);
+        double lon2Rad = Math.toRadians(autreSite.longitude);
 
-        double dx = lat2 - lat1;
-        double dy = lon2 - lon1;
+        // Différences de coordonnées en radians
+        double dLon = lon2Rad - lon1Rad;
+        double dLat = lat2Rad - lat1Rad;
 
-        float ret = (float) Math.sqrt(dx * dx + dy * dy);
+        // Formule de Haversine
+        double a = Math.pow(Math.sin(dLat / 2), 2)
+                 + Math.cos(lat1Rad) * Math.cos(lat2Rad)
+                 * Math.pow(Math.sin(dLon / 2), 2);
+        
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return ret;
+        // Distance finale en kilomètres
+        return RAYON_TERRE_KM * c;
     }
-
-
-
 }

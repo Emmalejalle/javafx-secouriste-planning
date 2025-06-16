@@ -1,164 +1,113 @@
 package modele.persistence;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
+/**
+ * La classe Journee représente une date spécifique en utilisant des entiers séparés.
+ * La logique de gestion des secouristes disponibles est déportée dans les DAOs.
+ */
 public class Journee {
+
     /**
-     * le jour
+     * L'ID unique de la journée, généré par la base de données.
+     */
+    private long id;
+
+    /**
+     * Le jour du mois (1-31).
      */
     private int jour;
 
     /**
-     * le mois
+     * Le mois de l'année (1-12).
      */
     private int mois;
 
     /**
-     * l'annee
+     * L'année.
      */
     private int annee;
 
-    private ArrayList<Secouriste> secouristes = new ArrayList<Secouriste>();
-
     /**
-     * le constructeur
-     * @param jour le jour
-     * @param mois le mois
-     * @param annee l'annee
+     * Constructeur pour créer une journée.
+     * @param id L'identifiant unique de la journée.
+     * @param jour Le jour du mois (1-31).
+     * @param mois Le mois de l'année (1-12).
+     * @param annee L'année.
      */
-    public Journee (int jour, int mois, int annee) {
-        if (jour < 1 || jour > 31) {
-            throw new IllegalArgumentException("Le jour doit être compris entre 1 et 31");
-        } else {
-            this.jour = jour;
-        }
-
-        if (mois < 1 || mois > 12) {
-            throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12");
-        } else {
-            this.mois = mois;
-        }
-
-        if (annee < 1) {
-            throw new IllegalArgumentException("L'année doit être supérieure à 0");
-        } else {
-            this.annee = annee;
-        }
-        
+    public Journee(long id, int jour, int mois, int annee) {
+        // La validation est faite dans les setters.
+        this.setId(id);
+        this.setJour(jour);
+        this.setMois(mois);
+        this.setAnnee(annee);
+    }
+    
+    // --- Getters ---
+    public long getId() {
+        return this.id;
     }
 
-    /**
-     * le getter du jour
-     * @return le jour
-     */
     public int getJour() {
         return this.jour;
     }
 
-    /**
-     * le getter du mois
-     * @return le mois
-     */
     public int getMois() {
         return this.mois;
     }
 
-    /**
-     * le getter de l'annee
-     * @return l'annee
-     */
     public int getAnnee() {
         return this.annee;
     }
 
-    /**
-     * setter du jour
-     * @param jour le jour
-     * @throws IllegalArgumentException si le jour est inférieur à 1 ou supérieur à 31
-     */
-    public void setJour(int jour) throws IllegalArgumentException {
+    // --- Setters avec validation ---
+    public final void setId(long id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("L'ID de la journée doit être positif ou nul.");
+        }
+        this.id = id;
+    }
+
+    public final void setJour(int jour) {
         if (jour < 1 || jour > 31) {
-            throw new IllegalArgumentException("Le jour doit être compris entre 1 et 31");
-        } else {
-            this.jour = jour;
+            throw new IllegalArgumentException("Le jour doit être compris entre 1 et 31.");
         }
+        this.jour = jour;
     }
 
-    /**
-     * setter du mois
-     * @param mois le mois
-     * @throws IllegalArgumentException si le mois est inférieur à 1 ou supérieur à 12
-     */
-    public void setMois(int mois) throws IllegalArgumentException {
+    public final void setMois(int mois) {
         if (mois < 1 || mois > 12) {
-            throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12");
-        } else {
-            this.mois = mois;
+            throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12.");
         }
+        this.mois = mois;
     }
 
-
-    /**
-     * setter de l'annee
-     * @param annee l'annee
-     * @throws IllegalArgumentException si l'annee est inférieur à 1
-     */
-    public void setAnnee(int annee) throws IllegalArgumentException {
-        if (annee < 1) {
-            throw new IllegalArgumentException("L'année doit être supérieure à 0");
-        } else {
-            this.annee = annee;
+    public final void setAnnee(int annee) {
+        if (annee < 2000) { // On peut supposer une année minimale raisonnable
+            throw new IllegalArgumentException("L'année semble invalide.");
         }
+        this.annee = annee;
     }
 
-
-    /**
-     * Cette méthode sert à ajouter un secouriste pour une journée s'il y ai déjà sinon message d'erreur
-     * @param secouriste le secouriste
-     * @throws IllegalArgumentException si le secouriste existe deja ou est null
+     /**
+     * Méthode de traitement qui retourne le nom du jour de la semaine en français.
+     * @return Le nom du jour (ex: "Lundi", "Mardi", ...).
      */
-    public void ajouterSecouriste(Secouriste secouriste) throws IllegalArgumentException {
-        if (secouriste == null) {
-            throw new IllegalArgumentException("Le secouriste est null");
-        } else if (secouristes.contains(secouriste)) {
-            throw new IllegalArgumentException("Le secouriste existe deja");
-        } else {
-            secouristes.add(secouriste);
-        }
+    public String getJourDeLaSemaine() {
+        // Crée un objet LocalDate à partir des attributs pour utiliser les API modernes
+        LocalDate date = LocalDate.of(this.annee, this.mois, this.jour);
+        DayOfWeek jourDeSemaine = date.getDayOfWeek();
+        
+        // Retourne le nom complet du jour en français
+        return jourDeSemaine.getDisplayName(TextStyle.FULL, Locale.FRENCH);
     }
 
-
-
-    /**
-     * Cette méthode sert à supprimer un secouriste pour une journée s'il n'y ai déjà pas sinon message d'erreur
-     * @param secouriste le secouriste
-     * @throws IllegalArgumentException si le secouriste existe deja ou est null
-     */
-    public void retirerSecouriste(Secouriste secouriste) throws IllegalArgumentException {
-        if (secouriste == null) {
-            throw new IllegalArgumentException("Le secouriste est null");
-        } else if (secouristes.contains(secouriste)) {
-            secouristes.remove(secouriste);
-        } else {
-            throw new IllegalArgumentException("Le secouriste n'existe pas");
-        }
-    }
-
-
-    /**
-     * Méthode qui met en string la journee
-     * @return une chaine representant la journée
-     */
+    @Override
     public String toString() {
-        String ret = jour + "/" + mois + "/" + annee;
-        return ret;
+        // Formatte la date en "jour/mois/année" avec des zéros initiaux si nécessaire.
+        return String.format("%02d/%02d/%d", jour, mois, annee);
     }
-
-
-    
-
-
-
-    
 }

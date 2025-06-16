@@ -1,113 +1,65 @@
 package modele.persistence;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 /**
- * Cette classe sert à implémenter un sport
+ * La classe Sport représente une discipline sportive.
+ * C'est un objet de persistance simple (POJO).
+ * La logique de récupération des DPS ou des sites associés est gérée par les DAOs.
  */
-public class Sport{
+public class Sport {
 
     /**
-     * Le nom du sport
+     * Le code unique du sport (ex: "SKI-ALP").
+     */
+    private long code;
+
+    /**
+     * Le nom complet du sport (ex: "Ski Alpin").
      */
     private String nom;
 
     /**
-     * Le code du sport
+     * Constructeur de la classe Sport.
+     * @param code Le code unique du sport.
+     * @param nom Le nom complet du sport.
      */
-    private String code;
-
-    /**
-     * La liste des DPS du sport
-     */
-    private HashMap<Long, DPS> dpsMap = new HashMap<>();
-
-    /**
-     * Constructeur de la classe Sport
-     * @param nom le nom du sport
-     * @param code le code du sport
-     */
-    public Sport(String nom, String code) {
-        if(nom == null || nom.length() > 50) {
-            throw new IllegalArgumentException("Le nom ou le code du sport est null");
-        } else {
-            this.code = code;
-        }
-
-        if(code == null || code.length() > 10) {
-            throw new IllegalArgumentException("Le nom ou le code du sport est null");
-        } else {
-            this.code = code;
-        }
+    public Sport(long code, String nom) {
+        // On appelle les setters qui contiennent la logique de validation.
+        this.setCode(code);
+        this.setNom(nom);
     }
 
+    // --- Getters ---
+    public long getCode() {
+        return this.code;
+    }
 
-    /**
-     * Retourne le nom du sport
-     * @return le nom du sport
-     */
     public String getNom() {
-        String ret = this.nom;
-        return ret;
+        return this.nom;
     }
 
-    /**
-     * Retourne le code du sport
-     * @return le code du sport
-     */
-    public String getCode() {
-        String ret = this.code;
-        return ret;
-    }
-
-    /**
-     * Met le nom du sport
-     * @param nom le nom du sport
-     */
-    public void setNom(String nom) {
-        if(nom == null || nom.length() > 50) {
-            throw new IllegalArgumentException("Le nom ou le code du sport est null");
-        } else {
-            this.nom = nom;
+    // --- Setters avec validation ---
+    public final void setCode(long code) {
+        if (code == 0 || code < 0) {
+            throw new IllegalArgumentException("Le code du sport ne peut pas dépasser 10 caractères.");
         }
+        this.code = code;
     }
 
-    /**
-     * Met le code du sport
-     * @param code le code du sport
-     */
-    public void setCode(String code) {
-        if(code == null || code.length() > 10) {
-            throw new IllegalArgumentException("Le nom ou le code du sport est null");
-        } else {
-            this.code = code;
+    public final void setNom(String nom) {
+        if (nom == null || nom.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le nom du sport ne peut pas être nul ou vide.");
         }
+        if (nom.length() > 50) {
+            throw new IllegalArgumentException("Le nom du sport ne peut pas dépasser 50 caractères.");
+        }
+        this.nom = nom;
     }
-    
 
-    /**
-     * Retourne une chaine de caractères décrivant le sport.
-     * @return une chaine de caractères décrivant le sport
-     */
+    @Override
     public String toString() {
-        String ret = "Sport{" + "nom=" + nom + ", code=" + code + '}';
-        return ret;
+        return "Sport{" +
+                "code='" + code + '\'' +
+                ", nom='" + nom + '\'' +
+                '}';
     }
-
-    /**
-     * Retourne la liste des DPS du sport
-     * @return la liste des DPS du sport
-     */
-   public Site[] voirSiteSport(){
-        Site [] tabSite = new Site[dpsMap.size()];
-        int i = 0;
-        for (DPS dps : dpsMap.values()) {
-            tabSite[i] = dps.getSite();
-            i++;
-        }
-        return tabSite;
-    }
-
-
-  
-
 }

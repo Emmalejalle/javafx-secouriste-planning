@@ -2,7 +2,6 @@ package modele.DAO;
 
 import modele.persistence.Competence;
 
-import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -123,6 +122,31 @@ public class CompetenceDAO extends DAO<Competence> {
                     rs.getString("abreviationIntitule")
                 );
                 competencesTreeMap.put(tmp.getIdComp(), tmp);
+            }
+
+            // Pour chaque compétence, on récupère les prérequis
+            for (Competence competence : competencesTreeMap.values()) {
+                // On récupère les IDs des prérequis pour cette compétence
+                // en appelant la méthode findPrerequis
+                // qui renvoie une liste de Long (IDs des compétences prérequis)
+                ArrayList<Long> prerequisIds = findPrerequis(competence);
+
+                // Pour chaque ID de prérequis, on récupère la compétence correspondante dans le TreeMap
+                ArrayList<Competence> prerequis = new ArrayList<>();
+
+                // On parcourt les IDs des prérequis
+                // et on ajoute les compétences correspondantes à la liste des prérequis
+                for (Long prerequisId : prerequisIds) {
+                    Competence prerequisCompetence = competencesTreeMap.get(prerequisId);
+                    if (prerequisCompetence != null) {
+                        prerequis.add(prerequisCompetence);
+                    }
+                }
+
+                // On ajoute les prérequis à la compétence
+                competence.setPrerequis(prerequis);
+                // On ajoute la compétence à la liste finale
+                competences.add(competence);
             }
         } catch (SQLException e) {
             System.err.println("Erreur lors de la récupération des compétences : " + e.getMessage());
@@ -285,6 +309,4 @@ public class CompetenceDAO extends DAO<Competence> {
             return st.executeUpdate();
         }
     }
-
-
 }

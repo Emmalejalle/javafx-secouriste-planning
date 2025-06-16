@@ -38,11 +38,8 @@ public class Competence {
      * @param prerequis les prerequis de la competence
      */
     public Competence(long idComp, String intitule,String abrevComp) {
-        if(idComp < 0) {
-            throw new IllegalArgumentException("L'id de la competence doit etre superieur a 0");
-        } else {
-            this.idComp = idComp;
-        }
+        //si -1 la compétence est en cours de création
+        this.idComp = idComp;
 
         if(intitule == null || intitule.length() < -1 || intitule.length() > 40) {
             throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 20 caracteres");
