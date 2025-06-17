@@ -78,7 +78,7 @@ public class AccueilAdminController {
     public void goAffecterDPS(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
         try {
-            changerDeVue(event, "accueilSecouriste.fxml");
+            changerDeVue(event, "AffectationDpsDeBase.fxml");
         } catch (IOException e) {
             System.err.println("ERREUR: Impossible de charger la vue accueilSecouriste.fxml");
             e.printStackTrace();
