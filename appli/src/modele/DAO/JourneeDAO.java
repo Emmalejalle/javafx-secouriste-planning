@@ -17,6 +17,44 @@ import modele.persistence.Journee;
  */
 public class JourneeDAO extends DAO<Journee> {
 
+    /**
+     * NOUVELLE MÉTHODE : Trouve une journée par sa date.
+     * C'est la méthode à utiliser quand l'utilisateur entre une date dans l'interface.
+     * @param jour Le jour à rechercher.
+     * @param mois Le mois à rechercher.
+     * @param annee L'année à rechercher.
+     * @return L'objet Journee correspondant, ou null si la date n'existe pas dans la base.
+     * @throws SQLException
+     */
+    public Journee findByDate(int jour, int mois, int annee) throws SQLException {
+        String sql = "SELECT * FROM Journee WHERE jour = ? AND mois = ? AND annee = ?";
+        Journee journee = null;
+
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setInt(1, jour);
+            st.setInt(2, mois);
+            st.setInt(3, annee);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    journee = new Journee(
+                        rs.getLong("idJournee"),
+                        rs.getInt("jour"),
+                        rs.getInt("mois"),
+                        rs.getInt("annee")
+                    );
+                }
+            }
+        }
+        return journee;
+    }
+    
+    /**
+     * Trouve une journée par son ID.
+     * C'est la méthode à utiliser quand on a déjà l'ID d'une journée.
+     * @param id L'ID de la journée à rechercher.
+     * @return L'objet Journee correspondant, ou null si l'ID n'existe pas dans la base.
+     * @throws SQLException
+     */
     @Override
     public Journee findByID(long id) throws SQLException {
         String sql = "SELECT * FROM Journee WHERE idJournee = ?";
@@ -38,6 +76,11 @@ public class JourneeDAO extends DAO<Journee> {
         return journee;
     }
 
+    /**
+     * Trouve toutes les jours de la base de données.
+     * @return Une liste d'objets Journee contenant toutes les jours de la base de données.
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Journee> findAll() throws SQLException {
         ArrayList<Journee> journees = new ArrayList<>();
@@ -58,6 +101,15 @@ public class JourneeDAO extends DAO<Journee> {
         return journees;
     }
 
+    
+    /**
+     * Insère une nouvelle journée dans la base de données et met à jour l'objet Journee
+     * avec l'ID généré par la base de données.
+     * 
+     * @param obj L'objet Journee à insérer.
+     * @return Le nombre de lignes affectées par l'insertion.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int create(Journee obj) throws SQLException {
         String sql = "INSERT INTO Journee (jour, mois, annee) VALUES (?, ?, ?)";
@@ -81,6 +133,12 @@ public class JourneeDAO extends DAO<Journee> {
         }
     }
 
+    /**
+     * Met à jour les informations d'une journée dans la base de données.
+     * @param obj L'objet Journee contenant les nouvelles informations.
+     * @return Le nombre de lignes affectées par la mise à jour.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int update(Journee obj) throws SQLException {
         String sql = "UPDATE Journee SET jour = ?, mois = ?, annee = ? WHERE idJournee = ?";
@@ -94,6 +152,15 @@ public class JourneeDAO extends DAO<Journee> {
         }
     }
 
+    /**
+     * Supprime une journée de la base de données.
+     * La suppression ne gère pas les contraintes de clé étrangère, il est donc
+     * important de configurer la table de jointure des disponibilités avec
+     * ON DELETE CASCADE sur la clé étrangère idJournee.
+     * @param obj L'objet Journee à supprimer.
+     * @return Le nombre de lignes supprimées (normalement 1).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int delete(Journee obj) throws SQLException {
         // Pour que cela fonctionne, la table de jointure des disponibilités

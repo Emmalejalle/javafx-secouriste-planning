@@ -17,15 +17,27 @@ import java.util.ArrayList;
  */
 public class UserDAO extends DAO<User> {
 
+    // Les DAO pour les relations spécifiques aux secouristes.
     private final CompetenceDAO competenceDAO;
     private final JourneeDAO journeeDAO;
 
+    /**
+     * Constructeur. Récupère l'instance de la connexion à la BDD via le singleton MyConnection.
+     * Initialise les DAO nécessaires pour les relations des secouristes.
+     */
     public UserDAO() {
         super();
         this.competenceDAO = new CompetenceDAO();
         this.journeeDAO = new JourneeDAO();
     }
     
+    /**
+     * Récupère un utilisateur par son identifiant.
+     * Si l'utilisateur est un secouriste, charge également ses compétences et disponibilités.
+     * @param id L'identifiant de l'utilisateur à trouver.
+     * @return L'utilisateur trouvé, ou null s'il n'existe pas.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public User findByID(long id) throws SQLException {
         String sql = "SELECT * FROM User WHERE idUser = ?";
@@ -46,6 +58,12 @@ public class UserDAO extends DAO<User> {
         return null;
     }
     
+    /**
+     * Récupère tous les utilisateurs (Admin et Secouristes) de la base de données.
+     * Charge également les compétences et disponibilités pour les secouristes.
+     * @return Une liste d'objets User (Admin ou Secouriste).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public ArrayList<User> findAll() throws SQLException {
         ArrayList<User> userList = new ArrayList<>();
@@ -95,6 +113,9 @@ public class UserDAO extends DAO<User> {
     /**
      * Crée un utilisateur (Admin ou Secouriste) et ses relations associées.
      * L'opération est transactionnelle pour garantir la cohérence des données.
+     * @param obj L'utilisateur à créer.
+     * @return Le nombre de lignes affectées (1 si succès).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
      */
     @Override
     public int create(User obj) throws SQLException {
@@ -140,8 +161,12 @@ public class UserDAO extends DAO<User> {
         }
     }
 
-    /**
-     * Met à jour un utilisateur et ses relations associées (pour les secouristes).
+    /** 
+     * Met à jour un utilisateur (Admin ou Secouriste) et ses relations associées.
+     * L'opération est transactionnelle pour garantir la cohérence des données.
+     * @param obj L'utilisateur à mettre à jour.
+     * @return Le nombre de lignes affectées (1 si succès).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
      */
     @Override
     public int update(User obj) throws SQLException {
@@ -185,6 +210,13 @@ public class UserDAO extends DAO<User> {
         }
     }
 
+    /**
+     * Supprime un utilisateur de la base de données.
+     * Grâce à `ON DELETE CASCADE`, les relations associées sont également supprimées.
+     * @param obj L'utilisateur à supprimer.
+     * @return Le nombre de lignes supprimées (normalement 1).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int delete(User obj) throws SQLException {
         // ON DELETE CASCADE est supposé être configuré sur les tables de jointure
@@ -199,6 +231,9 @@ public class UserDAO extends DAO<User> {
     
     /**
      * Crée le bon type d'objet (Admin ou Secouriste) à partir d'une ligne de la BDD.
+     * @param rs Le ResultSet contenant les données de l'utilisateur.
+     * @return Un objet User (Admin ou Secouriste) avec les données de la BDD.
+     * @throws SQLException En cas d'erreur lors de la lecture du ResultSet.
      */
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         boolean isAdmin = rs.getInt("isAdmin") == 1;
@@ -213,6 +248,12 @@ public class UserDAO extends DAO<User> {
         }
     }
 
+    /**
+     * Supprime toutes les relations d'un secouriste (compétences, disponibilités, affectations).
+     * Utilisé lors de la mise à jour ou de la suppression d'un secouriste.
+     * @param secouristeId L'identifiant du secouriste dont on veut supprimer les relations.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     private void clearAllLinksForSecouriste(long secouristeId) throws SQLException {
         try (Statement st = this.connect.createStatement()) {
             // Note: Adaptez les noms des tables de jointure si nécessaire
@@ -223,6 +264,12 @@ public class UserDAO extends DAO<User> {
         }
     }
 
+    /**
+     * Met à jour les compétences d'un secouriste dans la base de données.
+     * Supprime les anciennes compétences et insère les nouvelles.
+     * @param secouriste Le secouriste dont on veut mettre à jour les compétences.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     private void updateCompetencesFor(Secouriste secouriste) throws SQLException {
         String sql = "INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (?, ?)";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
@@ -235,6 +282,12 @@ public class UserDAO extends DAO<User> {
         }
     }
 
+    /**
+     * Met à jour les disponibilités d'un secouriste dans la base de données.
+     * Supprime les anciennes disponibilités et insère les nouvelles.
+     * @param secouriste Le secouriste dont on veut mettre à jour les disponibilités.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     private void updateDisponibilitesFor(Secouriste secouriste) throws SQLException {
         String sql = "INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES (?, ?)";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
@@ -247,6 +300,12 @@ public class UserDAO extends DAO<User> {
         }
     }
 
+    /**
+     * Charge les compétences d'un secouriste à partir de la base de données.
+     * Utilisé lors de la récupération d'un secouriste pour peupler ses compétences.
+     * @param secouriste Le secouriste dont on veut charger les compétences.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public void loadCompetencesFor(Secouriste secouriste) throws SQLException {
         String sql = "SELECT idCompList FROM ListCompSecouriste WHERE idSecouCompList = ?";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
@@ -260,6 +319,12 @@ public class UserDAO extends DAO<User> {
         }
     }
 
+    /**
+     * Charge les disponibilités d'un secouriste à partir de la base de données.
+     * Utilisé lors de la récupération d'un secouriste pour peupler ses disponibilités.
+     * @param secouriste Le secouriste dont on veut charger les disponibilités.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public void loadDisponibilitesFor(Secouriste secouriste) throws SQLException {
         String sql = "SELECT idJourneeDispo FROM Dispo WHERE idSecouriste = ?";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {

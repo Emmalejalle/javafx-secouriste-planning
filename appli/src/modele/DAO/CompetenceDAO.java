@@ -232,6 +232,14 @@ public class CompetenceDAO extends DAO<Competence> {
         return competences;
     }
 
+    /**
+     * Insère une nouvelle compétence dans la base de données.
+     * @param obj La compétence à insérer.
+     * @return Le nombre de lignes affectées par l'insertion.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     * La création ne gère pas les prérequis, cela doit être fait séparément
+     * en utilisant la méthode createPrerequis.
+     */
     @Override
     public int create(Competence obj) throws SQLException {
         int rowsAffected = 0;
@@ -348,6 +356,15 @@ public class CompetenceDAO extends DAO<Competence> {
         }
     }
 
+    /**
+     * Supprime une compétence de la base de données.
+     * La suppression doit gérer les contraintes de clé étrangère,
+     * il est donc important de configurer la table de jointure des prérequis
+     * avec ON DELETE CASCADE sur la clé étrangère idComp.
+     * @param obj La compétence à supprimer.
+     * @return Le nombre de lignes supprimées (normalement 1).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int delete(Competence obj) throws SQLException {
         // Attention: la suppression doit gérer les contraintes de clé étrangère

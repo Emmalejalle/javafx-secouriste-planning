@@ -83,8 +83,8 @@ public abstract class User {
             this.prenom = prenom;
         }
         
-        if (dateNaissance == null) {
-            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format AAAA-MM-JJ");
+        if (dateNaissance == null || !dateNaissance.matches("\\d{2}/\\d{2}/\\d{4}")) { // Format JJ/MM/AAAA
+            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format JJ/MM/AAAA");
         } else {
             this.dateNaissance = dateNaissance;
         }
@@ -143,8 +143,8 @@ public abstract class User {
             this.prenom = prenom;
         }
         
-        if (dateNaissance == null) {
-            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format AAAA-MM-JJ");
+        if (dateNaissance == null || !dateNaissance.matches("\\d{2}/\\d{2}/\\d{4}")) { // Format JJ/MM/AAAA
+            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format JJ/MM/AAAA");
         } else {
             this.dateNaissance = dateNaissance;
         }
@@ -300,8 +300,8 @@ public abstract class User {
      * @throws IllegalArgumentException si la date de naissance est null
      */
     public void setDateNaissance(String dateNaissance) throws IllegalArgumentException {
-        if (dateNaissance == null) {
-            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format AAAA-MM-JJ");
+        if (dateNaissance == null || !dateNaissance.matches("\\d{2}/\\d{2}/\\d{4}")) { // Format JJ/MM/AAAA
+            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format JJ/MM/AAAA");
         } else {
             this.dateNaissance = dateNaissance;
         }

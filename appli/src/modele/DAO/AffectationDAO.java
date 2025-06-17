@@ -20,6 +20,10 @@ public class AffectationDAO extends DAO<Affectation> {
     private final DpsDAO dpsDAO;
     private final CompetenceDAO competenceDAO;
     
+    /**
+     * Constructeur de l'AffectationDAO.
+     * Initialise les DAO nécessaires pour reconstruire les objets complets.
+     */
     public AffectationDAO() {
         super();
         this.userDAO = new UserDAO();
@@ -137,16 +141,32 @@ public class AffectationDAO extends DAO<Affectation> {
 
     // --- Méthodes non supportées pour cette entité d'association ---
 
+    /**
+     * Trouve un objet Affectation par son ID.
+     * Cette méthode n'est pas applicable car Affectation n'a pas d'ID unique.
+     * @throws UnsupportedOperationException
+     */
     @Override
     public Affectation findByID(long id) {
         throw new UnsupportedOperationException("Affectation n'a pas d'ID unique. Utilisez les méthodes de recherche spécifiques comme findAffectationsForDps().");
     }
     
+    /**
+     * Trouve tous les objets Affectation.
+     * Cette méthode n'est pas implémentée car charger toutes les affectations peut être très lourd.
+     * @throws UnsupportedOperationException
+     */
     @Override
     public ArrayList<Affectation> findAll() {
         throw new UnsupportedOperationException("Non implémenté. Charger toutes les affectations de la base peut être très lourd et est rarement utile.");
     }
     
+    /**
+     * Met à jour une affectation.
+     * Cette méthode n'est pas applicable car les affectations ne sont pas modifiables.
+     * Pour modifier une affectation, il faut la supprimer et en créer une nouvelle.
+     * @throws UnsupportedOperationException
+     */
     @Override
     public int update(Affectation obj) {
         throw new UnsupportedOperationException("Une affectation ne se met pas à jour. Pour la modifier, il faut la supprimer et en créer une nouvelle.");

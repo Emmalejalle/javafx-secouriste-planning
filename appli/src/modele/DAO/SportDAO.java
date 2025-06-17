@@ -16,6 +16,12 @@ import modele.persistence.Sport;
  */
 public class SportDAO extends DAO<Sport> {
 
+    /**
+     * Récupère un objet Sport à partir de son identifiant.
+     * @param id L'identifiant du sport à trouver (codeSport).
+     * @return L'objet Sport trouvé, ou null s'il n'existe pas.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public Sport findByID(long id) throws SQLException {
         // La clé primaire de la table Sport est 'code' de type BIGINT.
@@ -36,6 +42,11 @@ public class SportDAO extends DAO<Sport> {
         return sport;
     }
     
+    /**
+     * Récupère la liste de tous les sports.
+     * @return Une liste de tous les objets Sport.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public ArrayList<Sport> findAll() throws SQLException {
         ArrayList<Sport> sports = new ArrayList<>();
@@ -53,6 +64,11 @@ public class SportDAO extends DAO<Sport> {
         return sports;
     }
 
+    /**
+     * Récupère la liste de tous les sports, triée par nom.
+     * @return Une liste de tous les objets Sport.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int create(Sport obj) throws SQLException {
         String sql = "INSERT INTO Sport (codeSport, nomSport) VALUES (?, ?)";
@@ -64,6 +80,12 @@ public class SportDAO extends DAO<Sport> {
         }
     }
 
+    /**
+     * Met à jour un objet Sport dans la base de données.
+     * @param obj L'objet Sport à mettre à jour.
+     * @return Le nombre de lignes affectées par la mise à jour.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int update(Sport obj) throws SQLException {
         // On ne met à jour que le nom, car le code est la clé primaire.
@@ -76,6 +98,12 @@ public class SportDAO extends DAO<Sport> {
         }
     }
 
+    /**
+     * Supprime un objet Sport de la base de données.
+     * @param obj L'objet Sport à supprimer.
+     * @return Le nombre de lignes supprimées.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     @Override
     public int delete(Sport obj) throws SQLException {
         // Assurez-vous que ON DELETE CASCADE est configuré pour la table DPS
