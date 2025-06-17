@@ -61,7 +61,23 @@ public class AffectationDAO extends DAO<Affectation> {
             return st.executeUpdate();
         }
     }
-    
+
+    /**
+     * NOUVELLE MÉTHODE : Supprime toutes les affectations pour une journée donnée.
+     * Utile pour annuler tous les événements d'une journée.
+     * @param journeeId L'ID de la journée pour laquelle supprimer les affectations.
+     * @return Le nombre d'affectations supprimées.
+     * @throws SQLException
+     */
+    public int deleteAllAffectationsForJournee(long journeeId) throws SQLException {
+        // Cette requête supprime les affectations dont le DPS a lieu le jour spécifié.
+        String sql = "DELETE FROM Affectation WHERE idDPSAffect IN (SELECT idDPS FROM DPS WHERE idJourneeDPS = ?)";
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, journeeId);
+            return st.executeUpdate();
+        }
+    }
+
     /**
      * Trouve toutes les affectations pour un DPS donné (getSecouristeParDPS).
      * @param dpsId L'ID du DPS.
