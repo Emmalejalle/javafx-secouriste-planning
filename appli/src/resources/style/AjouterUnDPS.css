@@ -170,6 +170,16 @@
 	-fx-background-raduis: 10;
 }
 
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #009688;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: transparent;
+}
 
 
 
