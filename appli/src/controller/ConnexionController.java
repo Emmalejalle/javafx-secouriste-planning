@@ -1,76 +1,79 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import modele.DAO.UserDAO;
+import modele.SessionManager;
+import modele.persistence.Admin;
+import modele.persistence.Secouriste;
+import modele.persistence.User;
+import java.sql.SQLException;
+import java.util.List;
 
+public class ConnexionController extends BaseController {
 
-import java.io.IOException;
+    @FXML private TextField tfEmailSecourist;
+    @FXML private PasswordField pfPasswordSecourist;
+    @FXML private TextField tfEmailAdmin;
+    @FXML private PasswordField pfPasswordAdmin;
 
-/**
- * Contrôleur pour la vue de connexion.
- * Gère l'accès Secouriste, Admin et la réinitialisation du mot de passe.
- */
-public class ConnexionController {
+    private UserDAO userDAO;
 
-    // === Boutons du FXML ===
-    @FXML private Button btnConnexionSecouriste;
-    @FXML private Button btnConnexionAdmin;
-    @FXML private Button btnMdpOublie;
-
-    @FXML
-    public void initialize() {
-        System.out.println("ConnexionController initialisé.");
+    public ConnexionController() {
+        this.userDAO = new UserDAO();
     }
 
-    /**
-     * Navigue vers l'accueil Secouriste.
-     */
     @FXML
-    void onConnexionSecouriste(ActionEvent event) {
-        changeView(event, "/vue/accueilSecouriste.fxml");
+    public void onConnexionSecouriste(ActionEvent event) {
+        validerConnexion(event, tfEmailSecourist.getText(), pfPasswordSecourist.getText(), false);
     }
 
-    /**
-     * Navigue vers l'accueil Admin.
-     */
     @FXML
-    void onConnexionAdmin(ActionEvent event) {
-        changeView(event, "/vue/accueilAdmin.fxml");
+    public void onConnexionAdmin(ActionEvent event) {
+        validerConnexion(event, tfEmailAdmin.getText(), pfPasswordAdmin.getText(), true);
     }
 
-    /**
-     * Navigue vers la page "Mot de passe oublié".
-     */
-    @FXML
-    void onMdpOublie(ActionEvent event) {
-        changeView(event, "/vue/MdpOublie.fxml");
-    }
-
-    /** Quitte l'application. */
-    @FXML
-    void onQuitter(ActionEvent event) {
-        Platform.exit();
-    }
-
-
-    /**
-     * Méthode utilitaire pour changer de vue sans recréer la fenêtre.
-     */
-    private void changeView(ActionEvent event, String fxmlPath) {
+    private void validerConnexion(ActionEvent event, String email, String mdp, boolean isAdminRole) {
+        if (email.isEmpty() || mdp.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Champs vides", "Veuillez remplir tous les champs.");
+            return;
+        }
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
-        } catch (IOException e) {
-            System.err.println("ERREUR: impossible de charger " + fxmlPath);
+            List<User> users = userDAO.findAll();
+            User userTrouve = users.stream()
+                .filter(user -> user.getEmail().equals(email) && user.getMdp().equals(mdp))
+                .findFirst()
+                .orElse(null);
+
+            if (userTrouve != null) {
+                if ((isAdminRole && userTrouve instanceof Admin) || (!isAdminRole && userTrouve instanceof Secouriste)) {
+                    SessionManager.getInstance().setCurrentUser(userTrouve);
+                    String nextPage = isAdminRole ? "/vue/accueilAdmin.fxml" : "/vue/accueilSecouriste.fxml";
+                    changeView(event, nextPage);
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Erreur de rôle", "Vous tentez de vous connecter sur le mauvais portail.");
+                }
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Erreur de connexion", "Email ou mot de passe incorrect.");
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur Base de Données", "Impossible de contacter la base de données. Vérifiez qu'elle est bien lancée et accessible.");
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    public void onMdpOublie(ActionEvent event) {
+        System.out.println("Clic sur Mot de passe oublié");
+        // Logique pour la récupération de mdp
+    }
+    
+    @FXML
+    public void onQuitter(ActionEvent event) {
+        Platform.exit();
     }
 }
