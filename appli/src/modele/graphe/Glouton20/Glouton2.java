@@ -1,3 +1,4 @@
+package modele.graphe.Glouton20;
 import java.util.HashMap;
 
 /**
