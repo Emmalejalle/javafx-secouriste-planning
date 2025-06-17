@@ -134,18 +134,19 @@
                   <VBox fillWidth="false" prefHeight="72.0" prefWidth="220.0">
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Compétences" />
-                        <Label prefHeight="21.0" prefWidth="211.0" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Pilote Hélicoptère">
-                           <VBox.margin>
-                              <Insets top="8.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="3.0" left="8.0" />
-                           </padding>
-                           <styleClass>
-                              <String fx:value="textFieldAttributSecouriste" />
-                              <String fx:value="textfield-modern" />
-                           </styleClass>
-                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="211.0" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Pilote Hélicoptère">
+                                 <padding>
+                                    <Insets bottom="3.0" left="8.0" />
+                                 </padding>
+                                 <styleClass>
+                                    <String fx:value="textFieldAttributSecouriste" />
+                                    <String fx:value="textfield-modern" />
+                                 </styleClass>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
@@ -153,21 +154,9 @@
                   </VBox>
                   <CheckBox mnemonicParsing="false" prefHeight="34.0" prefWidth="39.0" styleClass="larger-checkbox" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                      <HBox.margin>
-                        <Insets top="48.0" />
+                        <Insets top="32.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <VBox prefHeight="77.0" prefWidth="426.0">
-                     <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
-                           <VBox.margin>
-                              <Insets left="16.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
-                     </HBox.margin>
-                  </VBox>
                </children>
                <VBox.margin>
                   <Insets left="48.0" />
