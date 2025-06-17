@@ -8,6 +8,10 @@ import java.util.Locale;
 /**
  * La classe Journee représente une date spécifique en utilisant des entiers séparés.
  * La logique de gestion des secouristes disponibles est déportée dans les DAOs.
+ * 
+ * 
+ * @author Emilien EMERIAU et Elie Tardy
+ * @version 1.0
  */
 public class Journee {
 

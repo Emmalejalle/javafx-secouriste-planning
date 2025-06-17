@@ -1,10 +1,8 @@
 package modele.persistence;
-import java.time.LocalDate;
-
 /**
  * La classe administrateur le compte de l'administrateur.
- * @author Elie Tardy
- * @version 1.0
+ * @author Emilien EMERIAU et Elie Tardy 
+ * @version 2.0
  */
 public class Administrateur extends User {
 
@@ -19,7 +17,7 @@ public class Administrateur extends User {
      * @param tel le tel de l'administrateur
      * @param adresse l'adresse de l'administrateur
      */
-    public Administrateur(long id, String mdp, String nom, String prenom, LocalDate dateNaissance, String email, String tel, String adresse) {
+    public Administrateur(long id, String mdp, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
         super(id, mdp, nom, prenom, dateNaissance, email, tel, adresse);
 
     }

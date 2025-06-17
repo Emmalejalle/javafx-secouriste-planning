@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 /**
  * La classe Competence sert à implémenter une competence
- * @author Elie Tardy
- * @version 1.0
+ * @author Emilien EMERIAU et Elie Tardy
+ * @version 2.0
  */
 public class Competence {
     
@@ -54,7 +54,7 @@ public class Competence {
 
         this.prerequis = new ArrayList<Competence>();
     }
-    
+
     /**
      * Le constructeur de la classe
      * @param idComp l'id de la competence

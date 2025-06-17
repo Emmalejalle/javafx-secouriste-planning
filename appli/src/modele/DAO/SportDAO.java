@@ -10,6 +10,9 @@ import java.util.ArrayList;
 /**
  * DAO concret pour l'entité 'Sport'.
  * Implémente les opérations CRUD pour les objets Sport.
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
  */
 public class SportDAO extends DAO<Sport> {
 

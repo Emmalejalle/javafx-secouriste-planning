@@ -10,6 +10,9 @@ import java.util.List;
  * CRUD standard que chaque classe fille doit implémenter.
  *
  * @param <T> Le type de l'objet de persistance (ex: Competence, Secouriste).
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
  */
 public abstract class DAO<T> {
 

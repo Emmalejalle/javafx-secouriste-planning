@@ -3,8 +3,8 @@ package modele.persistence;
  * La classe Site représente un site géographique.
  * Elle contient des informations sur le nom, le code, la longitude et la latitude du site.
  * Elle permet de calculer la distance entre deux sites.
- * @author Elie Tardy
- * @version 1.0
+ * @author Emilien EMERIAU et Elie Tardy
+ * @version 2.0
  */
 
 public class Site {

@@ -6,6 +6,10 @@ import java.util.Map;
 /**
  * La classe DPS (Dispositif Prévisionnel de Secours) représente un événement
  * nécessitant des secours à une date, un lieu et pour un sport donnés.
+ * 
+ * 
+ * @author Emilien EMERIAU et Elie Tardy
+ * @version 1.0
  */
 public class DPS {
     
