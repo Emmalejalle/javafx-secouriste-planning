@@ -45,23 +45,6 @@
                      </children>
                   </VBox>
 
-                  <VBox prefHeight="77.0" prefWidth="426.0">
-                     <HBox.margin>
-                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0"/>
-                     </HBox.margin>
-                     <children>
-                        <Label styleClass="titreAttributRemplissageSecouriste"
-                               stylesheets="@../style/Creation-GestionProfilSecouriste.css"
-                               text="ID"/>
-                        <TextField promptText="Emma"
-                                   stylesheets="@../style/Creation-GestionProfilSecouriste.css">
-                           <styleClass>
-                              <String fx:value="textFieldAttributSecouriste"/>
-                              <String fx:value="textfield-modern"/>
-                           </styleClass>
-                        </TextField>
-                     </children>
-                  </VBox>
                </children>
                <VBox.margin>
                   <Insets left="48.0" top="32.0"/>
