@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS User;
 
 CREATE TABLE User (
 	idUser BIGINT Primary KEY AUTO_INCREMENT,
-    mdpUser VARCHAR(20),
+    mdpUser VARCHAR(30),
     nomUser VARCHAR(20),
     prenomUser VARCHAR(20),
     dateNaissance VARCHAR(20),

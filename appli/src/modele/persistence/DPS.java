@@ -19,12 +19,12 @@ public class DPS {
     private long id;
 
     /**
-     * L'horaire de début, en minutes depuis minuit (ex: 8h30 -> 510).
+     * L'horaire de début en heure (0-23).
      */
     private int horaireDepart;
 
     /**
-     * L'horaire de fin, en minutes depuis minuit.
+     * L'horaire de fin en heure (0-23).
      */
     private int horaireFin;
 
@@ -42,19 +42,72 @@ public class DPS {
     /**
      * Constructeur principal utilisé par le DAO pour créer l'objet.
      * @param id L'ID du DPS.
-     * @param horaireDepart L'horaire de début en minutes.
-     * @param horaireFin L'horaire de fin en minutes.
+     * @param horaireDepart L'horaire de début en heures.
+     * @param horaireFin L'horaire de fin en heures.
      * @param site L'objet Site associé.
      * @param sport L'objet Sport associé.
      * @param journee L'objet Journee associé.
      */
     public DPS(long id, int horaireDepart, int horaireFin, Site site, Sport sport, Journee journee) {
+        if (id < 0) {
+            throw new IllegalArgumentException("L'ID du DPS ne peut pas être négatif.");
+        }
+        if (horaireDepart < 0 || horaireDepart >= 24) {
+            throw new IllegalArgumentException("L'horaire de départ est invalide.");
+        }
+        if (horaireFin < 0 || horaireFin >= 24 || horaireFin < horaireDepart) {
+            throw new IllegalArgumentException("L'horaire de fin est invalide ou antérieur au départ.");
+        }
+        if (site == null) {
+            throw new IllegalArgumentException("Le site ne peut pas être null.");
+        }
+        if (sport == null) {
+            throw new IllegalArgumentException("Le sport ne peut pas être null.");
+        }
+        if (journee == null) {
+            throw new IllegalArgumentException("La journée ne peut pas être null.");
+        }
         this.id = id;
         this.setHoraireDepart(horaireDepart);
         this.setHoraireFin(horaireFin);
         this.setSite(site);
         this.setSport(sport);
         this.setJournee(journee);
+        this.besoins = new HashMap<>(); // La liste des besoins est initialisée vide.
+    }
+
+    /**
+     * Constructeur pour créer un DPS sans ID (utilisé lors de la création d'un nouveau DPS).
+     * @param horaireDepart L'horaire de début en Heures.
+     * @param horaireFin L'horaire de fin en heures.
+     * @param site L'objet Site associé.
+     * @param sport L'objet Sport associé.
+     * @param journee L'objet Journee associé.
+     */
+    public DPS(int horaireDepart, int horaireFin, Site site, Sport sport, Journee journee) {
+        if (horaireDepart < 0 || horaireDepart >= 24) {
+            throw new IllegalArgumentException("L'horaire de départ est invalide.");
+        }
+        if (horaireFin < 0 || horaireFin >= 24 || horaireFin < horaireDepart) {
+            throw new IllegalArgumentException("L'horaire de fin est invalide ou antérieur au départ.");
+        }
+        if (site == null) {
+            throw new IllegalArgumentException("Le site ne peut pas être null.");
+        }
+        if (sport == null) {
+            throw new IllegalArgumentException("Le sport ne peut pas être null.");
+        }
+        if (journee == null) {
+            throw new IllegalArgumentException("La journée ne peut pas être null.");
+        }
+        this.id = -1; // ID sera auto-généré par la BDD.
+        this.setHoraireDepart(horaireDepart);
+        this.setHoraireFin(horaireFin);
+        this.setSite(site);
+        this.setSport(sport);
+        this.setJournee(journee);
+        // Initialisation des besoins
+        // à une nouvelle HashMap vide.
         this.besoins = new HashMap<>(); // La liste des besoins est initialisée vide.
     }
 
@@ -85,31 +138,31 @@ public class DPS {
     public void setId(long id) { this.id = id; }
     
     public final void setHoraireDepart(int horaireDepart) {
-        if (horaireDepart < 0 || horaireDepart >= 24 * 60) {
+        if (horaireDepart < 0 || horaireDepart >= 24) {
             throw new IllegalArgumentException("L'horaire de départ est invalide.");
         }
         this.horaireDepart = horaireDepart;
     }
 
     public final void setHoraireFin(int horaireFin) {
-        if (horaireFin < 0 || horaireFin >= 24 * 60 || horaireFin < this.horaireDepart) {
+        if (horaireFin < 0 || horaireFin >= 24 || horaireFin < this.horaireDepart) {
             throw new IllegalArgumentException("L'horaire de fin est invalide ou antérieur au départ.");
         }
         this.horaireFin = horaireFin;
     }
     
     public final void setSite(Site site) {
-        if (site == null) throw new IllegalArgumentException("Le site ne peut pas être nul.");
+        if (site == null) throw new IllegalArgumentException("Le site ne peut pas être null.");
         this.site = site;
     }
 
     public final void setSport(Sport sport) {
-        if (sport == null) throw new IllegalArgumentException("Le sport ne peut pas être nul.");
+        if (sport == null) throw new IllegalArgumentException("Le sport ne peut pas être null.");
         this.sport = sport;
     }
 
     public final void setJournee(Journee journee) {
-        if (journee == null) throw new IllegalArgumentException("La journée ne peut pas être nulle.");
+        if (journee == null) throw new IllegalArgumentException("La journée ne peut pas être null.");
         this.journee = journee;
     }
 
@@ -118,22 +171,21 @@ public class DPS {
     }
 
     /**
-     * Méthode de traitement qui retourne la durée du DPS en minutes.
-     * @return la durée du DPS en minutes.
+     * Méthode de traitement qui retourne la durée du DPS en heures.
+     * @return la durée du DPS en heures.
      */
     public int getDureeEnMinutes() {
         return this.horaireFin - this.horaireDepart;
     }
 
     /**
-     * Affiche l'horaire de manière lisible (ex: "08:30").
-     * @param horaireEnMinutes l'horaire en minutes depuis minuit.
+     * Affiche l'horaire de manière lisible (ex 9h).
+     * @param horaireEnMinutes l'horaire en heures depuis minuit.
      * @return Une chaîne de caractères formatée.
      */
     private String formatHoraire(int horaireEnMinutes) {
-        int heures = horaireEnMinutes / 60;
-        int minutes = horaireEnMinutes % 60;
-        return String.format("%02d:%02d", heures, minutes);
+        int heures = horaireEnMinutes;
+        return String.format("%02d:%02d", heures, 0);
     }
 
     @Override

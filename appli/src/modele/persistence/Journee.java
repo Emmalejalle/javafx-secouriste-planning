@@ -44,11 +44,48 @@ public class Journee {
      */
     public Journee(long id, int jour, int mois, int annee) {
         // La validation est faite dans les setters.
-        this.setId(id);
-        this.setJour(jour);
-        this.setMois(mois);
-        this.setAnnee(annee);
+        this.id = id;
+
+        if (jour < 1 || jour > 31) {
+            throw new IllegalArgumentException("Le jour doit être compris entre 1 et 31.");
+        }
+        if (mois < 1 || mois > 12) {
+            throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12.");
+        }
+        if (annee < 2024) { // On peut supposer une année minimale raisonnable
+            throw new IllegalArgumentException("L'année semble invalide (2024 ou plus récente).");
+        }
+        this.jour = jour;
+        this.mois = mois;
+        this.annee = annee;
     }
+
+    /**
+     * Constructeur pour créer une journée sans ID.
+     * @param jour Le jour du mois (1-31).
+     * @param mois Le mois de l'année (1-12).
+     * @param annee L'année.
+     */
+    public Journee(int jour, int mois, int annee) {
+        // La validation est faite dans les setters.
+        this.id = -1; // ID par défaut pour une nouvelle journée
+         // On utilise -1 pour indiquer que l'ID n'est pas encore défini.
+
+        if (jour < 1 || jour > 31) {
+            throw new IllegalArgumentException("Le jour doit être compris entre 1 et 31.");
+        }
+        if (mois < 1 || mois > 12) {
+            throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12.");
+        }
+        if (annee < 2024) { // On peut supposer une année minimale raisonnable
+            throw new IllegalArgumentException("L'année semble invalide.");
+        }
+        this.jour = jour;
+        this.mois = mois;
+        this.annee = annee;
+    }
+
+    
     
     // --- Getters ---
     public long getId() {
@@ -70,7 +107,7 @@ public class Journee {
     // --- Setters avec validation ---
     public final void setId(long id) {
         if (id < 0) {
-            throw new IllegalArgumentException("L'ID de la journée doit être positif ou nul.");
+            throw new IllegalArgumentException("L'ID de la journée doit être positif ou zéro.");
         }
         this.id = id;
     }
@@ -90,8 +127,8 @@ public class Journee {
     }
 
     public final void setAnnee(int annee) {
-        if (annee < 2000) { // On peut supposer une année minimale raisonnable
-            throw new IllegalArgumentException("L'année semble invalide.");
+        if (annee < 2024) { // On peut supposer une année minimale raisonnable
+            throw new IllegalArgumentException("L'année semble invalide (2024 ou plus récente).");
         }
         this.annee = annee;
     }

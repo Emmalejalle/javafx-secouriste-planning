@@ -63,55 +63,110 @@ public abstract class User {
      * @throws IllegalArgumentException si l'id, le mot de passe, le nom, le prénom, la date de naissance, l'email, le tel ou l'adresse sont null
      */
     public User(long id, String mdp, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) throws IllegalArgumentException {
-        if (id < 0) {
-            throw new IllegalArgumentException("L'id de l'utilisateur ne peut pas être négatif");
-        } else {
-            this.id = id;
-        }
-        
-        if (mdp == null || mdp.length() < 1 || mdp.length() > 20) {
-            throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide");
+        this.id = id;
+
+        if (mdp == null || mdp.length() < 1 || mdp.length() > 30) {
+            throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide et doit contenir entre 1 et 30 caractères");
         } else {
             this.mdp = mdp;
         }
         
         if (nom == null || nom.length() < 2 || nom.length() > 20) {
-            throw new IllegalArgumentException("Le nom de l'utilisateur est invalide");
+            throw new IllegalArgumentException("Le nom de l'utilisateur est invalide et doit contenir entre 2 et 20 caractères");
         } else {
             this.nom = nom;
         }
         
         if (prenom == null || prenom.length() < 2 || prenom.length() > 20) {
-            throw new IllegalArgumentException("Le prénom de l'utilisateur est invalide");
+            throw new IllegalArgumentException("Le prénom de l'utilisateur est invalide et doit contenir entre 2 et 20 caractères");
         } else {
             this.prenom = prenom;
         }
         
         if (dateNaissance == null) {
-            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format AAAA-MM-JJ");
         } else {
             this.dateNaissance = dateNaissance;
         }
 
         boolean verifMail = isValidEmail(email);
         if (verifMail == false) {
-            throw new IllegalArgumentException("L'email de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("L'email de l'utilisateur n'est pas une email valide et doit respecter le format standard");
         } else {
             this.email = email;
         }
         
         if (tel == null) {
-            throw new IllegalArgumentException("Le téléphone de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("Le téléphone de l'utilisateur ne peut pas être null et doit respecter le format standard");
         } else {
             this.tel = tel;
         }
         
         if (adresse == null) {
-            throw new IllegalArgumentException("L'adresse de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("L'adresse de l'utilisateur ne peut pas être null et doit contenir entre 2 et 50 caractères");
         } else {
             this.adresse = adresse;
         }
+    }
 
+    /**
+     * le constructeur sans id
+     * Ce constructeur est utilisé pour créer un utilisateur sans spécifier l'id,
+     * l'id sera géré par la base de données.
+     * @param mdp le mot de passe
+     * @param nom le nom
+     * @param prenom le prénom
+     * @param dateNaissance la date de naissance
+     * @param email l'email
+     * @param tel le tel
+     * @param adresse l'adresse
+     * @throws IllegalArgumentException si l'id, le mot de passe, le nom, le prénom, la date de naissance, l'email, le tel ou l'adresse sont null
+     */
+    public User(String mdp, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) throws IllegalArgumentException {
+        this.id = -1; // L'id sera géré par la base de données, donc on initialise à -1
+        
+        if (mdp == null || mdp.length() < 1 || mdp.length() > 30) {
+            throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide et doit contenir entre 1 et 30 caractères");
+        } else {
+            this.mdp = mdp;
+        }
+        
+        if (nom == null || nom.length() < 2 || nom.length() > 20) {
+            throw new IllegalArgumentException("Le nom de l'utilisateur est invalide et doit contenir entre 2 et 20 caractères");
+        } else {
+            this.nom = nom;
+        }
+        
+        if (prenom == null || prenom.length() < 2 || prenom.length() > 20) {
+            throw new IllegalArgumentException("Le prénom de l'utilisateur est invalide et doit contenir entre 2 et 20 caractères");
+        } else {
+            this.prenom = prenom;
+        }
+        
+        if (dateNaissance == null) {
+            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format AAAA-MM-JJ");
+        } else {
+            this.dateNaissance = dateNaissance;
+        }
+
+        boolean verifMail = isValidEmail(email);
+        if (verifMail == false) {
+            throw new IllegalArgumentException("L'email de l'utilisateur n'est pas une email valide et doit respecter le format standard");
+        } else {
+            this.email = email;
+        }
+        
+        if (tel == null) {
+            throw new IllegalArgumentException("Le téléphone de l'utilisateur ne peut pas être null et doit respecter le format standard");
+        } else {
+            this.tel = tel;
+        }
+        
+        if (adresse == null) {
+            throw new IllegalArgumentException("L'adresse de l'utilisateur ne peut pas être null et doit contenir entre 2 et 50 caractères");
+        } else {
+            this.adresse = adresse;
+        }
     }
 
     /**
@@ -194,7 +249,7 @@ public abstract class User {
      */
     public void setId(long id) throws IllegalArgumentException {
         if (id < 0) {
-            throw new IllegalArgumentException("L'id de l'utilisateur ne peut pas être négatif");
+            throw new IllegalArgumentException("L'id de l'utilisateur ne peut pas être négatif ou null");
         } else {
             this.id = id;
         }
@@ -206,8 +261,8 @@ public abstract class User {
      * @throws IllegalArgumentException si le mot de passe est null
      */
     public void setMdp(String mdp) throws IllegalArgumentException {
-        if (mdp == null || mdp.length() < 1 || mdp.length() > 20) {
-            throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide");
+        if (mdp == null || mdp.length() < 1 || mdp.length() > 30) {
+            throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide et doit contenir entre 1 et 30 caractères");
         } else {
             this.mdp = mdp;
         }
@@ -220,7 +275,7 @@ public abstract class User {
      */
     public void setNom(String nom) throws IllegalArgumentException {
         if (nom == null || nom.length() < 2 || nom.length() > 20) {
-            throw new IllegalArgumentException("Le nom de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("Le nom de l'utilisateur ne peut pas être null et doit contenir entre 2 et 20 caractères");
         } else {
             this.nom = nom;
         }
@@ -233,7 +288,7 @@ public abstract class User {
      */
     public void setPrenom(String prenom) throws IllegalArgumentException {
         if (prenom == null || prenom.length() < 2 || prenom.length() > 20) {
-            throw new IllegalArgumentException("Le prénom de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("Le prénom de l'utilisateur ne peut pas être null et doit contenir entre 2 et 20 caractères");
         } else {
             this.prenom = prenom;
         }
@@ -246,7 +301,7 @@ public abstract class User {
      */
     public void setDateNaissance(String dateNaissance) throws IllegalArgumentException {
         if (dateNaissance == null) {
-            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null et doit être au format AAAA-MM-JJ");
         } else {
             this.dateNaissance = dateNaissance;
         }
@@ -260,7 +315,7 @@ public abstract class User {
     public void setEmail(String email) throws IllegalArgumentException {
         boolean verifMail = isValidEmail(email);
         if (verifMail == false) {
-            throw new IllegalArgumentException("L'email de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("L'email de l'utilisateur n'est pas une email valide et doit respecter le format standard");
         } else {
             this.email = email;
         }
@@ -273,7 +328,7 @@ public abstract class User {
      */
     public void setTel(String tel) throws IllegalArgumentException {
         if (tel == null) {
-            throw new IllegalArgumentException("Le tel de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("Le tel de l'utilisateur ne peut pas être null et doit respecter le format standard");
         } else {
             this.tel = tel;
         }
@@ -286,7 +341,7 @@ public abstract class User {
      */
     public void setAdresse(String adresse) throws IllegalArgumentException {
         if (adresse == null || adresse.length() < 2 || adresse.length() > 50) {
-            throw new IllegalArgumentException("L'adresse de l'utilisateur ne peut pas être null");
+            throw new IllegalArgumentException("L'adresse de l'utilisateur ne peut pas être null et doit contenir entre 2 et 50 caractères");
         } else {
             this.adresse = adresse;
         }

@@ -44,13 +44,13 @@ public class Site {
      */
     public Site(long code ,String nom, float longitude, float latitude) {
         if (nom == null || nom.length() > 50) {
-            throw new IllegalArgumentException("Le nom du site est null");
+            throw new IllegalArgumentException("Le nom du site est null ou dépasse 50 caractères");
         } else {
             this.nom = nom;
         }
 
         if (code == 0 || code < 0 ) {
-            throw new IllegalArgumentException("Le code du site est null");
+            throw new IllegalArgumentException("Le code du site ne peut pas être inférieur à 0 ou égal à 0");
         } else {
             this.code = code;
         }
@@ -58,7 +58,24 @@ public class Site {
         this.longitude = longitude;
         this.latitude = latitude;
     }
-        
+
+    /**
+     * Constructeur de la classe Site sans code
+     * @param nom le nom du site
+     * @param longitude la longitude du site
+     * @param latitude la latitude du site
+     */
+    public Site(String nom, float longitude, float latitude) {
+        if (nom == null || nom.length() > 50) {
+            throw new IllegalArgumentException("Le nom du site est null ou dépasse 50 caractères");
+        } else {
+            this.nom = nom;
+        }
+
+        this.code = -1; // Code par défaut si non fourni
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
     /**
      * Retourne le nom du site
@@ -101,7 +118,7 @@ public class Site {
      */
     public void setNom(String nom) {
         if (nom == null || nom.length() > 50) {
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
+            throw new IllegalArgumentException("Le nom du site est null ou dépasse 50 caractères");
         } else {
             this.nom = nom;
         }
@@ -113,17 +130,13 @@ public class Site {
      */
     public void setCode(long code) {
         if (code <= -1) {
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
+            throw new IllegalArgumentException("Le code du site est inférieur à 0");
         } else {
             this.code = code;
         }
     }
     public void setLongitude(float longitude) {
-        if(longitude < 0){
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
-        } else {
-            this.longitude = longitude;
-        }
+        this.longitude = longitude;
     }
 
     /**
@@ -131,11 +144,7 @@ public class Site {
      * @param latitude la latitude du site
      */
     public void setLatitude(float latitude) {
-        if(latitude < 0){
-            throw new IllegalArgumentException("Le nom ou le code du site est null");
-        } else {
-            this.latitude = latitude;
-        }
+        this.latitude = latitude;
     }
     
     /**

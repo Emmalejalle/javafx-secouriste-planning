@@ -36,7 +36,7 @@ public class Affectation {
      */
     public Affectation(Secouriste secouriste, DPS dps, Competence competenceRemplie) {
         if (secouriste == null || dps == null || competenceRemplie == null) {
-            throw new IllegalArgumentException("Le secouriste, le DPS et la compétence ne peuvent pas être nuls.");
+            throw new IllegalArgumentException("Le secouriste, le DPS et la compétence ne peuvent pas être nulls.");
         }
         this.secouriste = secouriste;
         this.dps = dps;

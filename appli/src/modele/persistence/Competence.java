@@ -41,7 +41,7 @@ public class Competence {
         this.idComp = -1;
 
         if(intitule == null || intitule.length() < 2 || intitule.length() > 40) {
-            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 20 caracteres");
+            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 40 caracteres");
         } else {
             this.intitule = intitule;
         }
@@ -60,14 +60,12 @@ public class Competence {
      * @param idComp l'id de la competence
      * @param intitule l'intitule de la competence
      * @param abrevComp l'abreviation de l'intitule de la competence
-     * @param prerequis les prerequis de la competence
      */
     public Competence(long idComp, String intitule,String abrevComp) {
-        //si -1 la compétence est en cours de création
         this.idComp = idComp;
 
         if(intitule == null || intitule.length() < -1 || intitule.length() > 40) {
-            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 20 caracteres");
+            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 40 caracteres");
         } else {
             this.intitule = intitule;
         }
@@ -82,10 +80,36 @@ public class Competence {
     }
 
     /**
-     * Le constructeur de la classe sans prerequis
-     * @param idComp l'id de la competence
-     * @param intitule l'intitule de la competence
-     * @param abrevComp l'abreviation de l'intitule de la competence
+     * Ajoute une competence en prerequis de la competence
+     * @param prerequis la competence a ajouter en prerequis
+     */
+    public void ajouterPrerequis(Competence prerequis) {
+        if (prerequis == null) {
+            throw new IllegalArgumentException("Le prerequis ne peut pas etre null");
+        }
+        if (this.prerequis.contains(prerequis)) {
+            throw new IllegalArgumentException("La competence est deja un prerequis de cette competence");
+        }
+        this.prerequis.add(prerequis);
+    }
+
+    /**
+     * Supprime une competence des prerequis de la competence
+     * @param prerequis la competence a supprimer des prerequis
+     */
+    public void supprimerPrerequis(Competence prerequis) {
+        if (prerequis == null) {
+            throw new IllegalArgumentException("Le prerequis ne peut pas etre null");
+        }
+        if (!this.prerequis.contains(prerequis)) {
+            throw new IllegalArgumentException("La competence n'est pas un prerequis de cette competence");
+        }
+        this.prerequis.remove(prerequis);
+    }
+
+    /**
+     * Check si une competence est un prerequis de la competence
+     * @param autreCompetence la competence a tester
      */
     public boolean estPrerequis(Competence autreCompetence) {
         return this.prerequis.contains(autreCompetence);
@@ -153,7 +177,7 @@ public class Competence {
      */
     public void setIntitule(String intitule) {
         if(intitule == null || intitule.length() < 2 || intitule.length() > 40) {
-            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 20 caracteres");
+            throw new IllegalArgumentException("L'intitule de la competence doit etre compris entre 2 et 40 caracteres");
         } else {
             this.intitule = intitule;
         }

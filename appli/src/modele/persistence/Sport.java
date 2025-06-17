@@ -27,8 +27,33 @@ public class Sport {
      */
     public Sport(long code, String nom) {
         // On appelle les setters qui contiennent la logique de validation.
-        this.setCode(code);
+        if ( code == 0 || code < 0) {
+            throw new IllegalArgumentException("Le code du sport ne peut pas être négatif ou zéro.");
+        }
+        if (nom == null || nom.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le nom du sport ne peut pas être nul ou vide.");
+        }
+        if (nom.length() > 50) {
+            throw new IllegalArgumentException("Le nom du sport ne peut pas dépasser 50 caractères.");
+        }
+        this.code = code;
         this.setNom(nom);
+    }
+
+    /**
+     * Constructeur sans code
+     * @param nom Le nom complet du sport.
+     * @return Un objet Sport avec un code par défaut -1
+     */
+    public Sport(String nom) {
+        if (nom == null || nom.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le nom du sport ne peut pas être nul ou vide.");
+        }
+        if (nom.length() > 50) {
+            throw new IllegalArgumentException("Le nom du sport ne peut pas dépasser 50 caractères.");
+        }
+        this.code = -1; // Code par défaut
+        this.nom = nom;
     }
 
     // --- Getters ---
@@ -43,7 +68,7 @@ public class Sport {
     // --- Setters avec validation ---
     public final void setCode(long code) {
         if (code == 0 || code < 0) {
-            throw new IllegalArgumentException("Le code du sport ne peut pas dépasser 10 caractères.");
+            throw new IllegalArgumentException("Le code du sport ne peut pas etre null ou zéro.");
         }
         this.code = code;
     }

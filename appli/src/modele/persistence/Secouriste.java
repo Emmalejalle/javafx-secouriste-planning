@@ -34,6 +34,19 @@ public class Secouriste extends User {
         this.disponibilites = new ArrayList<>();
     }
 
+    /**
+     * Constructeur de la classe Secouriste sans ID.
+     * Utilisé pour créer un nouveau secouriste avant l'insertion en base de données.
+     */
+    public Secouriste(String mdp, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+        // Appelle le constructeur de la classe parente sans ID
+        super(mdp, nom, prenom, dateNaissance, email, tel, adresse);
+        
+        // Initialise toujours les listes pour éviter les erreurs
+        this.competences = new ArrayList<>();
+        this.disponibilites = new ArrayList<>();
+    }
+
     // --- Getters et Setters pour les listes (utilisés par le DAO) ---
 
     public ArrayList<Competence> getCompetences() {
