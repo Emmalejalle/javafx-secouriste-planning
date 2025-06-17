@@ -1,11 +1,11 @@
 package modele.DAO;
 
-import modele.persistence.Site;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modele.persistence.Site;
 
 /**
  * DAO concret pour l'entité 'Site'.
@@ -33,8 +33,8 @@ public class SiteDAO extends DAO<Site> {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     site = new Site(
-                        rs.getLong("code"),
-                        rs.getString("nom"),
+                        rs.getLong("codeSite"),
+                        rs.getString("nomSite"),
                         rs.getFloat("longitude"),
                         rs.getFloat("latitude")
                     );
@@ -58,8 +58,8 @@ public class SiteDAO extends DAO<Site> {
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 sites.add(new Site(
-                    rs.getLong("code"),
-                    rs.getString("nom"),
+                    rs.getLong("codeSite"),
+                    rs.getString("nomSite"),
                     rs.getFloat("longitude"),
                     rs.getFloat("latitude")
                 ));

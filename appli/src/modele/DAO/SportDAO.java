@@ -1,11 +1,11 @@
 package modele.DAO;
 
-import modele.persistence.Sport;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modele.persistence.Sport;
 
 /**
  * DAO concret pour l'entité 'Sport'.
@@ -27,8 +27,8 @@ public class SportDAO extends DAO<Sport> {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     sport = new Sport(
-                        rs.getLong("code"),
-                        rs.getString("nom")
+                        rs.getLong("codeSport"),
+                        rs.getString("nomSport")
                     );
                 }
             }
@@ -45,8 +45,8 @@ public class SportDAO extends DAO<Sport> {
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 sports.add(new Sport(
-                    rs.getLong("code"),
-                    rs.getString("nom")
+                    rs.getLong("codeSport"),
+                    rs.getString("nomSport")
                 ));
             }
         }

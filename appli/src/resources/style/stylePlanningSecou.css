@@ -209,3 +209,11 @@
 .dispo-label { -fx-font-size: 18px; -fx-text-fill: white; -fx-text-alignment: center; -fx-wrap-text: true; }
 .dispo-button { -fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 5px; -fx-min-width: 180px; }
 .dispo-button:hover { -fx-background-color: #1e40af; }
+
+
+
+/* Style pour le texte des coéquipiers dans le panneau de droite */
+.dps-coequipier-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}

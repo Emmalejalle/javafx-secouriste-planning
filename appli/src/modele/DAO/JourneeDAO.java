@@ -48,7 +48,7 @@ public class JourneeDAO extends DAO<Journee> {
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 journees.add(new Journee(
-                    rs.getLong("id"),
+                    rs.getLong("idJournee"),
                     rs.getInt("jour"),
                     rs.getInt("mois"),
                     rs.getInt("annee")
