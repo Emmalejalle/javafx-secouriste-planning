@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane prefHeight="876.0" prefWidth="1060.0"  fx:controller="controller.VoirLeProfilDunSecouristeController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane prefHeight="876.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VoirLeProfilDunSecouristeController">
    <content>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="876.0" prefWidth="1040.0" style="-fx-background-color: white;">
          <children>
@@ -22,12 +22,12 @@
                         <Insets left="260.0" />
                      </HBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" styleClass="BlocModifierSupprimer" fx:id="btnModifier" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Modifier le secouriste">
+                        <Button fx:id="btnModifier" mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" styleClass="BlocModifierSupprimer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Modifier le secouriste">
                            <VBox.margin>
                               <Insets bottom="2.0" top="16.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" style="-fx-background-color: DE2424;" fx:id="btnSupprimer" styleClass="BlocModifierSupprimer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Supprimer le secouriste">
+                        <Button fx:id="btnSupprimer" mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" style="-fx-background-color: DE2424;" styleClass="BlocModifierSupprimer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Supprimer le secouriste">
                            <VBox.margin>
                               <Insets top="2.0" />
                            </VBox.margin>
@@ -44,7 +44,7 @@
                      </HBox.margin>
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="ID" />
-                        <TextField fx:id="TextFieldID" promptText="ex : p.david" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <TextField fx:id="TextFieldID" promptText="patrick.david@gmail.com" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -109,20 +109,9 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
                   <VBox prefHeight="77.0" prefWidth="431.0">
-                     <children>
-                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Email" />
-                        <TextField fx:id="TextFieldID2" promptText="patrick.david@gmail.com" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
-                           <styleClass>
-                              <String fx:value="textFieldAttributSecouriste" />
-                              <String fx:value="textfield-modern" />
-                           </styleClass>
-                        </TextField>
-                     </children>
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
-                  </VBox>
-                  <VBox prefHeight="77.0" prefWidth="426.0">
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Téléphone" />
                         <TextField promptText="07 57 23 51 39" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
@@ -132,18 +121,11 @@
                            </styleClass>
                         </TextField>
                      </children>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
                      </HBox.margin>
-                  </VBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="48.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-               <children>
-                  <VBox prefHeight="77.0" prefWidth="431.0">
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Adresse" />
                         <TextField fx:id="TextFieldID21" promptText="6 rue de l'ami 56000 Vannes" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
@@ -153,23 +135,37 @@
                            </styleClass>
                         </TextField>
                      </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
-                  </VBox>
-                  <VBox prefHeight="77.0" prefWidth="426.0">
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Date de naissance" />
-                        <TextField promptText="10/07/1980" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
-                           <styleClass>
-                              <String fx:value="textFieldAttributSecouriste" />
-                              <String fx:value="textfield-modern" />
-                           </styleClass>
-                        </TextField>
+                        <DatePicker promptText="JJ/MM/AAAA">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="8.0" />
+                           </VBox.margin>
+                        </DatePicker>
                      </children>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
                      </HBox.margin>
+                     <children>
+                        <ComboBox prefHeight="39.0" prefWidth="257.0" promptText="Compétences" styleClass="combo-style" stylesheets="@../style/Creation-GestionProfilSecouriste.css" />
+                     </children>
                   </VBox>
                </children>
                <VBox.margin>
@@ -179,30 +175,12 @@
             <HBox prefHeight="104.0" prefWidth="833.0" spacing="40.0">
                <children>
                   <VBox fillWidth="false" prefHeight="72.0" prefWidth="437.0">
-                     <children>
-                        <ComboBox prefHeight="39.0" prefWidth="257.0" promptText="Compétences" styleClass="combo-style" stylesheets="@../style/Creation-GestionProfilSecouriste.css" />
-                     </children>
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
                   </VBox>
                   <VBox prefHeight="104.0" prefWidth="444.0" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="43.0" prefWidth="377.0" style="-fx-font-size: 32; -fx-fit-width: 377; -fx-graphic-text-gap: 65;" styleClass="btnCreer" text="Voir les dipos">
-                           <graphic>
-                              <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" style="-fx-fit-width: 42; -fx-preserve-ratio: true;">
-                                 <image>
-                                    <Image url="@../img/arrowWhite.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets top="1.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets bottom="4.0" />
-                           </VBox.margin>
-                        </Button>
                         <Button alignment="CENTER" contentDisplay="RIGHT" maxHeight="42.0" minHeight="42.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="377.0" style="-fx-font-size: 32; -fx-fit-width: 377; -fx-graphic-text-gap: 30;" styleClass="btnCreer" text="Voir le planning">
                            <graphic>
                               <ImageView fitHeight="75.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" style="-fx-fit-width: 42; -fx-preserve-ratio: true;">
