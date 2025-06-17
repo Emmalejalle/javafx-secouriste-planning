@@ -54,22 +54,22 @@ public class AccueilAdminController {
 
     @FXML
     public void goGererSecouriste(ActionEvent event) {
-        System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
+        System.out.println("Clic sur Modifier-supprimerUneCompétence. Chargement vers Modifier-supprimerUneCompétence.fxml...");
         try {
-            changerDeVue(event, "accueilSecouriste.fxml");
+            changerDeVue(event, "Modifier-supprimerUneCompétence.fxml");
         } catch (IOException e) {
-            System.err.println("ERREUR: Impossible de charger la vue accueilSecouriste.fxml");
+            System.err.println("ERREUR: Impossible de charger la vue Modifier-supprimerUneCompétence.fxml");
             e.printStackTrace();
         }
     }
 
     @FXML
     public void goGererDPS(ActionEvent event) {
-        System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
+        System.out.println("Clic sur Modifier-supprimerUneCompétence. Chargement vers Modifier-supprimerUneCompétence.fxml...");
         try {
-            changerDeVue(event, "accueilSecouriste.fxml");
+            changerDeVue(event, "Modifier-supprimerUneCompétence.fxml");
         } catch (IOException e) {
-            System.err.println("ERREUR: Impossible de charger la vue accueilSecouriste.fxml");
+            System.err.println("ERREUR: Impossible de charger la vue Modifier-supprimerUneCompétence.fxml");
             e.printStackTrace();
         }
     }
