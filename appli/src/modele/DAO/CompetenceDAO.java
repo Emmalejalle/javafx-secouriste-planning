@@ -295,22 +295,57 @@ public class CompetenceDAO extends DAO<Competence> {
     }
 
     /**
-     * Met à jour une compétence dans la base de données.
-     * @param obj L'objet Competence à mettre à jour.
-     * @return Le nombre de lignes affectées par la mise à jour.
-     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     * Met à jour une compétence et ses prérequis de manière sécurisée.
+     * @param obj L'objet Competence contenant les nouvelles informations.
+     * @return 1 en cas de succès, 0 sinon.
+     * @throws SQLException En cas d'erreur de base de données.
      */
     @Override
     public int update(Competence obj) throws SQLException {
-        int rowsAffected = 0;
-        
-        //On delete la competence avant de la mettre à jour
-        delete(obj);
+        try {
+            // Début de la transaction pour garantir que toutes les opérations réussissent
+            this.connect.setAutoCommit(false);
 
-        // On prépare créer
-        create(obj);
-        
-        return rowsAffected;
+            // Étape 1 : Mettre à jour les informations de base de la compétence
+            // On utilise UPDATE pour ne pas changer l'ID de la compétence.
+            String sqlComp = "UPDATE Competence SET intitule = ?, abreviationIntitule = ? WHERE idComp = ?";
+            try (PreparedStatement st = this.connect.prepareStatement(sqlComp)) {
+                st.setString(1, obj.getIntitule());
+                st.setString(2, obj.getAbrevComp());
+                st.setLong(3, obj.getIdComp());
+                st.executeUpdate();
+            }
+
+            // Étape 2 : Supprimer tous les anciens liens de prérequis pour cette compétence
+            String sqlDeleteLinks = "DELETE FROM PrerequisComp WHERE idCompPre = ?";
+            try (PreparedStatement st = this.connect.prepareStatement(sqlDeleteLinks)) {
+                st.setLong(1, obj.getIdComp());
+                st.executeUpdate();
+            }
+
+            // Étape 3 : Insérer les nouveaux liens de prérequis
+            String sqlInsertLinks = "INSERT INTO PrerequisComp (idCompPre, idPrerequis) VALUES (?, ?)";
+            try (PreparedStatement st = this.connect.prepareStatement(sqlInsertLinks)) {
+                for (Competence prerequis : obj.getPrerequis()) {
+                    st.setLong(1, obj.getIdComp());
+                    st.setLong(2, prerequis.getIdComp());
+                    st.addBatch();
+                }
+                st.executeBatch();
+            }
+            
+            // Si tout s'est bien passé, on valide la transaction
+            this.connect.commit();
+            return 1;
+
+        } catch (SQLException e) {
+            // En cas d'erreur, on annule tout ce qui a été fait
+            this.connect.rollback();
+            throw e; // On propage l'erreur
+        } finally {
+            // On réactive le mode par défaut
+            this.connect.setAutoCommit(true);
+        }
     }
 
     @Override
