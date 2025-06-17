@@ -36,7 +36,7 @@ public class Glouton2 {
             int[] degreSortant = new int[n]; 
             int[] degreEntrant = new int[n]; 
 
-            // Calcul des degrés
+            // Calcul des degrés sortant entrant
             for (int i = 0; i < n; i++) {
                 for (int j = n; j < total; j++) { 
                     if (tabAffect[i][j] == 1) {
@@ -49,7 +49,7 @@ public class Glouton2 {
 
             boolean[] tacheAffectee = new boolean[n];
             boolean[] secouristeAffecte = new boolean[n];
-            // Affectation
+            // Affectation des taches et des secouristes 
             for (int count = 0; count < n; count++) {
                 int minDegTache = Integer.MAX_VALUE;
                 int minTache = -1;
@@ -63,7 +63,7 @@ public class Glouton2 {
 
                 int minDegSecouriste = Integer.MAX_VALUE;
                 int minSecouriste = -1;
-                // Selection du secouriste
+                // Selection du secouriste a affecter
                 if (minTache != -1) {
                     for (int j = 0; j < n; j++) {
                         if (!secouristeAffecte[j] && tabAffect[minTache][j + n] == 1 && degreEntrant[j] < minDegSecouriste) {
@@ -72,7 +72,7 @@ public class Glouton2 {
                         }
                     }
                 }
-                // Affectation
+                // Affectation des taches et des secouristes
                 if (minTache != -1 && minSecouriste != -1) {
                     this.affectation.put("Tache " + (minTache + 1), "Secouriste " + (minSecouriste + 1));
                     tacheAffectee[minTache] = true;
