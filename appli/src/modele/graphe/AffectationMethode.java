@@ -67,7 +67,7 @@ public class AffectationMethode {
         System.out.println("Affectation par Algo Glouton Naif :");
         System.out.println(map.toString());
 
-        HashMap<String, String> affectation = adjacence.affecter(adj);
+        HashMap<String, String> affectation = adjacence.affecterGlouton(adj);
 
         System.out.println("Affectation par Algo Glouton  2.0 :");
         System.out.println(affectation.toString());
@@ -138,7 +138,7 @@ public class AffectationMethode {
     }
 
 
-    public HashMap<String,String> affecter(int[][] tabAffect) {
+    public HashMap<String,String> affecterGlouton(int[][] tabAffect) {
         int total = tabAffect.length;
         int n = total / 2; 
         int[] degreSortant = new int[n]; 

@@ -195,8 +195,8 @@ INSERT INTO PrerequisComp (idCompPre, idPrerequis) VALUES
 -- INSERT DE LA TABLE USER :
 -- Administrateurs
 INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
-(11112222, 'admin123', 'Durand', 'Claire', '1980-06-12', 'claire.durand@example.com', '06-12-34-56-78', '12 rue des Lilas, Paris', 1),
-(11113333, 'admin456', 'Martin', 'Jean', '1978-11-03', 'jean.martin@example.com', '06-23-45-67-89', '18 avenue Victor Hugo, Lyon', 1);
+(11112222, 'admin123', 'Durand', 'Claire', '12/06/1980', 'claire.durand@example.com', '06-12-34-56-78', '12 rue des Lilas, Paris', 1),
+(11113333, 'admin456', 'Martin', 'Jean', '03/11/1978', 'jean.martin@example.com', '06-23-45-67-89', '18 avenue Victor Hugo, Lyon', 1);
 
 -- Secouristes
 INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
