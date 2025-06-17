@@ -1,89 +1,80 @@
 package modele.persistence;
-import java.lang.reflect.Array;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 /**
- * la classe secouriste qui à pour base User
- * @author Elie Tardy
- * @version 1.0
+ * Représente un utilisateur de type secouriste.
+ * Hérite de User et contiendra ses compétences et disponibilités.
+ * @author Elie Tardy et Emilien EMERIAU
+ * @version 2.1
  */
 public class Secouriste extends User {
     
     /**
-     * Liste des disponibilités
+     * Liste des compétences du secouriste.
+     * Cette liste sera chargée par le UserDAO.
      */
-    private ArrayList<Journee> disponibilites = new ArrayList<Journee>();
+    private ArrayList<Competence> competences;
+
+    /**
+     * Liste des journées où le secouriste est disponible.
+     * Cette liste sera chargée par le UserDAO.
+     */
+    private ArrayList<Journee> disponibilites;
     
     /**
-     * le constructeur
-     * @param id l'id
-     * @param mdp le mot de passe
-     * @param nom le nom
-     * @param prenom le prenom
-     * @param dateNaissance la date de naissance
-     * @param email l'email
-     * @param tel le tel
-     * @param adresse l'adresse
+     * Constructeur de la classe Secouriste.
      */
-    public Secouriste(long id, String mdp, String nom, String prenom, LocalDate dateNaissance, String email, String tel, String adresse) {
+    public Secouriste(long id, String mdp, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) {
+        // Appelle le constructeur de la classe parente
         super(id, mdp, nom, prenom, dateNaissance, email, tel, adresse);
         
+        // Initialise toujours les listes pour éviter les erreurs
+        this.competences = new ArrayList<>();
+        this.disponibilites = new ArrayList<>();
     }
 
-    /**
-     * Ajoute une disponibilité à un secouriste pour une journee sauf si la disponibilité existe deja alors message d'erreur
-     * @param journee la journee ajouter
-     * @throws IllegalArgumentException si la disponibilité existe deja ou est null
-     */
-    public void ajouterDisponibiliter(Journee journee) {
-        if(journee == null) {
-            throw new IllegalArgumentException("La disponibilité est null");
-        } else if (disponibilites.contains(journee)) {
-            throw new IllegalArgumentException("La disponibilité existe deja");
-        } else {
-            disponibilites.add(journee);
-        }   
+    // --- Getters et Setters pour les listes (utilisés par le DAO) ---
 
+    public ArrayList<Competence> getCompetences() {
+        return this.competences;
     }
 
-
-    
-    /**
-     * Retire une disponibilité à un secouriste pour une journee sauf si la disponibilité existe deja alors message d'erreur
-     * @param journee la journee ajouter
-     * @throws IllegalArgumentException si la disponibilité existe deja ou est null
-     */
-    public void retirerDisponibiliter(Journee journee) {
-        if(journee == null) {
-            throw new IllegalArgumentException("La disponibilité est null");
-        } else if (disponibilites.contains(journee)) {
-            disponibilites.remove(journee);
-        } else {
-            throw new IllegalArgumentException("La disponibilité n'existe pas");
-        }   
-
+    public void setCompetences(ArrayList<Competence> competences) {
+        this.competences = competences;
     }
 
+    public ArrayList<Journee> getDisponibilites() {
+        return this.disponibilites;
+    }
+
+    public void setDisponibilites(ArrayList<Journee> disponibilites) {
+        this.disponibilites = disponibilites;
+    }
+
+    // --- Méthodes de traitement spécifiques au secouriste ---
 
     /**
-     * Vérifie si un secouriste est disponible pour une journée donnée.
-     * @param journee la journée à vérifier
-     * @return true si le secouriste est disponible pour la journée, false sinon
+     * Vérifie si le secouriste est disponible pour une journée donnée.
+     * @param journee la journée à vérifier.
+     * @return true si le secouriste est disponible ce jour-là, false sinon.
      */
     public boolean estDisponible(Journee journee) {
-        boolean ret;
-        if(disponibilites.contains(journee)) {
-            ret = true;
-        } else {
-            ret = false;
+        if (journee == null) {
+            return false;
         }
-        return ret;
+        return this.disponibilites.contains(journee);
     }
 
-    
-
-
-
-    
+    /**
+     * Vérifie si le secouriste possède une compétence spécifique.
+     * @param competence la compétence à vérifier.
+     * @return true si le secouriste possède la compétence, false sinon.
+     */
+    public boolean possedeCompetence(Competence competence) {
+        if (competence == null) {
+            return false;
+        }
+        return this.competences.contains(competence);
+    }
 }

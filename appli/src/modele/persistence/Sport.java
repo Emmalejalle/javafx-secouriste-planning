@@ -4,6 +4,9 @@ package modele.persistence;
  * La classe Sport représente une discipline sportive.
  * C'est un objet de persistance simple (POJO).
  * La logique de récupération des DPS ou des sites associés est gérée par les DAOs.
+ * 
+ * @author Emilien EMERIAU et Elie Tardy
+ * @version 1.0
  */
 public class Sport {
 

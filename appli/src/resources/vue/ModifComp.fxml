@@ -38,6 +38,14 @@
                   <Insets left="20.0" top="40.0" />
                </VBox.margin>
             </HBox>
+            <Label prefHeight="68.0" prefWidth="980.0" text="ATTENTION : La modification d'un élément déjà affecté est impossible" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Label>
             <HBox prefHeight="152.0" prefWidth="992.0" spacing="40.0">
                <children>
                   <VBox prefHeight="159.0" prefWidth="430.0">

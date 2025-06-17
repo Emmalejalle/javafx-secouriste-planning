@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/AjouterUnDPS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="pCreationAjouterSecouriste" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="56.0" prefWidth="259.0" stylesheets="@../style/ListeRechercheSecouri.css" text="Ajouter un DPS" textAlignment="CENTER" translateX="1024.0">
+               <VBox.margin>
+                  <Insets bottom="55.0" right="40.0" top="30.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="BlocBleuAjouterSecouriste" />
+                  <String fx:value="nomPrenomSecouriste" />
+               </styleClass>
+               <padding>
+                  <Insets top="1.0" />
+               </padding>
+            </Button>
+            <StackPane prefHeight="876.0" stylesheets="@../style/ListeRechercheSecouri.css">
+               <VBox.margin>
+                  <Insets left="100.0" right="300.0" top="10.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="scrollContour" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+   			   <!-- fx:include ici -->
+   			   <!--<fx:include source="CreationProfilSecouriste.fxml" />-->
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <VBox>
+         <children>
+            <HBox prefHeight="43.0" prefWidth="395.0" styleClass="BarDeRechercheSecouriste">
+               <children>
+                  <ImageView fx:id="LogoRechercherEntry" fitHeight="33.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/loupeRecherche.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="8.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="RechercheSecouristeTextFil" alignment="CENTER" prefHeight="20.0" prefWidth="309.0" promptText="Rechercher un DPS" styleClass="BarDeRechercheSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="55.0" top="30.0" />
+               </VBox.margin>
+               <stylesheets>
+                  <URL value="@../style/AjouterUnDPS.css" />
+                  <URL value="@../style/ListeRechercheSecouri.css" />
+               </stylesheets>
+            </HBox>
+            <StackPane prefHeight="791.0" styleClass="shadow" stylesheets="@../style/ListeRechercheSecouri.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane id="RechercheSecouristeScroller" fx:id="ScrollPaneRechercheSecou" fitToWidth="true" prefHeight="791.0" prefWidth="413.0" styleClass="scrollContour" stylesheets="@../style/ListeRechercheSecouri.css">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="409.0" style="-fx-background-color: white;">
+                           <children>
+                              <HBox id="SecouristePatrickDavidou" prefHeight="76.0" prefWidth="286.0" spacing="5.0" styleClass="blocBleuSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox id="HBoxNomPrenomSecouriste" prefHeight="21.0" prefWidth="258.0" stylesheets="@../style/AjouterUnDPS.css">
+                                       <children>
+                                          <Label id="PrenomSecouriste" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="250.0" styleClass="jsp" stylesheets="@../style/AjouterUnDPS.css" text="Ski Alpin" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets left="8.0" right="8.0" />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets top="8.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <CheckBox mnemonicParsing="false" styleClass="color-checkbox" stylesheets="@../style/AjouterUnDPS.css">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" left="30.0" right="60.0" top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="30.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="4.0" top="-3.0" />
+               </padding>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #F97316;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="16.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>

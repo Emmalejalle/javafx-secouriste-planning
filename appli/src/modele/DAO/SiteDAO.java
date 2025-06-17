@@ -11,6 +11,9 @@ import java.util.ArrayList;
  * DAO concret pour l'entité 'Site'.
  * Implémente les opérations CRUD pour les objets Site.
  * La clé primaire 'code' n'étant pas auto-générée, la méthode create est directe.
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
  */
 public class SiteDAO extends DAO<Site> {
 

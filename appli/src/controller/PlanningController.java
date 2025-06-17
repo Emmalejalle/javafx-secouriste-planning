@@ -98,6 +98,8 @@ public class PlanningController {
         // --- 3. Mettre à jour le petit calendrier ---
         YearMonth anneeMoisEnCours = YearMonth.from(dateActuelle);
 
+
+
         // a) On efface les anciens numéros (on garde les en-têtes "lun", "mar"...)
         // La condition "if" est une sécurité si jamais l'fx:id n'est pas trouvé.
         if (calendarGrid != null) {
@@ -115,9 +117,9 @@ public class PlanningController {
             labelJour.getStyleClass().add("calendar-day-number");
 
             // Si le jour qu'on dessine est le jour de 'dateActuelle', on le surligne en orange
-            if (jour == dateActuelle.getDayOfMonth() && anneeMoisEnCours.equals(YearMonth.from(dateActuelle))) {
+            if (anneeMoisEnCours.equals(YearMonth.from(dateActuelle)) && jour == dateActuelle.getDayOfMonth()) {
                 labelJour.getStyleClass().add("calendar-day-selected");
-            }
+}
 
             // On calcule la bonne case (colonne, ligne) dans la grille
             int col = (jour - 1 + decalageJourSemaine) % 7;
@@ -129,10 +131,6 @@ public class PlanningController {
         }
     }
     
-
-    // =================================================================================
-    // ===        GESTIONNAIRES D'ÉVÉNEMENTS (Maintenant tous présents)              ===
-    // =================================================================================
 
     @FXML
     void onPreviousMonth(ActionEvent event) {

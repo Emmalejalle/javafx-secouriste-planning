@@ -11,6 +11,9 @@ import java.util.ArrayList;
  * DAO concret pour l'entité 'Journee'.
  * Gère les opérations CRUD pour les objets Journee en utilisant des colonnes
  * séparées pour le jour, le mois et l'année.
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
  */
 public class JourneeDAO extends DAO<Journee> {
 

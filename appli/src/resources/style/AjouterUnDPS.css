@@ -9,14 +9,15 @@
 	-fx-background-color: transparent;
 }
 
-.texteBoxFondFoncé {
+.jsp {	/*Le nom TexteFondFoncé n'est pas accépté*/
 	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
 	-fx-text-fill: #FFFFFF;
-	-fx-font-size: 16;
+	-fx-font-size: 36;
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 2, 2);
+	-fx-font-weight: bold;
 }
 
-.FichePersonelle {
+.TitreSousPage {
 	-fx-font-family: 'Poppins', sans-serif;
 	-fx-text-fill: black;
 	-fx-font-size: 40;
@@ -104,8 +105,6 @@
     -fx-shape: "M-1.0,5.0 L4.0,9.0 L9.0,-1.0";
 }
 */
-
-
 .larger-checkbox .mark {
 	-fx-stroke-color: #1E3A8A;
 	/*
@@ -113,7 +112,21 @@
     -fx-scale-shape: true;
     */
 }
-
+.color-checkbox .box {
+	-fx-border-radius: 10;
+    -fx-pref-width: 41;
+    -fx-pref-height: 41;
+    -fx-background-color: transparent;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 3.5;
+}
+.color-checkbox .mark {
+	-fx-stroke-color: #FFFFFF;
+	/*
+    -fx-stroke-width: 2;
+    -fx-scale-shape: true;
+    */
+}
 
 .combo-box.combo-style {
     -fx-background-color: transparent;

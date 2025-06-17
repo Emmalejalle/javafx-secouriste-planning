@@ -17,7 +17,7 @@ CREATE TABLE User (
     mdpUser VARCHAR(20),
     nomUser VARCHAR(20),
     prenomUser VARCHAR(20),
-    dateNaissance DATE,
+    dateNaissance VARCHAR(20),
     emailUser VARCHAR(50),
     telUser VARCHAR(15),
     adresseUser VARCHAR(50),

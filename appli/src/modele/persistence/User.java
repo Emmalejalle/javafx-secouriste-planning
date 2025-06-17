@@ -1,13 +1,12 @@
 package modele.persistence;
-import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 /**
  * La classe User est la base sur laquelle s'appui les secouristes et les administrateurs.
- * @author Elie Tardy
- * @version 1.0
+ * @author Elie Tardy et Emilien EMERIAU
+ * @version 2.0
  */
 public abstract class User {
 
@@ -34,7 +33,7 @@ public abstract class User {
     /**
      * la date de naissance
      */
-    private LocalDate dateNaissance;
+    private String dateNaissance;
 
     /**
      * l'email
@@ -63,7 +62,7 @@ public abstract class User {
      * @param adresse l'adresse
      * @throws IllegalArgumentException si l'id, le mot de passe, le nom, le prénom, la date de naissance, l'email, le tel ou l'adresse sont null
      */
-    public User(long id, String mdp, String nom, String prenom, LocalDate dateNaissance, String email, String tel, String adresse) throws IllegalArgumentException {
+    public User(long id, String mdp, String nom, String prenom, String dateNaissance, String email, String tel, String adresse) throws IllegalArgumentException {
         if (id < 0) {
             throw new IllegalArgumentException("L'id de l'utilisateur ne peut pas être négatif");
         } else {
@@ -103,10 +102,7 @@ public abstract class User {
         
         if (tel == null) {
             throw new IllegalArgumentException("Le téléphone de l'utilisateur ne peut pas être null");
-        } else if (tel == null || tel.length() != 15 || !tel.matches("[0-9]+") || !tel.startsWith("0")) {
-            throw new IllegalArgumentException("Le téléphone de l'utilisateur doit avoir 10 chiffres");
-        
-        }else {
+        } else {
             this.tel = tel;
         }
         
@@ -159,8 +155,8 @@ public abstract class User {
      * le guetter de la date de naissance
      * @return la date de naissance de l'utilisateur
      */
-    public LocalDate getDateNaissance() {
-        LocalDate ret = this.dateNaissance;
+    public String getDateNaissance() {
+        String ret = this.dateNaissance;
         return ret;
     }
 
@@ -248,7 +244,7 @@ public abstract class User {
      * @param dateNaissance la date de naissance de l'utilisateur
      * @throws IllegalArgumentException si la date de naissance est null
      */
-    public void setDateNaissance(LocalDate dateNaissance) throws IllegalArgumentException {
+    public void setDateNaissance(String dateNaissance) throws IllegalArgumentException {
         if (dateNaissance == null) {
             throw new IllegalArgumentException("La date de naissance de l'utilisateur ne peut pas être null");
         } else {
@@ -276,7 +272,7 @@ public abstract class User {
      * @throws IllegalArgumentException si le tel est null
      */
     public void setTel(String tel) throws IllegalArgumentException {
-        if (tel == null || tel.length() != 15 || !tel.matches("[0-9]+") || !tel.startsWith("0")) {
+        if (tel == null) {
             throw new IllegalArgumentException("Le tel de l'utilisateur ne peut pas être null");
         } else {
             this.tel = tel;
@@ -316,8 +312,7 @@ public abstract class User {
 
 
     // Regex 
-    private static final String EMAIL_REGEX =
-    "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
     private static final Pattern pattern = Pattern.compile(EMAIL_REGEX);
 

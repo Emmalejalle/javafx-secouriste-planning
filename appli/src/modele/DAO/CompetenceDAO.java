@@ -2,15 +2,22 @@ package modele.DAO;
 
 import modele.persistence.Competence;
 
-import java.lang.reflect.Array;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeMap;
 
+/**
+ * DAO concret pour l'entité 'Competence'.
+ * Implémente les opérations CRUD pour les objets Competence.
+ * La clé primaire 'idComp' n'étant pas auto-générée, la méthode create est directe.
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
+ */
 public class CompetenceDAO extends DAO<Competence> {
 
     /*
