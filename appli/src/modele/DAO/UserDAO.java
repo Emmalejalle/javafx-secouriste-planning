@@ -63,6 +63,34 @@ public class UserDAO extends DAO<User> {
         }
         return userList;
     }
+
+    /**
+     * NOUVELLE MÉTHODE : Récupère la liste de tous les secouristes disponibles pour une journée donnée.
+     * @param journeeId L'identifiant de la journée pour laquelle on veut les secouristes.
+     * @return Un ArrayList d'objets User (qui seront tous des Secouristes).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    public ArrayList<User> findAvailableUsersForJournee(long journeeId) throws SQLException {
+        ArrayList<User> userList = new ArrayList<>();
+        // Jointure entre la table User et la table de disponibilité 'Dispo'
+        String sql = "SELECT u.* FROM User u JOIN Dispo d ON u.idUser = d.idSecouriste WHERE d.idJourneeDispo = ?";
+        
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, journeeId);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    User user = mapResultSetToUser(rs);
+                    // On charge les autres informations pour avoir un objet complet.
+                    if (user instanceof Secouriste) {
+                        loadCompetencesFor((Secouriste) user);
+                        loadDisponibilitesFor((Secouriste) user);
+                    }
+                    userList.add(user);
+                }
+            }
+        }
+        return userList;
+    }
     
     /**
      * Crée un utilisateur (Admin ou Secouriste) et ses relations associées.
@@ -188,14 +216,15 @@ public class UserDAO extends DAO<User> {
     private void clearAllLinksForSecouriste(long secouristeId) throws SQLException {
         try (Statement st = this.connect.createStatement()) {
             // Note: Adaptez les noms des tables de jointure si nécessaire
-            st.addBatch("DELETE FROM Possede WHERE idSecouriste = " + secouristeId);
-            st.addBatch("DELETE FROM EstDisponible WHERE idSecouriste = " + secouristeId);
+            st.addBatch("DELETE FROM ListCompSecouriste WHERE idSecouCompList = " + secouristeId);
+            st.addBatch("DELETE FROM Dispo WHERE idSecouriste = " + secouristeId);
+            st.addBatch("DELETE FROM Affectation WHERE idSecouAffect = " + secouristeId);
             st.executeBatch();
         }
     }
 
     private void updateCompetencesFor(Secouriste secouriste) throws SQLException {
-        String sql = "INSERT INTO Possede (idSecouriste, idCompetence) VALUES (?, ?)";
+        String sql = "INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (?, ?)";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             for (Competence comp : secouriste.getCompetences()) {
                 st.setLong(1, secouriste.getId());
@@ -207,7 +236,7 @@ public class UserDAO extends DAO<User> {
     }
 
     private void updateDisponibilitesFor(Secouriste secouriste) throws SQLException {
-        String sql = "INSERT INTO EstDisponible (idSecouriste, idJournee) VALUES (?, ?)";
+        String sql = "INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES (?, ?)";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             for (Journee jour : secouriste.getDisponibilites()) {
                 st.setLong(1, secouriste.getId());
@@ -219,26 +248,26 @@ public class UserDAO extends DAO<User> {
     }
 
     public void loadCompetencesFor(Secouriste secouriste) throws SQLException {
-        String sql = "SELECT idCompetence FROM Possede WHERE idSecouriste = ?";
+        String sql = "SELECT idCompList FROM ListCompSecouriste WHERE idSecouCompList = ?";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, secouriste.getId());
             ResultSet rs = st.executeQuery();
             ArrayList<Competence> competences = new ArrayList<>();
             while(rs.next()) {
-                competences.add(competenceDAO.findByID(rs.getLong("idCompetence")));
+                competences.add(competenceDAO.findByID(rs.getLong("idCompList")));
             }
             secouriste.setCompetences(competences);
         }
     }
 
     public void loadDisponibilitesFor(Secouriste secouriste) throws SQLException {
-        String sql = "SELECT idJournee FROM EstDisponible WHERE idSecouriste = ?";
+        String sql = "SELECT idJourneeDispo FROM Dispo WHERE idSecouriste = ?";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, secouriste.getId());
             ResultSet rs = st.executeQuery();
             ArrayList<Journee> disponibilites = new ArrayList<>();
             while(rs.next()) {
-                disponibilites.add(journeeDAO.findByID(rs.getLong("idJournee")));
+                disponibilites.add(journeeDAO.findByID(rs.getLong("idJourneeDispo")));
             }
             secouriste.setDisponibilites(disponibilites);
         }
