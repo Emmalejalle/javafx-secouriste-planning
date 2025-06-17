@@ -69,7 +69,7 @@ public abstract class User {
             this.id = id;
         }
         
-        if (mdp == null || mdp.length() < 8 || mdp.length() > 20) {
+        if (mdp == null || mdp.length() < 1 || mdp.length() > 20) {
             throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide");
         } else {
             this.mdp = mdp;
@@ -206,7 +206,7 @@ public abstract class User {
      * @throws IllegalArgumentException si le mot de passe est null
      */
     public void setMdp(String mdp) throws IllegalArgumentException {
-        if (mdp == null || mdp.length() < 8 || mdp.length() > 20) {
+        if (mdp == null || mdp.length() < 1 || mdp.length() > 20) {
             throw new IllegalArgumentException("Le mot de passe de l'utilisateur est invalide");
         } else {
             this.mdp = mdp;

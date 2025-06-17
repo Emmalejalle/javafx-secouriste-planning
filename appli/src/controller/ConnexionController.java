@@ -44,6 +44,9 @@ public class ConnexionController extends BaseController {
         }
         try {
             List<User> users = userDAO.findAll();
+            for(  User user : users) {
+                System.out.println("Utilisateur trouvé : " + user.getEmail());
+            }
             User userTrouve = users.stream()
                 .filter(user -> user.getEmail().equals(email) && user.getMdp().equals(mdp))
                 .findFirst()

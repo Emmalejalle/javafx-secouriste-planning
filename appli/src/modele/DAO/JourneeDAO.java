@@ -1,11 +1,11 @@
 package modele.DAO;
 
-import modele.persistence.Journee;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modele.persistence.Journee;
 
 /**
  * DAO concret pour l'entité 'Journee'.
@@ -27,7 +27,7 @@ public class JourneeDAO extends DAO<Journee> {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     journee = new Journee(
-                        rs.getLong("id"),
+                        rs.getLong("idJournee"),
                         rs.getInt("jour"),
                         rs.getInt("mois"),
                         rs.getInt("annee")
