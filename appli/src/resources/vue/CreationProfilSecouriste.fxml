@@ -22,7 +22,7 @@
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
                      <children>
-                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="EMAIL" />
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Email" />
                         <TextField fx:id="TextFieldID2" promptText="patrick.david@gmail.com" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
@@ -128,12 +128,11 @@
                      </HBox.margin>
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Date de naissance" />
-                        <TextField promptText="10/07/1980" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
-                           <styleClass>
-                              <String fx:value="textFieldAttributSecouriste" />
-                              <String fx:value="textfield-modern" />
-                           </styleClass>
-                        </TextField>
+                        <DatePicker promptText="JJ/MM/AAAA">
+                           <VBox.margin>
+                              <Insets left="8.0" />
+                           </VBox.margin>
+                        </DatePicker>
                      </children>
                   </VBox>
                   <HBox prefHeight="104.0" prefWidth="833.0" spacing="40.0">
