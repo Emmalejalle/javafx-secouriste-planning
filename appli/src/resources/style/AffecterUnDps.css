@@ -67,4 +67,14 @@ HBox {
     -fx-background-radius: 30;
     -fx-border-radius: 30;
   }
+
+   /* Bouton "Retour" */
+   .back-button {
+    -fx-background-color: #1e3a8a;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+  }
   
