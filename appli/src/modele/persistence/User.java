@@ -369,7 +369,7 @@ public abstract class User {
     /**
      * Regex pour valider l'email
      */
-    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9.-]+$";
 
     /**
      * Pattern pour valider l'email
