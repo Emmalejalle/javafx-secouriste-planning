@@ -52,8 +52,6 @@ public class CompetenceManagement {
         return true; 
     }
 
-        
-
     public boolean modifierCompetence(Competence competence, String intitule, String abrev, List<Competence> prerequis) throws SQLException {
         // on garde en memoire les anciens parametre de la competence si jamais l'update provoque un DAG
         String ancienIntitule = competence.getIntitule();
