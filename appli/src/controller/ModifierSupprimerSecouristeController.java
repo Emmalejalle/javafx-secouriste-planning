@@ -11,16 +11,45 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class ModifierSupprimerSecouristeController
     implements VoirLeProfilDunSecouristeController.Delegate {
 
     @FXML private Button btnAjouterSecouriste;
     @FXML private VBox   vboxListeProfils;    // conteneur des vignettes bleues
-    @FXML private StackPane contentPane;       // zone blanche centrale
+    @FXML private StackPane contentPane;  
+    @FXML private BorderPane rootPane;
+    @FXML private Pane       headerPlaceholder;     // zone blanche centrale
 
     @FXML
     public void initialize() {
+        try {
+            // Charge le header commun
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/vue/PatronHeaderAdmin.fxml")
+            );
+            HBox header = loader.load();
+            // Récupère son controller pour lui donner un titre
+            PatronHeaderAdminController hdrCtrl = loader.getController();
+            hdrCtrl.setTitre("Gestion des Secouristes");
+            // Remplace la placeholder par le header réel
+            rootPane.setTop(header);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // clic sur "Ajouter un secouriste" → formulaire de création
         btnAjouterSecouriste.setOnAction(evt -> {
             chargerVue("/vue/CreationProfilSecouriste.fxml");

@@ -1,78 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../style/GererCompetences.css" fx:controller="controller.GererCompetencesController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
-               <children>
-                  <Button fx:id="AjouterComp" mnemonicParsing="false" onAction="#onAjouterCompetenceClicked" styleClass="button-primary" text="Ajouter une compétence" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="20.0" right="20.0" top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <BorderPane fx:id="detailsPane" prefHeight="732.0" >
-               <styleClass>
-                  <String fx:value="scrollContour" />
-                  <String fx:value="shadow" />
-               </styleClass>
-               <VBox.margin> <Insets left="100.0" right="300.0" top="10.0" />
-               </VBox.margin>
-            </BorderPane>
-         </children>
-      </VBox>
-   </center>
-   <top>
-      <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </top>
+<BorderPane fx:id="rootPane"
+            prefHeight="1080.0" prefWidth="1920.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../style/GererCompetences.css"
+            fx:controller="controller.GererCompetencesController">
 
-   <left>
-    <VBox prefWidth="450.0" spacing="20.0">
+    <!-- 1) TOP : on inclut le header via fx:include -->
+    <top>
+      <fx:include source="PatronHeaderAdmin.fxml"/>
+    </top>
+
+    <!-- 2) LEFT : ta liste de recherches -->
+    <left>
+      <VBox prefWidth="450.0" spacing="20.0">
         <padding>
-            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+          <Insets bottom="10.0" left="20.0" right="10.0" top="20.0"/>
         </padding>
         <children>
+          <!-- barre de recherche -->
+          <HBox alignment="CENTER" prefHeight="45.0" styleClass="BarDeRechercheSecouriste">
+            <padding><Insets left="10.0"/></padding>
+            <children>
+              <ImageView fx:id="LogoRechercherComp"
+                         fitHeight="24.0" fitWidth="24.0"
+                         pickOnBounds="true" preserveRatio="true">
+                <image><Image url="@../img/loupeRecherche.png"/></image>
+              </ImageView>
+              <TextField fx:id="RechercheCompTextField"
+                         promptText="Rechercher une compétence"
+                         style="-fx-background-color: transparent;"
+                         HBox.hgrow="ALWAYS"
+                         prefHeight="45.0"/>
+            </children>
+          </HBox>
 
-            <HBox alignment="CENTER" prefHeight="45.0" styleClass="BarDeRechercheSecouriste">
-                <children>
-                    <ImageView fx:id="LogoRechercherComp" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../img/loupeRecherche.png" />
-                        </image>
-                    </ImageView>
-                    <TextField fx:id="RechercheCompTextField" prefHeight="45.0" promptText="Rechercher une compétence" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
-                </children>
-                <padding>
-                    <Insets left="10.0" />
-                </padding>
-            </HBox>
+          <!-- scroll liste -->
+          <ScrollPane fx:id="ScrollPaneRechercheSecou"
+                      fitToWidth="true"
+                      styleClass="scrollContour"
+                      VBox.vgrow="ALWAYS">
+            <content>
+              <VBox fx:id="vboxListeCompetences"
+                    style="-fx-background-color: white;"/>
+            </content>
+          </ScrollPane>
 
-            <ScrollPane fx:id="ScrollPaneRechercheSecou" fitToWidth="true" styleClass="scrollContour" VBox.vgrow="ALWAYS">
-                <content>
-                    <VBox fx:id="vboxListeCompetences" style="-fx-background-color: white;" />
-                </content>
-            </ScrollPane>
+          <Region VBox.vgrow="ALWAYS"/>
 
-            <Region VBox.vgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                
-                   <Button fx:id="btnRetour" onAction="#onRetourClicked" text="← Retour" styleClass="button-retour" prefWidth="130" prefHeight="48" />
-            </HBox>
-
+          <!-- bouton retour -->
+          <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+            <Button fx:id="btnRetour"
+                    onAction="#onRetourClicked"
+                    styleClass="button-retour"
+                    text="← Retour"
+                    prefWidth="130" prefHeight="48"/>
+          </HBox>
         </children>
-    </VBox>
-</left>
-   
-   
+      </VBox>
+    </left>
 
+    <!-- 3) CENTER : ton contenu principal -->
+    <center>
+      <VBox spacing="20.0" alignment="TOP_CENTER">
+        <padding><Insets top="20" right="20" left="20"/></padding>
 
+        <!-- bouton ajouter -->
+        <HBox alignment="CENTER_RIGHT">
+          <Button fx:id="AjouterComp"
+                  onAction="#onAjouterCompetenceClicked"
+                  styleClass="button-primary"
+                  text="Ajouter une compétence"/>
+        </HBox>
+
+        <!-- panel de détails / formulaire -->
+        <BorderPane fx:id="detailsPane"
+                    styleClass="scrollContour shadow"
+                    prefHeight="732.0">
+          <VBox.margin><Insets left="100" right="300" top="10"/></VBox.margin>
+        </BorderPane>
+      </VBox>
+    </center>
 </BorderPane>

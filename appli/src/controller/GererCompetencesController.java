@@ -26,6 +26,7 @@ public class GererCompetencesController extends BaseController {
     @FXML private TextField RechercheCompTextField;
     @FXML private VBox vboxListeCompetences;
     @FXML private BorderPane detailsPane;
+    @FXML private BorderPane rootPane;   
     
     // --- Logique interne ---
     private CompetenceManagement competenceMngt;
@@ -38,6 +39,19 @@ public class GererCompetencesController extends BaseController {
 
     @FXML
     public void initialize() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/vue/PatronHeaderAdmin.fxml")
+            );
+            HBox header = loader.load();
+            PatronHeaderAdminController hdr = loader.getController();
+            hdr.setTitre("Gestion des compétences");
+            rootPane.setTop(header);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         chargerEtAfficherCompetences();
         configurerRecherche();
         afficherMessageAccueil();

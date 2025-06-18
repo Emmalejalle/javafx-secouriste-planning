@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+
+<HBox xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.PatronHeaderAdminController"
+      prefWidth="1920" prefHeight="100"
+      style="-fx-background-color: #F97316;"
+      alignment="CENTER_LEFT" spacing="0">
+
+  <children>
+    <!-- Icônes de navigation à gauche -->
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/svgHome.png"/></image>
+        </ImageView>
+        <Button fx:id="btnHome" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onHome"/>
+      </children>
+    </StackPane>
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/svgPersonne.png"/></image>
+        </ImageView>
+        <Button fx:id="btnSecouriste" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onSecouriste"/>
+      </children>
+    </StackPane>
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/svgCalendrier.png"/></image>
+        </ImageView>
+        <Button fx:id="btnDPS" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onDPS"/>
+      </children>
+    </StackPane>
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/svgRoue.png"/></image>
+        </ImageView>
+        <Button fx:id="btnComp" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onCompetences"/>
+      </children>
+    </StackPane>
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/svgDispo.png"/></image>
+        </ImageView>
+        <Button fx:id="btnDispo" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onDisponibilites"/>
+      </children>
+    </StackPane>
+
+    <!-- Spacer gauche pour centrer le titre -->
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <!-- Logo de l’application (optionnel) -->
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/Logo.png"/></image>
+        </ImageView>
+      </children>
+    </StackPane>
+
+    <!-- Titre centré -->
+    <Label fx:id="lblTitre"
+           text="Gérer les Secouristes"
+           textFill="#1e3a8a"
+           alignment="CENTER"
+           style="-fx-font-size: 48px; -fx-font-weight: bold;"
+           maxWidth="Infinity">
+      <HBox.margin>
+        <Insets left="20" right="20"/>
+      </HBox.margin>
+    </Label>
+
+    <!-- Spacer intermédiaire pour que le titre reste centré -->
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <!-- Bouton Sortie collé à Profil -->
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/LogoQuitterAppliHeader.png"/></image>
+        </ImageView>
+        <Button fx:id="btnQuit" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onQuit"/>
+      </children>
+    </StackPane>
+
+    <!-- Icône Profil tout à droite -->
+    <StackPane prefWidth="100" prefHeight="100">
+      <children>
+        <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+          <image><Image url="@../img/SvgAccueil.png"/></image>
+        </ImageView>
+        <Button fx:id="btnProfil" opacity="0.0" prefWidth="100" prefHeight="100" onAction="#onProfil"/>
+      </children>
+    </StackPane>
+  </children>
+</HBox>

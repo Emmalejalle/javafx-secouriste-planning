@@ -1,27 +1,31 @@
 package controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import modele.persistence.User;
 import modele.SessionManager;
+import modele.persistence.Admin;
+import modele.persistence.User;
 import service.ProfilMngt;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+public class ProfileAdminController {
 
-public class ProfileAdminController implements Initializable {
+    @FXML private BorderPane rootPane;
 
-    // Les labels de valeur
+    // Header button & title are handled by PatronHeaderAdminController
+
+    // Profile fields
     @FXML private Label lblName;
     @FXML private Label lblPhoneValue;
     @FXML private Label lblEmailValue;
@@ -29,70 +33,69 @@ public class ProfileAdminController implements Initializable {
     @FXML private Label lblIdValue;
     @FXML private Label lblAddressValue;
     @FXML private Label lblBirthValue;
-    @FXML private Label lblCreatedValue;
     @FXML private Label lblPwdValue;
 
-    // Vos boutons
     @FXML private Button btnModifyProfile;
     @FXML private Button btnReturn;
 
     private final ProfilMngt profilMngt = new ProfilMngt();
     private final SessionManager session = SessionManager.getInstance();
 
-    /**
-     * Charge et affiche les informations de l'admin courant.
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize() {
+        // 1. Injecter le header commun
         try {
-            // Récupère l'utilisateur en session
-            User sessionUser = session.getCurrentUser();
-            // (Optionnel) re-fetch depuis la BDD pour être sûr d'avoir toutes les données à jour :
-            User user = profilMngt.loadUserById(sessionUser.getId());
-
-            // Remplissage des champs
-            lblName         .setText(user.getPrenom() + " " + user.getNom());
-            lblPhoneValue   .setText(user.getTel());
-            lblEmailValue   .setText(user.getEmail());
-            lblStatusValue  .setText("Admin");  // ou user.isAdmin() ? "Admin":"Secouriste"
-            lblIdValue      .setText(String.valueOf(user.getId()));
-            lblAddressValue .setText(user.getAdresse());
-            lblBirthValue   .setText(user.getDateNaissance());
-            // Si vous avez un champ création de compte dans User, utilisez-le ici :
-            lblCreatedValue .setText("01/01/2024"); 
-            lblPwdValue     .setText("••••••••");
-        } catch (SQLException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PatronHeaderAdmin.fxml"));
+            HBox header = loader.load();
+            PatronHeaderAdminController hdrCtrl = loader.getController();
+            hdrCtrl.setTitre("Profil Administrateur");
+            rootPane.setTop(header);
+        } catch (IOException e) {
             e.printStackTrace();
-            // Vous pouvez afficher une alerte à l'utilisateur en cas d'erreur
+        }
+
+        // 2. Charger et afficher les données de l'admin courant
+        User current = session.getCurrentUser();
+        try {
+            User user = profilMngt.loadUserById(current.getId());
+            if (user != null) {
+                lblName       .setText(user.getPrenom() + " " + user.getNom());
+                lblPhoneValue .setText(user.getTel());
+                lblEmailValue .setText(user.getEmail());
+                lblStatusValue.setText(user instanceof Admin ? "Admin" : "Secouriste");
+                lblIdValue    .setText(String.valueOf(user.getId()));
+                lblAddressValue .setText(user.getAdresse());
+                lblBirthValue   .setText(user.getDateNaissance());
+                lblPwdValue     .setText("••••••••");  // on masque le mot de passe
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // ici on peut afficher une alerte d'erreur BDD
         }
     }
 
-    /**
-     * Passe en mode édition (charge la vue ProfileAdminModif.fxml).
-     */
+    /** Passe en mode édition du profil */
     @FXML
     void onModifyProfile(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/vue/ProfileAdminModif.fxml"));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = ((Node)event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
+            // alerte d'erreur de chargement
         }
     }
 
-    /**
-     * Retourne à l'accueil Admin sans sauvegarder.
-     */
+    /** Retour à l'écran précédent sans rien sauvegarder */
     @FXML
     void onReturn(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilAdmin.fxml"));
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
+            ((Node)event.getSource()).getScene().setRoot(root);
         } catch (IOException e) {
-            System.err.println("ERREUR : Impossible de charger accueilAdmin.fxml");
             e.printStackTrace();
+            // alerte d'erreur de chargement
         }
     }
 }

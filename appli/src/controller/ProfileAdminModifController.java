@@ -6,17 +6,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modele.persistence.User;
 import modele.SessionManager;
 import service.ProfilMngt;
+import javafx.scene.layout.BorderPane;      // ← IMPORT
+import javafx.scene.layout.HBox; 
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class ProfileAdminModifController {
 
+    @FXML private Label lblName;
     @FXML private TextField TelValue;
     @FXML private TextField tfEmailValue;
     @FXML private TextField StatusValue;
@@ -29,14 +33,20 @@ public class ProfileAdminModifController {
     private final SessionManager session = SessionManager.getInstance();
     private User currentUser;
 
+
+
     @FXML
     public void initialize() {
+
         try {
-            // On récupère l'admin courant depuis la session + BDD
+            // Récupère l'admin courant depuis la session + BDD
             long userId = session.getCurrentUser().getId();
             currentUser = profilMngt.loadUserById(userId);
 
-            // On pré-remplit les champs
+            // Affiche nom + prénom
+            lblName.setText(currentUser.getPrenom() + " " + currentUser.getNom());
+
+            // Remplit les champs
             TelValue.setText(currentUser.getTel());
             tfEmailValue.setText(currentUser.getEmail());
             StatusValue.setText(currentUser instanceof modele.persistence.Admin ? "Admin" : "Secouriste");
@@ -46,19 +56,19 @@ public class ProfileAdminModifController {
             AdressValue.setText(currentUser.getAdresse());
             AnnivValue.setText(currentUser.getDateNaissance());
             MDPValue.setText(currentUser.getMdp());
+
         } catch (SQLException e) {
             e.printStackTrace();
-            // afficher une alerte en pratique
+            // TODO : alerte à l'utilisateur
         }
     }
 
-    /** Bouton “Valider” : on récupère les valeurs et on met à jour la BDD */
+    /** Valide et enregistre en base */
     @FXML
     private void onValidate(ActionEvent event) {
-        // On met à jour l'objet
+        // Met à jour l'objet
         currentUser.setTel(TelValue.getText());
         currentUser.setEmail(tfEmailValue.getText());
-        // on n'édite pas ID ni statut ni nom/prenom ici
         currentUser.setAdresse(AdressValue.getText());
         currentUser.setDateNaissance(AnnivValue.getText());
         currentUser.setMdp(MDPValue.getText());
@@ -67,21 +77,20 @@ public class ProfileAdminModifController {
             profilMngt.updateProfil(currentUser);
         } catch (SQLException e) {
             e.printStackTrace();
-            // en prod : alerte d’erreur
+            // TODO : alerte d’erreur
             return;
         }
 
-        // Retour à la vue profile après succès
         goToProfile(event);
     }
 
-    /** Bouton “Annuler” : on retourne à la vue profile sans enregistrer */
+    /** Annule sans enregistrer */
     @FXML
     private void onCancel(ActionEvent event) {
         goToProfile(event);
     }
 
-    /** Bouton bas “← Retour” : on retourne à l’accueil admin */
+    /** Retour à l’accueil Admin */
     @FXML
     private void onReturn(ActionEvent event) {
         try {
@@ -93,7 +102,7 @@ public class ProfileAdminModifController {
         }
     }
 
-    /** Méthode utilitaire pour charger ProfileAdmin.fxml */
+    /** Charge ProfileAdmin.fxml */
     private void goToProfile(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/vue/ProfileAdmin.fxml"));
@@ -103,4 +112,5 @@ public class ProfileAdminModifController {
             e.printStackTrace();
         }
     }
+    
 }
