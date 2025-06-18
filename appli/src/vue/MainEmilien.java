@@ -16,7 +16,7 @@ public class MainEmilien extends Application {
 
         // Charger le fichier FXML pour l'interface utilisateur
         System.out.println(getClass().getResource("/vue/PatronHeaderAdmin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/Connexion.fxml"));
 
         // Configurer la scène et le stage
         Scene scene = new Scene(root);

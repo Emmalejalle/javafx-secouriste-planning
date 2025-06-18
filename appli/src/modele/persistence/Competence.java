@@ -201,7 +201,6 @@ public class Competence {
      */
     public String toString() {
         String ret = "Fiche competence :\n";
-        ret += "ID : " + this.idComp + "\n";
         ret += "Intitule : " + this.intitule + "\n";
         ret += "Abreviation : " + this.abrevComp + "\n";
         for (Competence c : this.prerequis) {
