@@ -119,18 +119,36 @@ public class GererCompetencesController extends BaseController {
                 showAlert(Alert.AlertType.WARNING, "Champs vides", "L'intitulé et l'abréviation sont requis.");
                 return;
             }
-            Competence competenceResultat;
+
+            boolean operationReussie = false;
             if (competenceAModifier == null) { // Mode Création
-                competenceMngt.creerCompetence(intitule, abrev, new ArrayList<>(prerequis));
-                competenceResultat = competenceMngt.findByIntitule(intitule);
-                showAlert(Alert.AlertType.INFORMATION, "Succès", "La compétence a été créée.");
+                operationReussie = competenceMngt.creerCompetence(intitule, abrev, new ArrayList<>(prerequis));
+                if (operationReussie) {
+                    showAlert(Alert.AlertType.INFORMATION, "Succès", "La compétence '" + intitule + "' a été créée.");
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Erreur de logique", "Impossible de créer la compétence. Un cycle de dépendances serait créé (ex: A a besoin de B et B a besoin de A).");
+                }
             } else { // Mode Modification
-                competenceMngt.modifierCompetence(competenceAModifier, intitule, abrev, new ArrayList<>(prerequis));
-                competenceResultat = competenceAModifier;
-                showAlert(Alert.AlertType.INFORMATION, "Succès", "La compétence a été modifiée.");
+                operationReussie = competenceMngt.modifierCompetence(competenceAModifier, intitule, abrev, new ArrayList<>(prerequis));
+                if(operationReussie) {
+                    showAlert(Alert.AlertType.INFORMATION, "Succès", "La compétence '" + intitule + "' a été modifiée.");
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Erreur de logique", "Impossible de modifier la compétence. Un cycle de dépendances serait créé.");
+                }
             }
-            chargerEtAfficherCompetences();
-            afficherDetails(competenceResultat);
+
+            // Si l'opération a réussi, on rafraîchit la vue
+            if (operationReussie) {
+                chargerEtAfficherCompetences();
+                // On recherche la compétence pour la réafficher
+                Competence competenceAffichee = competenceMngt.findByIntitule(intitule);
+                if(competenceAffichee != null){
+                    afficherDetails(competenceAffichee);
+                } else {
+                    afficherMessageAccueil();
+                }
+            }
+
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "L'opération a échoué : " + e.getMessage());
             e.printStackTrace();
