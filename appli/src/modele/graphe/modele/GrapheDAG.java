@@ -1,24 +1,25 @@
 package modele.graphe.modele;
 
+import modele.persistence.Competence; // Important d'importer Competence
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Représente un graphe orienté générique, pouvant contenir n'importe quel type de sommet.
- * Utilise une matrice d'adjacence en interne pour la compatibilité avec les algorithmes existants.
- * @param <T> Le type des objets qui représentent les sommets (ex: Competence, Secouriste...).
+ * Représente un graphe orienté générique.
+ * Cette version a été corrigée pour inclure une méthode de construction
+ * qui peuple automatiquement la matrice d'adjacence pour les compétences.
  */
 public class GrapheDAG<T> {
 
     private boolean[][] matriceAdjacence;
     private int nombreSommets;
-    private ArrayList<T> indexVersSommet; // Permet de retrouver un objet à partir de son index
-    private Map<T, Integer> sommetVersIndex; // Permet de retrouver l'index d'un objet
+    private ArrayList<T> indexVersSommet;
+    private Map<T, Integer> sommetVersIndex;
 
     /**
-     * Construit un graphe à partir d'une liste de sommets.
+     * Constructeur de base. Crée un graphe avec des sommets mais SANS arcs.
      * @param sommets La liste des objets qui seront les sommets du graphe.
      */
     public GrapheDAG(List<T> sommets) {
@@ -27,16 +28,40 @@ public class GrapheDAG<T> {
         this.indexVersSommet = new ArrayList<>(sommets);
         this.sommetVersIndex = new HashMap<>();
         
-        // On remplit la map pour pouvoir trouver l'index de chaque sommet rapidement
         for (int i = 0; i < nombreSommets; i++) {
             this.sommetVersIndex.put(sommets.get(i), i);
         }
     }
 
     /**
+     * MÉTHODE "FACTORY" : C'est la méthode à utiliser dans ton application !
+     * Elle crée un graphe de compétences et peuple automatiquement la matrice
+     * en lisant les prérequis de chaque objet Competence.
+     * @param competences La liste complète des compétences.
+     * @return Un objet GrapheDAG prêt à être utilisé par les algorithmes.
+     */
+    public static GrapheDAG<Competence> creerGrapheDeCompetences(List<Competence> competences) {
+        // // Étape 1 : On crée un graphe de base. Sa matrice est vide pour l'instant.
+        GrapheDAG<Competence> graphe = new GrapheDAG<>(competences);
+
+        // // Étape 2 (LA PLUS IMPORTANTE) : On remplit la matrice.
+        // // On parcourt chaque compétence de la liste.
+        for (Competence source : competences) {
+            // // On regarde la liste de ses prérequis.
+            if (source.getPrerequis() != null) {
+                for (Competence destination : source.getPrerequis()) {
+                    // // Pour chaque prérequis trouvé, on ajoute un arc dans le graphe.
+                    // // C'est ici que les 'true' sont ajoutés à la matrice.
+                    graphe.ajouterArc(source, destination);
+                }
+            }
+        }
+        // // Le graphe est maintenant complet et prêt pour la détection de cycle.
+        return graphe;
+    }
+
+    /**
      * Ajoute un arc (une flèche) entre deux sommets.
-     * @param source Le sommet de départ.
-     * @param destination Le sommet d'arrivée.
      */
     public void ajouterArc(T source, T destination) {
         Integer indexSource = sommetVersIndex.get(source);
@@ -47,38 +72,12 @@ public class GrapheDAG<T> {
         }
     }
 
-    // --- Getters utiles pour les algorithmes ---
-
-    /**
-     * Retourne la matrice d'adjacence du graphe.
-     * @return un tableau 2D de booléens.
-     */
+    // --- Getters ---
     public boolean[][] getMatriceAdjacence() {
         return this.matriceAdjacence;
     }
 
-    public void setMatriceAdjacence(boolean[][] nouvelleMatrice) {
-        this.matriceAdjacence = nouvelleMatrice;
-        // On met à jour le nombre de sommets en se basant sur la taille de la nouvelle matrice.
-        // Note: cette approche suppose que les listes de sommets ne sont plus utilisées par cet objet Graphe,
-        // car il a été créé avec une liste vide.
-        this.nombreSommets = (nouvelleMatrice != null && nouvelleMatrice.length > 0) ? nouvelleMatrice[0].length : 0;
-    }
-
-    /**
-     * Retourne le nombre de sommets dans le graphe.
-     * @return le nombre de sommets.
-     */
     public int getNombreSommets() {
         return this.nombreSommets;
-    }
-
-    /**
-     * Retourne le sommet (l'objet) correspondant à un index donné.
-     * @param index L'index dans la matrice.
-     * @return L'objet de type T.
-     */
-    public T getSommet(int index) {
-        return indexVersSommet.get(index);
     }
 }
