@@ -10,7 +10,7 @@
 
     <!-- HEADER : zone blanche de 100px -->
     <top>
-        <Pane fx:id="headerPane" prefHeight="100" style="-fx-background-color: white;" />
+        <Pane fx:id="headerPane" prefHeight="100" style="-fx-background-color: #F97316;" />
     </top>
 
     <center>
@@ -65,7 +65,7 @@
                                           <Image url="@../img/svgMailGris.png" />
                                        </image>
                                            </ImageView>
-                                           <TextField fx:id="tfEmailSecourist" promptText="Email ou numéro d'identification" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                           <TextField fx:id="tfEmailSecourist" HBox.hgrow="ALWAYS" promptText="Email ou numéro d'identification" style="-fx-background-color: transparent; -fx-border-width: 0;" />
                                        </children>
                                     </HBox>
                                     <HBox fx:id="MdpConnexionSecour" alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
@@ -75,7 +75,7 @@
                                           <Image url="@../img/svgClé.png" />
                                        </image>
                                            </ImageView>
-                                           <PasswordField fx:id="pfPasswordSecourist" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                           <PasswordField fx:id="pfPasswordSecourist" HBox.hgrow="ALWAYS" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
                                        </children>
                                     </HBox>
                                     <Button fx:id="BoutonConnexionSecour" onAction="#onConnexionSecouriste" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />
@@ -104,17 +104,17 @@
                                           <Image url="@../img/svgMailGris.png" />
                                        </image>
                                            </ImageView>
-                                           <TextField fx:id="tfEmailAdmin" promptText="Email ou numéro d'identification" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                           <TextField fx:id="tfEmailAdmin" HBox.hgrow="ALWAYS" promptText="Email ou numéro d'identification" style="-fx-background-color: transparent; -fx-border-width: 0;" />
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="MdpConnexionAdmin" alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
+                                    <HBox fx:id="MdpConnexionAdmin"  alignment="CENTER_LEFT" prefHeight="65" prefWidth="461" spacing="10" styleClass="champ">
                                        <children>
                                            <ImageView fitHeight="24" fitWidth="24">
                                                <image>
                                           <Image url="@../img/svgClé.png" />
                                        </image>
                                            </ImageView>
-                                           <PasswordField fx:id="pfPasswordAdmin" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                                           <PasswordField fx:id="pfPasswordAdmin" HBox.hgrow="ALWAYS" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0;" />
                                        </children>
                                     </HBox>
                                     <Button fx:id="BoutonConnexionAdmin" onAction="#onConnexionAdmin" prefHeight="65" prefWidth="461" styleClass="btn-connecter" text="Se connecter" />

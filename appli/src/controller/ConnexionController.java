@@ -72,6 +72,7 @@ public class ConnexionController extends BaseController {
     @FXML
     public void onMdpOublie(ActionEvent event) {
         System.out.println("Clic sur Mot de passe oublié");
+        changeView(event, "/vue/MdpOublie.fxml");
         // Logique pour la récupération de mdp
     }
     
