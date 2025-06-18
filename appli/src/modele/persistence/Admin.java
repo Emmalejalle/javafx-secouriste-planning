@@ -1,7 +1,7 @@
 package modele.persistence;
 /**
  * La classe administrateur le compte de l'administrateur.
- * @author Emilien EMERIAU et Elie Tardy 
+ * @author Elie Tardy et Emilien EMERIAU
  * @version 2.0
  */
 public class Admin extends User {
