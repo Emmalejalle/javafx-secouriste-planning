@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane prefHeight="876.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="876.0" prefWidth="1040.0" style="-fx-background-color: white;">
+         <children>
+            <HBox>
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="60.0" prefWidth="658.0" styleClass="FichePersonelle" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Créer une nouvelle Compétence">
+                     <VBox.margin>
+                        <Insets left="24.0" top="24.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="24.0" top="24.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@../style/ModificationCompétence.css">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="474.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" text="Intitulé" />
+                        <TextField promptText="ex : compétence 2" styleClass="textFieldAttributSecouriste" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" left="48.0" top="32.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@../style/ModificationCompétence.css">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="474.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" text="Abréviation" />
+                        <TextField promptText="comp2" styleClass="textFieldAttributSecouriste" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="8.0" right="8.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@../style/ModificationCompétence.css">
+               <children>
+                  <VBox prefHeight="84.0" prefWidth="437.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" text="Compétence requise" />
+                        <ComboBox editable="true" prefHeight="39.0" prefWidth="420.0" promptText="comp1" styleClass="combo-style" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" stylesheets="@../style/ModificationCompétence.css">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: transparent;" stylesheets="@../style/ModificationCompétence.css" translateX="170.0" translateY="-20.0">
+                           <graphic>
+                              <ImageView fitHeight="71.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" style="-fx-fit-width: 84;" styleClass="resized-image">
+                                 <image>
+                                    <Image url="@../img/BtnAjoutCompétence.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="buttonValidationModifComp" mnemonicParsing="false" prefHeight="42.0" prefWidth="165.0" styleClass="btnCreer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Créer" translateX="800.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="1.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
