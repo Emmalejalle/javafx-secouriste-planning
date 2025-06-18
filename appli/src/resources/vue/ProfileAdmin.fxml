@@ -57,10 +57,11 @@
                                         <Label fx:id="lblPhoneTitle" styleClass="field-label" text="Téléphone :"/>
                                         <HBox fx:id="phoneBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgTel.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgTel.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblPhoneValue" styleClass="field-value" text="06 14 23 72 90"/>
                                         </HBox>
 
@@ -68,10 +69,11 @@
                                         <Label fx:id="lblEmailTitle" styleClass="field-label" text="Email :"/>
                                         <HBox fx:id="emailBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgMail.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgMail.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblEmailValue" styleClass="field-value" text="patrick.david@gmail.com"/>
                                         </HBox>
 
@@ -79,24 +81,25 @@
                                         <Label fx:id="lblStatusTitle" styleClass="field-label" text="Statut :"/>
                                         <HBox fx:id="statusBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgProfil.png"/></image></ImageView>
-                                            <Label fx:id="lblStatusValue" styleClass="field-value" text="Professionnel"/>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgProfil.png"/></image>
+                                            </ImageView>
+                                            <Label fx:id="lblStatusValue" styleClass="field-value" text="Admin"/>
                                         </HBox>
 
                                         <!-- ID -->
                                         <Label fx:id="lblIdTitle" styleClass="field-label" text="ID :"/>
                                         <HBox fx:id="idBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgId.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgId.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblIdValue" styleClass="field-value" text="12345"/>
                                         </HBox>
-
                                     </VBox>
 
                                     <!-- Separator -->
@@ -110,10 +113,11 @@
                                         <Label fx:id="lblAddressTitle" styleClass="field-label" text="Adresse :"/>
                                         <HBox fx:id="addressBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgLocation.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgLocation.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblAddressValue" styleClass="field-value" text="34 rue du secours"/>
                                         </HBox>
 
@@ -121,21 +125,23 @@
                                         <Label fx:id="lblBirthTitle" styleClass="field-label" text="Date de naissance :"/>
                                         <HBox fx:id="birthBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgAnniv.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgAnniv.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblBirthValue" styleClass="field-value" text="02/04/1996"/>
                                         </HBox>
 
-                                        <!-- Date de création -->
+                                        <!-- Date de création de compte -->
                                         <Label fx:id="lblCreatedTitle" styleClass="field-label" text="Date de création de compte :"/>
                                         <HBox fx:id="createdBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgDispo.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgDispo.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblCreatedValue" styleClass="field-value" text="01/01/2024"/>
                                         </HBox>
 
@@ -143,13 +149,13 @@
                                         <Label fx:id="lblPwdTitle" styleClass="field-label" text="Mot de passe :"/>
                                         <HBox fx:id="pwdBox"
                                               styleClass="info-box"
-                                              prefWidth="450" minWidth="450" maxWidth="450"
-                                              prefHeight="70" minHeight="70" maxHeight="70"
+                                              prefWidth="500" prefHeight="90"
                                               spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20"><image><Image url="@../img/svgMdp.png"/></image></ImageView>
+                                            <ImageView fitWidth="20" fitHeight="20">
+                                                <image><Image url="@../img/svgMdp.png"/></image>
+                                            </ImageView>
                                             <Label fx:id="lblPwdValue" styleClass="field-value" text="••••••••"/>
                                         </HBox>
-
                                     </VBox>
                                 </HBox>
                             </VBox>

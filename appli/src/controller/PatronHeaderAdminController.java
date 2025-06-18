@@ -37,31 +37,31 @@ public class PatronHeaderAdminController {
 
     @FXML
     private void onSecouriste(ActionEvent e) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilSecouriste.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/Modifier-supprimerUnSecouriste.fxml"));
         ((Node)e.getSource()).getScene().setRoot(root);
     }
 
     @FXML
     private void onDPS(ActionEvent e) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/planning.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/Modifier-supprimerUnDps.fxml.fxml"));
         ((Node)e.getSource()).getScene().setRoot(root);
     }
 
     @FXML
     private void onCompetences(ActionEvent e) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/competences.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/Modifier-supprimerUneCompétence.fxml"));
         ((Node)e.getSource()).getScene().setRoot(root);
     }
 
     @FXML
     private void onDisponibilites(ActionEvent e) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/disponibilites.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/AffectationDpsDeBase.fxml"));
         ((Node)e.getSource()).getScene().setRoot(root);
     }
 
     @FXML
     private void onProfil(ActionEvent e) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/profilAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/ProfileAdmin.fxml"));
         ((Node)e.getSource()).getScene().setRoot(root);
     }
 

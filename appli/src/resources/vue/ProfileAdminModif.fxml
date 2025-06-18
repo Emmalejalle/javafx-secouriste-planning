@@ -133,6 +133,7 @@
 
                                             <!-- Puis le champ éditable -->
                                             <TextField fx:id="IdValue"
+                                                    editable="false"
                                                     promptText="12345"
                                                     HBox.hgrow="ALWAYS"
                                                     styleClass="field-value"/>
@@ -186,28 +187,6 @@
                                             <!-- Puis le champ éditable -->
                                             <TextField fx:id="AnnivValue"
                                                     promptText="02/04/1996"
-                                                    HBox.hgrow="ALWAYS"
-                                                    styleClass="field-value"/>
-                                        </HBox>
-
-
-                                        <!-- Created date -->
-                                        <Label fx:id="lblCreatedTitle" styleClass="field-label" text="Date de création de compte :"/>
-
-                                        <HBox fx:id="CreationProfileBox"
-                                            styleClass="info-box"
-                                            prefWidth="450" minWidth="450" maxWidth="450"
-                                            prefHeight="70" minHeight="70" maxHeight="70"
-                                            spacing="8" alignment="CENTER_LEFT">
-
-                                            <!-- Icône à gauche dans le même conteneur -->
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgCalendrier.png"/></image>
-                                            </ImageView>
-
-                                            <!-- Puis le champ éditable -->
-                                            <TextField fx:id="CreationCompteValue"
-                                                    promptText="01/01/2024"
                                                     HBox.hgrow="ALWAYS"
                                                     styleClass="field-value"/>
                                         </HBox>
