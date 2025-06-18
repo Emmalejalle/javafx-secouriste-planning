@@ -1,13 +1,8 @@
 package modele.graphe.algorithme;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import modele.persistence.Secouriste;
 
 /**
  * Contient les algorithmes pour l'affectation des secouristes.
@@ -179,7 +174,6 @@ public class AffectationMethode {
         
         // // On trie le tableau des indices en se basant sur la somme des lignes correspondantes.
         Arrays.sort(mappingLignes, Comparator.comparingInt(i -> sommeLignes[i]));
-        AffectationMethode.cpt++;
 
         // // On crée une nouvelle matrice avec les lignes dans le bon ordre.
         int[][] matriceLignesTriees = new int[nbLignes][nbColonnes];
@@ -197,13 +191,13 @@ public class AffectationMethode {
         for (int j = 0; j < nbColonnes; j++) {
             for (int i = 0; i < nbLignes; i++) {
                 sommeColonnes[j] += matriceLignesTriees[i][j];
+                AffectationMethode.cpt++;
             }
-            AffectationMethode.cpt++;
+            
         }
         
         // // On trie le tableau des indices de colonnes en se basant sur leur somme.
         Arrays.sort(mappingColonnes, Comparator.comparingInt(j -> sommeColonnes[j]));
-        AffectationMethode.cpt++;
 
         // --- Étape 3 : Affectation gloutonne sur la matrice "virtuellement" triée ---
         
