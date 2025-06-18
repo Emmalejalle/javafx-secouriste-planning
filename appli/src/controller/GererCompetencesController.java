@@ -179,6 +179,6 @@ public class GererCompetencesController extends BaseController {
     @FXML
     public void onRetourClicked(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement de accueilAdmin.fxml...");
-        changeView(event, "accueilAdmin.fxml");
+        changeView(event, "/vue/accueilAdmin.fxml");
     }
 }

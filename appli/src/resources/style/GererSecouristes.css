@@ -1,0 +1,113 @@
+
+
+.root {
+    -fx-font-family: 'Poppins', 'Roboto', sans-serif;
+    -fx-background-color: #F1F5F9;
+}
+.liste-container {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.vignette-secouriste {
+    -fx-background-color: #1A2A60; /* Fond bleu foncé */
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+}
+.vignette-secouriste:hover {
+    -fx-background-color: #312E81;
+}
+.vignette-secouriste-selected {
+    -fx-background-color: #4F46E5;
+    -fx-border-color: #A5B4FC;
+    -fx-border-width: 2px;
+}
+.nom-secouriste-liste {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+.role-secouriste-liste {
+    -fx-text-fill: #A5B4FC;
+    -fx-font-size: 12px;
+}
+.details-pane-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-padding: 20px;
+}
+.details-titre {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A2A60;
+}
+.details-label, .form-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+    -fx-padding: 10px 0 5px 0;
+}
+.details-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #1E293B;
+}
+.button-primary, .button-planning {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.button-primary:hover, .button-planning:hover { -fx-background-color: #1D4ED8; }
+
+.button-delete {
+    -fx-background-color: #DC2626;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.button-delete:hover { -fx-background-color: #B91C1C; }
+
+
+
+.button-retour {
+    -fx-background-color: #2563EB;        /* Même bleu que les autres */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;                  /* Légèrement plus petit que les autres */
+    -fx-font-weight: bold;
+    -fx-padding: 10px 16px;               /* Moins large : padding horizontal réduit */
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.button-retour:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+
+.button-cancel {
+    -fx-background-color: #DC2626;       /* même rouge que .button-delete */
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.mr-10 {
+    -fx-padding: 0 10 0 0; /* padding: top right bottom left */
+}
+
+.button-cancel:hover {
+    -fx-background-color: #B91C1C;
+}

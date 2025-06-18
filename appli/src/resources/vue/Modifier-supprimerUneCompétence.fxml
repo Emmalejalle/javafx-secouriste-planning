@@ -64,17 +64,8 @@
 
             <Region VBox.vgrow="ALWAYS" />
             <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                <children>
-                    <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#onRetourClicked" styleClass="button-retour">
-                        <graphic>
-                            <ImageView fitHeight="48.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../img/svgBoutonRetourBleuBlanc.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                </children>
+                
+                   <Button fx:id="btnRetour" onAction="#onRetourClicked" text="← Retour" styleClass="button-retour" prefWidth="130" prefHeight="48" />
             </HBox>
 
         </children>

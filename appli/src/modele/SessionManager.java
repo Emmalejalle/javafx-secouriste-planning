@@ -1,4 +1,4 @@
-package modele; // ou controller
+package modele;
 
 import modele.persistence.User;
 

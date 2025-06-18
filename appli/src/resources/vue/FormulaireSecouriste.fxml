@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="details-pane-container" stylesheets="@../style/GererSecouristes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireSecouristeController">
+   <top>
+      <Label fx:id="titreFormLabel" styleClass="details-titre" text="Création du secouriste" />
+   </top>
+   <center>
+      <GridPane hgap="40.0" vgap="10.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label styleClass="form-label" text="Nom :" />
+            <TextField fx:id="nomField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label styleClass="form-label" text="Prénom :" />
+            <TextField fx:id="prenomField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label styleClass="form-label" text="Email :" />
+            <TextField fx:id="emailField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label styleClass="form-label" text="Téléphone :" />
+            <TextField fx:id="telField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+            <Label styleClass="form-label" text="Adresse :" />
+            <TextField fx:id="adresseField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <Label styleClass="form-label" text="Date de naissance (JJ/MM/AAAA) :" />
+            <TextField fx:id="dateNaissanceField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label styleClass="form-label" text="Mot de passe :" />
+            <PasswordField fx:id="mdpField" />
+         </VBox>
+         <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" VBox.vgrow="ALWAYS">
+            <Label styleClass="form-label" text="Compétences (Ctrl+Clic pour sélection multiple) :" />
+            <ListView fx:id="competencesListView" VBox.vgrow="ALWAYS" />
+         </VBox>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <children>
+           <Button fx:id="annulerButton" onAction="#onAnnuler" text="Annuler" />
+            <Button fx:id="validerButton" onAction="#onValider" styleClass="button-primary" text="Valider" />
+         </children>
+      </HBox>
+   </bottom>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
+</BorderPane>   

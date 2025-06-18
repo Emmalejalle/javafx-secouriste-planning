@@ -1,145 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Cursor?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierSupprimerSecouristeController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnAjouterSecouriste" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="56.0" prefWidth="310.0" stylesheets="@../style/ListeRechercheSecouri.css" text="Ajouter un secouriste" textAlignment="CENTER" translateX="1024.0">
-               <VBox.margin>
-                  <Insets bottom="55.0" right="40.0" top="30.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets right="24.0" />
-               </padding>
-               <styleClass>
-                  <String fx:value="BlocBleuAjouterSecouriste" />
-                  <String fx:value="nomPrenomSecouriste" />
-               </styleClass>
-            </Button>
-            <StackPane fx:id="contentPane" prefHeight="876.0" stylesheets="@../style/ListeRechercheSecouri.css">
-               <VBox.margin>
-                  <Insets left="100.0" right="300.0" top="10.0" />
-               </VBox.margin>
-               <styleClass>
-                  <String fx:value="scrollContour" />
-                  <String fx:value="shadow" />
-               </styleClass>
-               <children>
-   			   <!-- Ton fx:include ici -->
-               </children>
-            </StackPane>
-         </children>
-      </VBox>
-   </center>
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/GererSecouristes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GererSecouristesController">
    <top>
-      <Pane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1px 0;">
+         <Label styleClass="details-titre" text="Gestion des Secouristes" />
+      </HBox>
    </top>
    <left>
-      <VBox>
+      <VBox prefWidth="450.0" spacing="20.0">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+         </padding>
          <children>
-            <HBox prefHeight="43.0" prefWidth="395.0" styleClass="BarDeRechercheSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
+            <HBox alignment="CENTER" prefHeight="45.0" styleClass="recherche-bar">
                <children>
-                  <ImageView fx:id="LogoRechercherEntry" fitHeight="33.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/loupeRecherche.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="8.0" top="8.0" />
-                     </HBox.margin>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image><Image url="@../img/loupeRecherche.png" /></image>
                   </ImageView>
-                  <TextField fx:id="RechercheSecouristeTextFil" alignment="CENTER" prefHeight="20.0" prefWidth="309.0" promptText="Rechercher un secouriste" styleClass="BarDeRechercheSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
-                     <HBox.margin>
-                        <Insets left="8.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <TextField fx:id="rechercheField" prefHeight="45.0" promptText="Rechercher un secouriste" styleClass="recherche-field" HBox.hgrow="ALWAYS" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="55.0" top="30.0" />
-               </VBox.margin>
-            </HBox>
-            <StackPane prefHeight="791.0" styleClass="shadow" stylesheets="@../style/ListeRechercheSecouri.css" BorderPane.alignment="CENTER">
-               <children>
-                  <ScrollPane id="RechercheSecouristeScroller" fx:id="ScrollPaneRechercheSecou" fitToWidth="true" prefHeight="791.0" prefWidth="413.0" styleClass="scrollContour" stylesheets="@../style/ListeRechercheSecouri.css">
-                     <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="409.0" style="-fx-background-color: white;">
-                           <children>
-                              <HBox id="SecouristePatrickDavidou" prefHeight="76.0" prefWidth="286.0" spacing="5.0" styleClass="blocBleuSecouriste" stylesheets="@../style/ListeRechercheSecouri.css">
-                                 <padding>
-                                    <Insets top="5.0" />
-                                 </padding>
-                                 <children>
-                                    <VBox fx:id="vboxListeProfils" fillWidth="false" prefHeight="95.0" prefWidth="266.0">
-                                       <children>
-                                          <HBox id="HBoxNomPrenomSecouriste" prefHeight="21.0" prefWidth="258.0">
-                                             <children>
-                                                <Label id="PrenomSecouriste" styleClass="nomPrenomSecouriste" text="Patrick">
-                                                   <HBox.margin>
-                                                      <Insets left="8.0" right="8.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <Label id="NomSecouriste" fx:id="lblNomPrenomSecouriste" styleClass="nomPrenomSecouriste" stylesheets="@../style/ListeRechercheSecouri.css" text="Davidou">
-                                                   <HBox.margin>
-                                                      <Insets left="8.0" right="8.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <Label styleClass="jsp" stylesheets="@../style/ListeRechercheSecouri.css" text="Secouriste" textFill="#303030">
-                                             <VBox.margin>
-                                                <Insets bottom="8.0" left="24.0" right="8.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="8.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                    <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                                       <HBox.margin>
-                                          <Insets right="25.0" top="8.0" />
-                                       </HBox.margin>
-                                       <image>
-                                          <Image url="@../img/profilAffectation.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" left="30.0" right="60.0" top="20.0" />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-               </children>
-               <BorderPane.margin>
-                  <Insets left="30.0" />
-               </BorderPane.margin>
                <padding>
-                  <Insets bottom="3.0" left="3.0" right="4.0" top="-3.0" />
+                  <Insets left="10.0" />
                </padding>
-            </StackPane>
+            </HBox>
+            <Button fx:id="ajouterButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAjouter" styleClass="button-primary" text="+ Ajouter un secouriste" />
+            <ScrollPane fitToWidth="true" styleClass="liste-container" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="vboxListe" />
+               </content>
+            </ScrollPane>
+            <Region VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <Button fx:id="retourButton" mnemonicParsing="false" onAction="#onRetour" styleClass="button-retour" text="← Retour" />
+               </children>
+            </HBox>
          </children>
-         <BorderPane.margin>
-            <Insets left="40.0" />
-         </BorderPane.margin>
       </VBox>
    </left>
-   <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #F97316;" BorderPane.alignment="CENTER">
+   <center>
+      <BorderPane fx:id="detailsPane">
          <BorderPane.margin>
-            <Insets top="16.0" />
+            <Insets bottom="10.0" left="10.0" right="20.0" top="20.0" />
          </BorderPane.margin>
-      </HBox>
-   </bottom>
+      </BorderPane>
+   </center>
 </BorderPane>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="details-pane-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FicheSecouristeController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0">
+         <children>
+            <Label styleClass="details-titre" text="Fiche personnelle" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="modifierButton" onAction="#onModifier" styleClass="button-primary" text="Modifier le secouriste" />
+            <Button fx:id="supprimerButton" onAction="#onSupprimer" styleClass="button-delete" text="Supprimer le secouriste" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <GridPane hgap="40.0" vgap="15.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <Label styleClass="details-label" text="Nom :" GridPane.rowIndex="0" />
+         <Label fx:id="nomText" styleClass="details-text" text="[Nom]" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         <Label styleClass="details-label" text="Prénom :" GridPane.rowIndex="1" />
+         <Label fx:id="prenomText" styleClass="details-text" text="[Prénom]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Label styleClass="details-label" text="Email :" GridPane.rowIndex="2" />
+         <Label fx:id="emailText" styleClass="details-text" text="[Email]" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label styleClass="details-label" text="Téléphone :" GridPane.rowIndex="3" />
+         <Label fx:id="telText" styleClass="details-text" text="[Téléphone]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Label styleClass="details-label" text="Adresse :" GridPane.rowIndex="4" />
+         <Label fx:id="adresseText" styleClass="details-text" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <Label styleClass="details-label" text="Date de naissance :" GridPane.rowIndex="5" />
+         <Label fx:id="dateNaissanceText" styleClass="details-text" text="[Date]" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      </GridPane>
+   </center>
+   <bottom>
+      <VBox spacing="10.0" BorderPane.alignment="TOP_LEFT">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <children>
+            <Separator />
+            <Label styleClass="details-label" text="Compétences acquises :" />
+            <VBox fx:id="competencesVBox" spacing="5.0" />
+            <HBox alignment="CENTER">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <Button fx:id="planningButton" onAction="#onVoirPlanning" styleClass="button-primary" text="Voir le planning" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
+</BorderPane>
