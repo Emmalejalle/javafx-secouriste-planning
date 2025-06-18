@@ -16,7 +16,7 @@ import modele.DAO.DpsDAO;
 import modele.DAO.JourneeDAO;
 import modele.SessionManager;
 import modele.persistence.*;
-
+import modele.service.PlanningManagement;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -46,16 +46,13 @@ public class PlanningController {
 
     private LocalDate dateAffichee;
     private Secouriste secouristeConnecte;
-    private DpsDAO dpsDAO;
-    private JourneeDAO journeeDAO;
-    private AffectationDAO affectationDAO;
     private VBox dpsSelectionne;
+    private PlanningManagement planningService;
 
     public PlanningController() {
-        this.dpsDAO = new DpsDAO();
-        this.journeeDAO = new JourneeDAO();
-        this.affectationDAO = new AffectationDAO();
+        this.planningService = new PlanningManagement();
     }
+
 
     @FXML
     public void initialize() {
@@ -120,7 +117,7 @@ public class PlanningController {
 
         try {
             // 3. ON UTILISE TA MÉTHODE : On récupère TOUTES les affectations du secouriste connecté
-            List<Affectation> mesAffectations = affectationDAO.findAffectationsForSecouriste(secouristeConnecte.getId());
+            List<Affectation> mesAffectations = planningService.getPlanningPourSecouriste(secouristeConnecte);
 
             System.out.println("Trouvé " + mesAffectations.size() + " affectation(s) pour " + secouristeConnecte.getNom());
 
@@ -185,7 +182,7 @@ public class PlanningController {
         try {
             // C'EST TA LOGIQUE : on utilise le DAO pour trouver les affectations pour ce DPS
             System.out.println("Recherche des affectations pour le DPS ID: " + dps.getId());
-            List<Affectation> affectations = affectationDAO.findAffectationsForDps(dps.getId());
+            List<Affectation> affectations = planningService.getEquipePourDps(dps);
             
             // On passe le DPS et la liste des affectations à la méthode d'affichage
             afficherDetails(dps, affectations);
