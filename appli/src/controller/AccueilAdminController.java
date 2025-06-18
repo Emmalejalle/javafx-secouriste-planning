@@ -64,11 +64,11 @@ public class AccueilAdminController {
 
     @FXML
     public void goGererDPS(ActionEvent event) {
-        System.out.println("Clic sur Modifier-supprimerUneCompétence. Chargement vers Modifier-supprimerUneCompétence.fxml...");
+        System.out.println("Clic sur GererDps. Chargement de la vue pour Gérer les DPS...");
         try {
-            changerDeVue(event, "Modifier-supprimerUneCompétence.fxml");
+            changerDeVue(event, "GererDps.fxml");
         } catch (IOException e) {
-            System.err.println("ERREUR: Impossible de charger la vue Modifier-supprimerUneCompétence.fxml");
+            System.err.println("ERREUR: Impossible de charger la vue GererDps.fxml");
             e.printStackTrace();
         }
     }

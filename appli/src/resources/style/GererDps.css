@@ -1,0 +1,137 @@
+.root {
+    -fx-font-family: 'Poppins', 'Roboto', sans-serif;
+    -fx-background-color: #F1F5F9; /* Un gris très clair pour le fond global */
+}
+
+/* ======================================= */
+/* ===       COLONNE DE GAUCHE         === */
+/* ======================================= */
+.recherche-bar {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
+    -fx-padding: 0 10px;
+}
+.recherche-field {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+}
+.liste-container {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px;
+}
+.vbox-liste {
+    -fx-spacing: 5px;
+    -fx-background-color: white;
+}
+-fx-border-color: #1A2A60;
+}
+
+
+
+
+.vignette {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 15px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+.vignette:hover { -fx-border-color: #3B82F6; }
+.vignette-selected {
+    -fx-background-color: #1A2A60;
+    -fx-border-color: #1A2A60;
+}
+.vignette-titre {
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 16px;
+}
+.vignette-details {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+}
+.vignette-selected .vignette-titre,
+.vignette-selected .vignette-details {
+    -fx-text-fill: white;
+}
+
+
+/* ======================================= */
+/* ===       PANNEAU DE DROITE         === */
+/* ======================================= */
+.details-pane-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
+    -fx-padding: 25px;
+}
+.details-titre {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A2A60;
+}
+.details-label, .form-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+    -fx-padding: 10px 0 5px 0;
+}
+.details-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #1E293B;
+}
+
+/* ======================================= */
+/* ===       BOUTONS D'ACTION          === */
+/* ======================================= */
+.button-primary {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.button-primary:hover { -fx-background-color: #1D4ED8; }
+
+.button-delete {
+    -fx-background-color: #DC2626;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 22px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+.button-delete:hover { -fx-background-color: #B91C1C; }
+
+.button-retour {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+
+.details-value {
+    -fx-font-size: 16px;
+    -fx-text-fill: #1E293B;
+}
+
+.button-danger {
+    -fx-background-color: #DC2626; /* rouge foncé genre "danger" */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+}
+.button-danger:hover {
+    -fx-background-color: #B91C1C;
+}
