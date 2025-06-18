@@ -174,17 +174,17 @@ public class DPS {
      * Méthode de traitement qui retourne la durée du DPS en heures.
      * @return la durée du DPS en heures.
      */
-    public int getDureeEnMinutes() {
+    public int getDuree() {
         return this.horaireFin - this.horaireDepart;
     }
 
     /**
      * Affiche l'horaire de manière lisible (ex 9h).
-     * @param horaireEnMinutes l'horaire en heures depuis minuit.
+     * @param horaire l'horaire en heures depuis minuit.
      * @return Une chaîne de caractères formatée.
      */
-    private String formatHoraire(int horaireEnMinutes) {
-        int heures = horaireEnMinutes;
+    private String formatHoraire(int horaire) {
+        int heures = horaire;
         return String.format("%02d:%02d", heures, 0);
     }
 
