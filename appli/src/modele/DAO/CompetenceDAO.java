@@ -180,6 +180,71 @@ public class CompetenceDAO extends DAO<Competence> {
     }
 
     /**
+     * NOUVELLE MÉTHODE : Récupère toutes les compétences SAUF une spécifique par son ID.
+     * La méthode charge également tous les prérequis (non paresseux).
+     * @param idToExclude L'ID de la compétence à exclure de la liste.
+     * @return Un ArrayList de toutes les autres compétences, complètes avec leurs prérequis.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    public ArrayList<Competence> findAllExceptID(long idToExclude) throws SQLException {
+        TreeMap<Long, Competence> competencesMap = new TreeMap<>();
+
+        // 1. On charge toutes les compétences SAUF celle avec l'ID spécifié.
+        String sql = "SELECT * FROM Competence WHERE idComp != ? ORDER BY intitule";
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, idToExclude);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Competence tmp = new Competence(
+                        rs.getLong("idComp"),
+                        rs.getString("intitule"),
+                        rs.getString("abrevComp")
+                    );
+                    competencesMap.put(tmp.getIdComp(), tmp);
+                }
+            }
+        }
+
+        // 2. La logique pour peupler les prérequis est exactement la même que pour findAll().
+        for (Competence competence : competencesMap.values()) {
+            ArrayList<Long> prerequisIds = findPrerequisIdsFor(competence.getIdComp());
+            ArrayList<Competence> prerequisObjets = new ArrayList<>();
+            for (Long prerequisId : prerequisIds) {
+                // On cherche le prérequis dans la map des compétences chargées.
+                // Si le prérequis était la compétence exclue, il ne sera pas trouvé (ce qui est correct).
+                Competence prerequisCompetence = competencesMap.get(prerequisId);
+                if (prerequisCompetence != null) {
+                    prerequisObjets.add(prerequisCompetence);
+                }
+            }
+            competence.setPrerequis(prerequisObjets);
+        }
+        
+        return new ArrayList<>(competencesMap.values());
+    }
+
+    /**
+     * Méthode utilitaire pour trouver les IDs des prérequis d'une compétence donnée.
+     * @param competenceId L'ID de la compétence principale.
+     * @return Une liste des IDs de ses prérequis.
+     * @throws SQLException
+     */
+    private ArrayList<Long> findPrerequisIdsFor(long competenceId) throws SQLException {
+        ArrayList<Long> prerequisIds = new ArrayList<>();
+        // Note : Adapte les noms de table/colonne si nécessaire.
+        String sql = "SELECT idPrerequis FROM PrerequisComp WHERE idCompPre = ?";
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, competenceId);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    prerequisIds.add(rs.getLong("idPrerequis"));
+                }
+            }
+        }
+        return prerequisIds;
+    }
+
+    /**
      * FindByID recherche une compétence par son identifiant.
      * @param id L'identifiant de la compétence à rechercher.
      * @return La compétence trouvée, ou null si aucune compétence n'est trouvée avec cet identifiant.

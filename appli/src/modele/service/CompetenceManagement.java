@@ -38,12 +38,7 @@ public class CompetenceManagement {
         competencesFutures.add(nouvelleCompetence);
 
         
-        GrapheDAG<Competence> grapheTest = new GrapheDAG<>(competencesFutures);
-        for (Competence c : competencesFutures) {
-            for (Competence p : c.getPrerequis()) {
-                grapheTest.ajouterArc(p, c); 
-            }
-        }
+        GrapheDAG<Competence> grapheTest =  GrapheDAG.creerGrapheDeCompetences(competencesFutures);
 
        
         if (!dagMethode.estUnDAG(grapheTest)) {
@@ -60,25 +55,31 @@ public class CompetenceManagement {
         
 
     public boolean modifierCompetence(Competence competence, String intitule, String abrev, List<Competence> prerequis) throws SQLException {
+        // on garde en memoire les anciens parametre de la competence si jamais l'update provoque un DAG
+        String ancienIntitule = competence.getIntitule();
+        String ancienAbrev = competence.getAbrevComp();
+        ArrayList<Competence> ancienPrerequis = competence.getPrerequis();
+    
         // On met à jour l'objet compétence en mémoire pour simuler le changement
         competence.setIntitule(intitule);
-        competence.setAbrevComp(abrev);
+        competence.setAbrevComp(abrev); 
         competence.setPrerequis(new ArrayList<>(prerequis));
+        competenceDAO.update(competence);
+
 
         // --- Début de la vérification du DAG ---
         // 1. On récupère toutes les compétences (dont celle qu'on vient de modifier en mémoire)
         List<Competence> competencesFutures = this.listerToutesLesCompetences();
 
         // 2. On construit le graphe de test
-        GrapheDAG<Competence> grapheTest = new GrapheDAG<>(competencesFutures);
-        for (Competence c : competencesFutures) {
-            for (Competence p : c.getPrerequis()) {
-                grapheTest.ajouterArc(p, c);
-            }
-        }
+        GrapheDAG<Competence> grapheTest = GrapheDAG.creerGrapheDeCompetences(competencesFutures);
 
         // 3. On vérifie s'il y a un cycle
         if (!dagMethode.estUnDAG(grapheTest)) {
+            // Si le graphe n'est pas un DAG, on annule les changements sur l'objet compétence
+            competence.setIntitule(ancienIntitule);
+            competence.setAbrevComp(ancienAbrev);
+            competence.setPrerequis(ancienPrerequis);
             System.err.println("ERREUR: La modification de cette compétence créerait un cycle de dépendances.");
             // Important : on pourrait vouloir annuler les changements sur l'objet 'competence' ici,
             // mais comme on va rafraîchir les données, ce n'est pas critique.
@@ -86,8 +87,6 @@ public class CompetenceManagement {
         }
         // --- Fin de la vérification ---
 
-        // Si tout est bon, on met à jour la compétence dans la BDD
-        competenceDAO.update(competence);
         return true;
     }
 

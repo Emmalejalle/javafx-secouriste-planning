@@ -2,21 +2,19 @@ package modele.graphe.modele;
 
 import modele.persistence.Competence; // Important d'importer Competence
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Représente un graphe orienté générique.
- * Cette version a été corrigée pour inclure une méthode de construction
- * qui peuple automatiquement la matrice d'adjacence pour les compétences.
+ * CETTE VERSION A ÉTÉ CORRIGÉE POUR ÊTRE PLUS FIABLE.
+ * Elle n'utilise plus de HashMap pour éviter les problèmes liés
+ * aux méthodes equals() et hashCode() des objets sommets.
  */
 public class GrapheDAG<T> {
 
     private boolean[][] matriceAdjacence;
     private int nombreSommets;
-    private ArrayList<T> indexVersSommet;
-    private Map<T, Integer> sommetVersIndex;
+    private ArrayList<T> indexVersSommet; // Permet de retrouver un objet à partir de son index
 
     /**
      * Constructeur de base. Crée un graphe avec des sommets mais SANS arcs.
@@ -26,15 +24,10 @@ public class GrapheDAG<T> {
         this.nombreSommets = sommets.size();
         this.matriceAdjacence = new boolean[nombreSommets][nombreSommets];
         this.indexVersSommet = new ArrayList<>(sommets);
-        this.sommetVersIndex = new HashMap<>();
-        
-        for (int i = 0; i < nombreSommets; i++) {
-            this.sommetVersIndex.put(sommets.get(i), i);
-        }
     }
 
     /**
-     * MÉTHODE "FACTORY" : C'est la méthode à utiliser dans ton application !
+     * Méthode "FACTORY" : C'est la méthode à utiliser dans ton application !
      * Elle crée un graphe de compétences et peuple automatiquement la matrice
      * en lisant les prérequis de chaque objet Competence.
      * @param competences La liste complète des compétences.
@@ -64,10 +57,13 @@ public class GrapheDAG<T> {
      * Ajoute un arc (une flèche) entre deux sommets.
      */
     public void ajouterArc(T source, T destination) {
-        Integer indexSource = sommetVersIndex.get(source);
-        Integer indexDestination = sommetVersIndex.get(destination);
+        // // CORRECTION : On utilise indexOf au lieu d'une Map pour trouver l'index.
+        // // C'est plus simple et ça marche même si equals/hashCode ne sont pas définis.
+        int indexSource = this.indexVersSommet.indexOf(source);
+        int indexDestination = this.indexVersSommet.indexOf(destination);
 
-        if (indexSource != null && indexDestination != null) {
+        // // On vérifie que les deux sommets existent bien dans notre graphe.
+        if (indexSource != -1 && indexDestination != -1) {
             matriceAdjacence[indexSource][indexDestination] = true;
         }
     }
