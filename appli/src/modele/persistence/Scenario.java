@@ -51,7 +51,7 @@ public class Scenario {
         System.out.println("[Sport] Sport du DPS : " + sportDPS.getNom());
 
         // Simuler un DPS
-        DPS dps = new DPS(601, 510, 800, siteDPS, sportDPS, journeeDPS);
+        DPS dps = new DPS(601, 12, 16, siteDPS, sportDPS, journeeDPS);
 
         // Ajouter un besoin pour la compétence "Premiers Secours"
         dps.getBesoins().put(competenceSecouriste, 1);
@@ -103,13 +103,14 @@ public class Scenario {
 
         // L'administrateur sélectionne un secouriste
         Secouriste secouristeSelectionne = null;
+        Affectation nouvelleAffectation = null;
         if (!secouristesDisponibles.isEmpty()) {
             secouristeSelectionne = secouristesDisponibles.get(0);
             System.out.println("[Admin] -> [Affection] : Sélectionne le secouriste : " + secouristeSelectionne.getPrenom() + " " + secouristeSelectionne.getNom());
 
             //L'administrateur crée l'affectation
             System.out.println("[Admin] -> [Affectation] : creerAffectation(secouriste, dps, competence)");
-            Affectation nouvelleAffectation = new Affectation(secouristeSelectionne, dpsSelectionne, competenceRequise);
+            nouvelleAffectation = new Affectation(secouristeSelectionne, dpsSelectionne, competenceRequise);
             System.out.println("[Affectation] Affectation créée : " + nouvelleAffectation.toString());
 
             // L'affectation est vérifiée
@@ -127,6 +128,13 @@ public class Scenario {
         } else {
             System.out.println("[Admin] : Impossible de créer une affectation car aucun secouriste n'est disponible pour le DPS et la compétence.");
         }
+
+
+        // Le secouriste demande la competence qu'il doit remplir et le site sur lequel il est affecté
+        System.out.println("\n[Secouriste] -> [Affectation] : Demande le site sur lequel il est affecté");
+        System.out.println("[Secouriste] Retourne le site sur lequel il est affecté : " + nouvelleAffectation.getDps().getSite().getNom());
+        System.out.println("[Secouriste] -> [Affectation] : Demande la competence qu'il doit remplir");
+        System.out.println("[Secouriste] Retourne la competence qu'il doit remplir : " + competenceSecouriste.getIntitule());
 
 
         // Fin du scénario
