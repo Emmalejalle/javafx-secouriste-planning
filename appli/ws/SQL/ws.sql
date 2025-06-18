@@ -198,6 +198,8 @@ INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser
 (11112222, 'admin123', 'Durand', 'Claire', '12/06/1980', 'claire.durand@example.com', '06-12-34-56-78', '12 rue des Lilas, Paris', 1),
 (11113333, 'admin456', 'Martin', 'Jean', '03/11/1978', 'jean.martin@example.com', '06-23-45-67-89', '18 avenue Victor Hugo, Lyon', 1);
 
+SELECT * FROM Affectation;
+
 -- Secouristes
 INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
 (12345678, '12345678', 'Bernard', 'Alice', '15/03/1995', 'alice.bernard@example.com', '06-11-12-22-33', '5 rue des Fleurs, Lille', 0),
@@ -555,3 +557,5 @@ INSERT INTO Affectation VALUES (17181920, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (18192021, 8, 59922115); -- PSE2
 
 INSERT INTO Affectation VALUES (14151617, 8,22214528 ); -- PSE2
+
+SELECT * FROM Affectation;

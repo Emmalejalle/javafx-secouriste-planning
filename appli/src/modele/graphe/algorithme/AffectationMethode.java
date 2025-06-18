@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
  * Contient les algorithmes pour l'affectation des secouristes.
  * Cette classe implémente une approche exhaustive (backtracking) pour trouver
  * le couplage de cardinalité maximale dans un graphe biparti.
+ * 
+ *  @author Emilien EMERIAU
+ *  @version 1.0
  */
 public class AffectationMethode {
 

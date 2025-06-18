@@ -1,7 +1,9 @@
 package modele.persistence;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * La classe DPS (Dispositif Prévisionnel de Secours) représente un événement
@@ -188,6 +190,18 @@ public class DPS {
         return String.format("%02d:%02d", heures, 0);
     }
 
+    /**
+     * Retourne une liste des competences nécessaires pour ce DPS en ArrayList.
+     * @return Une liste de Compétences.
+     */
+    public ArrayList<Competence> getListeCompetences() {
+        ArrayList<Competence> listeCompetences = new ArrayList<>();
+        for (Map.Entry<Competence, Integer> entry : besoins.entrySet()) {
+            listeCompetences.add(entry.getKey());
+        }
+        return listeCompetences;
+    }
+    
     @Override
     public String toString() {
         return "DPS " + id + " [" + sport.getNom() + " à " + site.getNom() + "] le " + journee 

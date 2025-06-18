@@ -6,6 +6,9 @@ import java.util.Arrays;
  * Classe de test pour les algorithmes d'affectation contenus dans AffectationMethode.
  * Permet de lancer les différents algorithmes sur une même matrice de test
  * et de comparer leurs résultats et leur performance.
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
  */
 public class TestAffectationMethode {
 

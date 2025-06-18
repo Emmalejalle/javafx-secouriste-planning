@@ -65,6 +65,24 @@ public class Secouriste extends User {
         this.disponibilites = disponibilites;
     }
 
+    /**
+     * Verifie si le secouriste à une compétence
+     * @param competence
+     * @return  true si le secouriste possède la compétence, false sinon.
+     */
+    public boolean aCompetence(Competence competence) {
+        if (competence == null) {
+            return false;
+        }
+        //comparaison des id des compétences
+        for (Competence c : this.competences) {
+            if (c.getIdComp() == competence.getIdComp()) {
+                return true;
+            }
+        }
+        return this.competences.contains(competence);
+    }
+
     // --- Méthodes de traitement spécifiques au secouriste ---
 
     /**
@@ -77,17 +95,5 @@ public class Secouriste extends User {
             return false;
         }
         return this.disponibilites.contains(journee);
-    }
-
-    /**
-     * Vérifie si le secouriste possède une compétence spécifique.
-     * @param competence la compétence à vérifier.
-     * @return true si le secouriste possède la compétence, false sinon.
-     */
-    public boolean possedeCompetence(Competence competence) {
-        if (competence == null) {
-            return false;
-        }
-        return this.competences.contains(competence);
     }
 }

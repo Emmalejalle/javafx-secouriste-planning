@@ -9,7 +9,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="rootPane" prefHeight="1080.0" prefWidth="1920.0" fx:controller="controller.AffectationDpsController" stylesheets="@../style/AffectationDpsDeBase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane fx:id="rootPane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/AffectationDpsDeBase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AffectationDpsController">
 
     <top>
         <Pane fx:id="headerPlaceholder" prefHeight="100.0" />
@@ -45,7 +45,7 @@
                     <children>
                         <ScrollPane fx:id="ScrollPaneRechercheSecou" fitToWidth="true" prefHeight="791.0" prefWidth="413.0" styleClass="scrollContour" stylesheets="@../style/ListeRechercheSecouri.css">
                             <content>
-                                <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="409.0" style="-fx-background-color: white;">
+                                <VBox fx:id="vboxListeDps" alignment="TOP_CENTER" prefHeight="719.0" prefWidth="409.0" style="-fx-background-color: white;">
                                     
                                      <!-- AJOUT : ici on décale tout le contenu vers le bas -->
                                     <padding>
@@ -54,7 +54,7 @@
 
                                     <children>
                                         <!-- Exemple de DPS -->
-                                        <CheckBox fx:id="chkSkiAlpin" onAction="#onSelectDps" prefHeight="60" prefWidth="350" styleClass="dps-checkbox" text="Ski Alpin">
+                                        <CheckBox fx:id="chkSkiAlpin" contentDisplay="CENTER" onAction="#onSelectDps" prefHeight="84.0" prefWidth="352.0" styleClass="dps-checkbox" text="Ski Alpin">
                                             <padding>
                                                 <Insets bottom="0" left="8.0" right="0" top="5.0" />
                                             </padding>
@@ -170,11 +170,7 @@
                     </VBox.margin>
                 </HBox>
 
-                <StackPane  fx:id="contentPane"
-                            prefHeight="791.0"
-                            styleClass="shadow"
-                            stylesheets="@../style/ListeRechercheSecouri.css"
-                            BorderPane.alignment="CENTER">
+                <StackPane fx:id="contentPane" prefHeight="791.0" styleClass="shadow" stylesheets="@../style/ListeRechercheSecouri.css" BorderPane.alignment="CENTER">
                     <VBox.margin>
                         <Insets left="100.0" right="300.0" top="10.0" />
                     </VBox.margin>
@@ -192,9 +188,9 @@
 
     <bottom>
         <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
-            <padding><Insets bottom="10" left="10" right="10" top="10"/></padding>
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
             <children>
-                <Button fx:id="btnReturn" styleClass="back-button" text="← Retour" onAction="#onReturn"/>
+                <Button fx:id="btnReturn" onAction="#onReturn" styleClass="back-button" text="← Retour" />
             </children>
         </HBox>
     </bottom>

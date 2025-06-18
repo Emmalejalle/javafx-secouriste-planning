@@ -13,15 +13,36 @@ import javafx.scene.layout.Pane;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.ComboBox;
+
+import modele.SessionManager;
+import modele.service.AffectationMngt;
 
 import java.io.IOException;
 
+/**
+ * Contrôleur pour la vue d'affectation des DPS (Dispositifs de Protection et de Sécurité).
+ * Gère l'affichage des détails d'une DPS sélectionnée et les interactions utilisateur.
+ * Permet également l'auto-affectation et le retour à l'accueil.
+ *
+ * @author Emilien EMERIAU
+ * @version 1.0
+ */
 public class AffectationDpsController {
 
     @FXML private BorderPane rootPane;
     @FXML private Pane       headerPlaceholder;
     @FXML private javafx.scene.layout.StackPane contentPane;
     @FXML private Button     btnReturn;
+    @FXML private Button     btnAutoAffectation;
+    @FXML private Button     btnClearAffectation;
+    @FXML private VBox       vboxListeDps;
+    @FXML private ComboBox<Integer> cbJour;
+    @FXML private ComboBox<Integer> cbMois;
+    @FXML private ComboBox<Integer> cbAnnee;
+
+    private AffectationMngt affectationMngt = new AffectationMngt();
 
     @FXML
     public void initialize() {
@@ -41,7 +62,6 @@ public class AffectationDpsController {
         }
     }
 
-    /** Auto-affectation → simple popup pour l'instant */
     @FXML
     private void onAutoAffectation(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -49,6 +69,32 @@ public class AffectationDpsController {
         alert.setHeaderText(null);
         alert.setContentText("Auto-affectation bien effectuée !");
         alert.showAndWait();
+        int jour = cbJour.getValue();
+        int mois = cbMois.getValue();
+        int annee = cbAnnee.getValue();
+        try {
+            // On clear d'abord les affectations existantes pour la journée
+            affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
+            // Puis on lance l'affectation auto gloutonne
+            affectationMngt.affectationAutoGloutonnePourJournee(jour, mois, annee);
+            System.out.println("Affectation auto gloutonne effectuée pour " + jour + "/" + mois + "/" + annee);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'auto-affectation : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void onClearAffectation(ActionEvent event) {
+        
+        int jour = cbJour.getValue();
+        int mois = cbMois.getValue();
+        int annee = cbAnnee.getValue();
+        try {
+            int nb = affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
+            System.out.println("Affectations supprimées : " + nb);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la suppression des affectations : " + e.getMessage());
+        }
     }
 
     /** Sélection d’une DPS dans la liste à gauche */

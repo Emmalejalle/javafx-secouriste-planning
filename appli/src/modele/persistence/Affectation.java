@@ -76,7 +76,7 @@ public class Affectation {
      */
     public boolean estValide() {
         // On utilise les méthodes de traitement des objets Secouriste et DPS.
-        boolean aLaCompetence = this.secouriste.possedeCompetence(this.competenceRemplie);
+        boolean aLaCompetence = this.secouriste.aCompetence(this.competenceRemplie);
         boolean estDisponibleLeJourJ = this.secouriste.estDisponible(this.dps.getJournee());
         
         // L'affectation n'est valide que si les deux conditions sont remplies.

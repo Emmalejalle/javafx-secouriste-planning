@@ -90,7 +90,7 @@ public class Scenario {
 
         // regarde si le secouriste est disponible et possede la competence
         ArrayList<Secouriste> secouristesDisponibles = new ArrayList<>();
-        if (secouriste.possedeCompetence(competenceRequise) && secouriste.estDisponible(dpsSelectionne.getJournee())) {
+        if (secouriste.aCompetence(competenceRequise) && secouriste.estDisponible(dpsSelectionne.getJournee())) {
             secouristesDisponibles.add(secouriste);
         }
         System.out.println("[Secouriste] Retourne la liste des secouristes disponibles.");

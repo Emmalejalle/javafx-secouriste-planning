@@ -9,6 +9,9 @@ import java.util.List;
  * CETTE VERSION A ÉTÉ CORRIGÉE POUR ÊTRE PLUS FIABLE.
  * Elle n'utilise plus de HashMap pour éviter les problèmes liés
  * aux méthodes equals() et hashCode() des objets sommets.
+ * 
+ * @author Emilien EMERIAU
+ * @version 1.0
  */
 public class GrapheDAG<T> {
 

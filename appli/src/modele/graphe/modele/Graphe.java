@@ -8,7 +8,7 @@ import java.util.List;
  * Cette classe fournit les fonctionnalités de base pour manipuler un graphe
  * et sert de fondation pour les algorithmes plus complexes (DAG, affectation...).
  * Les sommets sont représentés par des indices (de 0 à N-1).
- * * @author Emilien EMERIAU et Elie Tardy
+ * @author Emilien EMERIAU
  * @version 1.0
  */
 public class Graphe {
