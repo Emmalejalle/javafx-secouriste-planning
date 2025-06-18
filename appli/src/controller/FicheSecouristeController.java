@@ -1,5 +1,7 @@
 package controller;
 
+
+import modele.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -74,8 +76,15 @@ public class FicheSecouristeController {
      * Appelée quand on clique sur "Voir le planning".
      * Demande au contrôleur principal de naviguer vers la vue du planning.
      */
+    
     @FXML
     private void onVoirPlanning(ActionEvent event) {
-        mainController.voirPlanningPour(secouristeAffiche);
+        System.out.println("Demande d'affichage du planning pour " + secouristeAffiche.getNom());
+
+        // On place temporairement le secouriste sélectionné dans la session
+        SessionManager.getInstance().setCurrentUser(secouristeAffiche);
+
+        // On navigue vers la page du planning
+        mainController.changeView(event, "/vue/PlanningVueADMIN.fxml"); // On appelle la méthode héritée de BaseController
     }
 }

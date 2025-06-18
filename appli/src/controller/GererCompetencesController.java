@@ -61,6 +61,7 @@ public class GererCompetencesController extends BaseController {
             vboxListeCompetences.getChildren().add(creerVignetteCompetence(competence));
         }
     }
+    
 
     private HBox creerVignetteCompetence(Competence competence) {
         HBox hbox = new HBox();

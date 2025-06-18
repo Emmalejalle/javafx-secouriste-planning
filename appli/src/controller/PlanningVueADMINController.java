@@ -33,7 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PlanningController {
+public class PlanningVueADMINController {
 
     @FXML private Label lblMonthYear;
     @FXML private GridPane planningGrid;
@@ -43,6 +43,7 @@ public class PlanningController {
     @FXML private Label lblDpsActivite, lblDpsDate, lblDpsHoraires, lblDpsLieu;
     @FXML private VBox vboxCoequipiers;
     @FXML private Label lblTotalHours;
+    @FXML private Label planningTitleLabel;
 
     private LocalDate dateAffichee;
     private Secouriste secouristeConnecte;
@@ -51,7 +52,7 @@ public class PlanningController {
     private AffectationDAO affectationDAO;
     private VBox dpsSelectionne;
 
-    public PlanningController() {
+    public PlanningVueADMINController() {
         this.dpsDAO = new DpsDAO();
         this.journeeDAO = new JourneeDAO();
         this.affectationDAO = new AffectationDAO();
@@ -63,6 +64,8 @@ public class PlanningController {
         if (user instanceof Secouriste) {
             this.secouristeConnecte = (Secouriste) user;
             System.out.println("Page planning ouverte pour : " + secouristeConnecte.getNom());
+            // On met à jour le titre du planning avec le nom du bon secouriste !
+            planningTitleLabel.setText("Planning de " + secouristeConnecte.getPrenom() + " " + secouristeConnecte.getNom());
         } else {
             System.err.println("ERREUR: Aucun secouriste connecté.");
             return;
@@ -134,7 +137,7 @@ public class PlanningController {
 
                 // 5. On vérifie si la date du DPS est bien dans la semaine qu'on affiche
                 if (!dateDuDps.isBefore(premierJourSemaine) && !dateDuDps.isAfter(dernierJourSemaine)) {
-                   
+
                     totalHeuresSemaine += (dps.getHoraireFin() - dps.getHoraireDepart());
                     // Si oui, on crée et on place la vignette
                     VBox vignette = creerVignettePourDps(dps);
@@ -256,17 +259,18 @@ public class PlanningController {
         return "dps-jaune";
     }
 
-    @FXML
-    public void retourAccueilAdmin(ActionEvent event) {
-        System.out.println("Clic sur Retour. Chargement de accueilSecouriste.fxml...");
+   @FXML
+    public void retourGestionSecouristes(ActionEvent event) {
+        System.out.println("Retour vers la page de gestion des secouristes...");
         try {
-            // Attention, le chemin doit être absolu depuis le classpath
-            changerDeVue(event, "/vue/accueilSecouriste.fxml");
+            // On pointe vers la bonne vue
+            changerDeVue(event, "/vue/Modifier-supprimerUnSecouriste.fxml");
         } catch (IOException e) {
-            System.err.println("ERREUR: Impossible de charger la vue accueilSecouriste.fxml");
+            System.err.println("ERREUR: Impossible de charger la vue Modifier-supprimerUnSecouriste.fxml");
             e.printStackTrace();
         }
     }
+
 
     private void changerDeVue(ActionEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlFileName));
