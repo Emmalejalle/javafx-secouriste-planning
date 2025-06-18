@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="details-pane-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireCompetenceController">
+    <top>
+        <Label fx:id="titreFormLabel" styleClass="details-titre" text="Ajouter/Modifier Compétence" />
+    </top>
+    <center>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+            <Label styleClass="form-label" text="Intitulé :" />
+            <TextField fx:id="intituleField" />
+            <Label styleClass="form-label" text="Abréviation :" />
+            <TextField fx:id="abrevField" />
+            <Label styleClass="form-label" text="Compétences requises (Ctrl+Clic pour sélection multiple) :" />
+            <ListView fx:id="prerequisListView" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+            <Button fx:id="validerButton" onAction="#onValider" styleClass="button-primary" text="Valider" />
+        </HBox>
+    </bottom>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+    </padding>
+</BorderPane>

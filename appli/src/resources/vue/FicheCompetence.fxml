@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<BorderPane styleClass="details-pane-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FicheCompetenceController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0">
+         <children>
+            <Label styleClass="details-titre" text="Fiche de la compétence" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="modifierButton" onAction="#onModifier" styleClass="button-primary" text="Modifier" />
+            <Button fx:id="supprimerButton" onAction="#onSupprimer" styleClass="button-delete" text="Supprimer" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <GridPane hgap="10.0" vgap="15.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="160.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+         <Label styleClass="details-label" text="Intitulé :" GridPane.rowIndex="0" />
+         <Label fx:id="intituleText" styleClass="details-text" text="[intitulé]" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         <Label styleClass="details-label" text="Abréviation :" GridPane.rowIndex="1" />
+         <Label fx:id="abrevText" styleClass="details-text" text="[abrev]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Label styleClass="details-prerequis-titre" text="Compétences requises :" GridPane.rowIndex="2" />
+         <VBox fx:id="prerequisVBox" spacing="5.0" styleClass="details-prerequis-item" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      </GridPane>
+   </center>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
+</BorderPane>

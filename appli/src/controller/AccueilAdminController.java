@@ -1,4 +1,3 @@
-
 package controller;
 
 import javafx.event.ActionEvent;
@@ -53,8 +52,8 @@ public class AccueilAdminController {
     }
 
     @FXML
-    public void goGererSecouriste(ActionEvent event) {
-        System.out.println("Clic sur Modifier-supprimerUneCompétence. Chargement vers Modifier-supprimerUneCompétence.fxml...");
+    public void goGererCompetences(ActionEvent event) { // <-- NOM CORRIGÉ
+        System.out.println("Chargement de la vue pour Gérer les Compétences...");
         try {
             changerDeVue(event, "Modifier-supprimerUneCompétence.fxml");
         } catch (IOException e) {

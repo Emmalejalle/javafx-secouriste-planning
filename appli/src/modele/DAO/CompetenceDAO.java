@@ -1,14 +1,12 @@
 package modele.DAO;
 
-import modele.persistence.Competence;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import modele.persistence.Competence;
 
 /**
  * DAO concret pour l'entité 'Competence'.
