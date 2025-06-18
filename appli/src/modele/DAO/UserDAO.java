@@ -83,33 +83,74 @@ public class UserDAO extends DAO<User> {
     }
 
     /**
-     * NOUVELLE MÉTHODE : Récupère la liste de tous les secouristes disponibles pour une journée donnée.
-     * @param journeeId L'identifiant de la journée pour laquelle on veut les secouristes.
-     * @return Un ArrayList d'objets User (qui seront tous des Secouristes).
+     * VERSION MISE À JOUR : Récupère la liste des secouristes qui sont à la fois
+     * disponibles pour une journée, qui possèdent une compétence spécifique,
+     * ET qui ne sont pas déjà affectés à un DPS ce jour-là.
+     * @param journeeId L'identifiant de la journée.
+     * @param competenceId L'identifiant de la compétence requise.
+     * @return Un ArrayList d'objets Secouriste qui correspondent à tous les critères.
      * @throws SQLException En cas d'erreur d'accès à la base de données.
      */
-    public ArrayList<User> findAvailableUsersForJournee(long journeeId) throws SQLException {
-        ArrayList<User> userList = new ArrayList<>();
+    public ArrayList<Secouriste> findAvailableAndSkilledSecouristes(long journeeId, long competenceId) throws SQLException {
+        ArrayList<Secouriste> secouristesList = new ArrayList<>();
+        
+        // Cette requête SQL fait une double jointure et utilise une sous-requête NOT EXISTS
+        // pour filtrer sur les trois critères en même temps.
+        String sql = "SELECT u.* FROM User u " +
+                     "JOIN Dispo d ON u.idUser = d.idSecouriste " +
+                     "JOIN ListCompSecouriste lcs ON u.idUser = lcs.idSecouCompList " +
+                     "WHERE d.idJourneeDispo = ? AND lcs.idCompList = ? AND u.isAdmin = 0 " +
+                     "AND NOT EXISTS (SELECT 1 FROM Affectation a JOIN DPS ON a.idDPSAffect = DPS.idDPS WHERE a.idSecouAffect = u.idUser AND DPS.idJourneeDPS = ?)";
+        
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, journeeId);       // Paramètre pour la table Dispo
+            st.setLong(2, competenceId);    // Paramètre pour la table ListCompSecouriste
+            st.setLong(3, journeeId);       // Paramètre pour la sous-requête sur les DPS de la journée
+            
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Secouriste secouriste = (Secouriste) mapResultSetToUser(rs);
+                    
+                    // On charge les autres informations pour avoir un objet complet.
+                    loadCompetencesFor(secouriste);
+                    loadDisponibilitesFor(secouriste);
+                    
+                    secouristesList.add(secouriste);
+                }
+            }
+        }
+        return secouristesList;
+    }
+
+    /**
+     * NOUVELLE VERSION : Récupère la liste de tous les secouristes disponibles pour une journée donnée.
+     * @param journeeId L'identifiant de la journée pour laquelle on veut les secouristes.
+     * @return Un ArrayList d'objets Secouriste.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    public ArrayList<Secouriste> findAvailableSecouristesForJournee(long journeeId) throws SQLException {
+        ArrayList<Secouriste> secouristesList = new ArrayList<>();
         // Jointure entre la table User et la table de disponibilité 'Dispo'
-        String sql = "SELECT u.* FROM User u JOIN Dispo d ON u.idUser = d.idSecouriste WHERE d.idJourneeDispo = ?";
+        String sql = "SELECT u.* FROM User u JOIN Dispo d ON u.idUser = d.idSecouriste WHERE d.idJourneeDispo = ? AND u.isAdmin = 0";
         
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             st.setLong(1, journeeId);
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
-                    User user = mapResultSetToUser(rs);
+                    // mapResultSetToUser va créer un objet Secouriste car isAdmin = 0
+                    Secouriste secouriste = (Secouriste) mapResultSetToUser(rs);
+                    
                     // On charge les autres informations pour avoir un objet complet.
-                    if (user instanceof Secouriste) {
-                        loadCompetencesFor((Secouriste) user);
-                        loadDisponibilitesFor((Secouriste) user);
-                    }
-                    userList.add(user);
+                    loadCompetencesFor(secouriste);
+                    loadDisponibilitesFor(secouriste);
+                    
+                    secouristesList.add(secouriste);
                 }
             }
         }
-        return userList;
+        return secouristesList;
     }
-    
+
     /**
      * Crée un utilisateur (Admin ou Secouriste) et ses relations associées.
      * L'opération est transactionnelle pour garantir la cohérence des données.
