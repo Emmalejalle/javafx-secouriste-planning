@@ -201,7 +201,7 @@ public class GererDpsController extends BaseController {
     @FXML
     public void onRetourClicked(ActionEvent event) {
         // On suppose un retour vers l'accueil de l'administrateur
-        changeView(event, "accueilAdmin.fxml");
+        changeView(event, "/vue/accueilAdmin.fxml");
     }
 
     private void afficherListe(List<DPS> dpsAAfficher) {
