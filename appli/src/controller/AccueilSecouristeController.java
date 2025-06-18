@@ -54,6 +54,20 @@ public class AccueilSecouristeController {
     }
 
     /**
+     * Nouvel handler pour le bouton Profil du header.
+     */
+    @FXML
+    public void goToProfil(MouseEvent event) {
+        System.out.println("Clic sur Profil. Chargement de profil.fxml...");
+        try {
+            changerDeVue(event, "profil.fxml");
+        } catch (IOException e) {
+            System.err.println("ERREUR: Impossible de charger profil.fxml");
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Méthode générique pour changer de vue à partir d'un clic de souris.
      */
     private void changerDeVue(MouseEvent event, String fxmlFileName) throws IOException {

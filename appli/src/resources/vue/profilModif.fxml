@@ -6,286 +6,259 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane fx:id="bordureModif"
+            prefHeight="1080" prefWidth="1920"
+            stylesheets="@../style/profil.css"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.ProfilModifController"
-            stylesheets="@../style/profil.css"
-            prefWidth="1920" prefHeight="1080">
+            fx:controller="controller.ProfilModifController">
 
-    <!-- HEADER : zone blanche de 100px -->
+    <!-- HEADER -->
     <top>
-        <Pane fx:id="paneEnteteModif" prefHeight="100" style="-fx-background-color: white;"/>
+        <Pane fx:id="paneEnteteModif"
+              prefHeight="100"
+              style="-fx-background-color: white;" />
     </top>
 
-    <!-- CENTRE : image + deux ScrollPane côte à côte en mode édition -->
+    <!-- CENTRE -->
     <center>
         <VBox fx:id="containerPrincipalModif" spacing="0">
+            <children>
+                <!-- Bannière -->
+                <ImageView fx:id="bannerModif"
+                           fitHeight="275" fitWidth="1920" preserveRatio="false">
+                    <image>
+                        <Image url="@../img/montagneProfil.png" />
+                    </image>
+                </ImageView>
 
-            <!-- Bannière -->
-            <ImageView fx:id="bannerModif"
-                       fitHeight="275" fitWidth="1920" preserveRatio="false">
-                <image><Image url="@../img/montagneProfil.png"/></image>
-            </ImageView>
-
-            <!-- Contenu principal -->
-            <HBox fx:id="containerScrollsModif" alignment="TOP_CENTER" spacing="20">
-
-                <!-- GAUCHE éditable -->
-                <ScrollPane fx:id="scrollGaucheModif"
-                            prefWidth="454" prefHeight="750"
-                            fitToWidth="true"
-                            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
-                    <content>
-                        <VBox fx:id="vboxGaucheModif" alignment="TOP_CENTER" spacing="20">
-                            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
-
-                            <!-- Photo profil -->
-                            <ImageView fx:id="imageProfilModif"
-                                       fitWidth="160" fitHeight="160"
-                                       preserveRatio="true"
-                                       styleClass="profile-image">
-                                <image><Image url="@../img/pdp.png"/></image>
-                            </ImageView>
-
-                            <!-- Nom modifiable -->
-                            <TextField fx:id="tfNomPrenomModif"
-                                       styleClass="profile-name"
-                                       text="Patrick David ( id : 12345 )"
-                                       HBox.hgrow="ALWAYS"
-                                       style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-
-                            <!-- Champs éditables -->
-                            <VBox fx:id="champsGaucheModif" alignment="TOP_LEFT" spacing="16">
-
-                                <Label text="Téléphone :" styleClass="field-label"/>
-                                <HBox fx:id="hbTelephoneModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgTel.png"/></image>
-                                    </ImageView>
-                                    <TextField fx:id="tfTelephoneModif"
-                                               text="06 14 23 72 90"
-                                               HBox.hgrow="ALWAYS"
-                                               style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                                <Label text="Email :" styleClass="field-label"/>
-                                <HBox fx:id="hbEmailModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgMail.png"/></image>
-                                    </ImageView>
-                                    <TextField fx:id="tfEmailModif"
-                                               text="patrick.david@gmail.com"
-                                               HBox.hgrow="ALWAYS"
-                                               style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                                <Label text="Statut :" styleClass="field-label"/>
-                                <HBox fx:id="hbStatutModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgProfil.png"/></image>
-                                    </ImageView>
-                                    <TextField fx:id="tfStatutModif"
-                                               text="Professionnel"
-                                               HBox.hgrow="ALWAYS"
-                                               style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                                <Label text="ID :" styleClass="field-label"/>
-                                <HBox fx:id="hbIdModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgId.png"/></image>
-                                    </ImageView>
-                                    <TextField fx:id="tfIdModif"
-                                               text="12345"
-                                               HBox.hgrow="ALWAYS"
-                                               style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                                <Label text="Mot de passe :" styleClass="field-label"/>
-                                <HBox fx:id="hbMdpModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgMdp.png"/></image>
-                                    </ImageView>
-                                    <PasswordField fx:id="pfMdpModif"
-                                                   text="••••••••"
-                                                   HBox.hgrow="ALWAYS"
-                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                                <Label text="Adresse :" styleClass="field-label"/>
-                                <HBox fx:id="hbAdresseModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgLocation.png"/></image>
-                                    </ImageView>
-                                    <TextField fx:id="tfAdresseModif"
-                                               text="123 Rue de la Paix"
-                                               HBox.hgrow="ALWAYS"
-                                               style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                                <Label text="Date de naissance :" styleClass="field-label"/>
-                                <HBox fx:id="hbDateNaissanceModif"
-                                      styleClass="info-box"
-                                      prefWidth="415" prefHeight="65"
-                                      spacing="8" alignment="CENTER_LEFT">
-                                    <ImageView fitWidth="20" fitHeight="20">
-                                        <image><Image url="@../img/svgAnniv.png"/></image>
-                                    </ImageView>
-                                    <TextField fx:id="tfDateNaissanceModif"
-                                               text="01/01/1980"
-                                               HBox.hgrow="ALWAYS"
-                                               style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"/>
-                                </HBox>
-
-                            </VBox>
-
-                        </VBox>
-                    </content>
-                </ScrollPane>
-
-                <!-- Séparateur -->
-                <Pane fx:id="separatorModif" prefWidth="8" styleClass="separator-vertical"/>
-
-                <!-- Zone DROITE : StackPane avec ScrollPane et bouton fixe -->
-                <StackPane fx:id="stackDroiteModif" prefHeight="750" prefWidth="1060">
+                <!-- Contenu principal -->
+                <HBox fx:id="containerScrollsModif"
+                      alignment="TOP_CENTER" spacing="20">
                     <children>
-                        <!-- ScrollPane DROITE : certifications -->
-                        <ScrollPane fx:id="rightScrollModif" fitToWidth="true" hbarPolicy="NEVER" prefHeight="750" prefWidth="1060" vbarPolicy="AS_NEEDED">
+                        <!-- GAUCHE éditable -->
+                        <ScrollPane fx:id="scrollGaucheModif"
+                                    fitToWidth="true"
+                                    hbarPolicy="NEVER"
+                                    vbarPolicy="AS_NEEDED"
+                                    prefHeight="750" prefWidth="454">
                             <content>
-                                <VBox alignment="TOP_CENTER" spacing="12">
+                                <VBox fx:id="vboxGaucheModif"
+                                      alignment="TOP_CENTER"
+                                      spacing="20">
                                     <padding>
-                                        <Insets bottom="20" left="20" right="20" top="20" />
+                                        <Insets top="20" right="20" bottom="20" left="20"/>
                                     </padding>
-                                   <children>
-                                       <!-- 9 compétences avec icône de téléchargement -->
-                                       <Button fx:id="btnCertCadreOpeModif" prefHeight="50" prefWidth="377" styleClass="cert-button-outline" text="Cadre Opérationnel" />
-                                       <Button fx:id="btnCertChefPosteOutlineModif" prefHeight="50" prefWidth="377" styleClass="cert-button-outline" text="Chef de Poste" />
-                                       <Button fx:id="btnCertCadreOpeIconModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="Cadre Opérationnel">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertChefPosteIconModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="Chef de Poste">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertChefEquipeModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="Chef d’Équipe">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertHelicoModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="Pilote d’hélicoptère">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertMotoNeigeModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="Pilote de moto neige">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertVPSPModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="VPSP">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertPSC1Modif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="PSC1">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertPSC2Modif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="PSC2">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                       <Button fx:id="btnCertSecouristeMontagneModif" contentDisplay="RIGHT" prefHeight="50" prefWidth="377" styleClass="cert-button" text="Secouriste de montagne">
-                                           <graphic>
-                                               <ImageView fitHeight="16" fitWidth="16">
-                                                   <image>
-                                                       <Image url="@../img/svgTelecharger.png" />
-                                                   </image>
-                                               </ImageView>
-                                           </graphic>
-                                       </Button>
-                                   </children>
+                                    <children>
+                                        <!-- Photo profil -->
+                                        <ImageView fx:id="imageProfilModif"
+                                                   fitHeight="160" fitWidth="160"
+                                                   preserveRatio="true"
+                                                   styleClass="profile-image">
+                                            <image>
+                                                <Image url="@../img/pdp.png"/>
+                                            </image>
+                                        </ImageView>
+
+                                        <!-- Nom modifiable -->
+                                        <TextField fx:id="txtNomPrenom"
+                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                   styleClass="profile-name"
+                                                   HBox.hgrow="ALWAYS"/>
+
+                                        <!-- Champs éditables -->
+                                        <VBox fx:id="champsGaucheModif"
+                                              alignment="TOP_LEFT"
+                                              spacing="16">
+                                            <children>
+                                                <!-- Téléphone -->
+                                                <Label styleClass="field-label" text="Téléphone :" />
+                                                <HBox fx:id="hbTelephoneModif"
+                                                      alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgTel.png"/></image>
+                                                        </ImageView>
+                                                        <TextField fx:id="txtTel"
+                                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                   HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Email -->
+                                                <Label styleClass="field-label" text="Email :" />
+                                                <HBox fx:id="hbEmailModif"
+                                                      alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgMail.png"/></image>
+                                                        </ImageView>
+                                                        <TextField fx:id="txtEmail"
+                                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                   HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Statut -->
+                                                <Label styleClass="field-label" text="Statut :" />
+                                                <HBox fx:id="hbStatutModif"
+                                                      alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgProfil.png"/></image>
+                                                        </ImageView>
+                                                        <TextField fx:id="txtStatus"
+                                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                   HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- ID (non modifiable) -->
+                                                <Label styleClass="field-label" text="ID :" />
+                                                <HBox alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgId.png"/></image>
+                                                        </ImageView>
+                                                        <TextField fx:id="txtId"
+                                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                   editable="false"
+                                                                   HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Mot de passe -->
+                                                <Label styleClass="field-label" text="Mot de passe :" />
+                                                <HBox fx:id="hbMdp"
+                                                      alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgMdp.png"/></image>
+                                                        </ImageView>
+                                                        <PasswordField fx:id="txtMdp"
+                                                                       style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                       HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Adresse -->
+                                                <Label styleClass="field-label" text="Adresse :" />
+                                                <HBox fx:id="hbAdresse"
+                                                      alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgLocation.png"/></image>
+                                                        </ImageView>
+                                                        <TextField fx:id="txtAdresse"
+                                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                   HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Date de naissance -->
+                                                <Label styleClass="field-label" text="Date de naissance :" />
+                                                <HBox fx:id="hbDateNaissance"
+                                                      alignment="CENTER_LEFT"
+                                                      prefHeight="65" prefWidth="415"
+                                                      spacing="8"
+                                                      styleClass="info-box">
+                                                    <children>
+                                                        <ImageView fitHeight="20" fitWidth="20">
+                                                            <image><Image url="@../img/svgAnniv.png"/></image>
+                                                        </ImageView>
+                                                        <TextField fx:id="txtDateNaissance"
+                                                                   style="-fx-background-color: #d0e4ff; -fx-border-width: 0;"
+                                                                   HBox.hgrow="ALWAYS"/>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
                                 </VBox>
                             </content>
                         </ScrollPane>
 
-                        <!-- Boutons modification/actions -->
-                        <VBox fx:id="actionContainerModif" alignment="TOP_RIGHT" spacing="5" translateX="-20" translateY="20">
+                        <!-- Séparateur vertical -->
+                        <Pane fx:id="separatorModif"
+                              prefWidth="8"
+                              styleClass="separator-vertical" />
+
+                        <!-- DROITE : compétences dynamiques -->
+                        <ScrollPane fx:id="rightScrollModif"
+                                    fitToWidth="true"
+                                    hbarPolicy="NEVER"
+                                    vbarPolicy="AS_NEEDED"
+                                    prefHeight="750" prefWidth="1060">
+                            <content>
+                                <VBox fx:id="certBoxModif"
+                                      alignment="TOP_CENTER"
+                                      spacing="12">
+                                    <padding>
+                                        <Insets top="20" right="20" bottom="20" left="20"/>
+                                    </padding>
+                                    <!-- Boutons de compétence ajoutés dynamiquement en code -->
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+
+                        <!-- Boutons d’action -->
+                        <VBox fx:id="actionContainerModif"
+                              alignment="TOP_RIGHT"
+                              spacing="5"
+                              translateX="-20"
+                              translateY="20">
                             <children>
-                                <Button fx:id="btnModifierProfilModif" styleClass="edit-button" text="Modifier le Profil" style="-fx-background-color: gray; -fx-text-fill: white;"/>
-                                <Button fx:id="btnValiderModif" onAction="#onValider" text="Valider" style="-fx-background-color: #16a34a; -fx-text-fill: white;"/>
-                                <Button fx:id="btnAnnulerModif" onAction="#onAnnuler" text="Annuler" style="-fx-background-color: #dc2626; -fx-text-fill: white;"/>
+                                <Button fx:id="btnModifierProfilModif"
+                                        styleClass="edit-button"
+                                        style="-fx-background-color: gray; -fx-text-fill: white;"
+                                        text="Modifier le Profil" />
+                                <Button fx:id="btnValider"
+                                        onAction="#onValider"
+                                        style="-fx-background-color: #16a34a; -fx-text-fill: white;"
+                                        text="Valider" />
+                                <Button fx:id="btnAnnuler"
+                                        onAction="#onAnnuler"
+                                        style="-fx-background-color: #dc2626; -fx-text-fill: white;"
+                                        text="Annuler" />
                             </children>
                         </VBox>
                     </children>
-                </StackPane>
-
-            </HBox>
-
+                </HBox>
+            </children>
         </VBox>
     </center>
 
-    <!-- FOOTER : bouton Retour avec padding -->
+    <!-- FOOTER -->
     <bottom>
-        <HBox fx:id="footerPaneModif" alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
-            <padding><Insets bottom="10" left="8" right="10" top="10"/></padding>
-            <Button fx:id="btnRetourModif" onAction="#onRetour" styleClass="bouton-retour" text="← Retour" />
+        <HBox fx:id="footerPaneModif"
+              alignment="BOTTOM_LEFT"
+              prefHeight="100"
+              spacing="10"
+              style="-fx-background-color: #F97316;">
+            <padding><Insets top="10" right="10" bottom="10" left="8"/></padding>
+            <children>
+                <Button fx:id="btnRetour"
+                        onAction="#onRetour"
+                        styleClass="bouton-retour"
+                        text="← Retour" />
+            </children>
         </HBox>
     </bottom>
-
 </BorderPane>
