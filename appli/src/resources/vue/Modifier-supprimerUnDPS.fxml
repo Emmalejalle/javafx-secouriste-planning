@@ -9,14 +9,35 @@
    <content>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="876.0" prefWidth="1040.0" style="-fx-background-color: white;">
          <children>
-            <Label contentDisplay="CENTER" styleClass="FichePersonelle" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Créer un nouveau DPS">
-               <VBox.margin>
-                  <Insets left="24.0" top="24.0" />
-               </VBox.margin>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label contentDisplay="CENTER" styleClass="FichePersonelle" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Modifier le DPS">
+                     <HBox.margin>
+                        <Insets left="24.0" top="24.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox prefHeight="114.0" prefWidth="367.0" stylesheets="@../style/AjouterUnDPS.css">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" style="-fx-background-color: B9B9B9;" styleClass="BlocModifierSupprimer" text="Modifier le DPS">
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" style="-fx-background-color: DE2424;" styleClass="BlocModifierSupprimer" text="Supprimer le DPS">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="360.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
             <HBox prefHeight="100.0" prefWidth="1060.0" spacing="40.0">
                <children>
-                  <VBox prefHeight="77.0" prefWidth="431.0">
+                  <VBox prefHeight="77.0" prefWidth="431.0" stylesheets="@../style/AjouterUnDPS.css">
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
@@ -145,15 +166,21 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" style="-fx-background-color: DE2424;" styleClass="btnCreer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Annuler" translateX="730.0">
+                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" styleClass="btnCreer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Valider" translateX="750.0">
                      <padding>
                         <Insets top="1.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" styleClass="btnCreer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Ajouter" translateX="750.0">
+                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" style="-fx-background-color: DE2424;" styleClass="btnCreer" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Annuler">
                      <padding>
                         <Insets top="1.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets left="490.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>

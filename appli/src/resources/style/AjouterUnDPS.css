@@ -166,7 +166,7 @@
 }
 
 .VboxModification {
-	-fx-background-color: yellow;
+	-fx-background-color:  DADADA;
 	-fx-background-raduis: 10;
 }
 
@@ -180,6 +180,37 @@
 .date-picker > .arrow-button {
     -fx-background-color: transparent;
 }
+
+.tree-table-view {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-table-cell-border-color: #e0e0e0;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.tree-table-view .column-header-background {
+    -fx-background-color: #f1f1f1;
+}
+
+.tree-table-view .column-header,
+.tree-table-view .filler {
+    -fx-border-color: transparent transparent #cccccc transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tree-table-row-cell {
+    -fx-cell-size: 32px;
+    -fx-border-color: transparent;
+}
+
+.tree-table-row-cell:filled:selected,
+.tree-table-row-cell:filled:selected:hover {
+    -fx-background-color: #cce5ff;
+    -fx-text-fill: black;
+}
+
 
 
 

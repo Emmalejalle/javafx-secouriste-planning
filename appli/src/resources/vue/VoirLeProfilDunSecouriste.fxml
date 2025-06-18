@@ -43,8 +43,8 @@
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
                      <children>
-                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="ID" />
-                        <TextField fx:id="TextFieldID" promptText="patrick.david@gmail.com" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Email" />
+                        <TextField fx:id="TextFieldID" editable="false" promptText="patrick.david@gmail.com" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -58,7 +58,7 @@
                      </HBox.margin>
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Mot de passe" />
-                        <TextField promptText="votre_mot-de-passe!" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <TextField editable="false" promptText="votre_mot-de-passe!" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -76,7 +76,7 @@
                   <VBox prefHeight="77.0" prefWidth="431.0">
                      <children>
                         <Label fx:id="lblNomSecouriste" styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Nom" />
-                        <TextField fx:id="TextFieldID1" promptText="Patrick" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <TextField fx:id="TextFieldID1" editable="false" promptText="Patrick" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -90,7 +90,7 @@
                   <VBox prefHeight="77.0" prefWidth="426.0">
                      <children>
                         <Label fx:id="lblPrenomSecouriste" styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Prénom" />
-                        <TextField promptText="David" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <TextField editable="false" promptText="David" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -114,7 +114,7 @@
                      </HBox.margin>
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Téléphone" />
-                        <TextField promptText="07 57 23 51 39" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <TextField editable="false" promptText="07 57 23 51 39" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -128,7 +128,7 @@
                      </HBox.margin>
                      <children>
                         <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Adresse" />
-                        <TextField fx:id="TextFieldID21" promptText="6 rue de l'ami 56000 Vannes" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
+                        <TextField fx:id="TextFieldID21" editable="false" promptText="6 rue de l'ami 56000 Vannes" style="textfield-modern: focused;" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                            <styleClass>
                               <String fx:value="textFieldAttributSecouriste" />
                               <String fx:value="textfield-modern" />
@@ -163,9 +163,6 @@
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
                      </HBox.margin>
-                     <children>
-                        <ComboBox prefHeight="39.0" prefWidth="257.0" promptText="Compétences" styleClass="combo-style" stylesheets="@../style/Creation-GestionProfilSecouriste.css" />
-                     </children>
                   </VBox>
                </children>
                <VBox.margin>
@@ -178,6 +175,17 @@
                      <HBox.margin>
                         <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
                      </HBox.margin>
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Compétences" />
+                        <Label prefHeight="21.0" prefWidth="250.0" styleClass="textFieldAttributSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Pilote hélicoptère">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="8.0" />
+                           </padding>
+                        </Label>
+                     </children>
                   </VBox>
                   <VBox prefHeight="104.0" prefWidth="444.0" stylesheets="@../style/Creation-GestionProfilSecouriste.css">
                      <children>

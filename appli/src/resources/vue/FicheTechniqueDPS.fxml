@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane prefHeight="876.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="876.0" prefWidth="1040.0" style="-fx-background-color: white;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="60.0" prefWidth="439.0" styleClass="FichePersonelle" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Fiche Technique DPS">
+                     <HBox.margin>
+                        <Insets left="24.0" top="24.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox prefHeight="122.0" prefWidth="329.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" styleClass="BlocModifierSupprimer" stylesheets="@../style/AjouterUnDPS.css" text="Modifier le DPS">
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="329.0" style="-fx-background-color: DE2424;" styleClass="BlocModifierSupprimer" stylesheets="@../style/AjouterUnDPS.css" text="Supprimer le DPS">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="200.0" top="24.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="1060.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Sport" />
+                        <Label prefHeight="21.0" prefWidth="265.0" styleClass="textFieldAttributSecouriste" stylesheets="@../style/AjouterUnDPS.css" text="Ski Alpin">
+                           <padding>
+                              <Insets left="4.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" left="72.0" top="32.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Horaire début" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ComboBox prefHeight="39.0" prefWidth="73.0" promptText="Heure" styleClass="combo-style" stylesheets="@../style/AjouterUnDPS.css" />
+                              <Label style="-fx-font-size: 20;" text=":">
+                                 <HBox.margin>
+                                    <Insets left="4.0" top="4.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ComboBox prefHeight="39.0" prefWidth="55.0" promptText="Min" styleClass="combo-style" stylesheets="@../style/AjouterUnDPS.css" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Horaire fin" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ComboBox prefHeight="39.0" prefWidth="73.0" promptText="Heure" styleClass="combo-style" stylesheets="@../style/AjouterUnDPS.css" />
+                              <Label style="-fx-font-size: 20;" text=":">
+                                 <HBox.margin>
+                                    <Insets left="4.0" top="4.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ComboBox prefHeight="39.0" prefWidth="55.0" promptText="Min" styleClass="combo-style" stylesheets="@../style/AjouterUnDPS.css" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" left="72.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <VBox prefHeight="77.0" prefWidth="431.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Site" />
+                        <Label prefHeight="21.0" prefWidth="265.0" styleClass="textFieldAttributSecouriste" stylesheets="@../style/AjouterUnDPS.css" text="14 rue du secours">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="4.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="8.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="77.0" prefWidth="426.0">
+                     <children>
+                        <Label styleClass="titreAttributRemplissageSecouriste" stylesheets="@../style/Creation-GestionProfilSecouriste.css" text="Journée" />
+                        <DatePicker promptText="JJ/MM/AAAA" stylesheets="@../style/AjouterUnDPS.css" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="8.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="16.0" left="72.0" top="16.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefWidth="940.0" spacing="40.0" stylesheets="@../style/AjouterUnDPS.css">
+               <children>
+                  <TreeTableView prefHeight="104.0" prefWidth="710.0" stylesheets="@../style/AjouterUnDPS.css">
+                    <columns>
+                      <TreeTableColumn minWidth="0.0" prefWidth="355.0" text="Compétences requises" />
+                      <TreeTableColumn prefWidth="355.0" text="Secouriste" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TreeTableView>
+               </children>
+               <VBox.margin>
+                  <Insets left="48.0" top="16.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
