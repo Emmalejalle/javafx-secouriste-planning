@@ -1,0 +1,212 @@
+.root {
+    -fx-font-family: 'Poppins', 'Roboto', sans-serif;
+    -fx-background-color: #FCFCFC;
+}
+
+.shadow {
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.1, 0, 2);
+	-fx-background-insets: 0;
+	-fx-background-color: transparent;
+}
+
+.jsp {	/*Le nom TexteFondFoncé n'est pas accépté*/
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 36;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 2, 2);
+	-fx-font-weight: bold;
+}
+
+.TitreSousPage {
+	-fx-font-family: 'Poppins', sans-serif;
+	-fx-text-fill: black;
+	-fx-font-size: 40;
+	/*En plus pour être sur qu'il n'y a pas de fond */
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+	-fx-border-color: transparent;
+}
+
+.titreAttributRemplissageSecouriste {
+	-fx-font-family: 'Poppins', sans-serif;
+	-fx-text-fill: black;
+	-fx-font-size: 14;
+	-fx-font-weight: bold;
+	/*En plus pour être sur qu'il n'y a pas de fond */
+	-fx-background-color: transparent;
+	-fx-background-insets: 0;
+	-fx-border-color: transparent;
+}
+
+.textFieldAttributSecouriste {
+	-fx-background-color: transparent;         /* pas de fond blanc */
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+
+    -fx-border-color: transparent transparent black transparent; /* trait juste en bas */	/* Haut, Droite, Bas, Gauche */
+    -fx-border-width: 0 0 1 0;					/* Haut, Droite, Bas, Gauche */
+
+    -fx-prompt-text-fill: grey;                /* texte temporaire gris */
+    -fx-text-fill: black;                      /* texte tapé */
+    -fx-font-size: 14;
+}
+
+.textfield-modern:focused {
+    -fx-border-color: transparent transparent #2196F3 transparent; /* bleu au focus */
+}
+
+.resized-image {
+    -fx-fit-width: 84px; 		/* Définit la largeur de l'image */
+    -fx-fit-height: 71px; 		/* Définit la hauteur de l'image */
+    -fx-preserve-ratio: true; 	/* Conserve le ratio de l'image */
+}
+
+.btnCreer {
+	-fx-background-color: #1A2A60;
+	-fx-background-radius: 10;
+	-fx-font-family: 'Poppins', sans-serif;
+	-fx-font-size: 22;
+	-fx-font-weight: bold;
+	-fx-text-fill: #FFFFFF;
+	
+	-fx-fit-width: 165;
+	-fx-fit-height: 42px
+}
+.titled-style {
+    /* Fond du TitledPane */
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+
+    /* Titre */
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+
+    /* Marges et espacements */
+    -fx-padding: 8;
+
+    /* Flèche */
+    -fx-collapsible: true; /* important si elle ne se replie pas */
+    -fx-animated: true;
+}
+
+.larger-checkbox .box {
+    -fx-border-radius: 10;
+    -fx-pref-width: 41;
+    -fx-pref-height: 41;
+    -fx-background-color: transparent;
+    -fx-border-color: #1E3A8A;
+    -fx-border-width: 3.5;
+}
+/*
+.larger-checkbox:selected .mark {
+    -fx-shape: "M-1.0,5.0 L4.0,9.0 L9.0,-1.0";
+}
+*/
+.larger-checkbox .mark {
+	-fx-stroke-color: #1E3A8A;
+	/*
+    -fx-stroke-width: 2;
+    -fx-scale-shape: true;
+    */
+}
+.color-checkbox .box {
+	-fx-border-radius: 10;
+    -fx-pref-width: 41;
+    -fx-pref-height: 41;
+    -fx-background-color: transparent;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 3.5;
+}
+.color-checkbox .mark {
+	-fx-stroke-color: #FFFFFF;
+	/*
+    -fx-stroke-width: 2;
+    -fx-scale-shape: true;
+    */
+}
+
+.combo-box.combo-style {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent black transparent; /* ligne en bas */
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 4 0 4 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: #888;
+}
+/* Bouton flèche à droite */
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+/* Icône de la flèche */
+.combo-box .arrow {
+    -fx-background-color: black;
+}
+/* Liste déroulante */
+.combo-box .list-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+
+.BlocModifierSupprimer {
+	-fx-background-color: #1A2A60;
+	-fx-background-radius: 30;
+	-fx-border-radius: 30;
+	-fx-font-family: 'Poppins', 'Roboto', sans-serif;
+	-fx-font-size: 24;
+	-fx-text-fill: #FFFFFF;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-background-insets: 0;
+}
+
+.VboxModification {
+	-fx-background-color:  DADADA;
+	-fx-background-raduis: 10;
+}
+
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #009688;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.tree-table-view {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-table-cell-border-color: #e0e0e0;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.tree-table-view .column-header-background {
+    -fx-background-color: #f1f1f1;
+}
+
+.tree-table-view .column-header,
+.tree-table-view .filler {
+    -fx-border-color: transparent transparent #cccccc transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tree-table-row-cell {
+    -fx-cell-size: 32px;
+    -fx-border-color: transparent;
+}
+
+.tree-table-row-cell:filled:selected,
+.tree-table-row-cell:filled:selected:hover {
+    -fx-background-color: #cce5ff;
+    -fx-text-fill: black;
+}
