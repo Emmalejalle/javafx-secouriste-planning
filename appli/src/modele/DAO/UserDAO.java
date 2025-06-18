@@ -252,6 +252,34 @@ public class UserDAO extends DAO<User> {
     }
 
     /**
+     * NOUVELLE MÉTHODE : Met à jour uniquement les informations de base (profil) d'un utilisateur.
+     * Cette méthode ne touche PAS aux compétences ou aux disponibilités du secouriste.
+     * Idéal pour une page "Mon Profil" où le secouriste modifie ses propres informations.
+     * @param obj L'utilisateur avec ses informations de profil mises à jour.
+     * @return Le nombre de lignes affectées (1 si succès).
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
+    public int updateProfil(User obj) throws SQLException {
+        // Cette requête met à jour uniquement les champs de la table User.
+        String sqlUser = "UPDATE User SET mdpUser = ?, nomUser = ?, prenomUser = ?, dateNaissance = ?, emailUser = ?, telUser = ?, adresseUser = ? WHERE idUser = ?";
+        try (PreparedStatement st = this.connect.prepareStatement(sqlUser)) {
+            st.setString(1, obj.getMdp());
+            st.setString(2, obj.getNom());
+            st.setString(3, obj.getPrenom());
+            st.setString(4, obj.getDateNaissance());
+            st.setString(5, obj.getEmail());
+            st.setString(6, obj.getTel());
+            st.setString(7, obj.getAdresse());
+            st.setLong(8, obj.getId()); // On utilise l'ID dans la clause WHERE
+            
+            // On ne touche pas à la colonne 'isAdmin' car un utilisateur ne peut pas changer son propre rôle.
+            return st.executeUpdate();
+        }
+        // Pas besoin de transaction ici, c'est une seule opération atomique qui ne touche pas aux tables liées.
+    }
+
+
+    /**
      * Supprime un utilisateur de la base de données.
      * Grâce à `ON DELETE CASCADE`, les relations associées sont également supprimées.
      * @param obj L'utilisateur à supprimer.
