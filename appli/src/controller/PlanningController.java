@@ -32,6 +32,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+
 
 import controller.ControllerHeader;  // Ton contrôleur de header
 import javafx.scene.layout.Pane;
@@ -53,7 +61,7 @@ public class PlanningController {
     @FXML private Label lblTotalHours;
 
     @FXML private Pane headerPane;
-
+    @FXML private GridPane planningGrid;
 
     private LocalDate dateAffichee;
     private Secouriste secouristeConnecte;
@@ -439,5 +447,28 @@ public class PlanningController {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    private void telechargerPlanning(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Enregistrer le planning");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image PNG", "*.png"));
+        fileChooser.setInitialFileName("planning.png");
+
+        File file = fileChooser.showSaveDialog(planningGrid.getScene().getWindow());
+
+        if (file != null) {
+            WritableImage image = planningGrid.snapshot(null, null);
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+            try {
+                ImageIO.write(bufferedImage, "png", file);
+                System.out.println("Planning exporté avec succès !");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }
