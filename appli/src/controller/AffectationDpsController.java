@@ -4,11 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -17,13 +13,26 @@ import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ComboBox;
-
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 
 import modele.service.AffectationMngt;
+import modele.DAO.DpsDAO;
+import modele.DAO.JourneeDAO;
+import modele.DAO.AffectationDAO;
+import modele.persistence.DPS;
+import modele.persistence.Journee;
+import modele.persistence.Affectation;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contrôleur pour la vue d'affectation des DPS (Dispositifs de Protection et de Sécurité).
@@ -36,26 +45,32 @@ import java.io.IOException;
 public class AffectationDpsController {
 
     @FXML private BorderPane rootPane;
-    @FXML private Pane       headerPlaceholder;
+    @FXML private Pane headerPlaceholder;
     @FXML private javafx.scene.layout.StackPane contentPane;
-    @FXML private Button     btnReturn;
-    @FXML private Button     btnAutoAffectation;
-    @FXML private Button     btnClearAffectation;
-    @FXML private VBox       vboxListeDps;
+    @FXML private Button btnReturn;
+    @FXML private Button btnAutoAffectation;
+    @FXML private Button btnClearAffectation;
+    @FXML private VBox vboxListeDps;
     @FXML private ComboBox<Integer> cbJour;
     @FXML private ComboBox<Integer> cbMois;
     @FXML private ComboBox<Integer> cbAnnee;
     @FXML private Button btnExportCSV;
+    @FXML private TextField RechercheSecouristeTextFil; // Barre de recherche
 
     private AffectationMngt affectationMngt = new AffectationMngt();
-
+    private DpsDAO dpsDAO = new DpsDAO();
+    private JourneeDAO journeeDAO = new JourneeDAO();
+    private AffectationDAO affectationDAO = new AffectationDAO();
+    private List<DPS> tousLesDPS = new ArrayList<>(); // Liste complète des DPS
+    private VBox dpsSelectionnee = null; // DPS actuellement sélectionnée
+    
+    // Images pour les états des DPS
+    private Image imageComplet;
+    private Image imagePartiel;
+    private Image imageVide;
     
     /**
      * Exporte les affectations pour une journée donnée dans un fichier CSV.
-     * Demande à l'utilisateur de choisir un emplacement pour le fichier.
-     * Si l'utilisateur clique sur "Enregistrer", le fichier est créé et les affectations sont exportées dedans.
-     *
-     * @param event - L'événement déclenché par le bouton "Exporter les affectations en CSV"
      */
     @FXML
     private void onExportAffectationsCSV(ActionEvent event) {
@@ -63,7 +78,7 @@ public class AffectationDpsController {
         Integer mois = cbMois.getValue();
         Integer annee = cbAnnee.getValue();
         if (jour == null || mois == null || annee == null) {
-            System.err.println("Veuillez sélectionner une date valide.");
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner une date valide.");
             return;
         }
         FileChooser fileChooser = new FileChooser();
@@ -74,46 +89,243 @@ public class AffectationDpsController {
         if (file != null) {
             try {
                 affectationMngt.exportAffectationsJourneeToCSV(jour, mois, annee, file);
-                System.out.println("Exportation réussie vers " + file.getAbsolutePath());
+                showAlert(Alert.AlertType.INFORMATION, "Succès", "Exportation réussie vers " + file.getName());
             } catch (Exception e) {
-                System.err.println("Erreur lors de l'exportation : " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'exportation : " + e.getMessage());
             }
         }
     }
 
     /**
      * Initialisation du contrôleur.
-     * Charge le header commun et l'affecte au rootPane.
      */
     @FXML
     public void initialize() {
         try {
             // Charge le header commun
-            FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/vue/PatronHeaderAdmin.fxml")
-            );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PatronHeaderAdmin.fxml"));
             HBox header = loader.load();
-            // Récupère son controller pour lui donner un titre
             PatronHeaderAdminController hdrCtrl = loader.getController();
             hdrCtrl.setTitre("Affectation DPS");
-            // Remplace la placeholder par le header réel
             rootPane.setTop(header);
+            
+            // Charger les images de statut
+            chargerImagesStatut();
+            
+            // Charger tous les DPS au démarrage
+            chargerTousLesDPS();
+            
+            // Configurer la barre de recherche
+            RechercheSecouristeTextFil.setOnKeyReleased(this::onRechercheKeyReleased);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Demande à l'utilisateur de choisir une méthode d'affectation automatique,
-     * supprime les affectations existantes pour la journée choisie et lance l'affectation.
-     * Les méthodes proposées sont :
-     * - Gloutonne Optimale : affecte les DPS les plus demandés en premier
-     * - Exhaustive : affecte les DPS les plus demandés en premier, mais en essayant toutes les combinaisons
-     * - Gloutonne Naïve : affecte les DPS dans l'ordre de leur apparition dans la liste des DPS
-     * L'utilisateur peut également annuler l'opération.
-     * Affiche un message de confirmation si l'opération est réussie.
-     * 
-     * @param event - événement lié au bouton "Affectation Automatique"
+     * Charge les images pour les différents états des DPS
+     */
+    private void chargerImagesStatut() {
+        try {
+            imageComplet = new Image(getClass().getResourceAsStream("/images/check-circle-green.png"));
+            imagePartiel = new Image(getClass().getResourceAsStream("/images/warning-orange.png"));
+            imageVide = new Image(getClass().getResourceAsStream("/images/circle-red.png"));
+        } catch (Exception e) {
+            // Images par défaut si les fichiers ne sont pas trouvés
+            System.out.println("Images de statut non trouvées, utilisation d'images par défaut");
+            // Vous pouvez créer des images simples par code si nécessaire
+        }
+    }
+
+    /**
+     * Charge tous les DPS depuis la base de données et les affiche
+     */
+    private void chargerTousLesDPS() {
+        try {
+            tousLesDPS = dpsDAO.findAll();
+            afficherDPS(tousLesDPS);
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de charger les DPS : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Affiche la liste des DPS dans la VBox
+     */
+    private void afficherDPS(List<DPS> dpsList) {
+        vboxListeDps.getChildren().clear();
+        
+        for (DPS dps : dpsList) {
+            VBox dpsCard = creerCarteDPS(dps);
+            vboxListeDps.getChildren().add(dpsCard);
+        }
+    }
+
+    /**
+     * Crée une carte cliquable pour un DPS
+     */
+    private VBox creerCarteDPS(DPS dps) {
+        VBox carte = new VBox();
+        carte.setSpacing(5);
+        carte.setPadding(new Insets(10));
+        carte.setUserData(dps);
+        carte.getStyleClass().add("dps-card");
+        
+        // Créer le contenu de la carte
+        HBox ligneHaut = new HBox();
+        ligneHaut.setSpacing(10);
+        ligneHaut.setAlignment(Pos.CENTER_LEFT);
+        
+        // Image de statut
+        ImageView imageStatut = new ImageView();
+        imageStatut.setFitWidth(24);
+        imageStatut.setFitHeight(24);
+        imageStatut.setPreserveRatio(true);
+        
+        // Déterminer l'image selon le statut du DPS
+        try {
+            StatutDPS statut = obtenirStatutDPS(dps);
+            switch (statut) {
+                case COMPLET:
+                    if (imageComplet != null) imageStatut.setImage(imageComplet);
+                    break;
+                case PARTIEL:
+                    if (imagePartiel != null) imageStatut.setImage(imagePartiel);
+                    break;
+                case VIDE:
+                default:
+                    if (imageVide != null) imageStatut.setImage(imageVide);
+                    break;
+            }
+        } catch (SQLException e) {
+            if (imageVide != null) imageStatut.setImage(imageVide);
+        }
+        
+        // Labels d'informations
+        VBox infos = new VBox();
+        infos.setSpacing(2);
+        
+        // Ligne 1: Sport - Lieu
+        Label ligneSportLieu = new Label(dps.getSport().getNom() + " - " + dps.getSite().getNom());
+        ligneSportLieu.getStyleClass().add("dps-sport-lieu");
+        
+        // Ligne 2: Date - HeureDepart - HeureFin
+        String dateStr = dps.getJournee().toString();
+        String heureDepart = String.format("%02d:00", dps.getHoraireDepart());
+        String heureFin = String.format("%02d:00", dps.getHoraireFin());
+        Label ligneDateTime = new Label(dateStr + " - " + heureDepart + " - " + heureFin);
+        ligneDateTime.getStyleClass().add("dps-date-time");
+        
+        infos.getChildren().addAll(ligneSportLieu, ligneDateTime);
+        ligneHaut.getChildren().addAll(imageStatut, infos);
+        carte.getChildren().add(ligneHaut);
+        
+        // Gestionnaire de clic
+        carte.setOnMouseClicked(this::onDpsCardClicked);
+        
+        return carte;
+    }
+
+    /**
+     * Enumération pour les différents statuts d'un DPS
+     */
+    private enum StatutDPS {
+        COMPLET, PARTIEL, VIDE
+    }
+
+    /**
+     * Détermine le statut d'un DPS (complet, partiel, vide)
+     */
+    private StatutDPS obtenirStatutDPS(DPS dps) throws SQLException {
+        List<Affectation> affectations = affectationDAO.findAffectationsForDps(dps.getId());
+        
+        // Calculer le nombre total de postes requis
+        int postesRequis = 0;
+        for (Integer nb : dps.getBesoins().values()) {
+            postesRequis += nb;
+        }
+        
+        int postesOccupes = affectations.size();
+        
+        if (postesOccupes == 0) {
+            return StatutDPS.VIDE;
+        } else if (postesOccupes >= postesRequis) {
+            return StatutDPS.COMPLET;
+        } else {
+            return StatutDPS.PARTIEL;
+        }
+    }
+
+    /**
+     * Gère le clic sur une carte DPS
+     */
+    @FXML
+    private void onDpsCardClicked(MouseEvent event) {
+        VBox carteCliquee = (VBox) event.getSource();
+        
+        // Désélectionner l'ancienne carte
+        if (dpsSelectionnee != null) {
+            dpsSelectionnee.getStyleClass().remove("dps-card-selected");
+        }
+        
+        // Sélectionner la nouvelle carte
+        if (dpsSelectionnee == carteCliquee) {
+            // Si on clique sur la même carte, on la désélectionne
+            dpsSelectionnee = null;
+            contentPane.getChildren().clear();
+        } else {
+            // Sélectionner la nouvelle carte
+            dpsSelectionnee = carteCliquee;
+            dpsSelectionnee.getStyleClass().add("dps-card-selected");
+            
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/AffecterUnDps.fxml"));
+                Parent detailView = loader.load();
+                
+                // Passer le DPS sélectionné au contrôleur de la vue de détail
+                // AffecterUnDpsController controller = loader.getController();
+                // DPS dpsSelectionne = (DPS) carteCliquee.getUserData();
+                // controller.setDPS(dpsSelectionne);
+                
+                contentPane.getChildren().setAll(detailView);
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de charger la vue de détail");
+            }
+        }
+    }
+
+    /**
+     * Gère la recherche en temps réel dans la liste des DPS
+     */
+    @FXML
+    private void onRechercheKeyReleased(KeyEvent event) {
+        String recherche = RechercheSecouristeTextFil.getText().toLowerCase().trim();
+        
+        if (recherche.isEmpty()) {
+            // Si la barre de recherche est vide, afficher tous les DPS
+            afficherDPS(tousLesDPS);
+        } else {
+            // Filtrer les DPS selon le texte de recherche
+            List<DPS> dpsFiltres = new ArrayList<>();
+            for (DPS dps : tousLesDPS) {
+                String texteDPS = (dps.getSport().getNom() + " " + 
+                                 dps.getSite().getNom() + " " + 
+                                 dps.getJournee().toString()).toLowerCase();
+                if (texteDPS.contains(recherche)) {
+                    dpsFiltres.add(dps);
+                }
+            }
+            afficherDPS(dpsFiltres);
+        }
+    }
+
+    // ... Le reste des méthodes reste identique (onAutoAffectation, onClearAffectation, etc.)
+    
+    /**
+     * Auto-affectation avec choix d'algorithme et pop-up de résultats
      */
     @FXML
     private void onAutoAffectation(ActionEvent event) {
@@ -121,7 +333,7 @@ public class AffectationDpsController {
         Integer mois = cbMois.getValue();
         Integer annee = cbAnnee.getValue();
         if (jour == null || mois == null || annee == null) {
-            System.err.println("Veuillez sélectionner une date valide.");
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner une date valide.");
             return;
         }
 
@@ -129,94 +341,174 @@ public class AffectationDpsController {
         Alert choix = new Alert(Alert.AlertType.CONFIRMATION);
         choix.setTitle("Choix de la méthode d'affectation");
         choix.setHeaderText("Quelle méthode d'affectation souhaitez-vous utiliser ?");
+        choix.setContentText("• Gloutonne Optimale : Rapide, privilégie les compétences rares\n" +
+                           "• Exhaustive : Optimal mais lent, teste toutes les combinaisons\n" +
+                           "• Gloutonne Naïve : Très rapide, affectation simple");
+        
         ButtonType btnGlouton = new ButtonType("Gloutonne Optimale");
         ButtonType btnExhaustif = new ButtonType("Exhaustive");
-        ButtonType btnAleatoire = new ButtonType("Gloutonne Naïve");
+        ButtonType btnNaif = new ButtonType("Gloutonne Naïve");
         ButtonType btnAnnuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
-        choix.getButtonTypes().setAll(btnGlouton, btnExhaustif, btnAleatoire, btnAnnuler);
+        choix.getButtonTypes().setAll(btnGlouton, btnExhaustif, btnNaif, btnAnnuler);
 
         choix.showAndWait().ifPresent(type -> {
             if (type == btnAnnuler) return;
+            
             try {
-                affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
+                // Suppression des anciennes affectations
+                int suppressions = affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
+                
+                // Variables pour les statistiques
+                int nbAffectations = 0;
+                String nomAlgorithme = "";
+                long tempsDebut = System.currentTimeMillis();
+                
+                // Exécution de l'algorithme choisi
                 if (type == btnGlouton) {
-                    affectationMngt.affectationAutoGloutonnePourJournee(jour, mois, annee);
-                    System.out.println("Affectation gloutonne effectuée !");
+                    nbAffectations = affectationMngt.affectationAutoGloutonnePourJournee(jour, mois, annee).size();
+                    nomAlgorithme = "Gloutonne Optimale";
                 } else if (type == btnExhaustif) {
-                    affectationMngt.affectationAutoExhaustivePourJournee(jour, mois, annee);
-                    System.out.println("Affectation exhaustive effectuée !");
-                } else if (type == btnAleatoire) {
-                    affectationMngt.affectationAutoNaivePourJournee(jour, mois, annee);
-                    System.out.println("Affectation Gloutonne naive effectuée !");
+                    nbAffectations = affectationMngt.affectationAutoExhaustivePourJournee(jour, mois, annee).size();
+                    nomAlgorithme = "Exhaustive";
+                } else if (type == btnNaif) {
+                    nbAffectations = affectationMngt.affectationAutoNaivePourJournee(jour, mois, annee).size();
+                    nomAlgorithme = "Gloutonne Naïve";
                 }
+                
+                long tempsFin = System.currentTimeMillis();
+                long duree = tempsFin - tempsDebut;
+                
+                // Rafraîchir l'affichage des DPS pour mettre à jour les statuts
+                chargerTousLesDPS();
+                
+                // Calcul des statistiques pour le pop-up
+                afficherResultatsAffectation(jour, mois, annee, nomAlgorithme, nbAffectations, suppressions, duree);
+                
             } catch (Exception e) {
-                System.err.println("Erreur lors de l'affectation automatique : " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Erreur", 
+                    "Erreur lors de l'affectation automatique : " + e.getMessage());
+                e.printStackTrace();
             }
         });
+    }
+
+    /**
+     * Affiche un pop-up avec les résultats de l'affectation automatique
+     */
+    private void afficherResultatsAffectation(int jour, int mois, int annee, String algorithme, 
+                                            int nbAffectations, int suppressions, long duree) {
+        try {
+            // Récupérer les statistiques détaillées
+            Journee journee = journeeDAO.findByDate(jour, mois, annee);
+            if (journee != null) {
+                List<DPS> dpsJournee = dpsDAO.findAllByJournee(journee.getId());
+                
+                Alert resultat = new Alert(Alert.AlertType.INFORMATION);
+                resultat.setTitle("Résultats de l'affectation automatique");
+                resultat.setHeaderText("Affectation terminée avec succès !");
+                
+                StringBuilder message = new StringBuilder();
+                message.append("📅 Date : ").append(jour).append("/").append(mois).append("/").append(annee).append("\n");
+                message.append("⚙️ Algorithme utilisé : ").append(algorithme).append("\n");
+                message.append("⏱️ Temps d'exécution : ").append(duree).append(" ms\n\n");
+                
+                message.append("📊 Résultats :\n");
+                message.append("• ").append(suppressions).append(" ancienne(s) affectation(s) supprimée(s)\n");
+                message.append("• ").append(nbAffectations).append(" nouvelle(s) affectation(s) créée(s)\n");
+                message.append("• ").append(dpsJournee.size()).append(" DPS total(aux) pour cette journée\n");
+                
+                if (nbAffectations > 0) {
+                    double pourcentage = (double) nbAffectations / getTotalPostesRequis(dpsJournee) * 100;
+                    message.append("• Taux de couverture : ").append(String.format("%.1f", pourcentage)).append("%");
+                }
+                
+                resultat.setContentText(message.toString());
+                
+                ButtonType btnFermer = new ButtonType("Fermer", ButtonBar.ButtonData.OK_DONE);
+                ButtonType btnExporter = new ButtonType("Exporter CSV");
+                resultat.getButtonTypes().setAll(btnExporter, btnFermer);
+                
+                resultat.showAndWait().ifPresent(response -> {
+                    if (response == btnExporter) {
+                        // Déclencher l'export CSV
+                        onExportAffectationsCSV(new ActionEvent());
+                    }
+                });
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.WARNING, "Information", 
+                "Affectation réalisée avec succès !\n" +
+                "• " + nbAffectations + " affectation(s) créée(s)\n" +
+                "• Algorithme : " + algorithme + "\n" +
+                "• Temps : " + duree + " ms");
+        }
+    }
+
+    /**
+     * Calcule le nombre total de postes requis pour une liste de DPS
+     */
+    private int getTotalPostesRequis(List<DPS> dpsList) {
+        int total = 0;
+        for (DPS dps : dpsList) {
+            for (Integer nbPostes : dps.getBesoins().values()) {
+                total += nbPostes;
+            }
+        }
+        return total;
     }
     
     /**
      * Supprime toutes les affectations pour la journée sélectionnée.
-     * Affiche un message de confirmation avec le nombre d'affectations supprimées.
-     * Affiche un message d'erreur si une erreur survient.
-     *
-     * @param event - événement lié au bouton "Supprimer affectations"
      */
     @FXML
     private void onClearAffectation(ActionEvent event) {
+        Integer jour = cbJour.getValue();
+        Integer mois = cbMois.getValue();
+        Integer annee = cbAnnee.getValue();
+        if (jour == null || mois == null || annee == null) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner une date valide.");
+            return;
+        }
         
-        int jour = cbJour.getValue();
-        int mois = cbMois.getValue();
-        int annee = cbAnnee.getValue();
         try {
             int nb = affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
-            System.out.println("Affectations supprimées : " + nb);
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la suppression des affectations : " + e.getMessage());
-        }
-    }
-    
-    /**
-     * Sélection d’une DPS dans la liste à gauche
-     * Affiche les détails de la DPS sélectionnée dans le contentPane.
-     * Si la DPS est sélectionnée, charge la vue "AffecterUnDps.fxml" dans le contentPane.
-     * Si la DPS est désélectionnée, vide le contentPane.
-     *
-     * @param event - événement lié à la sélection de la DPS
-     */
-    @FXML
-    private void onSelectDps(ActionEvent event) {
-        CheckBox cb = (CheckBox) event.getSource();
-        if (cb.isSelected()) {
-            try {
-                Parent detailView = FXMLLoader.load(
-                    getClass().getResource("/vue/AffecterUnDps.fxml")
-                );
-                contentPane.getChildren().setAll(detailView);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (nb > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Succès", 
+                    nb + " affectation(s) supprimée(s) pour le " + jour + "/" + mois + "/" + annee);
+                // Rafraîchir l'affichage des DPS
+                chargerTousLesDPS();
+            } else {
+                showAlert(Alert.AlertType.INFORMATION, "Information", 
+                    "Aucune affectation trouvée pour le " + jour + "/" + mois + "/" + annee);
             }
-        } else {
-            contentPane.getChildren().clear();
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", 
+                "Erreur lors de la suppression : " + e.getMessage());
         }
     }
 
     /**
-     * Retour à l'accueil de l'administrateur. (Bouton "Retour")
-     * Charge la vue "AccueilAdmin.fxml".
-     * 
-     * @param event - événement lié au clic sur le bouton "Retour"
+     * Retour à l'accueil de l'administrateur.
      */
     @FXML
     void onReturn(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(
-                getClass().getResource("/vue/accueilAdmin.fxml")
-            );
+            Parent root = FXMLLoader.load(getClass().getResource("/vue/accueilAdmin.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Méthode utilitaire pour afficher des alertes
+     */
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

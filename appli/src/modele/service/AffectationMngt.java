@@ -61,9 +61,8 @@ public class AffectationMngt {
          return affectationDAO.deleteAllAffectationsForJournee(j.getId());
     }
 
-        /**
-     * Effectue l'affectation automatique gloutonne pour une journée et crée les affectations en base.
-     * CETTE VERSION CONTIENT LA CORRECTION POUR LE PROBLÈME DE LA MATRICE DE COMPATIBILITÉ.
+    /**
+     * Effectue l'affectation automatique gloutonne pour une journée et crée les affectations en base..
      * @return la liste des affectations créées
      */
     public List<Affectation> affectationAutoGloutonnePourJournee(int jour, int mois, int annee) throws SQLException {
@@ -163,7 +162,6 @@ public class AffectationMngt {
 
      /**
      * Effectue l'affectation automatique gloutonne pour une journée et crée les affectations en base.
-     * CETTE VERSION CONTIENT LA CORRECTION POUR LE PROBLÈME DE LA MATRICE DE COMPATIBILITÉ.
      * @return la liste des affectations créées
      */
     public List<Affectation> affectationAutoNaivePourJournee(int jour, int mois, int annee) throws SQLException {

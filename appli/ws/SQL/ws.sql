@@ -808,6 +808,81 @@ INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40006, 5); 
 INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40007, 7); -- SecouristeSept -> PSE1
 INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40008, 7); -- SecouristeHuit -> PSE1
 
+-- =======================================================================
+-- FICHIER DE DONNÉES "PIÉGÉ" POUR LA COMPARAISON DES ALGORITHMES
+-- Scénario pour le 2 juillet 2025 (idJournee = 32)
+-- L'algorithme glouton naïf devrait échouer à trouver la solution optimale,
+-- alors que l'algorithme optimisé (double tri) devrait y arriver.
+-- =======================================================================
+
+USE sae_secours;
+
+-- =======================================================================
+-- ÉTAPE 1 : CRÉATION DES 5 DPS "PIÉGÉS" POUR LE 2 JUILLET 2025
+-- =======================================================================
+INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
+(9401, 8, 12, 2001, 1001, 32),  -- DPS #1 - Poste A
+(9402, 9, 13, 2002, 1002, 32),  -- DPS #2 - Poste B
+(9403, 10, 14, 2003, 1003, 32), -- DPS #3 - Poste C
+(9404, 11, 15, 2004, 1004, 32), -- DPS #4 - Poste D
+(9405, 12, 16, 2005, 1005, 32); -- DPS #5 - Poste E
+
+-- =======================================================================
+-- ÉTAPE 2 : CRÉATION DES 5 BESOINS (1 PAR DPS POUR LA CLARTÉ)
+-- Ce sont les postes à pourvoir.
+-- =======================================================================
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9401, 7, 1), -- Poste P0 : Nécessite PSE1 (idComp=7)
+(9402, 8, 1), -- Poste P1 : Nécessite PSE2 (idComp=8)
+(9403, 6, 1), -- Poste P2 : Nécessite VPSP (idComp=6)
+(9404, 9, 1), -- Poste P3 : Nécessite Secouriste Montagne (idComp=9)
+(9405, 5, 1); -- Poste P4 : Nécessite Pilote Motoneige (idComp=5)
+
+-- =======================================================================
+-- ÉTAPE 3 : CRÉATION DES 5 SECOURISTES POUR LE PIÈGE
+-- =======================================================================
+INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
+(50001, 'pass', 'Polyvalent', 'Paul', '01/01/1990', 'paul.poly@test.com', '0800000001', '1 rue du Piège', 0),
+(50002, 'pass', 'Specialiste', 'Luc', '01/01/1991', 'luc.spe@test.com', '0800000002', '2 rue du Piège', 0),
+(50003, 'pass', 'Specialiste', 'Marc', '01/01/1992', 'marc.spe@test.com', '0800000003', '3 rue du Piège', 0),
+(50004, 'pass', 'Specialiste', 'Anna', '01/01/1993', 'anna.spe@test.com', '0800000004', '4 rue du Piège', 0),
+(50005, 'pass', 'Specialiste', 'Marie', '01/01/1994', 'marie.spe@test.com', '0800000005', '5 rue du Piège', 0);
+
+-- =======================================================================
+-- ÉTAPE 4 : DÉFINITION DES DISPONIBILITÉS POUR LE 2 JUILLET
+-- =======================================================================
+-- On rend nos 5 secouristes disponibles le 2 Juillet (idJournee = 32)
+INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES
+(50001, 32), (50002, 32), (50003, 32), (50004, 32), (50005, 32);
+
+-- =======================================================================
+-- ÉTAPE 5 : ATTRIBUTION DES COMPÉTENCES QUI CRÉENT LE PIÈGE
+-- Le secouriste polyvalent (S1) est le seul à pouvoir faire le poste P4,
+-- mais il est aussi compatible avec le poste P0, que S2 peut aussi faire.
+-- =======================================================================
+-- Secouriste S1 (ID 50001) - Le Polyvalent (2 compétences)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES
+(50001, 7), -- PSE1 (pour le poste P0)
+(50001, 5); -- Pilote Motoneige (pour le poste P4)
+
+-- Secouriste S2 (ID 50002) - Spécialiste P0 (1 compétence)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50002, 7); -- PSE1
+
+-- Secouriste S3 (ID 50003) - Spécialiste P1 (1 compétence)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50003, 8); -- PSE2
+
+-- Secouriste S4 (ID 50004) - Spécialiste P2 (1 compétence)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50004, 6); -- VPSP
+
+-- Secouriste S5 (ID 50005) - Spécialiste P3 (1 compétence)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50005, 9); -- Secouriste Montagne
+
+-- NOTE : AUCUNE AFFECTATION N'EST INSÉRÉE. C'est le but du jeu.
+-- L'algo naïf, en traitant le poste P0 en premier, va probablement affecter S1 (le polyvalent).
+-- Du coup, quand il arrivera au poste P4, il n'y aura plus personne pour le prendre.
+-- L'algo optimisé, en voyant que P4 est plus "difficile" (un seul candidat), va affecter S1 à P4 en premier,
+-- libérant ainsi la voie pour affecter S2 au poste P0.
+
 SELECT
 j.idJournee,
     j.jour,
