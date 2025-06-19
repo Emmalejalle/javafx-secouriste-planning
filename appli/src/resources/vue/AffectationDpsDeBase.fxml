@@ -85,9 +85,10 @@
         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
                 <!-- Boutons Clear & Auto-Affectation + Combobox -->
-                <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                <HBox alignment="CENTER_RIGHT" prefHeight="106.0" prefWidth="1408.0" spacing="20.0">
                     <children>
-                        <Button fx:id="btnClearAffectation" prefHeight="85" prefWidth="240" styleClass="action-button" text="Clear Affectation" />
+                  <Button fx:id="btnExportCSV" onAction="#onExportAffectationsCSV" prefHeight="85" prefWidth="240" styleClass="action-button" text="Export CSV" />
+                        <Button fx:id="btnClearAffectation" onAction="#onClearAffectation" prefHeight="85" prefWidth="240" styleClass="action-button" text="Clear Affectation" />
                         <Button fx:id="btnAutoAffectation" onAction="#onAutoAffectation" prefHeight="85" prefWidth="240" styleClass="action-button" text="Auto Affectation" />
                         <Label text="Jour" />
                         <ComboBox fx:id="cbJour" prefWidth="80">

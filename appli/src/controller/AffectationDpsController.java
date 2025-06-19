@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ComboBox;
@@ -21,6 +22,7 @@ import javafx.scene.control.ComboBox;
 
 import modele.service.AffectationMngt;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -43,8 +45,33 @@ public class AffectationDpsController {
     @FXML private ComboBox<Integer> cbJour;
     @FXML private ComboBox<Integer> cbMois;
     @FXML private ComboBox<Integer> cbAnnee;
+    @FXML private Button btnExportCSV;
 
     private AffectationMngt affectationMngt = new AffectationMngt();
+
+    @FXML
+    private void onExportAffectationsCSV(ActionEvent event) {
+        Integer jour = cbJour.getValue();
+        Integer mois = cbMois.getValue();
+        Integer annee = cbAnnee.getValue();
+        if (jour == null || mois == null || annee == null) {
+            System.err.println("Veuillez sélectionner une date valide.");
+            return;
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exporter les affectations en CSV");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+        fileChooser.setInitialFileName("affectations_" + jour + "_" + mois + "_" + annee + ".csv");
+        File file = fileChooser.showSaveDialog(cbJour.getScene().getWindow());
+        if (file != null) {
+            try {
+                affectationMngt.exportAffectationsJourneeToCSV(jour, mois, annee, file);
+                System.out.println("Exportation réussie vers " + file.getAbsolutePath());
+            } catch (Exception e) {
+                System.err.println("Erreur lors de l'exportation : " + e.getMessage());
+            }
+        }
+    }
 
     @FXML
     public void initialize() {

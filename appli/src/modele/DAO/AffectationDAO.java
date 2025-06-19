@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DAO concret pour la gestion des Affectations.
@@ -129,6 +130,31 @@ public class AffectationDAO extends DAO<Affectation> {
                     DPS dps = dpsDAO.findByID(rs.getLong("idDPSAffect"));
                     Competence comp = competenceDAO.findByID(rs.getLong("idCompAffect"));
 
+                    if (user instanceof Secouriste && dps != null && comp != null) {
+                        affectations.add(new Affectation((Secouriste) user, dps, comp));
+                    }
+                }
+            }
+        }
+        return affectations;
+    }
+
+    /**
+     * Trouve toutes les affectations pour une journée donnée.
+     * @param journeeId L'ID de la journée.
+     * @return Une liste d'objets Affectation pour cette journée.
+     * @throws SQLException
+     */
+    public List<Affectation> findAffectationsForJournee(long journeeId) throws SQLException {
+        List<Affectation> affectations = new ArrayList<>();
+        String sql = "SELECT * FROM Affectation WHERE idDPSAffect IN (SELECT idDPS FROM DPS WHERE idJourneeDPS = ?)";
+        try (PreparedStatement st = this.connect.prepareStatement(sql)) {
+            st.setLong(1, journeeId);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    User user = userDAO.findByID(rs.getLong("idSecouAffect"));
+                    DPS dps = dpsDAO.findByID(rs.getLong("idDPSAffect"));
+                    Competence comp = competenceDAO.findByID(rs.getLong("idCompAffect"));
                     if (user instanceof Secouriste && dps != null && comp != null) {
                         affectations.add(new Affectation((Secouriste) user, dps, comp));
                     }

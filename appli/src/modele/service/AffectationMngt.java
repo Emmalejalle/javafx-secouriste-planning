@@ -11,6 +11,9 @@ import modele.persistence.DPS;
 import modele.persistence.Journee;
 import modele.persistence.Secouriste;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -358,5 +361,32 @@ public class AffectationMngt {
         return affectationsCreees;
     }
 
+    /**
+     * Exporte les affectations d'une journée au format CSV.
+     * @param jour Le jour
+     * @param mois Le mois
+     * @param annee L'année
+     * @param file Le fichier de destination
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void exportAffectationsJourneeToCSV(int jour, int mois, int annee, File file) throws SQLException, IOException {
+        Journee j = journeeDAO.findByDate(jour, mois, annee);
+        if (j == null) throw new IllegalArgumentException("Journée non trouvée");
+        List<Affectation> affectations = affectationDAO.findAffectationsForJournee(j.getId());
 
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write("Nom;Prénom;Compétence;DPS;Heure début;Heure fin\n");
+            for (Affectation aff : affectations) {
+                writer.write(
+                    aff.getSecouriste().getNom() + ";" +
+                    aff.getSecouriste().getPrenom() + ";" +
+                    aff.getCompetenceRemplie().getIntitule() + ";" +
+                    aff.getDps().getId() + ";" +
+                    aff.getDps().getHoraireDepart() + ";" +
+                    aff.getDps().getHoraireFin() + "\n"
+                );
+            }
+        }
+    }
 }
