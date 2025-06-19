@@ -16,6 +16,15 @@ import modele.SessionManager;
 import service.ProfilMngt;
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.HBox;
+import controller.ControllerHeader;
+
+
 
 /**
  * Controller pour la page de profil (profil.fxml).
@@ -29,6 +38,8 @@ public class ProfilController {
     @FXML private Label lblMdp;
     @FXML private Label lblAdresse;
     @FXML private Label lblDateNaissance;
+    @FXML private Pane headerPlaceholder;
+
 
     @FXML private VBox certBox;               // conteneur pour afficher les compétences
     @FXML private Button btnModifierProfil;
@@ -36,9 +47,16 @@ public class ProfilController {
 
     private final ProfilMngt profilMngt = new ProfilMngt();
     private final SessionManager session = SessionManager.getInstance();
+    
 
     @FXML
     public void initialize() {
+
+        // Charger le header
+        chargerEtInsererHeader("/vue/PatronHeaderSecouriste.fxml", "Mon Profil Secouriste");
+
+
+
         // 1) Charger l'utilisateur courant depuis la base
         User user;
         try {
@@ -76,6 +94,25 @@ public class ProfilController {
         // 4) Boutons
         btnModifierProfil.setOnAction(this::onModifierProfil);
         btnRetour         .setOnAction(this::onRetour);
+    }
+
+    private void chargerEtInsererHeader(String fxmlPath, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Region header = loader.load();
+    
+            // Récupérer le contrôleur et mettre le titre
+            ControllerHeader ctrl = loader.getController();
+            ctrl.setTitre(titre);
+    
+            headerPlaceholder.getChildren().clear();
+            headerPlaceholder.getChildren().add(header);
+    
+            header.prefWidthProperty().bind(headerPlaceholder.widthProperty());
+            header.prefHeightProperty().bind(headerPlaceholder.heightProperty());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /** Passe en mode édition du profil */

@@ -20,6 +20,11 @@ import modele.persistence.Competence;
 import modele.SessionManager;
 import service.ProfilMngt;
 
+import controller.ControllerHeader;  // Ton contrôleur de header
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+
+
 /**
  * Controller pour la vue de modification du profil (profilModif.fxml).
  */
@@ -40,6 +45,9 @@ public class ProfilModifController {
     @FXML private Button btnAnnuler;
     @FXML private Button btnRetour;
 
+    @FXML private Pane paneEnteteModif;
+
+
     private final ProfilMngt profilMngt = new ProfilMngt();
     private final SessionManager session   = SessionManager.getInstance();
     private User currentUser;
@@ -49,6 +57,10 @@ public class ProfilModifController {
      * affiche uniquement ses compétences dans certBoxModif.
      */
     public void initData(User user) {
+
+        chargerEtInsererHeader("/vue/PatronHeaderSecouriste.fxml", "Modification de Profil");
+
+
         this.currentUser = user;
 
         // Nom + prénom en un seul champ
@@ -79,6 +91,26 @@ public class ProfilModifController {
                 btn.getStyleClass().add("cert-button-outline");
                 certBoxModif.getChildren().add(btn);
             }
+        }
+    }
+
+    private void chargerEtInsererHeader(String fxmlPath, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Region header = loader.load();
+    
+            // Met le titre
+            ControllerHeader ctrl = loader.getController();
+            ctrl.setTitre(titre);
+    
+            paneEnteteModif.getChildren().clear();
+            paneEnteteModif.getChildren().add(header);
+    
+            header.prefWidthProperty().bind(paneEnteteModif.widthProperty());
+            header.prefHeightProperty().bind(paneEnteteModif.heightProperty());
+    
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

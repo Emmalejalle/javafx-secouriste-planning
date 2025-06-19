@@ -14,7 +14,7 @@
 
     <!-- HEADER : zone blanche de 100px -->
     <top>
-        <Pane prefHeight="100" style="-fx-background-color: white;" />
+        <Pane fx:id="headerPlaceholder" prefHeight="100" />
     </top>
 
     <!-- CENTRE : image + deux ScrollPane côte à côte -->

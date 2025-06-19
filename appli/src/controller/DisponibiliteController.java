@@ -21,6 +21,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.io.IOException;
+import java.sql.SQLException;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
+
 
 public class DisponibiliteController {
 
@@ -32,6 +40,10 @@ public class DisponibiliteController {
     @FXML private Button btnRetour;
     @FXML private Button btnAppliquer;
 
+    @FXML private BorderPane rootPane;
+    @FXML private Pane       headerPlaceholder;
+
+
     // --- Logique interne ---
     private YearMonth moisAffiche;
     // On utilise une Map pour stocker les disponibilités.
@@ -40,6 +52,17 @@ public class DisponibiliteController {
 
     @FXML
     public void initialize() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PatronHeaderSecouriste.fxml"));
+            HBox header = loader.load();
+            headerPlaceholder.getChildren().add(header);  // <-- AJOUT DU HEADER DANS LE PANE
+            // Ajuste éventuellement les dimensions ou l'ancrage
+            header.prefWidthProperty().bind(headerPlaceholder.widthProperty());
+            header.prefHeightProperty().bind(headerPlaceholder.heightProperty());
+        } catch (IOException e) {
+            e.printStackTrace();
+            // TODO: gestion propre de l'erreur
+        }
         // Au démarrage, on affiche le mois actuel
         moisAffiche = YearMonth.now();
         // On remplit la grille du calendrier

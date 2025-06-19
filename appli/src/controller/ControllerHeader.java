@@ -30,6 +30,11 @@ public class ControllerHeader {
         BoutonQuitterTopSecouriste.setOnMouseClicked(e -> quitterAppli(e));
     }
 
+    /** Setter pour modifier dynamiquement le titre depuis le contrôleur parent */
+    public void setTitre(String titre) {
+        LabelNomDePageSecouriste.setText(titre);
+    }
+
     /**
      * Charge la vue demandée et met à jour le titre.
      */
