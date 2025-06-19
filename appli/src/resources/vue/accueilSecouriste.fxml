@@ -49,7 +49,7 @@
                                  <children>
                                     <ImageView fitHeight="471.0" fitWidth="722.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/imagePlannongSecouristeccueil.png" />
+                                          <Image url="@../img/planning.png" />
                                        </image>
                                     </ImageView>
                                     <Button fx:id="btnPlanningGlobal" mnemonicParsing="false" onAction="#goPlanning" opacity="0.0" prefHeight="485.0" prefWidth="636.0" text="Button">
@@ -105,7 +105,7 @@
                            <children>
                               <ImageView fitHeight="533.0" fitWidth="962.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/AccueilSecouristePlanningImage.png" />
+                                    <Image url="@../img/dispos.png" />
                                  </image>
                                  <StackPane.margin>
                                     <Insets />

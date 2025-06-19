@@ -41,7 +41,7 @@
                                  <children>
                                     <ImageView fitHeight="320.0" fitWidth="580.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/mgListeSecouriste.png" />
+                                          <Image url="@../img/Secouriste.png" />
                                        </image>
                                     </ImageView>
                                     <Button fx:id="btnListeSecouristes" mnemonicParsing="false" onAction="#goListeSecouriste" opacity="0.0" prefHeight="410.0" prefWidth="600.0" text="Button" />
@@ -71,7 +71,7 @@
                                  <children>
                                     <ImageView fitHeight="300.0" fitWidth="730.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/gererSecouristeAdminImage.png" />
+                                          <Image url="@../img/Competence.png" />
                                        </image>
                                     </ImageView>
                                     <StackPane>
@@ -114,7 +114,7 @@
                                     <graphic>
                                        <ImageView fitHeight="343.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
-                                                <Image url="@../img/GererDPSImage.png" />
+                                                <Image url="@../img/dps.png" />
                                           </image>
                                        </ImageView>
                                     </graphic>
@@ -145,7 +145,7 @@
                                     <graphic>
                                           <ImageView fitHeight="275.0" fitWidth="552.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../img/AffecterDPSImage.png" />
+                                                <Image url="@../img/affectation.png" />
                                              </image>
                                           </ImageView>
                                     </graphic>
