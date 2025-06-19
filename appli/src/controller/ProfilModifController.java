@@ -117,33 +117,76 @@ public class ProfilModifController {
     /** Valide les modifications, met à jour la base et revient à la vue profil. */
     @FXML
     private void onValider(ActionEvent event) {
-        // Séparation rapide du nom et prénom (simplifié)
+        // Séparation du nom / prénom
         String[] parts = txtNomPrenom.getText().trim().split("\\s+", 2);
+        if (parts.length < 1 || parts[0].isEmpty()) {
+            afficherErreur("Le nom est obligatoire.");
+            return;
+        }
+
+        // Vérification du numéro de téléphone : format 00-00-00-00-00
+        // Numéro de téléphone
+        String tel = txtTel.getText().trim();
+        if (tel.matches("\\d{10}")) {
+            // Formater automatiquement
+            tel = tel.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1-$2-$3-$4-$5");
+            txtTel.setText(tel);  // Met à jour le champ pour l'utilisateur
+        } else if (!tel.matches("\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}")) {
+            afficherErreur("Le numéro doit être 10 chiffres ou au format 00-00-00-00-00.");
+            return;
+        }
+
+        // Vérification de la date de naissance : format JJ/MM/AAAA
+        String dateNaissance = txtDateNaissance.getText().trim();
+        if (!dateNaissance.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            afficherErreur("La date de naissance doit être au format JJ/MM/AAAA.");
+            return;
+        }
+
+        // (Optionnel) Vérification email basique
+        String email = txtEmail.getText().trim();
+        if (!email.matches(".+@.+\\..+")) {
+            afficherErreur("L'email semble invalide.");
+            return;
+        }
+
+        // Si tout est OK : appliquer les données
         currentUser.setNom(parts[0]);
         currentUser.setPrenom(parts.length > 1 ? parts[1] : "");
-
-        currentUser.setTel(txtTel.getText());
-        currentUser.setEmail(txtEmail.getText());
-        currentUser.setMdp(txtMdp.getText());
-        currentUser.setAdresse(txtAdresse.getText());
-        currentUser.setDateNaissance(txtDateNaissance.getText());
+        currentUser.setTel(tel);
+        currentUser.setEmail(email);
+        currentUser.setMdp(txtMdp.getText().trim());
+        currentUser.setAdresse(txtAdresse.getText().trim());
+        currentUser.setDateNaissance(dateNaissance);
 
         try {
             profilMngt.updateProfil(currentUser);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Optionnel : afficher une alerte à l'utilisateur
+            afficherErreur("Erreur lors de la mise à jour du profil en base.");
+            return;
         }
 
-        // Retour à la vue profil classique
+        // Retour si tout s'est bien passé
         onRetour(event);
     }
+
+
 
     /** Annule et revient à la vue profil sans enregistrer. */
     @FXML
     private void onAnnuler(ActionEvent event) {
         onRetour(event);
     }
+
+    private void afficherErreur(String message) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Erreur détectée");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
 
     /** Charge à nouveau `profil.fxml` et affiche le profil à jour. */
     @FXML

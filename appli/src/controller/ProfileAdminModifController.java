@@ -18,6 +18,9 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javafx.scene.control.Alert;
+
+
 public class ProfileAdminModifController {
 
     @FXML private Label lblName;
@@ -59,25 +62,49 @@ public class ProfileAdminModifController {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // TODO : alerte à l'utilisateur
+            afficherErreur("Erreur lors du chargement des données.");
         }
     }
 
     /** Valide et enregistre en base */
     @FXML
     private void onValidate(ActionEvent event) {
-        // Met à jour l'objet
-        currentUser.setTel(TelValue.getText());
-        currentUser.setEmail(tfEmailValue.getText());
-        currentUser.setAdresse(AdressValue.getText());
-        currentUser.setDateNaissance(AnnivValue.getText());
-        currentUser.setMdp(MDPValue.getText());
+        // Téléphone
+        String tel = TelValue.getText().trim();
+        if (tel.matches("\\d{10}")) {
+            tel = tel.replaceAll("(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1-$2-$3-$4-$5");
+            TelValue.setText(tel);
+        } else if (!tel.matches("\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}")) {
+            afficherErreur("Le numéro de téléphone doit être 10 chiffres ou au format 00-00-00-00-00.");
+            return;
+        }
+
+        // Date de naissance
+        String date = AnnivValue.getText().trim();
+        if (!date.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            afficherErreur("La date de naissance doit être au format JJ/MM/AAAA.");
+            return;
+        }
+
+        // Email
+        String email = tfEmailValue.getText().trim();
+        if (!email.matches(".+@.+\\..+")) {
+            afficherErreur("L'email semble invalide.");
+            return;
+        }
+
+        // Appliquer les modifications
+        currentUser.setTel(tel);
+        currentUser.setEmail(email);
+        currentUser.setAdresse(AdressValue.getText().trim());
+        currentUser.setDateNaissance(date);
+        currentUser.setMdp(MDPValue.getText().trim());
 
         try {
             profilMngt.updateProfil(currentUser);
         } catch (SQLException e) {
             e.printStackTrace();
-            // TODO : alerte d’erreur
+            afficherErreur("Erreur lors de la mise à jour du profil.");
             return;
         }
 
@@ -111,6 +138,14 @@ public class ProfileAdminModifController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void afficherErreur(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Erreur détectée");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
     
 }

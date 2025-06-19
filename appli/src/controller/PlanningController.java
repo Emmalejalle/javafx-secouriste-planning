@@ -33,6 +33,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import controller.ControllerHeader;  // Ton contrôleur de header
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+
+
 public class PlanningController {
 
     @FXML private Label lblMonthYear;
@@ -43,6 +48,9 @@ public class PlanningController {
     @FXML private Label lblDpsActivite, lblDpsDate, lblDpsHoraires, lblDpsLieu;
     @FXML private VBox vboxCoequipiers;
     @FXML private Label lblTotalHours;
+
+    @FXML private Pane headerPane;
+
 
     private LocalDate dateAffichee;
     private Secouriste secouristeConnecte;
@@ -56,6 +64,9 @@ public class PlanningController {
 
     @FXML
     public void initialize() {
+        chargerEtInsererHeader("/vue/PatronHeaderSecouriste.fxml", "Planning Secouriste");
+
+
         User user = SessionManager.getInstance().getCurrentUser();
         if (user instanceof Secouriste) {
             this.secouristeConnecte = (Secouriste) user;
@@ -68,6 +79,27 @@ public class PlanningController {
         dpsDetailsSection.setVisible(false);
         mettreAJourAffichageComplet();
     }
+
+    private void chargerEtInsererHeader(String fxmlPath, String titre) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Region header = loader.load();
+    
+            // Met le titre
+            ControllerHeader ctrl = loader.getController();
+            ctrl.setTitre(titre);
+    
+            headerPane.getChildren().clear();
+            headerPane.getChildren().add(header);
+    
+            header.prefWidthProperty().bind(headerPane.widthProperty());
+            header.prefHeightProperty().bind(headerPane.heightProperty());
+    
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     private void mettreAJourAffichageComplet() {
         mettreAJourTitresEtCalendriers();
