@@ -81,7 +81,7 @@ public class PatronHeaderAdminController {
      */
     @FXML
     private void onDPS(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vue/Modifier-supprimerUnDps.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/GererDps.fxml"));
         ((Node)e.getSource()).getScene().setRoot(root);
     }
 
