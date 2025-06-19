@@ -1,7 +1,7 @@
 /* Conteneur principal */
 .main-content {
     -fx-background-color: white;
-    -fx-padding: 50;
+    -fx-padding: 20;
 }
 
 /* Navigation du mois */

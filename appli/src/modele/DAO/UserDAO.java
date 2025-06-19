@@ -1,6 +1,8 @@
 package modele.DAO;
 
 import modele.persistence.*;
+
+import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -358,6 +360,14 @@ public class UserDAO extends DAO<User> {
      * @throws SQLException En cas d'erreur d'accès à la base de données.
      */
     private void updateDisponibilitesFor(Secouriste secouriste) throws SQLException {
+        // On supprime d'abord les anciennes disponibilités
+        String deleteSql = "DELETE FROM Dispo WHERE idSecouriste = ?";
+        try (PreparedStatement deleteSt = this.connect.prepareStatement(deleteSql)) {
+            deleteSt.setLong(1, secouriste.getId());
+            deleteSt.executeUpdate();
+        }
+
+        // Puis on insère les nouvelles disponibilités
         String sql = "INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES (?, ?)";
         try (PreparedStatement st = this.connect.prepareStatement(sql)) {
             for (Journee jour : secouriste.getDisponibilites()) {

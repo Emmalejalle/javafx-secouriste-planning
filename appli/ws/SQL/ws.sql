@@ -808,3 +808,16 @@ INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40006, 5); 
 INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40007, 7); -- SecouristeSept -> PSE1
 INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40008, 7); -- SecouristeHuit -> PSE1
 
+SELECT
+j.idJournee,
+    j.jour,
+    j.mois,
+    j.annee
+FROM
+    Dispo d
+JOIN
+    Journee j ON d.idJourneeDispo = j.idJournee
+WHERE
+    d.idSecouriste = 14151617
+ORDER BY
+    j.annee, j.mois, j.jour;

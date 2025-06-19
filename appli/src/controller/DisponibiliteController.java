@@ -7,24 +7,22 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import modele.service.DispoMngt;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.io.IOException;
-import java.sql.SQLException;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
@@ -43,16 +41,13 @@ public class DisponibiliteController {
     @FXML private Button btnNextMonth;
     @FXML private Button btnRetour;
     @FXML private Button btnAppliquer;
-
     @FXML private BorderPane rootPane;
-    @FXML private Pane       headerPlaceholder;
-
+    @FXML private Pane headerPlaceholder;
 
     // --- Logique interne ---
     private YearMonth moisAffiche;
-    // On utilise une Map pour stocker les disponibilités.
-    // La clé est la date, la valeur est un booléen (true = dispo, false = pas dispo)
-    private Map<LocalDate, Boolean> disponibilites = new HashMap<>();
+    private Map<LocalDate, Boolean> disponibilites;
+    private DispoMngt dispoMngt;
 
     /**
      * Initialisation du contrôleur.
@@ -63,20 +58,37 @@ public class DisponibiliteController {
     @FXML
     public void initialize() {
         try {
+            // Charger le header
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PatronHeaderSecouriste.fxml"));
             HBox header = loader.load();
-            headerPlaceholder.getChildren().add(header);  // <-- AJOUT DU HEADER DANS LE PANE
-            // Ajuste éventuellement les dimensions ou l'ancrage
+            headerPlaceholder.getChildren().add(header);
             header.prefWidthProperty().bind(headerPlaceholder.widthProperty());
             header.prefHeightProperty().bind(headerPlaceholder.heightProperty());
         } catch (IOException e) {
             e.printStackTrace();
-            // TODO: gestion propre de l'erreur
         }
+        
+        // Initialiser le service de gestion des disponibilités
+        dispoMngt = new DispoMngt();
+        
         // Au démarrage, on affiche le mois actuel
         moisAffiche = YearMonth.now();
-        // On remplit la grille du calendrier
-        mettreAJourCalendrier();
+        
+        // Charger les disponibilités et mettre à jour le calendrier
+        chargerDisponibilitesMoisCourant();
+    }
+
+    /**
+     * Charge les disponibilités du mois courant depuis la base de données
+     */
+    private void chargerDisponibilitesMoisCourant() {
+        try {
+            disponibilites = dispoMngt.chargerDisponibilitesMois(moisAffiche.getYear(), moisAffiche.getMonthValue());
+            mettreAJourCalendrier();
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de charger les disponibilités : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -94,17 +106,18 @@ public class DisponibiliteController {
         // Efface l'ancien contenu de la grille
         calendarGrid.getChildren().clear();
 
-        // Logique pour dessiner les jours du mois
+        // Logique pour dessiner les jours du mois - 6 LIGNES (42 cases)
         LocalDate premierDuMois = moisAffiche.atDay(1);
         int decalage = premierDuMois.getDayOfWeek().getValue() - 1; // 0=Lundi...
 
-        for (int i = 0; i < 35; i++) {
+        for (int i = 0; i < 42; i++) { // 6 lignes × 7 jours = 42 cases
             int col = i % 7;
             int row = i / 7;
             
             LocalDate dateCase = premierDuMois.plusDays(i - decalage);
 
             StackPane dayCell = new StackPane();
+            dayCell.setPrefHeight(60); // Limiter la hauteur des cellules
             dayCell.setOnMouseClicked(this::onDayCellClicked);
             dayCell.setUserData(dateCase); // On stocke la date dans la case !
 
@@ -113,7 +126,7 @@ public class DisponibiliteController {
             
             // On applique le style en fonction du mois et de la disponibilité
             if (dateCase.getMonth().equals(moisAffiche.getMonth())) {
-                boolean estDispo = disponibilites.getOrDefault(dateCase, false); // Par défaut, non dispo
+                boolean estDispo = disponibilites.getOrDefault(dateCase, false);
                 dayCell.getStyleClass().add(estDispo ? "jour-disponible" : "jour-indisponible");
                 dayNumber.getStyleClass().add("day-number");
             } else {
@@ -127,8 +140,6 @@ public class DisponibiliteController {
     /**
      * Gestionnaire d'événement pour le clic sur une case du calendrier.
      * Permet de basculer la disponibilité du secouriste pour le jour correspondant.
-     * 
-     * @param event - L'événement de clic sur la case.
      */
     @FXML
     public void onDayCellClicked(MouseEvent event) {
@@ -147,64 +158,51 @@ public class DisponibiliteController {
         // On met à jour le style de la case cliquée
         dayCell.getStyleClass().removeAll("jour-disponible", "jour-indisponible");
         dayCell.getStyleClass().add(!estActuellementDispo ? "jour-disponible" : "jour-indisponible");
+        
+        System.out.println("Disponibilité modifiée pour le " + date + " : " + !estActuellementDispo);
     }
 
     /**
      * Gestionnaire d'événement pour le bouton "Mois précédent".
-     * Fait passer le mois affiché au mois précédent et met à jour le calendrier.
-     * 
-     * @param event - L'événement lié au bouton.
      */
     @FXML
     public void moisPrecedent(ActionEvent event) {
         moisAffiche = moisAffiche.minusMonths(1);
-        mettreAJourCalendrier();
+        chargerDisponibilitesMoisCourant();
     }
 
     /**
-    * Gestionnaire d'événement pour le bouton "Mois suivant".
-    * Fait passer le mois affiché au mois suivant et met à jour le calendrier.
-    *
-    * @param event - L'événement lié au bouton.
-    */
+     * Gestionnaire d'événement pour le bouton "Mois suivant".
+     */
     @FXML
     public void moisSuivant(ActionEvent event) {
         moisAffiche = moisAffiche.plusMonths(1);
-        mettreAJourCalendrier();
+        chargerDisponibilitesMoisCourant();
     }
     
     /**
      * Gestionnaire d'événement pour le bouton "Appliquer".
-     * Sauvegarde les disponibilités modifiées dans la base de données via le DAO
-     * et retourne au planning.
-     * 
-     * @param event - L'événement lié au bouton.
+     * Sauvegarde les disponibilités modifiées dans la base de données.
      */
     @FXML
     public void appliquerChangements(ActionEvent event) {
-        System.out.println("Clic sur Appliquer. Sauvegarde des disponibilités...");
-        // Ici, tu mettras le code pour enregistrer la Map 'disponibilites' dans la base de données via le DAO.
-        System.out.println(disponibilites);
-        
-        // Puis on retourne au planning
         try {
-            changerDeVue(event, "planningSecou.fxml");
-        } catch (IOException e) {
+            dispoMngt.sauvegarderDisponibilites(disponibilites);
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Vos disponibilités ont été sauvegardées avec succès !");
+            System.out.println("Disponibilités sauvegardées : " + disponibilites);
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de sauvegarder les disponibilités : " + e.getMessage());
             e.printStackTrace();
+        } catch (IllegalStateException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", e.getMessage());
         }
     }
 
     /**
      * Gestionnaire d'événement pour le bouton "Retour".
-     * Retourne au planning.
-     * 
-     * @param event - L'événement lié au bouton.
      */
     @FXML
     public void retourPagePrecedente(ActionEvent event) {
-        // Pour l'instant, on retourne au planning.
-        // Gérer un retour "intelligent" est plus complexe et demande de passer l'information d'une vue à l'autre.
-        System.out.println("Clic sur Retour. Retour vers le planning...");
         try {
             changerDeVue(event, "accueilSecouriste.fxml");
         } catch (IOException e) {
@@ -213,12 +211,7 @@ public class DisponibiliteController {
     }
 
     /**
-     * Gestionnaire d'événement pour les boutons qui changent de vue.
-     * Charge une nouvelle vue FXML et l'affiche dans la fenêtre actuelle.
-     * 
-     * @param event - L'événement lié au bouton qui a déclenché le changement de vue.
-     * @param fxmlFileName - Chemin relatif du fichier FXML à charger.
-     * @throws IOException - Si le fichier FXML ne peut pas être chargé.
+     * Change de vue en chargeant un nouveau fichier FXML.
      */
     private void changerDeVue(ActionEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vue/" + fxmlFileName));
@@ -226,5 +219,16 @@ public class DisponibiliteController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    /**
+     * Affiche une alerte à l'utilisateur.
+     */
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
