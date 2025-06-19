@@ -123,6 +123,37 @@ public class ScenarioDAG {
         } else {
             System.out.println("ERREUR : Le test a échoué, l'algorithme aurait dû trouver un cycle.");
         }
+
+
+        // =======================================================================
+        // Il y a un cycle auto une compétence va vers elle même
+        // =======================================================================
+        System.out.println("\n--- TEST 4 : Cas d'un graphe invalide avec un cycle auto ---");
+
+        // 1. On crée de nouvelles compétences pour ce test.
+        Competence compF = new Competence(15L, "Compétence F", "F");
+
+        // 2. On crée la liste et le graphe.
+        ArrayList<Competence> competencesInvalides3 = new ArrayList<>(Arrays.asList(compF));
+        GrapheDAG<Competence> grapheInvalide3 = new GrapheDAG<>(competencesInvalides3);
+
+        // 4. On ajoute un arc qui forme une boucle : F -> F
+        grapheInvalide3.ajouterArc(compF, compF); // F requiert F (ce qui crée le cycle auto)
+        System.out.println("Graphe création : F -> F");
+
+        // 5. On affiche le graphe pour visualiser la matrice d'adjacence.
+        afficherGraphe(grapheInvalide3);
+
+        // 6. On lance l'algorithme.
+        boolean resultatTest4 = algo.estUnDAG(grapheInvalide3);
+        System.out.println("Résultat du test 'estUnDAG' : " + resultatTest4);
+
+        // 7. On vérifie le résultat.
+        if (!resultatTest4) {
+            System.out.println("VALIDATION : Le test est correct, le cycle a bien été détecté.");
+        } else {
+            System.out.println("ERREUR : Le test a échoué, l'algorithme aurait dû trouver un cycle.");
+        }
         
         System.out.println("\n--- FIN DU SCÉNARIO ---");
     }

@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.Parent;
@@ -88,22 +90,35 @@ public class SignalementController {
         txtSignalement.clear();
     }
 
-    /** Retour à l’accueil Admin */
     /**
-     * Retourne à l'écran d'accueil administrateur.
+     * Gère le clic sur la zone "Planning".
+     * Charge la vue "planningSecou.fxml".
      * 
-     * @param event - L'événement ActionEvent déclenché par le bouton.
+     * @param event - l'événement de clic de souris
      */
-    @FXML
-    private void onReturn(ActionEvent event) {
-        System.out.println("Bouton retour cliqué !");
+    public void onReturn(MouseEvent event) {
+        System.out.println("Clic sur la zone Planning. Chargement de planningSecou.fxml...");
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/vue/planningSecou.fxml"));
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
+            changerDeVue(event, "planningSecou.fxml");
         } catch (IOException e) {
+            System.err.println("ERREUR: Impossible de charger la vue planningSecou.fxml");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Méthode générique pour changer de vue à partir d'un clic de souris.
+     * 
+     * @param event - événement lié au clic de souris.
+     * @param fxmlFileName - nom du fichier FXML à charger.
+     * @throws IOException - si le fichier FXML ne peut pas être chargé.
+     */
+    private void changerDeVue(MouseEvent event, String fxmlFileName) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vue/" + fxmlFileName));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
