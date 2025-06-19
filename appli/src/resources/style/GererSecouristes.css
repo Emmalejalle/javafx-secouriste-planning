@@ -1,5 +1,3 @@
-
-
 .root {
     -fx-font-family: 'Poppins', 'Roboto', sans-serif;
     -fx-background-color: #F1F5F9;
@@ -16,6 +14,9 @@
     -fx-background-radius: 8px;
     -fx-padding: 12px;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+    -fx-min-height: 60px;
+    -fx-pref-height: 60px;
 }
 .vignette-secouriste:hover {
     -fx-background-color: #312E81;
@@ -28,11 +29,11 @@
 .nom-secouriste-liste {
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
 }
 .role-secouriste-liste {
     -fx-text-fill: #A5B4FC;
-    -fx-font-size: 12px;
+    -fx-font-size: 11px;
 }
 .details-pane-container {
     -fx-background-color: white;
@@ -110,4 +111,156 @@
 
 .button-cancel:hover {
     -fx-background-color: #B91C1C;
+}
+
+/* FOOTER ORANGE */
+.footer-orange {
+    -fx-background-color: #FF6B35;
+    -fx-border-color: #E55A2B;
+    -fx-border-width: 1px 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, -1);
+    -fx-min-height: 100px;
+    -fx-pref-height: 100px;
+    -fx-max-height: 100px;
+}
+
+.btn-retour-footer {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-text-fill: #FF6B35;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+
+.btn-retour-footer:hover {
+    -fx-background-color: white;
+    -fx-text-fill: #E55A2B;
+    -fx-border-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 2, 0, 0, 1);
+}
+
+/* SECTION HEADER COMPACTE */
+.section-header-compact {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+}
+
+/* BARRE DE RECHERCHE COMPACTE */
+.recherche-bar-container {
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 8px 15px;
+    -fx-spacing: 10px;
+}
+
+.recherche-bar-container:focused-within {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.2), 3, 0, 0, 1);
+}
+
+/* LISTE SCROLL COMPACTE */
+.liste-scroll {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* AVATAR SECOURISTE COMPACT */
+.avatar-secouriste {
+    -fx-background-color: #4F46E5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-alignment: center;
+    -fx-min-width: 35px;
+    -fx-min-height: 35px;
+    -fx-max-width: 35px;
+    -fx-max-height: 35px;
+}
+
+/* Modifier/ajouter ces styles dans le fichier existant */
+
+/* FOOTER ORANGE 100px */
+.footer-orange {
+    -fx-background-color: #FF6B35;
+    -fx-border-color: #E55A2B;
+    -fx-border-width: 1px 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, -1);
+    -fx-min-height: 100px;
+    -fx-pref-height: 100px;
+    -fx-max-height: 100px;
+}
+
+/* BOUTON RETOUR BLEU DE L'APPLI */
+.btn-retour-bleu {
+    -fx-background-color: #1A2A60;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px 30px;
+    -fx-cursor: hand;
+    -fx-border-color: #0F1629;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);
+}
+
+.btn-retour-bleu:hover {
+    -fx-background-color: #2A3B70;
+    -fx-border-color: #1A2A60;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.btn-retour-bleu:pressed {
+    -fx-background-color: #0F1629;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* SECTION HEADER TRÈS COMPACTE */
+.section-header-compact {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+}
+
+/* BARRE DE RECHERCHE TRÈS COMPACTE */
+.recherche-bar-container {
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 18px;
+    -fx-background-radius: 18px;
+    -fx-padding: 6px 12px;
+    -fx-spacing: 8px;
+}
+
+/* TRANSITIONS POUR LE BOUTON BLEU */
+.btn-retour-bleu {
+    -fx-transition: all 0.2s ease-in-out;
 }

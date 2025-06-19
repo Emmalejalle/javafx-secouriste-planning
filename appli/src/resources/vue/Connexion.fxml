@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="rootPane" prefHeight="1080" prefWidth="1920" fx:controller="controller.ConnexionController" stylesheets="@../style/Connexion.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootPane" maxHeight="1080" minHeight="1080" minWidth="1920" maxWidth="1920" prefHeight="1080" prefWidth="1920" fx:controller="controller.ConnexionController" stylesheets="@../style/Connexion.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
     <!-- HEADER : zone blanche de 100px -->
     <top>

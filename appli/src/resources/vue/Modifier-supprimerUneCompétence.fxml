@@ -12,79 +12,87 @@
             stylesheets="@../style/GererCompetences.css"
             fx:controller="controller.GererCompetencesController">
 
-    <!-- 1) TOP : on inclut le header via fx:include -->
+    <!-- TOP : Header avec fx:include -->
     <top>
       <fx:include source="PatronHeaderAdmin.fxml"/>
     </top>
 
-    <!-- 2) LEFT : ta liste de recherches -->
-    <left>
-      <VBox prefWidth="450.0" spacing="20.0">
+    <!-- CENTER : Contenu principal avec dimensions contrôlées -->
+    <center>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER"
+            minHeight="650.0" prefHeight="700.0" maxHeight="750.0">
         <padding>
-          <Insets bottom="10.0" left="20.0" right="10.0" top="20.0"/>
+          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0"/>
+        </padding>
+        
+        <!-- LEFT : Liste de recherche des compétences -->
+        <VBox prefWidth="450.0" spacing="20.0" HBox.hgrow="NEVER">
+          <children>
+            <!-- Barre de recherche -->
+            <HBox alignment="CENTER" prefHeight="45.0" styleClass="BarDeRechercheSecouriste">
+              <padding><Insets left="10.0"/></padding>
+              <children>
+                <ImageView fx:id="LogoRechercherComp"
+                           fitHeight="24.0" fitWidth="24.0"
+                           pickOnBounds="true" preserveRatio="true">
+                  <image><Image url="@../img/loupeRecherche.png"/></image>
+                </ImageView>
+                <TextField fx:id="RechercheCompTextField"
+                           promptText="Rechercher une compétence"
+                           style="-fx-background-color: transparent;"
+                           HBox.hgrow="ALWAYS"
+                           prefHeight="45.0"/>
+              </children>
+            </HBox>
+
+            <!-- Liste des compétences dans ScrollPane -->
+            <ScrollPane fx:id="ScrollPaneRechercheSecou"
+                        fitToWidth="true"
+                        styleClass="scrollContour"
+                        prefHeight="550.0"
+                        VBox.vgrow="ALWAYS">
+              <content>
+                <VBox fx:id="vboxListeCompetences"
+                      style="-fx-background-color: white;"
+                      fillWidth="true"/>
+              </content>
+            </ScrollPane>
+          </children>
+        </VBox>
+
+        <!-- RIGHT : Panel de détails/formulaire -->
+        <VBox spacing="20.0" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+          <!-- Bouton ajouter en haut -->
+          <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="AjouterComp"
+                    onAction="#onAjouterCompetenceClicked"
+                    styleClass="button-primary"
+                    text="+ Ajouter une compétence"/>
+          </HBox>
+
+          <!-- Panel de détails -->
+          <BorderPane fx:id="detailsPane"
+                      styleClass="scrollContour shadow"
+                      prefHeight="600.0"
+                      VBox.vgrow="ALWAYS">
+          </BorderPane>
+        </VBox>
+      </HBox>
+    </center>
+
+    <!-- BOTTOM : Footer orange avec bouton retour -->
+    <bottom>
+      <HBox alignment="CENTER_LEFT" styleClass="footer-orange"
+            minHeight="100.0" prefHeight="100.0">
+        <padding>
+          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
         </padding>
         <children>
-          <!-- barre de recherche -->
-          <HBox alignment="CENTER" prefHeight="45.0" styleClass="BarDeRechercheSecouriste">
-            <padding><Insets left="10.0"/></padding>
-            <children>
-              <ImageView fx:id="LogoRechercherComp"
-                         fitHeight="24.0" fitWidth="24.0"
-                         pickOnBounds="true" preserveRatio="true">
-                <image><Image url="@../img/loupeRecherche.png"/></image>
-              </ImageView>
-              <TextField fx:id="RechercheCompTextField"
-                         promptText="Rechercher une compétence"
-                         style="-fx-background-color: transparent;"
-                         HBox.hgrow="ALWAYS"
-                         prefHeight="45.0"/>
-            </children>
-          </HBox>
-
-          <!-- scroll liste -->
-          <ScrollPane fx:id="ScrollPaneRechercheSecou"
-                      fitToWidth="true"
-                      styleClass="scrollContour"
-                      VBox.vgrow="ALWAYS">
-            <content>
-              <VBox fx:id="vboxListeCompetences"
-                    style="-fx-background-color: white;"/>
-            </content>
-          </ScrollPane>
-
-          <Region VBox.vgrow="ALWAYS"/>
-
-          <!-- bouton retour -->
-          <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-            <Button fx:id="btnRetour"
-                    onAction="#onRetourClicked"
-                    styleClass="button-retour"
-                    text="← Retour"
-                    prefWidth="130" prefHeight="48"/>
-          </HBox>
+          <Button fx:id="btnRetour"
+                  onAction="#onRetourClicked"
+                  styleClass="btn-retour-bleu"
+                  text="← Retour"/>
         </children>
-      </VBox>
-    </left>
-
-    <!-- 3) CENTER : ton contenu principal -->
-    <center>
-      <VBox spacing="20.0" alignment="TOP_CENTER">
-        <padding><Insets top="20" right="20" left="20"/></padding>
-
-        <!-- bouton ajouter -->
-        <HBox alignment="CENTER_RIGHT">
-          <Button fx:id="AjouterComp"
-                  onAction="#onAjouterCompetenceClicked"
-                  styleClass="button-primary"
-                  text="Ajouter une compétence"/>
-        </HBox>
-
-        <!-- panel de détails / formulaire -->
-        <BorderPane fx:id="detailsPane"
-                    styleClass="scrollContour shadow"
-                    prefHeight="732.0">
-          <VBox.margin><Insets left="100" right="300" top="10"/></VBox.margin>
-        </BorderPane>
-      </VBox>
-    </center>
+      </HBox>
+    </bottom>
 </BorderPane>

@@ -7,12 +7,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilAdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilAdminController">
    <top>
       <fx:include source="PatronHeaderAdmin.fxml" />
    </top>
    <bottom>
-      <Pane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="100.0" prefWidth="1798.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -76,7 +76,7 @@
                                     </ImageView>
                                     <StackPane>
                                        <children>
-                                          <Button fx:id="btnGererSecouristes" mnemonicParsing="false" onAction="#goGererCompetences" opacity="0.0" prefHeight="357.0" prefWidth="636.0" text="Button" />
+                                          <Button fx:id="btnGererSecouristes" mnemonicParsing="false" onAction="#goGererCompetences" opacity="0.0" prefHeight="290.0" prefWidth="597.0" text="Button" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -143,7 +143,7 @@
                                  <Pane prefWidth="100.0" />
                                  <Button fx:id="btnAffecterDPS" onAction="#goAffecterDPS" style="-fx-background-color: transparent; -fx-padding: 0;">
                                     <graphic>
-                                          <ImageView fitHeight="327.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="275.0" fitWidth="552.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../img/AffecterDPSImage.png" />
                                              </image>

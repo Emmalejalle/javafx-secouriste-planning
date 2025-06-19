@@ -1,6 +1,9 @@
+/* ======================================= */
+/* ===       STYLES GÉNÉRAUX           === */
+/* ======================================= */
 .root {
     -fx-font-family: 'Poppins', 'Roboto', sans-serif;
-    -fx-background-color: #F1F5F9; /* Un gris très clair pour le fond global */
+    -fx-background-color: #F8FAFC;
 }
 
 /* ======================================= */
@@ -9,82 +12,119 @@
 .recherche-bar {
     -fx-background-color: white;
     -fx-background-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
-    -fx-padding: 0 10px;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 2);
+    -fx-padding: 0 15px;
 }
+
 .recherche-field {
     -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-font-size: 14px;
+    -fx-prompt-text-fill: #94A3B8;
+    -fx-text-fill: #334155;
 }
+
+.recherche-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
 .liste-container {
     -fx-background-color: white;
     -fx-border-color: #E2E8F0;
     -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 8px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 2);
 }
+
 .vbox-liste {
-    -fx-spacing: 5px;
-    -fx-background-color: white;
+    -fx-spacing: 8px;
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
 }
--fx-border-color: #1A2A60;
-}
 
-
-
-
+/* ======================================= */
+/* ===       VIGNETTES DPS              === */
+/* ======================================= */
 .vignette {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 8px;
-    -fx-padding: 10px 15px;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px;
     -fx-border-color: #E2E8F0;
     -fx-border-width: 1px;
+    -fx-border-radius: 10px;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0, 0, 1);
+    -fx-min-height: 60px;
 }
-.vignette:hover { -fx-border-color: #3B82F6; }
+
+.vignette:hover { 
+    -fx-border-color: #3B82F6;
+    -fx-background-color: #F8FAFC;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
 .vignette-selected {
     -fx-background-color: #1A2A60;
     -fx-border-color: #1A2A60;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 3);
 }
+
 .vignette-titre {
     -fx-font-weight: bold;
     -fx-text-fill: #1E293B;
     -fx-font-size: 16px;
 }
+
 .vignette-details {
-    -fx-font-size: 12px;
+    -fx-font-size: 13px;
     -fx-text-fill: #64748B;
 }
+
 .vignette-selected .vignette-titre,
 .vignette-selected .vignette-details {
     -fx-text-fill: white;
 }
 
-
 /* ======================================= */
 /* ===       PANNEAU DE DROITE         === */
 /* ======================================= */
+.details-panel {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
 .details-pane-container {
     -fx-background-color: white;
     -fx-background-radius: 12px;
     -fx-border-color: #E2E8F0;
     -fx-border-width: 1px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
     -fx-padding: 25px;
 }
+
 .details-titre {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #1A2A60;
 }
+
 .details-label, .form-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: #475569;
     -fx-padding: 10px 0 5px 0;
 }
-.details-text {
+
+.details-text, .details-value {
     -fx-font-size: 16px;
     -fx-text-fill: #1E293B;
 }
@@ -97,41 +137,169 @@
     -fx-text-fill: white;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-padding: 10px 22px;
+    -fx-padding: 12px 24px;
     -fx-background-radius: 8px;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
 }
-.button-primary:hover { -fx-background-color: #1D4ED8; }
 
-.button-delete {
+.button-primary:hover { 
+    -fx-background-color: #1D4ED8; 
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 2);
+}
+
+.button-delete, .button-danger {
     -fx-background-color: #DC2626;
     -fx-text-fill: white;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-padding: 10px 22px;
+    -fx-padding: 12px 24px;
     -fx-background-radius: 8px;
     -fx-cursor: hand;
-}
-.button-delete:hover { -fx-background-color: #B91C1C; }
-
-.button-retour {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
 }
 
-
-.details-value {
-    -fx-font-size: 16px;
-    -fx-text-fill: #1E293B;
+.button-delete:hover, .button-danger:hover { 
+    -fx-background-color: #B91C1C; 
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 2);
 }
 
-.button-danger {
-    -fx-background-color: #DC2626; /* rouge foncé genre "danger" */
+.button-secondary {
+    -fx-background-color: #6B7280;
     -fx-text-fill: white;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
+    -fx-padding: 12px 24px;
     -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
 }
-.button-danger:hover {
-    -fx-background-color: #B91C1C;
+
+.button-secondary:hover { 
+    -fx-background-color: #4B5563; 
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 2);
+}
+
+/* ======================================= */
+/* ===       FOOTER ORANGE 100px       === */
+/* ======================================= */
+.footer-orange {
+    -fx-background-color: #FF6B35;
+    -fx-border-color: #E55A2B;
+    -fx-border-width: 1px 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, -1);
+    -fx-min-height: 100px;
+    -fx-pref-height: 100px;
+    -fx-max-height: 100px;
+}
+
+.btn-retour-bleu {
+    -fx-background-color: #1A2A60;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px 30px;
+    -fx-cursor: hand;
+    -fx-border-color: #0F1629;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);
+}
+
+.btn-retour-bleu:hover {
+    -fx-background-color: #2A3B70;
+    -fx-border-color: #1A2A60;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.btn-retour-bleu:pressed {
+    -fx-background-color: #0F1629;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* ======================================= */
+/* ===       FORMULAIRES                === */
+/* ======================================= */
+.text-field, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #3B82F6;
+    -fx-border-width: 2px;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-max-height: 150px;
+}
+
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.number-spinner {
+    -fx-pref-width: 80px;
+}
+
+/* ======================================= */
+/* ===       SÉPARATEURS                === */
+/* ======================================= */
+.separator {
+    -fx-background-color: #E2E8F0;
+}
+
+/* ======================================= */
+/* ===       TRANSITIONS                === */
+/* ======================================= */
+.vignette, .button-primary, .button-delete, .button-danger, .button-secondary, .btn-retour-bleu {
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/* ======================================= */
+/* ===       UTILITAIRES                === */
+/* ======================================= */
+.spacing-small { -fx-spacing: 8px; }
+.spacing-medium { -fx-spacing: 15px; }
+.spacing-large { -fx-spacing: 25px; }
+
+.padding-small { -fx-padding: 8px; }
+.padding-medium { -fx-padding: 15px; }
+.padding-large { -fx-padding: 25px; }
+
+/* ======================================= */
+/* ===       MESSAGES D'ACCUEIL        === */
+/* ======================================= */
+.message-accueil {
+    -fx-padding: 50px;
+    -fx-alignment: center;
+}
+
+.message-accueil .details-titre {
+    -fx-text-alignment: center;
+}
+
+.message-accueil .details-text {
+    -fx-text-alignment: center;
+    -fx-font-size: 16px;
+    -fx-text-fill: #64748B;
+    -fx-max-width: 400px;
 }

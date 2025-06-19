@@ -12,50 +12,77 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/GererDps.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GererDpsController">
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" styleClass="root" 
+            stylesheets="@../style/GererDps.css" 
+            xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controller.GererDpsController">
+   
+   <!-- TOP : Header connecté -->
    <top>
-      <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-padding: 20;" text="Gestion des DPS" />
+      <fx:include source="PatronHeaderAdmin.fxml"/>
    </top>
-   <left>
-      <VBox prefWidth="450.0" spacing="20.0">
+   
+   <!-- CENTER : Contenu principal -->
+   <center>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER"
+            minHeight="650.0" prefHeight="700.0" maxHeight="750.0">
          <padding>
-            <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0"/>
+         </padding>
+         
+         <!-- LEFT : Liste de recherche des DPS -->
+         <VBox prefWidth="450.0" spacing="20.0" HBox.hgrow="NEVER">
+            <children>
+               <!-- Barre de recherche -->
+               <HBox alignment="CENTER" prefHeight="45.0" styleClass="recherche-bar">
+                  <children>
+                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image><Image url="@../img/loupeRecherche.png" /></image>
+                     </ImageView>
+                     <TextField fx:id="rechercheField" prefHeight="45.0" promptText="Rechercher un DPS" 
+                               styleClass="recherche-field" HBox.hgrow="ALWAYS" />
+                  </children>
+                  <padding>
+                     <Insets left="10.0" />
+                  </padding>
+               </HBox>
+               
+               <!-- Bouton ajouter -->
+               <Button fx:id="btnAjouter" maxWidth="1.7976931348623157E308" 
+                      mnemonicParsing="false" onAction="#onAjouterDpsClicked" 
+                      styleClass="button-primary" text="+ Ajouter un DPS" />
+               
+               <!-- Liste des DPS dans ScrollPane -->
+               <ScrollPane fitToWidth="true" styleClass="liste-container" 
+                          prefHeight="500.0" VBox.vgrow="ALWAYS">
+                  <content>
+                     <VBox fx:id="vboxListe" styleClass="vbox-liste" />
+                  </content>
+               </ScrollPane>
+            </children>
+         </VBox>
+         
+         <!-- RIGHT : Panel de détails -->
+         <BorderPane fx:id="detailsPane" styleClass="details-panel" HBox.hgrow="ALWAYS">
+            <!-- Contenu dynamique -->
+         </BorderPane>
+      </HBox>
+   </center>
+   
+   <!-- BOTTOM : Footer orange avec bouton retour -->
+   <bottom>
+      <HBox alignment="CENTER_LEFT" styleClass="footer-orange"
+            minHeight="100.0" prefHeight="100.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" prefHeight="45.0" styleClass="recherche-bar">
-               <children>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image><Image url="@../img/loupeRecherche.png" /></image>
-                  </ImageView>
-                  <TextField fx:id="rechercheField" prefHeight="45.0" promptText="Rechercher un DPS" styleClass="recherche-field" HBox.hgrow="ALWAYS" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <Button fx:id="btnAjouter" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAjouterDpsClicked" styleClass="button-primary" text="+ Ajouter un DPS" />
-            <ScrollPane fitToWidth="true" styleClass="liste-container" VBox.vgrow="ALWAYS">
-               <content>
-                  <VBox fx:id="vboxListe" />
-               </content>
-            </ScrollPane>
-            <Region VBox.vgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-               <children>
-                  <Button fx:id="btnRetour"
-        styleClass="button-primary"
-        onAction="#onRetourClicked"
-        text="← Retour" />
-               </children>
-            </HBox>
+            <Button fx:id="btnRetour"
+                    onAction="#onRetourClicked"
+                    styleClass="btn-retour-bleu"
+                    text="← Retour"/>
          </children>
-      </VBox>
-   </left>
-   <center>
-      <BorderPane fx:id="detailsPane">
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
-         </BorderPane.margin>
-      </BorderPane>
-   </center>
+      </HBox>
+   </bottom>
 </BorderPane>

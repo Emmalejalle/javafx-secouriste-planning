@@ -217,3 +217,31 @@
 .scroll-pane .content {
     -fx-background-color: transparent;
 }
+
+.btn-retour-bleu {
+    -fx-background-color: #1A2A60;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px 30px;
+    -fx-cursor: hand;
+    -fx-border-color: #0F1629;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);
+}
+
+.btn-retour-bleu:hover {
+    -fx-background-color: #2A3B70;
+    -fx-border-color: #1A2A60;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.btn-retour-bleu:pressed {
+    -fx-background-color: #0F1629;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}

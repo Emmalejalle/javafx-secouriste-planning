@@ -9,32 +9,49 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane styleClass="details-pane-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireCompetenceController">
+<BorderPane styleClass="details-pane-container" 
+            xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controller.FormulaireCompetenceController">
     <top>
         <Label fx:id="titreFormLabel" styleClass="details-titre" text="Ajouter/Modifier Compétence" />
     </top>
     <center>
-        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+        <VBox spacing="15.0" BorderPane.alignment="CENTER">
             <padding>
                 <Insets top="20.0" />
             </padding>
-            <Label styleClass="form-label" text="Intitulé :" />
-            <TextField fx:id="intituleField" />
-            <Label styleClass="form-label" text="Abréviation :" />
-            <TextField fx:id="abrevField" />
-            <Label styleClass="form-label" text="Compétences requises (Ctrl+Clic pour sélection multiple) :" />
-            <ListView fx:id="prerequisListView" VBox.vgrow="ALWAYS" />
+            
+            <VBox spacing="8.0">
+                <Label styleClass="form-label" text="Intitulé :" />
+                <TextField fx:id="intituleField" />
+            </VBox>
+            
+            <VBox spacing="8.0">
+                <Label styleClass="form-label" text="Abréviation :" />
+                <TextField fx:id="abrevField" />
+            </VBox>
+            
+            <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                <Label styleClass="form-label" text="Compétences requises (Ctrl+Clic pour sélection multiple) :" />
+                <ListView fx:id="prerequisListView" 
+                          prefHeight="200.0"
+                          VBox.vgrow="ALWAYS" />
+            </VBox>
         </VBox>
     </center>
     <bottom>
-        <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_RIGHT" spacing="15.0" BorderPane.alignment="CENTER">
             <padding>
                 <Insets top="20.0" />
             </padding>
-            <Button fx:id="validerButton" onAction="#onValider" styleClass="button-primary" text="Valider" />
+            <Button fx:id="validerButton" 
+                    onAction="#onValider" 
+                    styleClass="button-primary" 
+                    text="Valider" />
         </HBox>
     </bottom>
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+        <Insets bottom="20.0" left="25.0" right="25.0" top="15.0" />
     </padding>
 </BorderPane>

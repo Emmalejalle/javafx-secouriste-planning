@@ -196,8 +196,10 @@
         <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
             <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
             <children>
-                <Button fx:id="btnReturn" onAction="#onReturn" styleClass="back-button" text="← Retour" />
-            </children>
+                    <Button fx:id="btnRetour"
+                        onAction="#onReturn"
+                        styleClass="btn-retour-bleu"
+                        text="← Retour"/>            </children>
         </HBox>
     </bottom>
 

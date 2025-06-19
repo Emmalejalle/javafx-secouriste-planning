@@ -37,6 +37,7 @@ public class GererSecouristesController extends BaseController {
     @FXML private TextField rechercheField;
     @FXML private VBox vboxListe;
     @FXML private BorderPane detailsPane;
+    @FXML private Node headerPlaceholder; // Ajout d'un placeholder pour le header
     
     // --- Logique interne ---
     private SecouristeManagement secouristeMngt;
@@ -56,9 +57,24 @@ public class GererSecouristesController extends BaseController {
      */
     @FXML
     public void initialize() {
-        chargerDonneesInitiales();
-        configurerRecherche();
-        afficherMessageAccueil();
+        try {
+            // Charge le header commun
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PatronHeaderAdmin.fxml"));
+            HBox header = loader.load();
+            PatronHeaderAdminController hdrCtrl = loader.getController();
+            hdrCtrl.setTitre("Gestion des Secouristes");
+            
+            // Remplacer le placeholder par le header
+            BorderPane root = (BorderPane) headerPlaceholder.getParent();
+            root.setTop(header);
+            
+            // Configuration existante...
+            chargerDonneesInitiales();
+            configurerRecherche();
+            afficherMessageAccueil();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     /**

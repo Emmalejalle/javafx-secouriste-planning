@@ -9,53 +9,94 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Cursor?>
 
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" styleClass="root" stylesheets="@../style/GererSecouristes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GererSecouristesController">
+<BorderPane styleClass="root" stylesheets="@../style/GererSecouristes.css" 
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controller.GererSecouristesController">
+   
+   <!-- HEADER -->
    <top>
-      <HBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1px 0;">
-         <fx:include source="PatronHeaderAdminGererSecouriste.fxml"/>
-      </HBox>
+      <Pane fx:id="headerPlaceholder" minHeight="70.0" prefHeight="70.0" />
    </top>
-   <left>
-      <VBox prefWidth="450.0" spacing="20.0">
+
+   <!-- CONTENU PRINCIPAL -->
+   <center>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER"
+            minHeight="650.0" prefHeight="700.0" maxHeight="750.0">
          <padding>
-            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+            <Insets bottom="2.0" left="20.0" right="20.0" top="2.0" />
+         </padding>
+         
+         <!-- PARTIE GAUCHE : Liste des Secouristes -->
+         <VBox spacing="12.0" HBox.hgrow="NEVER" prefWidth="400.0">
+            <children>
+               <!-- En-tête avec recherche et bouton ajouter -->
+               <VBox spacing="10.0" styleClass="section-header-compact">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <children>
+                           <Label styleClass="section-title" text="Gestion des secouristes" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Button fx:id="btnAjouterSecouriste" styleClass="btn-add-secouriste" 
+                                  text="+ Ajouter" onAction="#onAjouter" />
+                        </children>
+                     </HBox>
+                     
+                     <!-- Barre de recherche stylée -->
+                     <HBox alignment="CENTER_LEFT" styleClass="recherche-bar-container">
+                        <children>
+                           <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <image><Image url="@../img/loupeRecherche.png" /></image>
+                           </ImageView>
+                           <TextField fx:id="rechercheField" 
+                                     promptText="Rechercher un secouriste..." 
+                                     styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+               
+               <!-- Liste des secouristes dans un ScrollPane -->
+               <ScrollPane styleClass="liste-scroll" 
+                          hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                          prefHeight="570.0" VBox.vgrow="ALWAYS">
+                  <content>
+                     <VBox fx:id="vboxListe" spacing="6.0" styleClass="liste-secouristes">
+                        <padding>
+                           <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
+                        </padding>
+                        <!-- Les vignettes de secouristes seront ajoutées dynamiquement ici -->
+                     </VBox>
+                  </content>
+               </ScrollPane>
+            </children>
+         </VBox>
+         
+         <!-- PARTIE DROITE : Détails du secouriste sélectionné -->
+         <BorderPane fx:id="detailsPane" 
+                    styleClass="details-panel" HBox.hgrow="ALWAYS"
+                    minWidth="450.0" prefWidth="550.0">
+            <center>
+               <!-- Contenu dynamique -->
+            </center>
+         </BorderPane>
+      </HBox>
+   </center>
+   
+   <!-- FOOTER ORANGE 100px -->
+   <bottom>
+      <HBox alignment="CENTER_LEFT" styleClass="footer-orange"
+            minHeight="100.0" prefHeight="100.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" prefHeight="45.0" styleClass="recherche-bar">
-               <children>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image><Image url="@../img/loupeRecherche.png" /></image>
-                  </ImageView>
-                  <TextField fx:id="rechercheField" prefHeight="45.0" promptText="Rechercher un secouriste" styleClass="recherche-field" HBox.hgrow="ALWAYS" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <Button fx:id="ajouterButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAjouter" styleClass="button-primary" text="+ Ajouter un secouriste" />
-            <ScrollPane fitToWidth="true" styleClass="liste-container" VBox.vgrow="ALWAYS">
-               <content>
-                  <VBox fx:id="vboxListe" />
-               </content>
-            </ScrollPane>
-            <Region VBox.vgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-               <children>
-                  <Button fx:id="retourButton" mnemonicParsing="false" onAction="#onRetour" styleClass="button-retour" text="← Retour" />
-               </children>
-            </HBox>
+            <Button fx:id="retourButton" onAction="#onRetour" 
+                   styleClass="btn-retour-bleu" text="← Retour" />
          </children>
-      </VBox>
-   </left>
-   <center>
-      <BorderPane fx:id="detailsPane">
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-      </BorderPane>
-   </center>
+      </HBox>
+   </bottom>
 </BorderPane>

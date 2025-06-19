@@ -4,14 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane styleClass="details-pane-container" stylesheets="@../style/GererSecouristes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireSecouristeController">
+<BorderPane styleClass="details-pane-container" minWidth="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireSecouristeController">
    <top>
       <Label fx:id="titreFormLabel" styleClass="details-titre" text="Création du secouriste" />
    </top>
    <center>
-      <GridPane hgap="40.0" vgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="30.0" vgap="12.0" BorderPane.alignment="CENTER">
          <padding>
-            <Insets top="20.0" />
+            <Insets top="15.0" />
          </padding>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" />
@@ -45,24 +45,25 @@
             <Label styleClass="form-label" text="Mot de passe :" />
             <PasswordField fx:id="mdpField" />
          </VBox>
-         <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" VBox.vgrow="ALWAYS">
+         <VBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" 
+               minHeight="180.0" prefHeight="200.0">
             <Label styleClass="form-label" text="Compétences (Ctrl+Clic pour sélection multiple) :" />
             <ListView fx:id="competencesListView" VBox.vgrow="ALWAYS" />
          </VBox>
       </GridPane>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" spacing="15.0" BorderPane.alignment="CENTER">
          <padding>
-            <Insets top="20.0" />
+            <Insets top="15.0" />
          </padding>
          <children>
-           <Button fx:id="annulerButton" onAction="#onAnnuler" text="Annuler" />
+            <Button fx:id="annulerButton" onAction="#onAnnuler" styleClass="button-cancel" text="Annuler" />
             <Button fx:id="validerButton" onAction="#onValider" styleClass="button-primary" text="Valider" />
          </children>
       </HBox>
    </bottom>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+      <Insets bottom="15.0" left="20.0" right="20.0" top="10.0" />
    </padding>
-</BorderPane>   
+</BorderPane>
