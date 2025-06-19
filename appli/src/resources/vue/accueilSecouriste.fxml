@@ -7,13 +7,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilSecouristeController">
+<BorderPane  prefWidth="1920" prefHeight="1080" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilSecouristeController">
    <top>
       <fx:include fx:id="header" source="PatronHeaderSecouriste.fxml"/>
    </top>
+
    <bottom>
-      <Pane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="100.0" style="-fx-background-color: #F97316;" alignment="CENTER"/>
    </bottom>
+
+
    <center>
       <VBox prefHeight="880.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
          <children>
