@@ -4,7 +4,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * MainEmma.java
+ * Classe principale de l'application JavaFX.
+ * Elle charge l'interface utilisateur à partir d'un fichier FXML et affiche la fenêtre principale.
+ */
 public class MainEmma extends Application {
+    /**
+     * Démarre l'application JavaFX.
+     * Charge l'interface utilisateur à partir d'un fichier FXML et affiche la fenêtre principale.
+     * 
+     * @param stage - La fenêtre principale de l'application.
+     * @throws IOException Si le fichier FXML ne peut pas être chargé.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println(getClass().getResource("/vue/accueilAdmin.fxml"));
@@ -14,6 +26,11 @@ public class MainEmma extends Application {
         stage.show();
     }
 
+    /**
+     * Point d'entrée de l'application JavaFX.
+     * 
+     * @param args Les arguments de la ligne de commande (non utilisés).
+     */
     public static void main(String[] args) {
         launch(args);
     }

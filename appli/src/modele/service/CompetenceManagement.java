@@ -10,7 +10,11 @@ import modele.graphe.algorithme.DAGMethode;
 import modele.graphe.modele.GrapheDAG;
 import modele.persistence.Competence;
 
-
+/**
+ * La classe CompetenceManagement gère les opérations liées aux compétences.
+ * Elle permet de lister, créer, modifier et supprimer des compétences,
+ * tout en s'assurant que les modifications respectent les contraintes de dépendances.
+ */
 public class CompetenceManagement {
 
     private CompetenceDAO competenceDAO;
@@ -21,10 +25,24 @@ public class CompetenceManagement {
         this.dagMethode = new DAGMethode();
     }
 
+    /**
+     * Renvoie une liste de toutes les compétences en BDD.
+     * @return Une liste de toutes les compétences.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public List<Competence> listerToutesLesCompetences() throws SQLException {
         return competenceDAO.findAll();
     }
 
+    /**
+     * Crée une nouvelle compétence en base de données.
+     * 
+     * @param intitule - l'intitulé de la compétence
+     * @param abrev - l'abréviation de la compétence
+     * @param prerequis - les compétences pré-requises
+     * @return <code>true</code> si la compétence a été créée, <code>false</code> sinon.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public boolean creerCompetence(String intitule, String abrev, List<Competence> prerequis) throws SQLException {
         if (intitule == null || intitule.trim().isEmpty() || abrev == null || abrev.trim().isEmpty()) {
             throw new IllegalArgumentException("L'intitulé et l'abréviation ne peuvent pas être vides.");
@@ -52,6 +70,16 @@ public class CompetenceManagement {
         return true; 
     }
 
+    /**
+     * Modifie une compétence en base de données.
+     * 
+     * @param competence - la compétence à modifier
+     * @param intitule - l'intitulé de la compétence
+     * @param abrev - l'abréviation de la compétence
+     * @param prerequis - les compétences pré-requises
+     * @return <code>true</code> si la compétence a été modifiée, <code>false</code> sinon.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public boolean modifierCompetence(Competence competence, String intitule, String abrev, List<Competence> prerequis) throws SQLException {
         // on garde en memoire les anciens parametre de la competence si jamais l'update provoque un DAG
         String ancienIntitule = competence.getIntitule();
@@ -88,10 +116,24 @@ public class CompetenceManagement {
         return true;
     }
 
+    /**
+     * Supprime une compétence de la base de données.
+     * 
+     * @param competence - La compétence à supprimer.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public void supprimerCompetence(Competence competence) throws SQLException {
         competenceDAO.delete(competence);
     }
 
+    /**
+     * Filtre une liste de compétences en mémoire basé sur un texte de recherche.
+     * La recherche est sensible à la casse.
+     * 
+     * @param liste - la liste de compétences à filtrer
+     * @param recherche - le texte à rechercher
+     * @return une liste de compétences dont le nom contient le texte de recherche
+     */
     public List<Competence> filtrerCompetences(List<Competence> liste, String recherche) {
         if (recherche == null || recherche.trim().isEmpty()) {
             return liste;
@@ -102,6 +144,14 @@ public class CompetenceManagement {
             .collect(Collectors.toList());
     }
 
+    /**
+     * Cherche une compétence par son intitulé.
+     * La recherche est sensible à la casse.
+     * 
+     * @param intitule - l'intitulé de la compétence à chercher
+     * @return la compétence trouvée, ou null si aucune compétence n'est trouvée avec cet intitulé.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public Competence findByIntitule(String intitule) throws SQLException {
         return listerToutesLesCompetences().stream()
             .filter(c -> c.getIntitule().equals(intitule))

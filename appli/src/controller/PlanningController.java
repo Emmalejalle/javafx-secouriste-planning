@@ -37,7 +37,10 @@ import controller.ControllerHeader;  // Ton contrôleur de header
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
-
+/**
+ * Contrôleur pour la vue "Planning Secouriste".
+ * Gère l'affichage du planning hebdomadaire des DPS (Dispositifs de Secours) pour un secouriste connecté.
+ */
 public class PlanningController {
 
     @FXML private Label lblMonthYear;
@@ -57,11 +60,22 @@ public class PlanningController {
     private VBox dpsSelectionne;
     private PlanningManagement planningService;
 
+    /**
+     * Constructeur du contrôleur.
+     * Initialise le service de gestion du planning.
+     */
     public PlanningController() {
         this.planningService = new PlanningManagement();
     }
 
 
+    /**
+     * Initialise le contrôleur.
+     * Charge le header du planning avec son titre.
+     * Vérifie si un secouriste est connecté.
+     * Si oui, charge le planning du secouriste connecté.
+     * Sinon, affiche un message d'erreur.
+     */
     @FXML
     public void initialize() {
         chargerEtInsererHeader("/vue/PatronHeaderSecouriste.fxml", "Planning Secouriste");
@@ -80,6 +94,12 @@ public class PlanningController {
         mettreAJourAffichageComplet();
     }
 
+    /**
+     * Charge le header du planning avec son titre.
+     * 
+     * @param fxmlPath - le chemin relatif du fichier FXML contenant le header.
+     * @param titre - le titre du header.
+     */
     private void chargerEtInsererHeader(String fxmlPath, String titre) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -101,11 +121,22 @@ public class PlanningController {
     }
     
 
+    /**
+     * Met à jour l'affichage complet du planning.
+     * Appelle mettreAJourTitresEtCalendriers() pour mettre à jour les titres et le calendrier
+     * et chargerEtAfficherDPS() pour charger et afficher les DPS.
+     */
     private void mettreAJourAffichageComplet() {
         mettreAJourTitresEtCalendriers();
         chargerEtAfficherDPS();
     }
     
+    /**
+     * Met à jour les titres et le calendrier du planning.
+     * Mets à jour le label du mois et du numéro de semaine.
+     * Mets à jour les labels des jours de la semaine.
+     * Mets à jour la grille du calendrier en fonction du mois.
+     */
     private void mettreAJourTitresEtCalendriers() {
         Locale locale = Locale.FRANCE;
         int weekNumber = dateAffichee.get(WeekFields.of(locale).weekOfWeekBasedYear());
@@ -137,6 +168,16 @@ public class PlanningController {
         }
     }
 
+    /**
+     * Charge et affiche les DPS du secouriste connecté pour la semaine actuellement affichée.
+     * 
+     * 1. Vide les anciennes vignettes du planning.
+     * 2. Définit les dates de début et de fin de la semaine actuellement affichée.
+     * 3. Récupère TOUTES les affectations du secouriste connecté.
+     * 4. Parcourt chaque affectation pour voir si elle doit être affichée cette semaine.
+     * 5. Vérifie si la date du DPS est bien dans la semaine qu'on affiche.
+     * Si oui, crée et place la vignette.
+     */
     private void chargerEtAfficherDPS() {
         // 1. On vide les anciennes vignettes du planning
         planningGrid.getChildren().removeIf(node -> node instanceof VBox);
@@ -183,6 +224,14 @@ public class PlanningController {
         lblTotalHours.setText(String.format("Total heures : %dh00", totalHeuresSemaine));
     }
     
+    /**
+     * Crée une vignette pour un DPS.
+     * La vignette contient le nom du sport, la date et l'heure de début et de fin.
+     * Elle est cliquable pour afficher les détails du DPS.
+     * 
+     * @param dps - l'objet DPS à afficher dans la vignette
+     * @return un HBox contenant les informations du DPS
+     */
     private VBox creerVignettePourDps(DPS dps) {
         VBox vignette = new VBox(5);
         vignette.setAlignment(Pos.CENTER);
@@ -197,6 +246,13 @@ public class PlanningController {
         return vignette;
     }
     
+    /**
+     * Gère le clic sur une vignette de DPS.
+     * Change le style de la vignette cliquée pour la surbriller.
+     * Appelle la méthode {@link #afficherDetails(DPS, List)} pour afficher les détails du DPS et de son équipe.
+     * 
+     * @param event - l'événement de clic
+     */
     @FXML
     public void onDpsClicked(MouseEvent event) {
         VBox vignetteCliquee = (VBox) event.getSource();
@@ -225,6 +281,18 @@ public class PlanningController {
         }
     }
 
+    /**
+     * Affiche les détails du DPS et de son équipe.
+     * Les détails affichés sont :
+     * - le nom du sport
+     * - la date du DPS
+     * - les heures de début et de fin du DPS
+     * - le lieu du DPS
+     * - la liste des secouristes affectés
+     * 
+     * @param dps - l'objet DPS pour lequel afficher les détails
+     * @param affectations - la liste des affectations pour ce DPS
+     */
     private void afficherDetails(DPS dps, List<Affectation> affectations) {
         // Mettre à jour les infos générales du DPS
         lblDpsActivite.setText(dps.getSport().getNom());
@@ -258,12 +326,24 @@ public class PlanningController {
         dpsDetailsSection.setVisible(true);
     }
     
+    /**
+     * Gère le clic sur le bouton "Semaine précédente".
+     * Retire une semaine à la date actuelle et met à jour l'affichage.
+     * 
+     * @param event - l'événement de clic, non utilisé
+     */
     @FXML
     public void onPreviousMonth(ActionEvent event) {
         dateAffichee = dateAffichee.minusWeeks(1);
         mettreAJourAffichageComplet();
     }
 
+    /**
+     * Gère le clic sur le bouton "Semaine suivante".
+     * Ajoute une semaine à la date actuelle et met à jour l'affichage.
+     * 
+     * @param event - l'événement de clic, non utilisé
+     */
     @FXML
     public void onNextMonth(ActionEvent event) {
         dateAffichee = dateAffichee.plusWeeks(1);
@@ -271,6 +351,13 @@ public class PlanningController {
     }
     
     // Méthodes utilitaires
+    /**
+     * Trouve une journée dans la liste de journees correspondant à une date donnée.
+     * 
+     * @param journees - la liste de journees à parcourir
+     * @param date - la date à rechercher
+     * @return la Journee correspondante ou null si non trouvée
+     */
     private Journee trouverJourneePourDate(List<Journee> journees, LocalDate date) {
         return journees.stream()
             .filter(j -> j.getAnnee() == date.getYear() && j.getMois() == date.getMonthValue() && j.getJour() == date.getDayOfMonth())
@@ -278,6 +365,13 @@ public class PlanningController {
             .orElse(null);
     }
     
+    /**
+     * Renvoie la classe de style CSS pour une couleur correspondant
+     * au sport passé en paramètre.
+     * 
+     * @param nomSport - le nom du sport pour lequel on cherche la couleur
+     * @return la classe de style CSS correspondante
+     */
     private String getCouleurPourSport(String nomSport) {
         // Logique simple pour attribuer une couleur
         if (nomSport.toLowerCase().contains("ski")) return "dps-vert";
@@ -285,6 +379,12 @@ public class PlanningController {
         return "dps-jaune";
     }
 
+    /**
+     * Gère le clic sur le bouton "Retour" en haut à gauche.
+     * Charge la vue accueilSecouriste.fxml et la place dans la scène.
+     * 
+     * @param event - l'événement de clic
+     */
     @FXML
     public void retourAccueilAdmin(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement de accueilSecouriste.fxml...");
@@ -297,6 +397,13 @@ public class PlanningController {
         }
     }
 
+    /**
+     * Charge une nouvelle vue FXML et l'affiche dans la fenêtre actuelle.
+     * 
+     * @param event - l'événement lié au bouton qui a déclenché le changement de vue.
+     * @param fxmlFileName - le nom du fichier FXML à charger.
+     * @throws IOException - si le fichier FXML ne peut pas être chargé.
+     */
     private void changerDeVue(ActionEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlFileName));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -305,6 +412,12 @@ public class PlanningController {
         stage.show();
     }
 
+    /**
+     * Gestionnaire d'événement pour le bouton "Mes disponibilités".
+     * Charge la vue NotificationDisponibilite.fxml et la place dans la scène.
+     * 
+     * @param event - l'événement de clic
+     */
     @FXML
     public void afficherMesDispos(ActionEvent event) {
         System.out.println("Clic sur 'Mes disponibilités'. Chargement de NotificationDisponibilite.fxml...");

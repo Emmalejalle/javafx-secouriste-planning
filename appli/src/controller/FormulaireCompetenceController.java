@@ -11,6 +11,11 @@ import javafx.scene.control.Button;
 import modele.persistence.Competence;
 import java.util.List;
 
+/**
+ * Contrôleur pour la vue FormulaireCompetence.fxml
+ * Gère l'affichage et la validation du formulaire de création ou de modification d'une compétence.
+ * Permet de saisir l'intitulé, l'abréviation et les prérequis de la compétence.
+ */
 public class FormulaireCompetenceController {
 
     // Les @FXML de la vue FormulaireCompetence.fxml
@@ -24,9 +29,10 @@ public class FormulaireCompetenceController {
 
     /**
      * Méthode d'initialisation pour passer les données.
-     * @param competence La compétence à modifier (ou null si on est en création).
-     * @param allCompetences La liste de toutes les compétences pour le choix des prérequis.
-     * @param mainController La référence vers le contrôleur principal.
+     * 
+     * @param competence - La compétence à modifier (ou null si on est en création).
+     * @param allCompetences - La liste de toutes les compétences pour le choix des prérequis.
+     * @param mainController - La référence vers le contrôleur principal.
      */
     public void initData(Competence competence, List<Competence> allCompetences, GererCompetencesController mainController) {
         this.competenceAModifier = competence;
@@ -54,6 +60,8 @@ public class FormulaireCompetenceController {
     /**
      * Appelée quand on clique sur le bouton "Valider".
      * Récupère toutes les infos et les envoie au contrôleur principal pour traitement.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onValider(ActionEvent event) {

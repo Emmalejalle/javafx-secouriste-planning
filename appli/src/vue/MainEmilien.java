@@ -8,7 +8,21 @@ import javafx.beans.value.ObservableValue;
 
 // Importer les classes nécessaires pour l'application JavaFX
 
+/**
+ * MainEmilien.java
+ * Classe principale de l'application JavaFX.
+ * Elle charge l'interface utilisateur à partir d'un fichier FXML et affiche la fenêtre principale.
+ */
 public class MainEmilien extends Application {
+        /**
+         * Démarre l'application JavaFX.
+         * Charge le fichier FXML de l'interface utilisateur, configure la scène et le stage,
+         * et affiche la fenêtre principale.
+         * Les listeners sont définis pour adapter la taille de la fenêtre en fonction de la taille de la fenêtre.
+         * 
+         * @param stage - La fenêtre principale de l'application.
+         * @throws IOException Si le fichier FXML ne peut pas être chargé.
+         */
     @Override
     public void start(Stage stage) throws Exception {
         double width = 1920; // Largeur de la fenêtre initiale (prévue dans le fxml)
@@ -44,6 +58,12 @@ public class MainEmilien extends Application {
         });
     }
 
+
+    /**
+     * Point d'entrée de l'application JavaFX.
+     * 
+     * @param args Les arguments de la ligne de commande (non utilisés).
+     */
     public static void main(String[] args) {
         launch(args);
     }

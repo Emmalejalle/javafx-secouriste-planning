@@ -29,7 +29,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
 
-
+/**
+ * Contrôleur pour la vue Disponibilite.fxml
+ * Gère l'affichage et la modification des disponibilités des secouristes.
+ * Permet de naviguer entre les mois, de sélectionner des jours et d'appliquer les changements.
+ */
 public class DisponibiliteController {
 
     // --- Variables @FXML ---
@@ -50,6 +54,12 @@ public class DisponibiliteController {
     // La clé est la date, la valeur est un booléen (true = dispo, false = pas dispo)
     private Map<LocalDate, Boolean> disponibilites = new HashMap<>();
 
+    /**
+     * Initialisation du contrôleur.
+     * Charge le header commun et l'affecte au rootPane.
+     * Au démarrage, on affiche le mois actuel.
+     * On remplit la grille du calendrier.
+     */
     @FXML
     public void initialize() {
         try {
@@ -69,6 +79,11 @@ public class DisponibiliteController {
         mettreAJourCalendrier();
     }
 
+    /**
+     * Met à jour l'affichage du calendrier en fonction du mois sélectionné.
+     * Remplit la grille du calendrier avec les jours du mois.
+     * Applique un style différent en fonction de la disponibilité du secouriste.
+     */
     private void mettreAJourCalendrier() {
         // Met à jour le label du mois (ex: "Juin 2025")
         Locale locale = Locale.FRANCE;
@@ -109,6 +124,12 @@ public class DisponibiliteController {
         }
     }
     
+    /**
+     * Gestionnaire d'événement pour le clic sur une case du calendrier.
+     * Permet de basculer la disponibilité du secouriste pour le jour correspondant.
+     * 
+     * @param event - L'événement de clic sur la case.
+     */
     @FXML
     public void onDayCellClicked(MouseEvent event) {
         StackPane dayCell = (StackPane) event.getSource();
@@ -128,18 +149,37 @@ public class DisponibiliteController {
         dayCell.getStyleClass().add(!estActuellementDispo ? "jour-disponible" : "jour-indisponible");
     }
 
+    /**
+     * Gestionnaire d'événement pour le bouton "Mois précédent".
+     * Fait passer le mois affiché au mois précédent et met à jour le calendrier.
+     * 
+     * @param event - L'événement lié au bouton.
+     */
     @FXML
     public void moisPrecedent(ActionEvent event) {
         moisAffiche = moisAffiche.minusMonths(1);
         mettreAJourCalendrier();
     }
 
+    /**
+    * Gestionnaire d'événement pour le bouton "Mois suivant".
+    * Fait passer le mois affiché au mois suivant et met à jour le calendrier.
+    *
+    * @param event - L'événement lié au bouton.
+    */
     @FXML
     public void moisSuivant(ActionEvent event) {
         moisAffiche = moisAffiche.plusMonths(1);
         mettreAJourCalendrier();
     }
     
+    /**
+     * Gestionnaire d'événement pour le bouton "Appliquer".
+     * Sauvegarde les disponibilités modifiées dans la base de données via le DAO
+     * et retourne au planning.
+     * 
+     * @param event - L'événement lié au bouton.
+     */
     @FXML
     public void appliquerChangements(ActionEvent event) {
         System.out.println("Clic sur Appliquer. Sauvegarde des disponibilités...");
@@ -154,6 +194,12 @@ public class DisponibiliteController {
         }
     }
 
+    /**
+     * Gestionnaire d'événement pour le bouton "Retour".
+     * Retourne au planning.
+     * 
+     * @param event - L'événement lié au bouton.
+     */
     @FXML
     public void retourPagePrecedente(ActionEvent event) {
         // Pour l'instant, on retourne au planning.
@@ -166,6 +212,14 @@ public class DisponibiliteController {
         }
     }
 
+    /**
+     * Gestionnaire d'événement pour les boutons qui changent de vue.
+     * Charge une nouvelle vue FXML et l'affiche dans la fenêtre actuelle.
+     * 
+     * @param event - L'événement lié au bouton qui a déclenché le changement de vue.
+     * @param fxmlFileName - Chemin relatif du fichier FXML à charger.
+     * @throws IOException - Si le fichier FXML ne peut pas être chargé.
+     */
     private void changerDeVue(ActionEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vue/" + fxmlFileName));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -76,6 +76,10 @@ public class GrapheDAG<T> {
         return this.matriceAdjacence;
     }
 
+    /**
+     * Retourne le nombre de sommets (de compétences) dans ce graphe.
+     * @return Le nombre de sommets.
+     */
     public int getNombreSommets() {
         return this.nombreSommets;
     }

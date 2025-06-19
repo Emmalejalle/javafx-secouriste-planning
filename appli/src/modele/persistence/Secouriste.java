@@ -49,18 +49,34 @@ public class Secouriste extends User {
 
     // --- Getters et Setters pour les listes (utilisés par le DAO) ---
 
+    /**
+     * Retourne la liste des compétences du secouriste.
+     * @return Une ArrayList contenant les compétences.
+     */
     public ArrayList<Competence> getCompetences() {
         return this.competences;
     }
 
+    /**
+     * Fixe la liste des compétences du secouriste.
+     * @param competences la liste des compétences à fixer.
+     */
     public void setCompetences(ArrayList<Competence> competences) {
         this.competences = competences;
     }
 
+    /**
+     * Retourne la liste des disponibilités du secouriste.
+     * @return Une ArrayList contenant les disponibilités (objets Journee).
+     */
     public ArrayList<Journee> getDisponibilites() {
         return this.disponibilites;
     }
 
+    /**
+     * Fixe la liste des disponibilités du secouriste.
+     * @param disponibilites la liste des disponibilités à fixer.
+     */
     public void setDisponibilites(ArrayList<Journee> disponibilites) {
         this.disponibilites = disponibilites;
     }

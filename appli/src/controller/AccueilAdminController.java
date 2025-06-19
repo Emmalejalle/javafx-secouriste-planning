@@ -25,7 +25,10 @@ import java.util.Locale;
 import javafx.geometry.Pos;
 import java.time.YearMonth;
 
-
+/**
+ * Contrôleur pour la vue AccueilAdmin.fxml
+ * Gère les interactions de l'utilisateur avec les boutons de la page d'accueil de l'administrateur.
+ */
 public class AccueilAdminController {
 
     @FXML private Button btnListeSecouristes;
@@ -33,13 +36,22 @@ public class AccueilAdminController {
     @FXML private Button btnGererDPS;
     @FXML private Button btnAffecterDPS;
 
+    /**
+     * Initialisation du contrôleur AccueilAdminController.
+     * Affiche un message de debug pour confirmer l'initialisation.
+     */
     @FXML
     public void initialize() {
         System.out.println("Le contrôleur AccueilAdminController est initialisé.");
     }
 
     
-
+    /**
+     * Appelée par le bouton "Liste des secouristes".
+     * Charge la vue "Modifier-supprimerUnSecouriste.fxml".
+     * 
+     * @param event - événement lié au clic sur le bouton.
+     */
     @FXML
     public void goListeSecouriste(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers Modifier-supprimerUnSecouriste.fxml");
@@ -51,6 +63,13 @@ public class AccueilAdminController {
         }
     }
 
+    
+    /**
+     * Appelée par le bouton "Gérer les compétences".
+     * Charge la vue "Modifier-supprimerUneCompétence.fxml".
+     * 
+     * @param event - événement lié au clic sur le bouton.
+     */
     @FXML
     public void goGererCompetences(ActionEvent event) { // <-- NOM CORRIGÉ
         System.out.println("Chargement de la vue pour Gérer les Compétences...");
@@ -62,6 +81,12 @@ public class AccueilAdminController {
         }
     }
 
+    /**
+     * Appelée par le bouton "Gérer les DPS".
+     * Charge la vue "GererDps.fxml".
+     * 
+     * @param event - événement lié au clic sur le bouton.
+     */
     @FXML
     public void goGererDPS(ActionEvent event) {
         System.out.println("Clic sur GererDps. Chargement de la vue pour Gérer les DPS...");
@@ -73,6 +98,12 @@ public class AccueilAdminController {
         }
     }
 
+    /**
+     * Appelée par le bouton "Affecter DPS".
+     * Charge la vue "AffectationDpsDeBase.fxml".
+     * 
+     * @param event - événement lié au clic sur le bouton.
+     */
     @FXML
     public void goAffecterDPS(ActionEvent event) {
         System.out.println("Clic sur Retour. Chargement vers accueilSecouriste.fxml...");
@@ -87,9 +118,10 @@ public class AccueilAdminController {
 
     /**
      * Patron pour changer de vue 
-     * @param event quand c'est cliqué 
-     * @param fxmlFileName la nouvelle vue 
-     * @throws IOException erreur si pas le bon nom
+     * 
+     * @param event - quand c'est cliqué (quand il y a un evénement)
+     * @param fxmlFileName - la nouvelle vue 
+     * @throws IOException - erreur si pas le bon nom
      */
     private void changerDeVue(ActionEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vue/" + fxmlFileName));

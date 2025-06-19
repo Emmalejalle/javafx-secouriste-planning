@@ -11,6 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Contrôleur pour le header de la vue Secouriste.
+ * Gère la navigation entre les différentes pages de l'application pour le secouriste.
+ * Permet également de quitter l'application.
+ */
 public class ControllerHeader {
 
     @FXML private Button BoutonHomeTopSecouriste;
@@ -20,6 +25,10 @@ public class ControllerHeader {
     @FXML private Button BoutonQuitterTopSecouriste;
     @FXML private Label  LabelNomDePageSecouriste;
 
+    /**
+     * Initialisation du contrôleur.
+     * Bind les boutons du header pour qu'ils naviguent vers les différentes pages de l'application.
+     */
     @FXML
     private void initialize() {
         // On bind chaque bouton à sa méthode de navigation
@@ -30,13 +39,20 @@ public class ControllerHeader {
         BoutonQuitterTopSecouriste.setOnMouseClicked(e -> quitterAppli(e));
     }
 
-    /** Setter pour modifier dynamiquement le titre depuis le contrôleur parent */
+    /**
+     * Setter pour modifier dynamiquement le titre depuis le contrôleur parent (ici le header).
+     * @param titre le titre à afficher.
+     */
     public void setTitre(String titre) {
         LabelNomDePageSecouriste.setText(titre);
     }
-
+    
     /**
      * Charge la vue demandée et met à jour le titre.
+     * 
+     * @param fxmlFile - le nom du fichier FXML à charger.
+     * @param titre - le titre à afficher dans le header.
+     * @param event - l'événement déclencheur (clic de souris).
      */
     private void goTo(String fxmlFile, String titre, MouseEvent event) {
         try {
@@ -53,8 +69,11 @@ public class ControllerHeader {
         }
     }
     
-
-    /** Ferme simplement l’application. */
+    /**
+     * Ferme simplement l'application.
+     * 
+     * @param event - événement lié au clic sur le bouton "Quitter".
+     */
     private void quitterAppli(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();

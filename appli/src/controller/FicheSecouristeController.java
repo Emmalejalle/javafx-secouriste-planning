@@ -10,6 +10,11 @@ import javafx.scene.layout.VBox;
 import modele.persistence.Competence;
 import modele.persistence.Secouriste;
 
+/**
+ * Contrôleur pour la vue FicheSecouriste.fxml
+ * Gère l'affichage des détails d'un secouriste et les interactions utilisateur.
+ * Permet de modifier, supprimer un secouriste ou de voir son planning.
+ */
 public class FicheSecouristeController {
 
     // FXML de la vue FicheSecouriste.fxml
@@ -30,6 +35,9 @@ public class FicheSecouristeController {
     /**
      * Méthode d'initialisation appelée par le contrôleur principal
      * pour passer les données nécessaires.
+     * 
+     * @param secouriste - Le secouriste à afficher
+     * @param mainController - Le contrôleur principal pour les interactions
      */
     public void initData(Secouriste secouriste, GererSecouristesController mainController) {
         this.secouristeAffiche = secouriste;
@@ -57,6 +65,8 @@ public class FicheSecouristeController {
     /**
      * Appelée quand on clique sur "Modifier".
      * Demande au contrôleur principal d'afficher le formulaire de modification.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onModifier(ActionEvent event) {
@@ -66,6 +76,8 @@ public class FicheSecouristeController {
     /**
      * Appelée quand on clique sur "Supprimer".
      * Demande au contrôleur principal de gérer la suppression.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onSupprimer(ActionEvent event) {
@@ -75,6 +87,8 @@ public class FicheSecouristeController {
     /**
      * Appelée quand on clique sur "Voir le planning".
      * Demande au contrôleur principal de naviguer vers la vue du planning.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     
     @FXML

@@ -135,6 +135,10 @@ public class Site {
             this.code = code;
         }
     }
+    /**
+     * Met la longitude du site
+     * @param longitude la longitude du site
+     */
     public void setLongitude(float longitude) {
         this.longitude = longitude;
     }

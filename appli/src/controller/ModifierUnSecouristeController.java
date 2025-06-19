@@ -7,11 +7,21 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Contrôleur pour la vue "Modifier un secouriste".
+ * Gère les actions de suppression et de validation des modifications.
+ */
 public class ModifierUnSecouristeController {
 
     @FXML private Button btnSupprimer;
     @FXML private Button btnValider;
 
+    /**
+     * Méthode appelée après chargement du FXML.
+     * Installe les gestionnaires d'événements :
+     * - clic sur "Supprimer" : vide le StackPane de la scène
+     * - clic sur "Valider" : recharge la fiche de profil
+     */
     @FXML
     public void initialize() {
         // Bouton "Supprimer" : on vide le StackPane de la scène

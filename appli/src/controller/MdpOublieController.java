@@ -18,6 +18,10 @@ public class MdpOublieController {
 
     @FXML private Hyperlink linkRetour;
 
+    /**
+     * Appelé automatiquement par JavaFX après l'instanciation du contrôleur.
+     * Initialise le contrôleur et ses éléments.
+     */
     @FXML
     public void initialize() {
         System.out.println("MdpOublieController initialisé.");
@@ -25,6 +29,9 @@ public class MdpOublieController {
 
     /**
      * Lorsque l'utilisateur clique sur le lien "Retour à la connexion".
+     * Charge la vue de connexion (Connexion.fxml) et remplace la scène actuelle.
+     * 
+     * @param event - L'événement de clic sur le lien.
      */
     @FXML
     void onRetourConnexion(ActionEvent event) {

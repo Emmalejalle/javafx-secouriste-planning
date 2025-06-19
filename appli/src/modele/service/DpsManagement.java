@@ -38,22 +38,52 @@ public class DpsManagement {
 
     // --- Méthodes pour récupérer des listes de données ---
 
+    /**
+     * Renvoie une liste de tous les DPS de la base de données.
+     * 
+     * @return Une liste de tous les DPS.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public List<DPS> listerTousLesDps() throws SQLException {
         return dpsDAO.findAll();
     }
 
+    /**
+     * Renvoie une liste de tous les sites disponibles dans la base de données.
+     * 
+     * @return Une liste de tous les sites.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public List<Site> listerTousLesSites() throws SQLException {
         return siteDAO.findAll();
     }
 
+    /**
+     * Renvoie une liste de tous les sports disponibles dans la base de données.
+     * 
+     * @return Une liste de tous les sports.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public List<Sport> listerTousLesSports() throws SQLException {
         return sportDAO.findAll();
     }
 
+    /**
+     * Renvoie une liste de toutes les journées disponibles dans la base de données.
+     * 
+     * @return Une liste de toutes les journées.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public List<Journee> listerToutesLesJournees() throws SQLException {
         return journeeDAO.findAll();
     }
 
+    /**
+     * Renvoie une liste de toutes les compétences disponibles dans la base de données.
+     * 
+     * @return Une liste de toutes les compétences.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public List<Competence> listerToutesLesCompetences() throws SQLException {
         return competenceDAO.findAll();
     }
@@ -78,6 +108,18 @@ public class DpsManagement {
         return journee;
     }
 
+    /**
+     * Crée un nouveau DPS et ses besoins associés dans la base de données.
+     * Si la journée n'existe pas, elle est créée.
+     * 
+     * @param hDepart - L'heure de départ du DPS.
+     * @param hFin - L'heure de fin du DPS.
+     * @param site - Le site du DPS.
+     * @param sport - Le sport lié au DPS.
+     * @param date - La date du DPS.
+     * @param besoins - La liste des compétences et de leurs quantités associées.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public void creerDps(int hDepart, int hFin, Site site, Sport sport, LocalDate date, Map<Competence, Integer> besoins) throws SQLException {
         Journee journee = findOrCreateJournee(date); // On récupère ou crée la journée
         DPS nouveauDps = new DPS(0, hDepart, hFin, site, sport, journee);
@@ -85,6 +127,19 @@ public class DpsManagement {
         dpsDAO.create(nouveauDps);
     }
 
+    /**
+     * Modifie un DPS existant et met à jour ses informations dans la base de données.
+     * Si la journée n'existe pas, elle est créée.
+     * 
+     * @param dpsAModifier - Le DPS à modifier.
+     * @param hDepart - L'heure de départ du DPS.
+     * @param hFin - L'heure de fin du DPS.
+     * @param site - Le site du DPS.
+     * @param sport - Le sport lié au DPS.
+     * @param date - La date du DPS.
+     * @param besoins - La liste des compétences et de leurs quantités associées.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public void modifierDps(DPS dpsAModifier, int hDepart, int hFin, Site site, Sport sport, LocalDate date, Map<Competence, Integer> besoins) throws SQLException {
         Journee journee = findOrCreateJournee(date); // On récupère ou crée la journée
         dpsAModifier.setHoraireDepart(hDepart);
@@ -97,10 +152,24 @@ public class DpsManagement {
     }
 
 
+    /**
+     * Supprime un DPS existant de la base de données.
+     * 
+     * @param dps - L'objet DPS à supprimer.
+     * @throws SQLException En cas d'erreur d'accès à la base de données.
+     */
     public void supprimerDps(DPS dps) throws SQLException {
         dpsDAO.delete(dps);
     }
 
+    /**
+     * Filtre une liste de DPS en mémoire basé sur un texte de recherche.
+     * La recherche est sensible à la casse.
+     * 
+     * @param liste - la liste de DPS à filtrer
+     * @param recherche - le texte à rechercher
+     * @return une liste de DPS dont le nom du sport ou le nom du site contient le texte de recherche
+     */
     public List<DPS> filtrerDps(List<DPS> liste, String recherche) {
         if (recherche == null || recherche.trim().isEmpty()) {
             return liste;

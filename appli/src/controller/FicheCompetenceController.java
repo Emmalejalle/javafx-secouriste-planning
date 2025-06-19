@@ -7,6 +7,11 @@ import javafx.scene.layout.VBox;
 import modele.persistence.Competence;
 import javafx.scene.control.Button;
 
+/**
+ * Contrôleur pour la vue FicheCompetence.fxml
+ * Gère l'affichage des détails d'une compétence et les interactions utilisateur.
+ * Permet de modifier ou supprimer une compétence.
+ */
 public class FicheCompetenceController {
 
     // Les @FXML de la vue FicheCompetence.fxml
@@ -43,6 +48,8 @@ public class FicheCompetenceController {
     /**
      * Appelée quand on clique sur le bouton "Modifier".
      * Demande au contrôleur principal d'afficher le formulaire de modification.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onModifier(ActionEvent event) {
@@ -52,6 +59,8 @@ public class FicheCompetenceController {
     /**
      * Appelée quand on clique sur le bouton "Supprimer".
      * Demande au contrôleur principal de gérer la suppression.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onSupprimer(ActionEvent event) {

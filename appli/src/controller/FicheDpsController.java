@@ -11,6 +11,11 @@ import modele.persistence.DPS;
 import java.util.List; // Not used
 import java.util.Map;
 
+/**
+ * Contrôleur pour la vue FicheDps.fxml
+ * Gère l'affichage des détails d'un DPS (Dispositif de Protection et de Sécurité) sélectionné.
+ * Permet la modification et la suppression du DPS.
+ */
 public class FicheDpsController {
 
     @FXML private Label sportText;
@@ -24,6 +29,13 @@ public class FicheDpsController {
     private DPS dpsAffiche;
     private GererDpsController mainController;
 
+    /**
+     * Méthode d'initialisation appelée par le contrôleur principal
+     * pour passer les données nécessaires.
+     * 
+     * @param dps - Le DPS à afficher
+     * @param mainController - Le contrôleur principal pour les interactions
+     */
     public void initData(DPS dps, GererDpsController mainController) {
         this.dpsAffiche = dps;
         this.mainController = mainController;
@@ -46,17 +58,35 @@ public class FicheDpsController {
         }
     }
 
+    /**
+     * Appelée quand on clique sur "Modifier".
+     * Demande au contrôleur principal d'afficher le formulaire de modification
+     * pour le DPS actuellement affiché.
+     * 
+     * @param event - événement lié au clic sur le bouton.
+     */
     @FXML
     private void onModifier(ActionEvent event) {
         mainController.afficherFormulaireModification(dpsAffiche);
     }
 
+    /**
+     * Appelée quand on clique sur "Supprimer".
+     * Demande au contrôleur principal de supprimer le DPS actuellement affiché.
+     * 
+     * @param event - événement lié au clic sur le bouton.
+     */
     @FXML
     private void onSupprimer(ActionEvent event) {
         mainController.supprimerDps(dpsAffiche);
     }
     
     // This method is redundant and can be removed, as onModifier already calls mainController.afficherFormulaireModification
+    /**
+     * Affiche le formulaire de modification pour le DPS sélectionné.
+     * 
+     * @param dps - Le DPS à modifier.
+     */
     public void afficherFormulaireModification(DPS dps) {
         System.out.println("Affichage du formulaire de modification pour le DPS : " + dps.getSport().getNom());
         mainController.afficherFormulaireModification(dpsAffiche);

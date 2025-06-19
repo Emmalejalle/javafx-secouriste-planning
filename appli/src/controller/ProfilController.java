@@ -49,6 +49,14 @@ public class ProfilController {
     private final SessionManager session = SessionManager.getInstance();
     
 
+    /**
+     * Initialise la page de profil :
+     * 1) charge le header commun
+     * 2) charge l'utilisateur courant depuis la base
+     * 3) remplit les champs avec les données de l'utilisateur
+     * 4) affiche les compétences si c'est un secouriste
+     * 5) active les boutons
+     */
     @FXML
     public void initialize() {
 
@@ -96,6 +104,14 @@ public class ProfilController {
         btnRetour         .setOnAction(this::onRetour);
     }
 
+    /**
+     * Charge le header commun depuis le fichier FXML donné et l'injecte
+     * dans la placeholder correspondante.
+     * Met également le titre du header.
+     * 
+     * @param fxmlPath - le chemin relatif du fichier FXML contenant le header.
+     * @param titre - le titre à afficher dans le header.
+     */
     private void chargerEtInsererHeader(String fxmlPath, String titre) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -116,6 +132,16 @@ public class ProfilController {
     }
 
     /** Passe en mode édition du profil */
+    
+    /**
+     * Méthode appelée lorsque le bouton "Modifier" est cliqué.
+     * Charge la vue de modification du profil, transmet l'utilisateur actuel
+     * au contrôleur de modification, puis remplace la scène courante par
+     * la nouvelle vue.
+     * 
+     * @param event - l'événement lié au clic sur le bouton "Modifier".
+     * @throws IOException si le fichier FXML n'est pas trouvé.
+     */
     @FXML
     private void onModifierProfil(ActionEvent event) {
         try {
@@ -135,6 +161,13 @@ public class ProfilController {
     }
 
     /** Retourne à l'accueil secouriste */
+    /**
+     * Méthode appelée lorsque le bouton "Retour" est cliqué.
+     * Charge la vue d'accueil du secouriste et remplace la scène courante
+     * par la nouvelle vue.
+     * 
+     * @param event - l'événement lié au clic sur le bouton "Retour".
+     */
     @FXML
     private void onRetour(ActionEvent event) {
         try {

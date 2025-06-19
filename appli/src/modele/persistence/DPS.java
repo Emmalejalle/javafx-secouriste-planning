@@ -117,21 +117,45 @@ public class DPS {
     public long getId() { 
         return id; 
     }
+    /**
+     * Renvoie l'horaire de départ du DPS.
+     * @return L'horaire de départ en heures.
+     */
     public int getHoraireDepart() { 
         return horaireDepart; 
     }
+    /**
+     * Renvoie l'horaire de fin du DPS.
+     * @return L'horaire de fin en heures.
+     */
     public int getHoraireFin() { 
         return horaireFin; 
     }
+    /**
+     * Returns the site associated with this DPS.
+     * @return the site object.
+     */
     public Site getSite() { 
         return site; 
     }
+    /**
+     * Returns the sport associated with this DPS.
+     * @return the sport object.
+     */
     public Sport getSport() { 
         return sport; 
     }
+    /**
+     * Renvoie la Journee associée au DPS.
+     * @return L'objet Journee lié.
+     */
     public Journee getJournee() { 
         return journee; 
     }
+    /**
+     * Returns the map of requirements for this DPS.
+     * @return a map whose keys are the required Competences and values are the required numbers of each Competence.
+     */
     public Map<Competence, Integer> getBesoins() { 
         return besoins; 
     }
@@ -139,6 +163,11 @@ public class DPS {
     // --- Setters ---
     public void setId(long id) { this.id = id; }
     
+    /**
+     * Met à jour l'horaire de départ du DPS.
+     * @param horaireDepart L'horaire de départ en heures.
+     * @throws IllegalArgumentException Si l'horaire est invalide (négatif ou supérieur à 23).
+     */
     public final void setHoraireDepart(int horaireDepart) {
         if (horaireDepart < 0 || horaireDepart >= 24) {
             throw new IllegalArgumentException("L'horaire de départ est invalide.");
@@ -146,6 +175,12 @@ public class DPS {
         this.horaireDepart = horaireDepart;
     }
 
+    /**
+     * Met à jour l'horaire de fin du DPS.
+     * @param horaireFin L'horaire de fin en heures.
+     * @throws IllegalArgumentException Si l'horaire est invalide (négatif ou supérieur à 23) ou si l'horaire
+     * de fin est antérieur à l'horaire de départ.
+     */
     public final void setHoraireFin(int horaireFin) {
         if (horaireFin < 0 || horaireFin >= 24 || horaireFin < this.horaireDepart) {
             throw new IllegalArgumentException("L'horaire de fin est invalide ou antérieur au départ.");
@@ -153,21 +188,41 @@ public class DPS {
         this.horaireFin = horaireFin;
     }
     
+    /**
+     * Sets the site associated with this DPS.
+     * @param site The site to associate with this DPS.
+     * @throws IllegalArgumentException if the site is null.
+     */
     public final void setSite(Site site) {
         if (site == null) throw new IllegalArgumentException("Le site ne peut pas être null.");
         this.site = site;
     }
 
+    /**
+     * Sets the sport associated with this DPS.
+     * @param sport The sport to associate with this DPS.
+     * @throws IllegalArgumentException if the sport is null.
+     */
     public final void setSport(Sport sport) {
         if (sport == null) throw new IllegalArgumentException("Le sport ne peut pas être null.");
         this.sport = sport;
     }
 
+    /**
+     * Met à jour la Journee associée au DPS.
+     * @param journee La nouvelle Journee à lier.
+     * @throws IllegalArgumentException Si la journée est null.
+     */
     public final void setJournee(Journee journee) {
         if (journee == null) throw new IllegalArgumentException("La journée ne peut pas être null.");
         this.journee = journee;
     }
 
+    /**
+     * Sets the map of besoins (competences required) for this DPS.
+     * @param besoins The map of besoins to set.
+     * @throws IllegalArgumentException if the map is null.
+     */
     public void setBesoins(Map<Competence, Integer> besoins) {
         this.besoins = besoins;
     }
@@ -202,6 +257,10 @@ public class DPS {
         return listeCompetences;
     }
     
+    /**
+     * Affiche le DPS de manière lisible.
+     * @return Une chaîne de caractères qui décrit le DPS.
+     */
     @Override
     public String toString() {
         return "DPS " + id + " [" + sport.getNom() + " à " + site.getNom() + "] le " + journee 

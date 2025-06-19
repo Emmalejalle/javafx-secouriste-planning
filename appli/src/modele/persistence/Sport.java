@@ -73,6 +73,11 @@ public class Sport {
         this.code = code;
     }
 
+    /**
+     * Met le nom du sport.
+     * @param nom Le nom du sport.
+     * @throws IllegalArgumentException si le nom est null, vide ou dépasse 50 caractères.
+     */
     public final void setNom(String nom) {
         if (nom == null || nom.trim().isEmpty()) {
             throw new IllegalArgumentException("Le nom du sport ne peut pas être nul ou vide.");
@@ -83,6 +88,10 @@ public class Sport {
         this.nom = nom;
     }
 
+    /**
+     * Affiche le sport de manière lisible.
+     * @return Une chaîne de caractères qui décrit le sport.
+     */
     @Override
     public String toString() {
         return "Sport{" +

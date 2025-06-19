@@ -20,7 +20,9 @@ import java.sql.SQLException;
 
 import javafx.scene.control.Alert;
 
-
+/**
+ * Controller pour la page de modification du profil administrateur.
+ */
 public class ProfileAdminModifController {
 
     @FXML private Label lblName;
@@ -38,6 +40,12 @@ public class ProfileAdminModifController {
 
 
 
+    /**
+     * Initialise le contrôleur.
+     * Charge l'administrateur courant depuis la session + BDD,
+     * l'affiche dans le champ de texte "Nom et prénom",
+     * et remplit les champs de formulaire pour modification.
+     */
     @FXML
     public void initialize() {
 
@@ -67,6 +75,12 @@ public class ProfileAdminModifController {
     }
 
     /** Valide et enregistre en base */
+    
+    /**
+     * Valide les modifications, met à jour la base et redirige vers la page de profil.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     private void onValidate(ActionEvent event) {
         // Téléphone
@@ -112,12 +126,22 @@ public class ProfileAdminModifController {
     }
 
     /** Annule sans enregistrer */
+    /**
+     * Annule les modifications et retourne à la page de profil sans enregistrer.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     private void onCancel(ActionEvent event) {
         goToProfile(event);
     }
 
     /** Retour à l’accueil Admin */
+    /**
+     * Retourne à l'écran d'accueil administrateur.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     private void onReturn(ActionEvent event) {
         try {
@@ -130,6 +154,11 @@ public class ProfileAdminModifController {
     }
 
     /** Charge ProfileAdmin.fxml */
+    /**
+     * Charge la vue ProfileAdmin.fxml et remplace la scène courante.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     private void goToProfile(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/vue/ProfileAdmin.fxml"));
@@ -140,6 +169,12 @@ public class ProfileAdminModifController {
         }
     }
 
+    /**
+     * Affiche une alerte avec le type ERROR, le titre "Erreur de saisie"
+     * et le header "Erreur détectée", et le message indiqué.
+     * 
+     * @param message - le message à afficher dans l'alerte.
+     */
     private void afficherErreur(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur de saisie");

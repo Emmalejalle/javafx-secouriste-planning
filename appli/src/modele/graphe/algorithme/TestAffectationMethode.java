@@ -83,6 +83,8 @@ public class TestAffectationMethode {
 
     /**
      * Méthode utilitaire pour afficher la matrice de test.
+     * 
+     * @param matrice La matrice à afficher.
      */
     public static void afficherMatrice(int[][] matrice) {
         System.out.println("Matrice de test (Lignes=Secouristes, Colonnes=Postes):");

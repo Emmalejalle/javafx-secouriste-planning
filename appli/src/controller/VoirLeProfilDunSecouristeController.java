@@ -22,7 +22,9 @@ public class VoirLeProfilDunSecouristeController {
 
     private Delegate delegate;
 
-    /** Appelé par le parent juste après le load pour passer le listener */
+    /** Appelé par le parent juste après le load pour passer le listener 
+     * @param delegate l'instance qui implémente l'interface Delegate pour recevoir les événements de modification/suppression.
+     */
     public void setDelegate(Delegate delegate) {
         this.delegate = delegate;
     }
@@ -32,6 +34,11 @@ public class VoirLeProfilDunSecouristeController {
     @FXML private Button btnModifier;
     @FXML private Button btnSupprimer;
 
+    /**
+     * Initialise les boutons de modification et suppression :
+     * - clic sur "Modifier" : appelle onModifier sur le delegate
+     * - clic sur "Supprimer" : appelle onSupprimer sur le delegate
+     */
     @FXML
     public void initialize() {
         btnModifier.setOnAction(evt -> {

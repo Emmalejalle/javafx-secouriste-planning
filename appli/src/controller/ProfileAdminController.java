@@ -19,6 +19,11 @@ import modele.persistence.Admin;
 import modele.persistence.User;
 import service.ProfilMngt;
 
+/**
+ * Contrôleur pour l'écran de profil administrateur.
+ * Affiche les informations du profil de l'administrateur connecté.
+ * Permet de modifier le profil ou de revenir à l'écran précédent.
+ */
 public class ProfileAdminController {
 
     @FXML private BorderPane rootPane;
@@ -41,6 +46,11 @@ public class ProfileAdminController {
     private final ProfilMngt profilMngt = new ProfilMngt();
     private final SessionManager session = SessionManager.getInstance();
 
+    /**
+     * Initialisation du contrôleur :
+     * 1. Injecte le header commun
+     * 2. Charge et affiche les données de l'administrateur courant
+     */
     @FXML
     public void initialize() {
         // 1. Injecter le header commun
@@ -75,6 +85,14 @@ public class ProfileAdminController {
     }
 
     /** Passe en mode édition du profil */
+    
+    /**
+     * Modifie le profil administrateur :
+     * charge la vue ProfileAdminModif.fxml et l'affiche.
+     * 
+     * @param event - l'événement lié au clic sur le bouton "Modifier le profil".
+     * @throws IOException si le fichier FXML n'est pas trouvé.
+     */
     @FXML
     void onModifyProfile(ActionEvent event) {
         try {
@@ -88,6 +106,13 @@ public class ProfileAdminController {
     }
 
     /** Retour à l'écran précédent sans rien sauvegarder */
+    /**
+     * Retourne à l'écran d'accueil administrateur :
+     * charge la vue accueilAdmin.fxml et l'affiche.
+     * 
+     * @param event - l'événement lié au clic sur le bouton "Retour".
+     * @throws IOException si le fichier FXML n'est pas trouvé.
+     */
     @FXML
     void onReturn(ActionEvent event) {
         try {

@@ -92,14 +92,26 @@ public class Journee {
         return this.id;
     }
 
+    /**
+     * Renvoie le jour du mois (1-31).
+     * @return Le jour du mois.
+     */
     public int getJour() {
         return this.jour;
     }
 
+    /**
+     * Renvoie le mois de l'année (1-12).
+     * @return Le mois de l'année.
+     */
     public int getMois() {
         return this.mois;
     }
 
+    /**
+     * Renvoie l'année.
+     * @return L'année.
+     */
     public int getAnnee() {
         return this.annee;
     }
@@ -112,6 +124,12 @@ public class Journee {
         this.id = id;
     }
 
+    /**
+     * Définit le jour du mois pour cette journée.
+     * 
+     * @param jour Le jour du mois (doit être compris entre 1 et 31).
+     * @throws IllegalArgumentException si le jour n'est pas dans la plage valide (1-31).
+     */
     public final void setJour(int jour) {
         if (jour < 1 || jour > 31) {
             throw new IllegalArgumentException("Le jour doit être compris entre 1 et 31.");
@@ -119,6 +137,12 @@ public class Journee {
         this.jour = jour;
     }
 
+    /**
+     * Définit le mois de l'année pour cette journée.
+     * 
+     * @param mois Le mois de l'année (doit être compris entre 1 et 12).
+     * @throws IllegalArgumentException si le mois n'est pas dans la plage valide (1-12).
+     */
     public final void setMois(int mois) {
         if (mois < 1 || mois > 12) {
             throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12.");
@@ -126,6 +150,12 @@ public class Journee {
         this.mois = mois;
     }
 
+    /**
+     * Définit l'année pour cette journée.
+     * 
+     * @param annee L'année (doit être supérieure ou égale à 2024).
+     * @throws IllegalArgumentException si l'année est inférieure à 2024.
+     */
     public final void setAnnee(int annee) {
         if (annee < 2024) { // On peut supposer une année minimale raisonnable
             throw new IllegalArgumentException("L'année semble invalide (2024 ou plus récente).");
@@ -146,6 +176,11 @@ public class Journee {
         return jourDeSemaine.getDisplayName(TextStyle.FULL, Locale.FRENCH);
     }
 
+    /**
+     * Renvoie une chaîne de caractères représentant la date, formatée en "jour/mois/année"
+     * avec des zéros initiaux si nécessaire.
+     * @return La date formatée en "jour/mois/année".
+     */
     @Override
     public String toString() {
         // Formatte la date en "jour/mois/année" avec des zéros initiaux si nécessaire.

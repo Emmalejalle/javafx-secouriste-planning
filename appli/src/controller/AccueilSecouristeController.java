@@ -23,9 +23,12 @@ public class AccueilSecouristeController {
         System.out.println("Le contrôleur AccueilSecouriste est initialisé.");
     }
 
+    
     /**
      * Appelée par le onMouseClicked du VBox de gauche (Planning).
      * Navigue vers la vue du planning.
+     * 
+     * @param event - événement lié au clic de souris.
      */
     @FXML
     public void goPlanning(MouseEvent event) {
@@ -41,6 +44,8 @@ public class AccueilSecouristeController {
     /**
      * Appelée par le onMouseClicked du VBox de droite (Disponibilités).
      * Navigue vers la vue des disponibilités.
+     * 
+     * @param event - événement lié au clic de souris.
      */
     @FXML
     public void goDisponibilite(MouseEvent event) {
@@ -55,6 +60,8 @@ public class AccueilSecouristeController {
 
     /**
      * Nouvel handler pour le bouton Profil du header.
+     * 
+     * @param event - événement lié au clic de souris.
      */
     @FXML
     public void goToProfil(MouseEvent event) {
@@ -69,6 +76,10 @@ public class AccueilSecouristeController {
 
     /**
      * Méthode générique pour changer de vue à partir d'un clic de souris.
+     * 
+     * @param event - événement lié au clic de souris.
+     * @param fxmlFileName - nom du fichier FXML à charger.
+     * @throws IOException - si le fichier FXML ne peut pas être chargé.
      */
     private void changerDeVue(MouseEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vue/" + fxmlFileName));

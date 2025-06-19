@@ -12,6 +12,11 @@ import modele.persistence.Competence;
 import modele.persistence.Secouriste;
 import java.util.List;
 
+/**
+ * Contrôleur pour la vue FormulaireSecouriste.fxml
+ * Gère l'affichage et la validation du formulaire de création ou de modification d'un secouriste.
+ * Permet de saisir les informations personnelles et les compétences du secouriste.
+ */
 public class FormulaireSecouristeController {
 
     // FXML de la vue FormulaireSecouriste.fxml
@@ -30,6 +35,10 @@ public class FormulaireSecouristeController {
     private Secouriste secouristeAModifier;
     private GererSecouristesController mainController;
 
+    /**
+     * Initializes the FormulaireSecouristeController.
+     * Adds specific style classes to the "Annuler" button for styling purposes.
+     */
     @FXML
     public void initialize() {
         annulerButton.getStyleClass().addAll("button-cancel", "mr-10");
@@ -37,6 +46,10 @@ public class FormulaireSecouristeController {
 
     /**
      * Méthode d'initialisation pour passer les données.
+     * 
+     * @param secouriste - Le secouriste à modifier (ou null si on est en création).
+     * @param allCompetences - La liste de toutes les compétences pour le choix des compétences.
+     * @param mainController - La référence vers le contrôleur principal.
      */
     public void initData(Secouriste secouriste, List<Competence> allCompetences, GererSecouristesController mainController) {
         this.secouristeAModifier = secouriste;
@@ -67,6 +80,8 @@ public class FormulaireSecouristeController {
     /**
      * Appelée quand on clique sur "Valider".
      * Récupère toutes les infos et les envoie au contrôleur principal pour traitement.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onValider(ActionEvent event) {
@@ -86,6 +101,8 @@ public class FormulaireSecouristeController {
     /**
      * Appelée quand on clique sur "Annuler".
      * Demande au contrôleur principal de ré-afficher les détails (si on était en modif) ou l'accueil.
+     * 
+     * @param event - événement lié au clic sur le bouton.
      */
     @FXML
     private void onAnnuler(ActionEvent event) {

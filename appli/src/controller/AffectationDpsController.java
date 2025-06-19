@@ -49,6 +49,14 @@ public class AffectationDpsController {
 
     private AffectationMngt affectationMngt = new AffectationMngt();
 
+    
+    /**
+     * Exporte les affectations pour une journée donnée dans un fichier CSV.
+     * Demande à l'utilisateur de choisir un emplacement pour le fichier.
+     * Si l'utilisateur clique sur "Enregistrer", le fichier est créé et les affectations sont exportées dedans.
+     *
+     * @param event - L'événement déclenché par le bouton "Exporter les affectations en CSV"
+     */
     @FXML
     private void onExportAffectationsCSV(ActionEvent event) {
         Integer jour = cbJour.getValue();
@@ -73,6 +81,10 @@ public class AffectationDpsController {
         }
     }
 
+    /**
+     * Initialisation du contrôleur.
+     * Charge le header commun et l'affecte au rootPane.
+     */
     @FXML
     public void initialize() {
         try {
@@ -91,6 +103,18 @@ public class AffectationDpsController {
         }
     }
 
+    /**
+     * Demande à l'utilisateur de choisir une méthode d'affectation automatique,
+     * supprime les affectations existantes pour la journée choisie et lance l'affectation.
+     * Les méthodes proposées sont :
+     * - Gloutonne Optimale : affecte les DPS les plus demandés en premier
+     * - Exhaustive : affecte les DPS les plus demandés en premier, mais en essayant toutes les combinaisons
+     * - Gloutonne Naïve : affecte les DPS dans l'ordre de leur apparition dans la liste des DPS
+     * L'utilisateur peut également annuler l'opération.
+     * Affiche un message de confirmation si l'opération est réussie.
+     * 
+     * @param event - événement lié au bouton "Affectation Automatique"
+     */
     @FXML
     private void onAutoAffectation(ActionEvent event) {
         Integer jour = cbJour.getValue();
@@ -130,6 +154,14 @@ public class AffectationDpsController {
             }
         });
     }
+    
+    /**
+     * Supprime toutes les affectations pour la journée sélectionnée.
+     * Affiche un message de confirmation avec le nombre d'affectations supprimées.
+     * Affiche un message d'erreur si une erreur survient.
+     *
+     * @param event - événement lié au bouton "Supprimer affectations"
+     */
     @FXML
     private void onClearAffectation(ActionEvent event) {
         
@@ -143,8 +175,15 @@ public class AffectationDpsController {
             System.err.println("Erreur lors de la suppression des affectations : " + e.getMessage());
         }
     }
-
-    /** Sélection d’une DPS dans la liste à gauche */
+    
+    /**
+     * Sélection d’une DPS dans la liste à gauche
+     * Affiche les détails de la DPS sélectionnée dans le contentPane.
+     * Si la DPS est sélectionnée, charge la vue "AffecterUnDps.fxml" dans le contentPane.
+     * Si la DPS est désélectionnée, vide le contentPane.
+     *
+     * @param event - événement lié à la sélection de la DPS
+     */
     @FXML
     private void onSelectDps(ActionEvent event) {
         CheckBox cb = (CheckBox) event.getSource();
@@ -162,7 +201,12 @@ public class AffectationDpsController {
         }
     }
 
-    /** Bouton Retour : on revient à l’accueil */
+    /**
+     * Retour à l'accueil de l'administrateur. (Bouton "Retour")
+     * Charge la vue "AccueilAdmin.fxml".
+     * 
+     * @param event - événement lié au clic sur le bouton "Retour"
+     */
     @FXML
     void onReturn(ActionEvent event) {
         try {

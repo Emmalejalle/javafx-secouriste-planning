@@ -55,6 +55,8 @@ public class ProfilModifController {
     /**
      * Initialise les champs avec les données de l'utilisateur et
      * affiche uniquement ses compétences dans certBoxModif.
+     * 
+     * @param user L'utilisateur dont on modifie le profil.
      */
     public void initData(User user) {
 
@@ -94,6 +96,14 @@ public class ProfilModifController {
         }
     }
 
+    /**
+     * Charge le header commun depuis le fichier FXML donné et l'injecte
+     * dans la placeholder correspondante.
+     * Met également le titre du header.
+     * 
+     * @param fxmlPath - le chemin relatif du fichier FXML contenant le header.
+     * @param titre - le titre à afficher dans le header.
+     */
     private void chargerEtInsererHeader(String fxmlPath, String titre) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -114,7 +124,10 @@ public class ProfilModifController {
         }
     }
 
-    /** Valide les modifications, met à jour la base et revient à la vue profil. */
+    /** Valide les modifications, met à jour la base de données et revient à la vue profil.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     private void onValider(ActionEvent event) {
         // Séparation du nom / prénom
@@ -170,15 +183,23 @@ public class ProfilModifController {
         // Retour si tout s'est bien passé
         onRetour(event);
     }
-
-
-
-    /** Annule et revient à la vue profil sans enregistrer. */
+    
+    /**
+     * Annule les modifications et revient à la vue de profil sans enregistrer.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     private void onAnnuler(ActionEvent event) {
         onRetour(event);
     }
 
+    /**
+     * Affiche une alerte avec le type ERROR, le titre "Erreur de saisie"
+     * et le header "Erreur détectée", et le message indiqué.
+     * 
+     * @param message - le message à afficher dans l'alerte.
+     */
     private void afficherErreur(String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
         alert.setTitle("Erreur de saisie");
@@ -188,7 +209,10 @@ public class ProfilModifController {
     }
     
 
-    /** Charge à nouveau `profil.fxml` et affiche le profil à jour. */
+    /** Charge à nouveau `profil.fxml` et affiche le profil à jour. 
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     private void onRetour(ActionEvent event) {
         try {

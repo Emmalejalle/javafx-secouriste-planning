@@ -14,6 +14,11 @@ import modele.persistence.User;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Contrôleur pour la vue Connexion.fxml
+ * Gère les connexions des utilisateurs (secouristes et administrateurs).
+ * Permet de valider les identifiants et de rediriger vers la page d'accueil appropriée.
+ */
 public class ConnexionController extends BaseController {
 
     @FXML private TextField tfEmailSecourist;
@@ -23,20 +28,49 @@ public class ConnexionController extends BaseController {
 
     private UserDAO userDAO;
 
+    /**
+     * Constructeur de ConnexionController.
+     * Initialise le UserDAO pour accéder aux données des utilisateurs.
+     */
     public ConnexionController() {
         this.userDAO = new UserDAO();
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur clique sur "Connexion" pour les secouristes.
+     * Récupère le texte des champs de saisie email et mot de passe pour les secouristes,
+     * et appelle la méthode validerConnexion avec isAdminRole = false.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     public void onConnexionSecouriste(ActionEvent event) {
         validerConnexion(event, tfEmailSecourist.getText(), pfPasswordSecourist.getText(), false);
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur clique sur "Connexion" pour les administrateurs.
+     * Récupère le texte des champs de saisie email et mot de passe pour les administrateurs,
+     * et appelle la méthode validerConnexion avec isAdminRole = true.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     public void onConnexionAdmin(ActionEvent event) {
         validerConnexion(event, tfEmailAdmin.getText(), pfPasswordAdmin.getText(), true);
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur clique sur "Connexion" pour les secouristes ou les administrateurs.
+     * Vérifie que les champs de saisie email et mot de passe ne sont pas vides,
+     * cherche l'utilisateur correspondant dans la base de données,
+     * et si il est trouvé, connecte l'utilisateur et change la vue en conséquence.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     * @param email - L'email de l'utilisateur.
+     * @param mdp - Le mot de passe de l'utilisateur.
+     * @param isAdminRole - True si l'utilisateur se connecte comme administrateur, false sinon.
+     */
     private void validerConnexion(ActionEvent event, String email, String mdp, boolean isAdminRole) {
         if (email.isEmpty() || mdp.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Champs vides", "Veuillez remplir tous les champs.");
@@ -69,6 +103,12 @@ public class ConnexionController extends BaseController {
         }
     }
     
+    /**
+     * Gère le clic sur le lien "Mot de passe oublié".
+     * Change la vue en affichant la page de récupération de mot de passe.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     public void onMdpOublie(ActionEvent event) {
         System.out.println("Clic sur Mot de passe oublié");
@@ -76,6 +116,11 @@ public class ConnexionController extends BaseController {
         // Logique pour la récupération de mdp
     }
     
+    /**
+     * Ferme l'application.
+     * 
+     * @param event - L'événement ActionEvent déclenché par le bouton.
+     */
     @FXML
     public void onQuitter(ActionEvent event) {
         Platform.exit();

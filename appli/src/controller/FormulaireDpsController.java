@@ -15,6 +15,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Contrôleur pour la vue FormulaireDps.fxml
+ * Gère l'affichage et la modification d'un DPS (Dispositif de Protection et de Sécurité).
+ * Permet de créer ou modifier un DPS en remplissant un formulaire.
+ */
 public class FormulaireDpsController {
 
     @FXML private Label titreFormLabel;
@@ -33,6 +38,12 @@ public class FormulaireDpsController {
 
     /**
      * Méthode d'initialisation pour remplir le formulaire.
+     * 
+     * @param dps - Le DPS à modifier (null si on crée un nouveau DPS)
+     * @param mainController - Le contrôleur principal pour les interactions
+     * @param sports - Liste des sports disponibles pour le ComboBox
+     * @param sites - Liste des sites disponibles pour le ComboBox
+     * @param competences - Liste des compétences disponibles pour le ComboBox
      */
     public void initData(DPS dps, GererDpsController mainController, List<Sport> sports, List<Site> sites, List<Competence> competences) {
         this.dpsAModifier = dps;
@@ -61,6 +72,15 @@ public class FormulaireDpsController {
         }
     }
 
+    /**
+     * Configure les ComboBox pour les sports, les sites et les compétences.
+     * Remplit les items des ComboBox avec les listes données en paramètres.
+     * Définit un StringConverter pour afficher le nom de l'objet au lieu de l'objet brut.
+     * 
+     * @param sports - la liste des sports
+     * @param sites - la liste des sites
+     * @param competences - la liste des compétences
+     */
     private void configurerComboBoxes(List<Sport> sports, List<Site> sites, List<Competence> competences) {
         // Remplir les ComboBox
         sportComboBox.getItems().setAll(sports);
@@ -82,6 +102,13 @@ public class FormulaireDpsController {
         });
     }
 
+    /**
+     * Gère le clic sur le bouton "Ajouter" pour un besoin de compétence.
+     * Ajoute la compétence sélectionnée et le nombre choisi à la map des besoins.
+     * Met à jour la liste des besoins affichée.
+     * 
+     * @param event - événement lié au clic sur le bouton
+     */
     @FXML
     private void onAjouterBesoin(ActionEvent event) {
         Competence comp = competenceComboBox.getValue();
@@ -92,6 +119,12 @@ public class FormulaireDpsController {
         }
     }
 
+    /**
+     * Met à jour l'affichage de la liste des besoins en compétences.
+     * Vide la liste, puis ajoute chaque compétence avec son nombre dans la map
+     * des besoins, en formatant le texte pour afficher le nom de la compétence
+     * suivie de la quantité.
+     */
     private void mettreAJourAffichageBesoins() {
         besoinsListView.getItems().clear();
         for (Map.Entry<Competence, Integer> entry : besoinsMap.entrySet()) {
@@ -99,6 +132,13 @@ public class FormulaireDpsController {
         }
     }
 
+    /**
+     * Appelée quand on clique sur le bouton "Valider".
+     * Récupère et valide les données du formulaire.
+     * Passe les données validées au contrôleur principal pour traitement.
+     * 
+     * @param event - événement lié au clic sur le bouton
+     */
     @FXML
     private void onValider(ActionEvent event) {
         // Récupération et validation des données du formulaire...
@@ -116,6 +156,12 @@ public class FormulaireDpsController {
         );
     }
 
+    /**
+     * Appelée quand on clique sur le bouton "Annuler".
+     * Demande au contrôleur principal de ré-afficher les détails (si on était en modif) ou l'accueil.
+     * 
+     * @param event - événement lié au clic sur le bouton
+     */
     @FXML
     private void onAnnuler(ActionEvent event) {
         if (dpsAModifier != null) {

@@ -12,6 +12,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Contrôleur pour la vue "Modifier/Supprimer un secouriste".
+ * Gère l'affichage des profils de secouristes et les actions de modification/suppression.
+ */
 public class ModifierSupprimerSecouristeController
     implements VoirLeProfilDunSecouristeController.Delegate {
 
@@ -19,6 +23,12 @@ public class ModifierSupprimerSecouristeController
     @FXML private VBox   vboxListeProfils;    // conteneur des vignettes bleues
     @FXML private StackPane contentPane;       // zone blanche centrale
 
+    /**
+     * Méthode appelée après chargement du FXML.
+     * Installe les gestionnaires d'événements :
+     * - clic sur "Ajouter un secouriste" : affiche le formulaire de création d'un secouriste
+     * - clic sur chaque vignette existante : affiche la fiche détaillée du secouriste correspondant
+     */
     @FXML
     public void initialize() {
         // clic sur "Ajouter un secouriste" → formulaire de création
@@ -56,18 +66,39 @@ public class ModifierSupprimerSecouristeController
     }
 
     /** Delegate.onModifier → charger la fiche de modification */
+    
+    /**
+     * Appelée par le bouton "Modifier" dans la fiche détaillée d'un secouriste.
+     * Charge la vue "ModifierUnSecouriste.fxml" pour modifier le secouriste correspondant.
+     * 
+     * @param prenom - Prénom du secouriste à modifier.
+     * @param nom - Nom du secouriste à modifier.
+     */
     @Override
     public void onModifier(String prenom, String nom) {
         chargerVue("/vue/ModifierUnSecouriste.fxml");
     }
 
     /** Delegate.onSupprimer → vider simplement la zone centrale */
+    /**
+     * Appelée par le bouton "Supprimer" dans la fiche détaillée d'un secouriste.
+     * Vide simplement la zone centrale (contentPane).
+     * 
+     * @param prenom - Prénom du secouriste à supprimer.
+     * @param nom - Nom du secouriste à supprimer.
+     */
     @Override
     public void onSupprimer(String prenom, String nom) {
         contentPane.getChildren().clear();
     }
 
     /** Méthode utilitaire pour charger un FXML dans contentPane */
+    
+    /**
+     * Charge un fichier FXML dans le contentPane.
+     * 
+     * @param fxmlPath - Chemin relatif du fichier FXML à charger.
+     */
     private void chargerVue(String fxmlPath) {
         try {
             Parent vue = FXMLLoader.load(
