@@ -82,7 +82,7 @@ public class Affectation {
         // L'affectation n'est valide que si les deux conditions sont remplies.
         return aLaCompetence && estDisponibleLeJourJ;
     }
-    
+
     /**
      * Méthode toString pour afficher les informations de l'affectation.
      * @return Une chaîne de caractères représentant l'affectation.

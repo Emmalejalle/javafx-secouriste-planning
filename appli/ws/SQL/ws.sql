@@ -559,3 +559,252 @@ INSERT INTO Affectation VALUES (18192021, 8, 59922115); -- PSE2
 INSERT INTO Affectation VALUES (14151617, 8,22214528 ); -- PSE2
 
 SELECT * FROM Affectation;
+
+
+-- Test auto affectation 
+-- =======================================================================
+-- ÉTAPE 1 : CRÉATION DES 5 NOUVEAUX DPS POUR LE 27 JUIN 2025
+-- =======================================================================
+INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
+(9001, 8, 12, 2001, 1001, 27),  -- DPS 1: Tignes, Ski Alpin (matin)
+(9002, 9, 13, 2003, 1013, 27),  -- DPS 2: La Plagne, Hockey (matin)
+(9003, 14, 18, 2005, 1006, 27), -- DPS 3: Chamonix, Snowboard (après-midi)
+(9004, 13, 17, 2008, 1010, 27), -- DPS 4: Lausanne, Patinage (après-midi)
+(9005, 19, 23, 2007, 1011, 27); -- DPS 5: Albertville, Patinage Vitesse (soir)
+
+-- =======================================================================
+-- ÉTAPE 2 : CRÉATION DES 25 BESOINS (5 PAR DPS)
+-- =======================================================================
+-- Pour DPS 9001 (5 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9001, 1, 1), -- Cadre Opérationnel
+(9001, 2, 1), -- Chef de Poste
+(9001, 3, 1), -- Chef d'Équipe
+(9001, 8, 2); -- 2 x PSE2
+
+-- Pour DPS 9002 (5 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9002, 9, 2), -- 2 x Secouriste Montagne
+(9002, 6, 2), -- 2 x VPSP
+(9002, 7, 1); -- 1 x PSE1
+
+-- Pour DPS 9003 (5 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9003, 4, 1), -- Pilote Hélico
+(9003, 5, 1), -- Pilote Motoneige
+(9003, 8, 3); -- 3 x PSE2
+
+-- Pour DPS 9004 (5 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9004, 2, 1), -- Chef de Poste
+(9004, 3, 2), -- 2 x Chef d'Équipe
+(9004, 7, 2); -- 2 x PSE1
+
+-- Pour DPS 9005 (5 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9005, 1, 1), -- Cadre Opérationnel
+(9005, 9, 4); -- 4 x Secouriste Montagne
+
+-- =======================================================================
+-- ÉTAPE 3 : CRÉATION DES 25 NOUVEAUX SECOURISTES
+-- =======================================================================
+INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
+(30001, 'pass01', 'Test', 'Alpha', '01/01/1990', 'alpha@test.com', '0600000001', '1 rue Test', 0),
+(30002, 'pass02', 'Test', 'Bravo', '01/01/1990', 'bravo@test.com', '0600000002', '2 rue Test', 0),
+(30003, 'pass03', 'Test', 'Charlie', '01/01/1990', 'charlie@test.com', '0600000003', '3 rue Test', 0),
+(30004, 'pass04', 'Test', 'Delta', '01/01/1990', 'delta@test.com', '0600000004', '4 rue Test', 0),
+(30005, 'pass05', 'Test', 'Echo', '01/01/1990', 'echo@test.com', '0600000005', '5 rue Test', 0),
+(30006, 'pass06', 'Test', 'Foxtrot', '01/01/1990', 'foxtrot@test.com', '0600000006', '6 rue Test', 0),
+(30007, 'pass07', 'Test', 'Golf', '01/01/1990', 'golf@test.com', '0600000007', '7 rue Test', 0),
+(30008, 'pass08', 'Test', 'Hotel', '01/01/1990', 'hotel@test.com', '0600000008', '8 rue Test', 0),
+(30009, 'pass09', 'Test', 'India', '01/01/1990', 'india@test.com', '0600000009', '9 rue Test', 0),
+(30010, 'pass10', 'Test', 'Juliett', '01/01/1990', 'juliett@test.com', '0600000010', '10 rue Test', 0),
+(30011, 'pass11', 'Test', 'Kilo', '01/01/1990', 'kilo@test.com', '0600000011', '11 rue Test', 0),
+(30012, 'pass12', 'Test', 'Lima', '01/01/1990', 'lima@test.com', '0600000012', '12 rue Test', 0),
+(30013, 'pass13', 'Test', 'Mike', '01/01/1990', 'mike@test.com', '0600000013', '13 rue Test', 0),
+(30014, 'pass14', 'Test', 'November', '01/01/1990', 'november@test.com', '0600000014', '14 rue Test', 0),
+(30015, 'pass15', 'Test', 'Oscar', '01/01/1990', 'oscar@test.com', '0600000015', '15 rue Test', 0),
+(30016, 'pass16', 'Test', 'Papa', '01/01/1990', 'papa@test.com', '0600000016', '16 rue Test', 0),
+(30017, 'pass17', 'Test', 'Quebec', '01/01/1990', 'quebec@test.com', '0600000017', '17 rue Test', 0),
+(30018, 'pass18', 'Test', 'Romeo', '01/01/1990', 'romeo@test.com', '0600000018', '18 rue Test', 0),
+(30019, 'pass19', 'Test', 'Sierra', '01/01/1990', 'sierra@test.com', '0600000019', '19 rue Test', 0),
+(30020, 'pass20', 'Test', 'Tango', '01/01/1990', 'tango@test.com', '0600000020', '20 rue Test', 0),
+(30021, 'pass21', 'Test', 'Uniform', '01/01/1990', 'uniform@test.com', '0600000021', '21 rue Test', 0),
+(30022, 'pass22', 'Test', 'Victor', '01/01/1990', 'victor@test.com', '0600000022', '22 rue Test', 0),
+(30023, 'pass23', 'Test', 'Whiskey', '01/01/1990', 'whiskey@test.com', '0600000023', '23 rue Test', 0),
+(30024, 'pass24', 'Test', 'X-ray', '01/01/1990', 'xray@test.com', '0600000024', '24 rue Test', 0),
+(30025, 'pass25', 'Test', 'Yankee', '01/01/1990', 'yankee@test.com', '0600000025', '25 rue Test', 0);
+
+-- =======================================================================
+-- ÉTAPE 4 : DÉFINITION DES DISPONIBILITÉS POUR LE 27 JUIN
+-- =======================================================================
+-- On rend tous nos nouveaux secouristes disponibles pour le 27/06/2025 (idJournee = 27)
+INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES
+(30001, 27), (30002, 27), (30003, 27), (30004, 27), (30005, 27),
+(30006, 27), (30007, 27), (30008, 27), (30009, 27), (30010, 27),
+(30011, 27), (30012, 27), (30013, 27), (30014, 27), (30015, 27),
+(30016, 27), (30017, 27), (30018, 27), (30019, 27), (30020, 27),
+(30021, 27), (30022, 27), (30023, 27), (30024, 27), (30025, 27);
+
+-- =======================================================================
+-- ÉTAPE 5 : ATTRIBUTION DES COMPÉTENCES "PARFAITES"
+-- =======================================================================
+-- Pour chaque poste, on donne la compétence exacte à un secouriste.
+-- DPS 9001
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30001, 1); -- Alpha -> CO
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30002, 2); -- Bravo -> CP
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30003, 3); -- Charlie -> CE
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30004, 8); -- Delta -> PSE2
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30005, 8); -- Echo -> PSE2
+-- DPS 9002
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30006, 9); -- Foxtrot -> SDM
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30007, 9); -- Golf -> SDM
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30008, 6); -- Hotel -> VPSP
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30009, 6); -- India -> VPSP
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30010, 7); -- Juliett -> PSE1
+-- DPS 9003
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30011, 4); -- Kilo -> PHL
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30012, 5); -- Lima -> PMN
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30013, 8); -- Mike -> PSE2
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30014, 8); -- November -> PSE2
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30015, 8); -- Oscar -> PSE2
+-- DPS 9004
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30016, 2); -- Papa -> CP
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30017, 3); -- Quebec -> CE
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30018, 3); -- Romeo -> CE
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30019, 7); -- Sierra -> PSE1
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30020, 7); -- Tango -> PSE1
+-- DPS 9005
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30021, 1); -- Uniform -> CO
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30022, 9); -- Victor -> SDM
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30023, 9); -- Whiskey -> SDM
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30024, 9); -- X-ray -> SDM
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (30025, 9); -- Yankee -> SDM
+
+-- =======================================================================
+-- FICHIER DE DONNÉES COMPLÉMENTAIRES POUR LES JOURS 28 ET 29 JUIN
+-- =======================================================================
+
+USE sae_secours;
+
+-- =======================================================================
+-- ÉTAPE 1 : ON REND LES 25 SECOURISTES DISPONIBLES LE 28 ET 29 JUIN
+-- =======================================================================
+INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES
+(12345678, 28), (22334455, 28), (33445566, 28), (44556677, 28), (55667788, 28),
+(66778899, 28), (77889900, 28), (88990011, 28), (99001122, 28), (10111223, 28),
+(12131415, 28), (13141516, 28), (14151617, 28), (15161718, 28), (16171819, 28),
+(17181920, 28), (18192021, 28), (19202122, 28), (20212223, 28), (21222324, 28),
+(22232425, 28), (23242526, 28), (24252627, 28), (25262728, 28), (27282930, 28),
+(12345678, 29), (22334455, 29), (33445566, 29), (44556677, 29), (55667788, 29),
+(66778899, 29), (77889900, 29), (88990011, 29), (99001122, 29), (10111223, 29),
+(12131415, 29), (13141516, 29), (14151617, 29), (15161718, 29), (16171819, 29),
+(17181920, 29), (18192021, 29), (19202122, 29), (20212223, 29), (21222324, 29),
+(22232425, 29), (23242526, 29), (24252627, 29), (25262728, 29), (27282930, 29);
+
+
+-- =======================================================================
+-- ÉTAPE 2 : SCÉNARIO DU 28 JUIN (4 DPS - 20 POSTES - AFFECTATION PARFAITE)
+-- =======================================================================
+-- Création des 4 DPS
+INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
+(9101, 9, 12, 2001, 1001, 28),  -- DPS Matin 1
+(9102, 10, 14, 2002, 1002, 28), -- DPS Matin 2
+(9103, 14, 18, 2003, 1003, 28), -- DPS Aprem 1
+(9104, 15, 19, 2004, 1004, 28); -- DPS Aprem 2
+
+-- Création des besoins (20 postes au total)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9101, 1, 1), (9101, 2, 1), (9101, 3, 1), (9101, 8, 2), -- 5 postes
+(9102, 4, 1), (9102, 5, 1), (9102, 6, 3),             -- 5 postes
+(9103, 9, 3), (9103, 7, 2),                           -- 5 postes
+(9104, 2, 2), (9104, 3, 3);                           -- 5 postes
+
+
+-- =======================================================================
+-- ÉTAPE 3 : SCÉNARIO DU 29 JUIN (6 DPS - 30 POSTES - 1 DPS NON POURVU)
+-- =======================================================================
+-- Création des 6 DPS
+INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
+(9201, 8, 12, 2005, 1005, 29),  -- DPS 1 (Sera rempli)
+(9202, 8, 13, 2006, 1006, 29),  -- DPS 2 (Sera rempli)
+(9203, 10, 15, 2007, 1007, 29), -- DPS 3 (Sera rempli)
+(9204, 13, 17, 2008, 1008, 29), -- DPS 4 (Sera rempli)
+(9205, 14, 19, 2001, 1009, 29), -- DPS 5 (Sera rempli)
+(9206, 15, 20, 2002, 1010, 29); -- DPS 6 (Celui qui manquera du personnel)
+
+-- Création des besoins (30 postes au total)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9201, 1, 5), -- 5 CO
+(9202, 2, 5), -- 5 CP
+(9203, 3, 5), -- 5 CE
+(9204, 6, 5), -- 5 VPSP
+(9205, 9, 5), -- 5 SDM
+(9206, 4, 5); -- 5 PHL (Compétence rare, ce DPS ne sera pas rempli)
+
+-- =======================================================================
+-- FICHIER DE DONNÉES COMPLÉMENTAIRES POUR LE 1ER JUILLET 2025
+-- Scénario : 2 DPS, 8 postes, 8 secouristes, affectation parfaite.
+-- =======================================================================
+
+USE sae_secours;
+
+-- =======================================================================
+-- ÉTAPE 1 : CRÉATION DES 2 NOUVEAUX DPS POUR LE 1ER JUILLET 2025
+-- La journée du 1er juillet a l'idJournee = 31
+-- =======================================================================
+INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
+(9301, 9, 17, 2005, 1001, 31),  -- DPS Matin/Aprem à Chamonix, Ski Alpin
+(9302, 10, 16, 2001, 1006, 31); -- DPS Matin/Aprem à Tignes, Snowboard Cross
+
+-- =======================================================================
+-- ÉTAPE 2 : CRÉATION DES 8 BESOINS (4 PAR DPS)
+-- =======================================================================
+-- Pour DPS 9301 (4 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9301, 8, 1), -- 1 x PSE2
+(9301, 3, 1), -- 1 x Chef d'Équipe
+(9301, 9, 2); -- 2 x Secouriste de montagne
+
+-- Pour DPS 9302 (4 postes)
+INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
+(9302, 6, 1), -- 1 x VPSP
+(9302, 5, 1), -- 1 x Pilote de moto neige
+(9302, 7, 2); -- 2 x PSE1
+
+-- =======================================================================
+-- ÉTAPE 3 : CRÉATION DES 8 NOUVEAUX SECOURISTES
+-- =======================================================================
+INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
+(40001, 'pass01', 'TestJuillet', 'SecouristeUn', '01/01/1991', 's1.july@test.com', '0700000001', '1 rue Juillet', 0),
+(40002, 'pass02', 'TestJuillet', 'SecouristeDeux', '01/01/1992', 's2.july@test.com', '0700000002', '2 rue Juillet', 0),
+(40003, 'pass03', 'TestJuillet', 'SecouristeTrois', '01/01/1993', 's3.july@test.com', '0700000003', '3 rue Juillet', 0),
+(40004, 'pass04', 'TestJuillet', 'SecouristeQuatre', '01/01/1994', 's4.july@test.com', '0700000004', '4 rue Juillet', 0),
+(40005, 'pass05', 'TestJuillet', 'SecouristeCinq', '01/01/1995', 's5.july@test.com', '0700000005', '5 rue Juillet', 0),
+(40006, 'pass06', 'TestJuillet', 'SecouristeSix', '01/01/1996', 's6.july@test.com', '0700000006', '6 rue Juillet', 0),
+(40007, 'pass07', 'TestJuillet', 'SecouristeSept', '01/01/1997', 's7.july@test.com', '0700000007', '7 rue Juillet', 0),
+(40008, 'pass08', 'TestJuillet', 'SecouristeHuit', '01/01/1998', 's8.july@test.com', '0700000008', '8 rue Juillet', 0);
+
+-- =======================================================================
+-- ÉTAPE 4 : DÉFINITION DES DISPONIBILITÉS POUR LE 1ER JUILLET
+-- =======================================================================
+-- On rend nos 8 nouveaux secouristes disponibles pour le 1er Juillet (idJournee = 31)
+INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES
+(40001, 31), (40002, 31), (40003, 31), (40004, 31), 
+(40005, 31), (40006, 31), (40007, 31), (40008, 31);
+
+-- =======================================================================
+-- ÉTAPE 5 : ATTRIBUTION DES COMPÉTENCES "PARFAITES"
+-- =======================================================================
+-- On donne à chaque secouriste la compétence exacte pour un poste précis.
+-- Pour DPS 9301
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40001, 8); -- SecouristeUn -> PSE2
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40002, 3); -- SecouristeDeux -> CE
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40003, 9); -- SecouristeTrois -> SDM
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40004, 9); -- SecouristeQuatre -> SDM
+-- Pour DPS 9302
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40005, 6); -- SecouristeCinq -> VPSP
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40006, 5); -- SecouristeSix -> PMN
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40007, 7); -- SecouristeSept -> PSE1
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40008, 7); -- SecouristeHuit -> PSE1
+

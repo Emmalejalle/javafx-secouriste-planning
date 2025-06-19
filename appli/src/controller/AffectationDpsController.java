@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -16,7 +18,7 @@ import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ComboBox;
 
-import modele.SessionManager;
+
 import modele.service.AffectationMngt;
 
 import java.io.IOException;
@@ -64,25 +66,43 @@ public class AffectationDpsController {
 
     @FXML
     private void onAutoAffectation(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Auto-affectation");
-        alert.setHeaderText(null);
-        alert.setContentText("Auto-affectation bien effectuée !");
-        alert.showAndWait();
-        int jour = cbJour.getValue();
-        int mois = cbMois.getValue();
-        int annee = cbAnnee.getValue();
-        try {
-            // On clear d'abord les affectations existantes pour la journée
-            affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
-            // Puis on lance l'affectation auto gloutonne
-            affectationMngt.affectationAutoGloutonnePourJournee(jour, mois, annee);
-            System.out.println("Affectation auto gloutonne effectuée pour " + jour + "/" + mois + "/" + annee);
-        } catch (Exception e) {
-            System.err.println("Erreur lors de l'auto-affectation : " + e.getMessage());
+        Integer jour = cbJour.getValue();
+        Integer mois = cbMois.getValue();
+        Integer annee = cbAnnee.getValue();
+        if (jour == null || mois == null || annee == null) {
+            System.err.println("Veuillez sélectionner une date valide.");
+            return;
         }
-    }
 
+        // Choix de la méthode d'affectation
+        Alert choix = new Alert(Alert.AlertType.CONFIRMATION);
+        choix.setTitle("Choix de la méthode d'affectation");
+        choix.setHeaderText("Quelle méthode d'affectation souhaitez-vous utiliser ?");
+        ButtonType btnGlouton = new ButtonType("Gloutonne Optimale");
+        ButtonType btnExhaustif = new ButtonType("Exhaustive");
+        ButtonType btnAleatoire = new ButtonType("Gloutonne Naïve");
+        ButtonType btnAnnuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+        choix.getButtonTypes().setAll(btnGlouton, btnExhaustif, btnAleatoire, btnAnnuler);
+
+        choix.showAndWait().ifPresent(type -> {
+            if (type == btnAnnuler) return;
+            try {
+                affectationMngt.deleteAllAffectationJournee(jour, mois, annee);
+                if (type == btnGlouton) {
+                    affectationMngt.affectationAutoGloutonnePourJournee(jour, mois, annee);
+                    System.out.println("Affectation gloutonne effectuée !");
+                } else if (type == btnExhaustif) {
+                    affectationMngt.affectationAutoExhaustivePourJournee(jour, mois, annee);
+                    System.out.println("Affectation exhaustive effectuée !");
+                } else if (type == btnAleatoire) {
+                    affectationMngt.affectationAutoNaivePourJournee(jour, mois, annee);
+                    System.out.println("Affectation Gloutonne naive effectuée !");
+                }
+            } catch (Exception e) {
+                System.err.println("Erreur lors de l'affectation automatique : " + e.getMessage());
+            }
+        });
+    }
     @FXML
     private void onClearAffectation(ActionEvent event) {
         
