@@ -1,182 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="rootPane"
-            xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.ProfileAdminController"
-            stylesheets="@../style/Profile.css"
-            prefWidth="1920" prefHeight="1080">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1014.0" prefWidth="1852.0" stylesheets="@../style/Profile.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfileAdminController">
 
     <!-- HEADER -->
     <top>
-        <Pane fx:id="headerPane" prefHeight="100" style="-fx-background-color: white;"/>
-        <fx:include source="PatronHeaderAdmin.fxml"/>
+        <Pane fx:id="headerPane" prefHeight="100" style="-fx-background-color: white;" />
+        <fx:include source="PatronHeaderAdmin.fxml" />
 
     </top>
 
     <!-- CENTER -->
     <center>
         <VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="0">
-
-            <!-- Banner -->
-            <ImageView fx:id="bannerImage" fitWidth="1920" fitHeight="275" preserveRatio="false">
-                <image><Image url="@../img/montagneProfil.png"/></image>
-            </ImageView>
-
-            <!-- Main content -->
-            <StackPane fx:id="contentStack" prefWidth="1480" prefHeight="753">
-                <children>
-                    <!-- White ScrollPane -->
-                    <ScrollPane fx:id="mainScroll"
-                                fitToWidth="true" fitToHeight="true"
-                                prefWidth="1480" prefHeight="753"
-                                hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-                                style="-fx-background: white; -fx-background-color: white;">
-                        <content>
-                            <VBox fx:id="infoBox" alignment="TOP_CENTER" spacing="30">
-
-                                <!-- Avatar + Name -->
-                                <VBox fx:id="avatarBox" alignment="CENTER" spacing="10">
-                                    <ImageView fx:id="avatarImage" fitWidth="160" fitHeight="160" preserveRatio="true" styleClass="profile-image">
-                                        <image><Image url="@../img/pdp.png"/></image>
-                                    </ImageView>
-                                    <Label fx:id="lblName" styleClass="profile-name" text="Patrick David"/>
-                                </VBox>
-
-                                <!-- Fields columns -->
-                                <HBox fx:id="fieldsBox" alignment="TOP_CENTER" spacing="40">
-
-                                    <!-- Left column -->
-                                    <VBox fx:id="leftCol" alignment="TOP_LEFT" spacing="24">
-                                        <padding><Insets top="0" right="0" bottom="20" left="20"/></padding>
-
-                                        <!-- Téléphone -->
-                                        <Label fx:id="lblPhoneTitle" styleClass="field-label" text="Téléphone :"/>
-                                        <HBox fx:id="phoneBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgTel.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblPhoneValue" styleClass="field-value" text="06 14 23 72 90"/>
-                                        </HBox>
-
-                                        <!-- Email -->
-                                        <Label fx:id="lblEmailTitle" styleClass="field-label" text="Email :"/>
-                                        <HBox fx:id="emailBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgMail.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblEmailValue" styleClass="field-value" text="patrick.david@gmail.com"/>
-                                        </HBox>
-
-                                        <!-- Statut -->
-                                        <Label fx:id="lblStatusTitle" styleClass="field-label" text="Statut :"/>
-                                        <HBox fx:id="statusBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgProfil.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblStatusValue" styleClass="field-value" text="Admin"/>
-                                        </HBox>
-
-                                        <!-- ID -->
-                                        <Label fx:id="lblIdTitle" styleClass="field-label" text="ID :"/>
-                                        <HBox fx:id="idBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgId.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblIdValue" styleClass="field-value" text="12345"/>
-                                        </HBox>
-                                    </VBox>
-
-                                    <!-- Separator -->
-                                    <Pane fx:id="separatorPane" prefWidth="8" style="-fx-background-color: #1e40af;"/>
-
-                                    <!-- Right column -->
-                                    <VBox fx:id="rightCol" alignment="TOP_LEFT" spacing="24">
-                                        <padding><Insets top="0" right="20" bottom="20" left="0"/></padding>
-
-                                        <!-- Adresse -->
-                                        <Label fx:id="lblAddressTitle" styleClass="field-label" text="Adresse :"/>
-                                        <HBox fx:id="addressBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgLocation.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblAddressValue" styleClass="field-value" text="34 rue du secours"/>
-                                        </HBox>
-
-                                        <!-- Date de naissance -->
-                                        <Label fx:id="lblBirthTitle" styleClass="field-label" text="Date de naissance :"/>
-                                        <HBox fx:id="birthBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgAnniv.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblBirthValue" styleClass="field-value" text="02/04/1996"/>
-                                        </HBox>
-
-                                        <!-- Date de création de compte -->
-                                        <Label fx:id="lblCreatedTitle" styleClass="field-label" text="Date de création de compte :"/>
-                                        <HBox fx:id="createdBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgDispo.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblCreatedValue" styleClass="field-value" text="01/01/2024"/>
-                                        </HBox>
-
-                                        <!-- Mot de passe -->
-                                        <Label fx:id="lblPwdTitle" styleClass="field-label" text="Mot de passe :"/>
-                                        <HBox fx:id="pwdBox"
-                                              styleClass="info-box"
-                                              prefWidth="500" prefHeight="90"
-                                              spacing="8" alignment="CENTER_LEFT">
-                                            <ImageView fitWidth="20" fitHeight="20">
-                                                <image><Image url="@../img/svgMdp.png"/></image>
-                                            </ImageView>
-                                            <Label fx:id="lblPwdValue" styleClass="field-value" text="••••••••"/>
-                                        </HBox>
-                                    </VBox>
-                                </HBox>
-                            </VBox>
-                        </content>
-                    </ScrollPane>
-
-                    <!-- Edit button -->
-                    <Button fx:id="btnModifyProfile"
-                            text="Modifier le Profil"
-                            onAction="#onModifyProfile"
-                            styleClass="edit-button"
-                            prefWidth="250" prefHeight="60"
-                            StackPane.alignment="TOP_RIGHT">
-                        <StackPane.margin>
-                            <Insets top="20" right="200"/>
-                        </StackPane.margin>
-                    </Button>
-                </children>
-            </StackPane>
+           <children>
+   
+               <!-- Banner -->
+               <ImageView fx:id="bannerImage" fitHeight="275" fitWidth="1850.0" preserveRatio="false">
+                   <image>
+                  <Image url="@../img/montagneProfil.png" />
+               </image>
+               </ImageView>
+   
+               <!-- Main content -->
+               <StackPane fx:id="contentStack" prefHeight="753" prefWidth="1480">
+                   <children>
+                       <!-- White ScrollPane -->
+                       <ScrollPane fx:id="mainScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="753" prefWidth="1480" style="-fx-background: white; -fx-background-color: white;" vbarPolicy="AS_NEEDED">
+                           <content>
+                               <VBox fx:id="infoBox" alignment="TOP_CENTER" spacing="30">
+                                  <children>
+      
+                                      <!-- Avatar + Name -->
+                                      <VBox fx:id="avatarBox" alignment="CENTER" spacing="10">
+         <children>
+                                             <ImageView fx:id="avatarImage" fitHeight="160" fitWidth="160" preserveRatio="true" styleClass="profile-image">
+                                                 <image>
+                                          <Image url="@../img/pdp.png" />
+                                       </image>
+                                             </ImageView>
+                                             <Label fx:id="lblName" styleClass="profile-name" text="Patrick David" />
+         </children>
+                                      </VBox>
+      
+                                      <!-- Fields columns -->
+                                      <HBox fx:id="fieldsBox" alignment="TOP_CENTER" spacing="40">
+         <children>
+         
+                                             <!-- Left column -->
+                                             <VBox fx:id="leftCol" alignment="TOP_LEFT" spacing="24">
+                                                 <padding>
+                                          <Insets bottom="20" left="20" right="0" top="0" />
+                                       </padding>
+            <children>
+            
+                                                    <!-- Téléphone -->
+                                                    <Label fx:id="lblPhoneTitle" styleClass="field-label" text="Téléphone :" />
+                                                    <HBox fx:id="phoneBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgTel.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblPhoneValue" styleClass="field-value" text="06 14 23 72 90" />
+                                                       </children>
+                                                    </HBox>
+            
+                                                    <!-- Email -->
+                                                    <Label fx:id="lblEmailTitle" styleClass="field-label" text="Email :" />
+                                                    <HBox fx:id="emailBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgMail.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblEmailValue" styleClass="field-value" text="patrick.david@gmail.com" />
+                                                       </children>
+                                                    </HBox>
+            
+                                                    <!-- Statut -->
+                                                    <Label fx:id="lblStatusTitle" styleClass="field-label" text="Statut :" />
+                                                    <HBox fx:id="statusBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgProfil.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblStatusValue" styleClass="field-value" text="Admin" />
+                                                       </children>
+                                                    </HBox>
+            
+                                                    <!-- ID -->
+                                                    <Label fx:id="lblIdTitle" styleClass="field-label" text="ID :" />
+                                                    <HBox fx:id="idBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgId.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblIdValue" styleClass="field-value" text="12345" />
+                                                       </children>
+                                                    </HBox>
+            </children>
+                                             </VBox>
+         
+                                             <!-- Separator -->
+                                             <Pane fx:id="separatorPane" prefWidth="8" style="-fx-background-color: #1e40af;" />
+         
+                                             <!-- Right column -->
+                                             <VBox fx:id="rightCol" alignment="TOP_LEFT" spacing="24">
+                                                 <padding>
+                                          <Insets bottom="20" left="0" right="20" top="0" />
+                                       </padding>
+            <children>
+            
+                                                    <!-- Adresse -->
+                                                    <Label fx:id="lblAddressTitle" styleClass="field-label" text="Adresse :" />
+                                                    <HBox fx:id="addressBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgLocation.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblAddressValue" styleClass="field-value" text="34 rue du secours" />
+                                                       </children>
+                                                    </HBox>
+            
+                                                    <!-- Date de naissance -->
+                                                    <Label fx:id="lblBirthTitle" styleClass="field-label" text="Date de naissance :" />
+                                                    <HBox fx:id="birthBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgAnniv.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblBirthValue" styleClass="field-value" text="02/04/1996" />
+                                                       </children>
+                                                    </HBox>
+            
+                                                    <!-- Date de création de compte -->
+                                                    <Label fx:id="lblCreatedTitle" styleClass="field-label" text="Date de création de compte :" />
+                                                    <HBox fx:id="createdBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgDispo.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblCreatedValue" styleClass="field-value" text="01/01/2024" />
+                                                       </children>
+                                                    </HBox>
+            
+                                                    <!-- Mot de passe -->
+                                                    <Label fx:id="lblPwdTitle" styleClass="field-label" text="Mot de passe :" />
+                                                    <HBox fx:id="pwdBox" alignment="CENTER_LEFT" prefHeight="90" prefWidth="500" spacing="8" styleClass="info-box">
+                                                       <children>
+                                                           <ImageView fitHeight="20" fitWidth="20">
+                                                               <image>
+                                                      <Image url="@../img/svgMdp.png" />
+                                                   </image>
+                                                           </ImageView>
+                                                           <Label fx:id="lblPwdValue" styleClass="field-value" text="••••••••" />
+                                                       </children>
+                                                    </HBox>
+            </children>
+                                             </VBox>
+         </children>
+                                      </HBox>
+                                  </children>
+                               </VBox>
+                           </content>
+                       </ScrollPane>
+   
+                       <!-- Edit button -->
+                       <Button fx:id="btnModifyProfile" onAction="#onModifyProfile" prefHeight="60" prefWidth="250" styleClass="edit-button" text="Modifier le Profil" StackPane.alignment="TOP_RIGHT">
+                           <StackPane.margin>
+                               <Insets right="200" top="20" />
+                           </StackPane.margin>
+                       </Button>
+                   </children>
+               </StackPane>
+           </children>
 
         </VBox>
     </center>
@@ -184,9 +199,9 @@
     <!-- FOOTER -->
     <bottom>
         <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
-            <padding><Insets bottom="10" left="10" right="10" top="10"/></padding>
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
             <children>
-                <Button fx:id="btnReturn" styleClass="back-button" text="← Retour" onAction="#onReturn"/>
+                <Button fx:id="btnReturn" onAction="#onReturn" styleClass="back-button" text="← Retour" />
             </children>
         </HBox>
     </bottom>
