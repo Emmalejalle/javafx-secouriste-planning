@@ -27,6 +27,8 @@
 
     <Label styleClass="form-label" text="Besoins en compétences :" GridPane.rowIndex="5" GridPane.columnSpan="2" />
     <VBox fx:id="besoinsVBox" spacing="5.0" GridPane.rowIndex="6" GridPane.columnSpan="2" />
+    <Label styleClass="details-label" text="Secouristes Affectés :" GridPane.rowIndex="7" GridPane.columnSpan="2" />
+    <VBox fx:id="secouristesVBox" spacing="5.0" GridPane.rowIndex="8" GridPane.columnSpan="2" />
 </GridPane>
     </center>
     <bottom>

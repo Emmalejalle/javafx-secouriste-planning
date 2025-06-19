@@ -10,6 +10,7 @@ import modele.persistence.Competence;
 import modele.persistence.DPS;
 import java.util.List; // Not used
 import java.util.Map;
+import modele.persistence.Secouriste;
 
 /**
  * Contrôleur pour la vue FicheDps.fxml
@@ -25,6 +26,7 @@ public class FicheDpsController {
     @FXML private VBox besoinsVBox; // Pour afficher les besoins en compétences
     @FXML private Button modifierButton;
     @FXML private Button supprimerButton;
+    @FXML private VBox secouristesVBox;
 
     private DPS dpsAffiche;
     private GererDpsController mainController;
@@ -56,6 +58,26 @@ public class FicheDpsController {
                 besoinsVBox.getChildren().add(new Label(texteBesoin));
             }
         }
+
+        secouristesVBox.getChildren().clear();
+
+        // On demande au contrôleur principal la liste des affectations pour ce DPS
+        List<Affectation> affectations = mainController.getAffectationsPourDps(dpsAffiche);
+
+        if (affectations.isEmpty()) {
+            secouristesVBox.getChildren().add(new Label("Aucun secouriste affecté."));
+        } else {
+            // Pour chaque affectation, on récupère le secouriste et on crée un Label
+            for (Affectation affect : affectations) {
+                Secouriste secouriste = affect.getSecouriste();
+                if (secouriste != null) {
+                    Label secouristeLabel = new Label("• " + secouriste.getPrenom() + " " + secouriste.getNom());
+                    secouristeLabel.getStyleClass().add("details-text"); // On réutilise un style existant
+                    secouristesVBox.getChildren().add(secouristeLabel);
+                }
+            }
+        }
+
     }
 
     /**

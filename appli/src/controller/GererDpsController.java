@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import modele.persistence.Affectation;
 
 /**
  * Contrôleur pour la vue GererDps.fxml
@@ -299,55 +300,71 @@ public class GererDpsController extends BaseController {
      * @param dpsAAfficher - la liste des DPS à afficher
      */
     private void afficherListe(List<DPS> dpsAAfficher) {
-    vboxListe.getChildren().clear();
-    for (DPS dps : dpsAAfficher) {
-        HBox vignette = creerVignetteDps(dps); // Use your existing method
-        vignette.setOnMouseClicked(event -> onDpsClicked(event, dps));
-        vignette.setUserData(dps);
-        vboxListe.getChildren().add(vignette);
+        vboxListe.getChildren().clear();
+        for (DPS dps : dpsAAfficher) {
+            HBox vignette = creerVignetteDps(dps); // Use your existing method
+            vignette.setOnMouseClicked(event -> onDpsClicked(event, dps));
+            vignette.setUserData(dps);
+            vboxListe.getChildren().add(vignette);
+        }
     }
-}
 
-// Ensure this method is correctly defined and styled in your CSS
-/**
- * Crée une vignette pour un DPS.
- * La vignette contient le nom du sport, la date et l'heure de début et de fin.
- * Elle est cliquable pour afficher les détails du DPS.
- * 
- * @param dps - l'objet DPS à afficher dans la vignette
- * @return un HBox contenant les informations du DPS
- */
-private HBox creerVignetteDps(DPS dps) {
-    HBox hbox = new HBox();
-    hbox.setAlignment(Pos.CENTER_LEFT);
-    hbox.setPadding(new Insets(10));
-    hbox.setSpacing(10);
-    hbox.getStyleClass().add("vignette"); // Utilise le style générique
+    // Ensure this method is correctly defined and styled in your CSS
+    /**
+     * Crée une vignette pour un DPS.
+     * La vignette contient le nom du sport, la date et l'heure de début et de fin.
+     * Elle est cliquable pour afficher les détails du DPS.
+     * 
+     * @param dps - l'objet DPS à afficher dans la vignette
+     * @return un HBox contenant les informations du DPS
+     */
+    private HBox creerVignetteDps(DPS dps) {
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setPadding(new Insets(10));
+        hbox.setSpacing(10);
+        hbox.getStyleClass().add("vignette"); // Utilise le style générique
 
-    VBox texteVBox = new VBox(-2);
-    Label nomDps = new Label(dps.getSport().getNom());
-    nomDps.getStyleClass().add("vignette-titre");
+        VBox texteVBox = new VBox(-2);
+        Label nomDps = new Label(dps.getSport().getNom());
+        nomDps.getStyleClass().add("vignette-titre");
 
-    // This is where you include date and time
-    String detailsTexte = String.format("%s (%sh-%sh)",
-            dps.getJournee().toString(), // Assuming Journee's toString() is well-formatted (e.g., "DD/MM/YYYY")
-            dps.getHoraireDepart(),
-            dps.getHoraireFin());
-    Label detailsLabel = new Label(detailsTexte);
-    detailsLabel.getStyleClass().add("vignette-details");
+        // This is where you include date and time
+        String detailsTexte = String.format("%s (%sh-%sh)",
+                dps.getJournee().toString(), // Assuming Journee's toString() is well-formatted (e.g., "DD/MM/YYYY")
+                dps.getHoraireDepart(),
+                dps.getHoraireFin());
+        Label detailsLabel = new Label(detailsTexte);
+        detailsLabel.getStyleClass().add("vignette-details");
 
-    texteVBox.getChildren().addAll(nomDps, detailsLabel);
+        texteVBox.getChildren().addAll(nomDps, detailsLabel);
 
-    Region spacer = new Region();
-    HBox.setHgrow(spacer, Priority.ALWAYS);
-    // You had a CheckBox here, but it's not present in your screenshot's list items.
-    // If you don't need it, you can remove it.
-    // CheckBox checkBox = new CheckBox();
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        // You had a CheckBox here, but it's not present in your screenshot's list items.
+        // If you don't need it, you can remove it.
+        // CheckBox checkBox = new CheckBox();
 
-    // hbox.getChildren().addAll(texteVBox, spacer, checkBox);
-    hbox.getChildren().addAll(texteVBox, spacer); // Removed checkbox if not needed
-    hbox.setOnMouseClicked(event -> onDpsClicked(event, dps));
-    hbox.setUserData(dps);
-    return hbox;
-}
+        // hbox.getChildren().addAll(texteVBox, spacer, checkBox);
+        hbox.getChildren().addAll(texteVBox, spacer); // Removed checkbox if not needed
+        hbox.setOnMouseClicked(event -> onDpsClicked(event, dps));
+        hbox.setUserData(dps);
+        return hbox;
+    }
+
+    /**
+     * Fait le lien avec le service pour récupérer les affectations d'un DPS.
+     * @param dps Le DPS concerné.
+     * @return La liste des affectations.
+     */
+    public List<Affectation> getAffectationsPourDps(DPS dps) {
+
+        try {
+            return dpsMngt.getAffectationsPourDps(dps);
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur BDD", "Impossible de charger les secouristes affectés.");
+            e.printStackTrace();
+            return new java.util.ArrayList<>(); // Retourne une liste vide en cas d'erreur
+        }
+    }
 }

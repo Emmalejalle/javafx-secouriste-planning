@@ -1,20 +1,22 @@
 package modele.service;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import modele.DAO.AffectationDAO;
+import modele.DAO.CompetenceDAO;
 import modele.DAO.DpsDAO;
+import modele.DAO.JourneeDAO;
 import modele.DAO.SiteDAO;
 import modele.DAO.SportDAO;
-import modele.DAO.JourneeDAO;
-import modele.DAO.CompetenceDAO;
+import modele.persistence.Affectation;
 import modele.persistence.Competence;
 import modele.persistence.DPS;
 import modele.persistence.Journee;
 import modele.persistence.Site;
 import modele.persistence.Sport;
-import java.time.LocalDate;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Couche de service pour la gestion des DPS.
@@ -27,6 +29,7 @@ public class DpsManagement {
     private SportDAO sportDAO;
     private JourneeDAO journeeDAO;
     private CompetenceDAO competenceDAO;
+    private AffectationDAO affectationDAO;
 
     public DpsManagement() {
         this.dpsDAO = new DpsDAO();
@@ -34,7 +37,9 @@ public class DpsManagement {
         this.sportDAO = new SportDAO();
         this.journeeDAO = new JourneeDAO();
         this.competenceDAO = new CompetenceDAO();
+        this.affectationDAO = new AffectationDAO(); // <-- AJOUTE CETTE LIGNE
     }
+
 
     // --- Méthodes pour récupérer des listes de données ---
 
@@ -179,5 +184,20 @@ public class DpsManagement {
             .filter(dps -> dps.getSport().getNom().toLowerCase().contains(rechercheMiniscule) || 
                            dps.getSite().getNom().toLowerCase().contains(rechercheMiniscule))
             .collect(Collectors.toList());
+    }
+
+    /**
+     * Récupère la liste des affectations (et donc des secouristes) pour un DPS donné.
+     * @param dps Le DPS pour lequel on cherche les secouristes.
+     * @return Une liste d'objets Affectation.
+     * @throws SQLException
+     */
+    public List<Affectation> getAffectationsPourDps(DPS dps) throws SQLException {
+        if (dps == null) {
+            // Retourne une liste vide si le DPS est null pour éviter les erreurs
+            return new java.util.ArrayList<>();
+        }
+        // On suppose que affectationDAO est initialisé dans le constructeur du service
+        return affectationDAO.findAffectationsForDps(dps.getId());
     }
 }
