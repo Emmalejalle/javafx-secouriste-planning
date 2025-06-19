@@ -22,7 +22,7 @@
 
 <BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/disponibilite.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DisponibiliteController">
     <top>
-      <Pane fx:id="headerPlaceholder" prefHeight="100" />
+      <StackPane fx:id="headerPlaceholder" minHeight="100" prefHeight="100" maxHeight="100" />
    </top>
    <bottom>
       <Pane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: F97316;" BorderPane.alignment="CENTER" />
