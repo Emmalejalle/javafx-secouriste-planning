@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * Cette classe implémente une approche exhaustive (backtracking) pour trouver
  * le couplage de cardinalité maximale dans un graphe biparti.
  * 
- *  @author Emilien EMERIAU
+ *  @author Emilien EMERIAU ET Tardy Elie
  *  @version 1.0
  */
 public class AffectationMethode {

@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Permet de lancer les différents algorithmes sur une même matrice de test
  * et de comparer leurs résultats et leur performance.
  * 
- * @author Emilien EMERIAU
+ * @author Emilien EMERIAU Et TARDY Elie
  * @version 1.0
  */
 public class TestAffectationMethode {
@@ -53,6 +53,83 @@ public class TestAffectationMethode {
         System.out.println("--- 3. Lancement de l'algorithme EXHAUSTIF (OPTIMAL GARANTI) ---");
         int[] resultatExhaustif = solveur.resoudreAffectationExhaustive(matriceTest);
         afficherResultat("Exhaustif (Optimal)", resultatExhaustif, AffectationMethode.cpt);
+
+        System.out.println("\n===================================================\n");
+        int[][] matriceTest2 = {
+            {  1,  1,  1, 1,  1 }, // Secouriste 0 
+            {  1,  1,  1,  1,  1 }, // Secouriste 1 
+            {  0,  0,  1,  1,  0 }, // Secouriste 2
+            {  0,  1,  0,  0,  0 }, // Secouriste 3 
+            {  1,  0,  0,  0,  0 }  // Secouriste 4 
+        };
+
+        // On instancie la classe qui contient nos algorithmes.
+        AffectationMethode solveur2 = new AffectationMethode();
+
+        System.out.println("Lancement des tests d'affectation sur la matrice :");
+        afficherMatrice(matriceTest2);
+
+        // --- Test de l'algorithme glouton naïf ---
+        int[] resultatNaif2 = solveur2.resoudreAffectationGloutonneNaive(matriceTest2);
+        afficherResultat("Glouton Naïf", resultatNaif2, AffectationMethode.cpt);
+
+        System.out.println("\n---------------------------------------------------\n");
+
+        // --- Test de l'algorithme glouton avec tri de matrice ---
+        System.out.println("--- 2. Lancement de l'algorithme GLOUTON avec TRI DE MATRICE ---");
+        int[] resultatTriMatrice2 = solveur2.resoudreAffectationGloutonneTriMatrice(matriceTest2);
+        afficherResultat("Glouton avec Tri de Matrice", resultatTriMatrice2, AffectationMethode.cpt);
+
+        
+        // --- Test de l'algorithme exhaustif (Optionnel, peut être très long) ---
+        System.out.println("\n---------------------------------------------------\n");
+        System.out.println("--- 3. Lancement de l'algorithme EXHAUSTIF (OPTIMAL GARANTI) ---");
+        int[] resultatExhaustif2 = solveur.resoudreAffectationExhaustive(matriceTest2);
+        afficherResultat("Exhaustif (Optimal)", resultatExhaustif2, AffectationMethode.cpt);
+
+
+        System.out.println("Dans ce test l'algorithme glouton Naïf n'a pas trouvé de solution optimale.");
+
+        System.out.println("\n===================================================\n");
+
+
+
+        int[][] matriceTest3 = {
+            {  1,  0,  0, 0}, // Secouriste 0 (polyvalent sur P0, P1)
+            {  1,  1,  1,  0}, // Secouriste 1 (spécialiste de P0)
+            {  0,  1,  1,  0}, // Secouriste 2
+            {  0,  0,  1,  1}
+        };
+
+        // On instancie la classe qui contient nos algorithmes.
+        AffectationMethode solveur3 = new AffectationMethode();
+
+        System.out.println("Lancement des tests d'affectation sur la matrice :");
+        afficherMatrice(matriceTest3);
+
+        // --- Test de l'algorithme glouton naïf ---
+        System.out.println("\n--- 1. Lancement de l'algorithme GLOUTON NAÏF ---");
+        int[] resultatNaif3 = solveur3.resoudreAffectationGloutonneNaive(matriceTest3);
+        afficherResultat("Glouton Naïf", resultatNaif3, AffectationMethode.cpt);
+
+        System.out.println("\n---------------------------------------------------\n");
+
+        // --- Test de l'algorithme glouton avec tri de matrice ---
+        System.out.println("--- 2. Lancement de l'algorithme GLOUTON avec TRI DE MATRICE ---");
+        int[] resultatTriMatrice3 = solveur3.resoudreAffectationGloutonneTriMatrice(matriceTest3);
+        afficherResultat("Glouton avec Tri de Matrice", resultatTriMatrice3, AffectationMethode.cpt);
+
+        
+        // --- Test de l'algorithme exhaustif (Optionnel, peut être très long) ---
+        System.out.println("\n---------------------------------------------------\n");
+        System.out.println("--- 3. Lancement de l'algorithme EXHAUSTIF (OPTIMAL GARANTI) ---");
+        int[] resultatExhaustif3 = solveur3.resoudreAffectationExhaustive(matriceTest3);
+        afficherResultat("Exhaustif (Optimal)", resultatExhaustif3, AffectationMethode.cpt);
+
+
+        System.out.println("Dans ce test l'algorithme glouton avec tri matrice n'a pas trouvé de solution optimale.");
+
+
         
     }
 
