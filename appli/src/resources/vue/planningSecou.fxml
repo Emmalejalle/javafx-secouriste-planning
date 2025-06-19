@@ -421,14 +421,19 @@
             </StackPane>
             <StackPane>
                <children>
-                  
-                  <!-- Bouton Télécharger planning -->
-                  <Button fx:id="btnTelecharger" mnemonicParsing="false" opacity="0.0" styleClass="download-button" text="Télécharger planning" />
+                  <!-- IMAGE EN PREMIER -->
                   <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/svgTéléhargerPlanningCadre.png" />
                      </image>
                   </ImageView>
+
+                  <!-- BOUTON EN DESSUS MAIS INVISIBLE VISUELLEMENT -->
+                  <Button fx:id="btnTelecharger"
+                        onAction="#telechargerPlanning"
+                        text="Télécharger planning"
+                        style="-fx-background-color: transparent;"
+                        prefWidth="200" prefHeight="50" />
                </children>
             </StackPane>
             

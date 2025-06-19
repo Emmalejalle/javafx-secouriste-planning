@@ -61,7 +61,7 @@ public class PlanningController {
     @FXML private Label lblTotalHours;
 
     @FXML private Pane headerPane;
-    @FXML private GridPane planningGrid;
+    
 
     private LocalDate dateAffichee;
     private Secouriste secouristeConnecte;

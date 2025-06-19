@@ -406,17 +406,23 @@
                </children>
             </StackPane>
             <StackPane>
-               <children>
-                  
-                  <!-- Bouton Télécharger planning -->
-                  <Button fx:id="btnTelecharger" mnemonicParsing="false" opacity="0.0" styleClass="download-button" text="Télécharger planning" />
-                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <children>
+               <!-- Image décorative -->
+               <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/svgTéléhargerPlanningCadre.png" />
                      </image>
-                  </ImageView>
-               </children>
-            </StackPane>
+               </ImageView>
+               
+               <!-- Bouton transparent mais cliquable -->
+               <Button fx:id="btnTelecharger" mnemonicParsing="false" 
+                        text="Télécharger planning" 
+                        onAction="#telechargerPlanning"
+                        style="-fx-background-color: transparent;"
+                        opacity="1.0" 
+                        prefWidth="200" prefHeight="50" />
+            </children>
+         </StackPane>
             
                         <!-- Spacer pour pousser le bouton retour vers le bas -->
             <Region VBox.vgrow="ALWAYS" />
