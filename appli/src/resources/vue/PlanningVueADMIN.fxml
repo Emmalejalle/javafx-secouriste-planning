@@ -16,7 +16,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="BorderPanePlanningSecou" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlanningVueADMINController">
+<BorderPane fx:id="BorderPanePlanningSecou" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../style/stylePlanningSecou.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlanningVueADMINController">
    <top>
       <HBox fx:id="TopPlanSecou" alignment="CENTER" prefHeight="99.0" prefWidth="1920.0" style="-fx-background-color: F97316;" stylesheets="@../style/stylePlanningSecou.css" BorderPane.alignment="CENTER">
          <children>
@@ -415,12 +415,7 @@
                </ImageView>
                
                <!-- Bouton transparent mais cliquable -->
-               <Button fx:id="btnTelecharger" mnemonicParsing="false" 
-                        text="Télécharger planning" 
-                        onAction="#telechargerPlanning"
-                        style="-fx-background-color: transparent;"
-                        opacity="1.0" 
-                        prefWidth="200" prefHeight="50" />
+               <Button fx:id="btnTelecharger" mnemonicParsing="false" onAction="#telechargerPlanning" opacity="1.0" prefHeight="50" prefWidth="200" style="-fx-background-color: transparent;" text="Télécharger planning" />
             </children>
          </StackPane>
             
