@@ -1,7 +1,6 @@
-import modele.graphe.algorithme.AffectationMethode;
+package modele.graphe.algorithme;
 
 import java.util.Random;
-import java.util.stream.IntStream;
 
 
 /**

@@ -111,7 +111,7 @@ public class AffectationDAO extends DAO<Affectation> {
         }
         return affectations;
     }
-    
+
     /**
      * Trouve toutes les affectations pour un Secouriste donné (getDPSparSecouriste).
      * @param secouristeId L'ID du Secouriste.
