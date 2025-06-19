@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane prefWidth="1920" prefHeight="1080" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignalementController" stylesheets="@../style/signalement.css">
+
+    <!-- HEADER -->
+    <top>
+        <Pane prefHeight="100" styleClass="header"/>
+    </top>
+
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+    <bottom>
+        <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
+            <padding><Insets bottom="10" left="10" right="10" top="10"/></padding>
+            <children>
+                <Button fx:id="btnReturn" styleClass="back-button" text="← Retour" onAction="#onReturn"/>
+            </children>
+        </HBox>
+    </bottom>
+
+    <!-- CENTRE -->
+    <center>
+        <HBox spacing="60" alignment="TOP_LEFT">
+            <padding>
+                <Insets top="40" right="60" bottom="40" left="60"/>
+            </padding>
+            <children>
+
+                <!-- Carte Secouriste -->
+                <StackPane prefWidth="525" prefHeight="700" style="-fx-background-color: #003CA6; -fx-background-radius: 10;">
+                    <VBox spacing="20" alignment="TOP_CENTER" prefWidth="525" prefHeight="700">
+                        <padding>
+                            <Insets top="30" right="30" bottom="30" left="30"/>
+                        </padding>
+
+                        <Label text="Infos contact" style="-fx-text-fill: white; -fx-font-size: 42px; -fx-font-weight: bold;"/>
+
+                        <Label wrapText="true"
+                            text="Notre équipe est à votre disposition 7 jours sur 7, tout au long de la journée. Que ce soit pour une question, une demande d’informations ou une assistance, nous sommes toujours là pour vous répondre rapidement et efficacement. N’hésitez pas à nous contacter !"
+                            style="-fx-text-fill: white; -fx-font-size: 20px;"/>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <ImageView fitWidth="36" fitHeight="36">
+                                <image><Image url="@../img/TelOrange.png"/></image>
+                            </ImageView>
+                            <Label text="06 - 14 - 23 - 72 - 90" style="-fx-text-fill: white; -fx-font-size: 25px;"/>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <ImageView fitWidth="36" fitHeight="36">
+                                <image><Image url="@../img/mailOrange.png"/></image>
+                            </ImageView>
+                            <Label text="emma_lejalle@gmail.com" style="-fx-text-fill: white; -fx-font-size: 25px;"/>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <ImageView fitWidth="36" fitHeight="36">
+                                <image><Image url="@../img/pingOrange.png"/></image>
+                            </ImageView>
+                            <Label text="34 rue du secours" style="-fx-text-fill: white; -fx-font-size: 25px;"/>
+                        </HBox>
+                    </VBox>
+
+                    <ImageView fitWidth="250" fitHeight="200" StackPane.alignment="BOTTOM_RIGHT">
+                        <image><Image url="@../img/bouleOrange.png"/></image>
+                    </ImageView>
+
+                    <HBox spacing="20" StackPane.alignment="BOTTOM_LEFT" translateY="650">
+                        <padding>
+                            <Insets left="20" bottom="20"/>
+                        </padding>
+                        <ImageView fitWidth="50" fitHeight="50">
+                            <image><Image url="@../img/instaOrange.png"/></image>
+                        </ImageView>
+                        <ImageView fitWidth="50" fitHeight="50">
+                            <image><Image url="@../img/facebookOrange.png"/></image>
+                        </ImageView>
+                        <ImageView fitWidth="50" fitHeight="50">
+                            <image><Image url="@../img/twitterOrange.png"/></image>
+                        </ImageView>
+                    </HBox>
+                </StackPane>
+
+                <!-- Formulaire -->
+                <VBox spacing="25" alignment="TOP_LEFT">
+                    <children>
+                        <HBox spacing="20">
+                            <TextField fx:id="txtNom" promptText="Nom" prefWidth="425" prefHeight="75"/>
+                            <TextField fx:id="txtPrenom" promptText="Prénom" prefWidth="425" prefHeight="75"/>
+                        </HBox>
+
+                        <HBox spacing="20">
+                            <TextField fx:id="txtEmail" promptText="Email" prefWidth="425" prefHeight="75"/>
+                            <TextField fx:id="txtTel" promptText="Téléphone" prefWidth="425" prefHeight="75"/>
+                        </HBox>
+
+                        <HBox spacing="20">
+                            <ComboBox fx:id="comboCategorie" prefWidth="425" prefHeight="75" promptText="Catégorie du problème"/>
+                            <ComboBox fx:id="comboSousCategorie" prefWidth="425" prefHeight="75" promptText="Sous-catégorie"/>
+                        </HBox>
+
+                        <VBox spacing="10">
+                            <Label text="Signalement"/>
+                            <TextArea fx:id="txtSignalement" prefWidth="890" prefHeight="130" promptText="Entrez votre texte ici"/>
+                        </VBox>
+
+                        <VBox spacing="10">
+                            <Label text="Justificatif"/>
+                            <HBox spacing="15" styleClass="justificatif-box" alignment="CENTER_LEFT" prefWidth="890" prefHeight="60">
+                                <Button text="Joindre votre justificatif" styleClass="justificatif-button"/>
+                                <Label text="Nom_Prenom_justificatif.pdf"/>
+                            </HBox>
+                        </VBox>
+
+                        <Button fx:id="btnEnvoyer" text="Envoyer" styleClass="envoyer-button" prefWidth="150" prefHeight="50"/>
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+    </center>
+</BorderPane>

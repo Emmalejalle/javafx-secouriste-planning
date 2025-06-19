@@ -428,4 +428,16 @@ public class PlanningController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void allerSignalement(ActionEvent event) {
+        System.out.println("Clic sur bouton Signalement : chargement de Signalement.fxml...");
+        try {
+            changerDeVue(event, "/vue/Signalement.fxml");
+        } catch (IOException e) {
+            System.err.println("ERREUR : Impossible de charger la vue Signalement.fxml");
+            e.printStackTrace();
+        }
+    }
+
 }
