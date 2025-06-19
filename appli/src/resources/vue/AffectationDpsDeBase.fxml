@@ -171,9 +171,14 @@
                     </VBox.margin>
                 </HBox>
 
-                <StackPane fx:id="contentPane" prefHeight="791.0" styleClass="shadow" stylesheets="@../style/ListeRechercheSecouri.css" BorderPane.alignment="CENTER">
+                <!-- StackPane qui s'adapte automatiquement au contenu -->
+                <StackPane fx:id="contentPane" 
+                           minHeight="600.0" prefHeight="800.0" maxHeight="Infinity"
+                           minWidth="800.0" prefWidth="950.0" maxWidth="Infinity"
+                           styleClass="shadow" stylesheets="@../style/ListeRechercheSecouri.css" 
+                           BorderPane.alignment="CENTER">
                     <VBox.margin>
-                        <Insets left="100.0" right="300.0" top="10.0" />
+                        <Insets left="20.0" right="20.0" top="10.0" bottom="10.0" />
                     </VBox.margin>
                     <styleClass>
                         <String fx:value="scrollContour" />

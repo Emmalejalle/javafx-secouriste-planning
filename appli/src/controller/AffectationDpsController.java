@@ -168,44 +168,46 @@ public class AffectationDpsController {
      */
     private VBox creerCarteDPS(DPS dps) {
         VBox carte = new VBox();
-        carte.setSpacing(5);
-        carte.setPadding(new Insets(10));
+        carte.setSpacing(4);
+        carte.setPadding(new Insets(12, 18, 12, 18)); // Padding optimisé pour rectangle
         carte.setUserData(dps);
         carte.getStyleClass().add("dps-card");
         
         // Créer le contenu de la carte
         HBox ligneHaut = new HBox();
-        ligneHaut.setSpacing(10);
+        ligneHaut.setSpacing(15);
         ligneHaut.setAlignment(Pos.CENTER_LEFT);
         
-        // Image de statut
-        ImageView imageStatut = new ImageView();
-        imageStatut.setFitWidth(24);
-        imageStatut.setFitHeight(24);
-        imageStatut.setPreserveRatio(true);
+        // Symbole de statut
+        Label symboleStatut = new Label();
+        symboleStatut.getStyleClass().add("dps-symbole");
         
-        // Déterminer l'image selon le statut du DPS
+        // Déterminer le symbole selon le statut du DPS
         try {
             StatutDPS statut = obtenirStatutDPS(dps);
             switch (statut) {
                 case COMPLET:
-                    if (imageComplet != null) imageStatut.setImage(imageComplet);
+                    symboleStatut.setText("✓");
+                    symboleStatut.getStyleClass().add("symbole-complet");
                     break;
                 case PARTIEL:
-                    if (imagePartiel != null) imageStatut.setImage(imagePartiel);
+                    symboleStatut.setText("⚠");
+                    symboleStatut.getStyleClass().add("symbole-partiel");
                     break;
                 case VIDE:
                 default:
-                    if (imageVide != null) imageStatut.setImage(imageVide);
+                    symboleStatut.setText("○");
+                    symboleStatut.getStyleClass().add("symbole-vide");
                     break;
             }
         } catch (SQLException e) {
-            if (imageVide != null) imageStatut.setImage(imageVide);
+            symboleStatut.setText("○");
+            symboleStatut.getStyleClass().add("symbole-vide");
         }
         
         // Labels d'informations
         VBox infos = new VBox();
-        infos.setSpacing(2);
+        infos.setSpacing(3);
         
         // Ligne 1: Sport - Lieu
         Label ligneSportLieu = new Label(dps.getSport().getNom() + " - " + dps.getSite().getNom());
@@ -219,7 +221,7 @@ public class AffectationDpsController {
         ligneDateTime.getStyleClass().add("dps-date-time");
         
         infos.getChildren().addAll(ligneSportLieu, ligneDateTime);
-        ligneHaut.getChildren().addAll(imageStatut, infos);
+        ligneHaut.getChildren().addAll(symboleStatut, infos);
         carte.getChildren().add(ligneHaut);
         
         // Gestionnaire de clic
@@ -281,13 +283,24 @@ public class AffectationDpsController {
             dpsSelectionnee.getStyleClass().add("dps-card-selected");
             
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/AffecterUnDps.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/FicheAffectationDPS.fxml"));
                 Parent detailView = loader.load();
                 
                 // Passer le DPS sélectionné au contrôleur de la vue de détail
-                // AffecterUnDpsController controller = loader.getController();
-                // DPS dpsSelectionne = (DPS) carteCliquee.getUserData();
-                // controller.setDPS(dpsSelectionne);
+                FicheAffectationDPSController controller = loader.getController();
+                DPS dpsSelectionne = (DPS) carteCliquee.getUserData();
+                controller.setDPS(dpsSelectionne);
+                
+                // Définir le callback de fermeture
+                controller.setOnCloseCallback(() -> {
+                    contentPane.getChildren().clear();
+                    if (dpsSelectionnee != null) {
+                        dpsSelectionnee.getStyleClass().remove("dps-card-selected");
+                    }
+                    dpsSelectionnee = null;
+                    // Rafraîchir la liste des DPS pour mettre à jour les statuts
+                    chargerTousLesDPS();
+                });
                 
                 contentPane.getChildren().setAll(detailView);
             } catch (IOException e) {

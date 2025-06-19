@@ -112,3 +112,108 @@
     -fx-padding: 8 16;
     -fx-cursor: hand;
   }
+
+/* Styles pour les cartes DPS - Rectangles bleus arrondis */
+.dps-card {
+    -fx-background-color: #4a90e2; /* Bleu principal */
+    -fx-border-color: #357abd;
+    -fx-border-width: 2px;
+    -fx-background-radius: 15px; /* Bords bien arrondis */
+    -fx-border-radius: 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);
+    -fx-min-height: 75px;
+    -fx-pref-height: 75px;
+    -fx-max-height: 75px;
+    -fx-min-width: 280px; /* Largeur minimale pour un beau rectangle */
+    -fx-pref-width: 280px;
+}
+
+.dps-card:hover {
+    -fx-background-color: #5ba0f2; /* Bleu plus clair au survol */
+    -fx-border-color: #2968a3;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 3);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.dps-card-selected {
+    -fx-background-color: #2968a3; /* Bleu plus foncé quand sélectionné */
+    -fx-border-color: #1e4f7a;
+    -fx-border-width: 3px; /* Bordure plus épaisse pour la sélection */
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 4);
+}
+
+/* Styles pour les symboles de statut */
+.dps-symbole {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-min-width: 35px;
+    -fx-min-height: 35px;
+    -fx-max-width: 35px;
+    -fx-max-height: 35px;
+    -fx-alignment: center;
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-background-radius: 50%; /* Cercle parfait */
+    -fx-padding: 2px;
+}
+
+.symbole-complet {
+    -fx-text-fill: #28a745; /* Vert pour complet */
+    -fx-background-color: rgba(40, 167, 69, 0.3);
+}
+
+.symbole-partiel {
+    -fx-text-fill: #ffc107; /* Orange pour partiel */
+    -fx-background-color: rgba(255, 193, 7, 0.3);
+}
+
+.symbole-vide {
+    -fx-text-fill: #dc3545; /* Rouge pour vide */
+    -fx-background-color: rgba(220, 53, 69, 0.3);
+}
+
+/* Styles pour les textes d'information */
+.dps-sport-lieu {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white; /* Texte blanc sur fond bleu */
+    -fx-wrap-text: false;
+    -fx-text-overrun: ellipsis;
+}
+
+.dps-date-time {
+    -fx-font-size: 13px;
+    -fx-text-fill: #e6f2ff; /* Blanc légèrement transparent */
+    -fx-wrap-text: false;
+    -fx-text-overrun: ellipsis;
+}
+
+/* Style pour la VBox contenant les cartes */
+#vboxListeDps {
+    -fx-spacing: 10px; /* Espacement entre les rectangles */
+    -fx-padding: 15px; /* Padding autour de la liste */
+    -fx-alignment: top-left;
+}
+
+/* Animation de transition douce */
+.dps-card {
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Style du ScrollPane contenant la liste */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .content {
+    -fx-background-color: transparent;
+}

@@ -818,70 +818,100 @@ INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (40008, 7); 
 USE sae_secours;
 
 -- =======================================================================
--- ÉTAPE 1 : CRÉATION DES 5 DPS "PIÉGÉS" POUR LE 2 JUILLET 2025
+-- FICHIER DE DONNÉES "PIÉGÉ" POUR LA COMPARAISON DES ALGORITHMES
+-- Scénario pour le 3 juillet 2025 (idJournee = 33)
+-- But : Montrer qu'un algo glouton naïf échoue (20/25 affectations)
+-- alors qu'un algo optimisé réussit (25/25 affectations).
+-- =======================================================================
+
+USE sae_secours;
+
+-- =======================================================================
+-- ÉTAPE 1 : CRÉATION DES 5 DPS ET DES 25 POSTES À POURVOIR
 -- =======================================================================
 INSERT INTO DPS (idDPS, horaireDepart, horaireFin, codeSiteDPS, codeSportDPS, idJourneeDPS) VALUES
-(9401, 8, 12, 2001, 1001, 32),  -- DPS #1 - Poste A
-(9402, 9, 13, 2002, 1002, 32),  -- DPS #2 - Poste B
-(9403, 10, 14, 2003, 1003, 32), -- DPS #3 - Poste C
-(9404, 11, 15, 2004, 1004, 32), -- DPS #4 - Poste D
-(9405, 12, 16, 2005, 1005, 32); -- DPS #5 - Poste E
+(9501, 8, 12, 2001, 1001, 33), -- DPS #1
+(9502, 9, 13, 2002, 1002, 33), -- DPS #2
+(9503, 10, 14, 2003, 1003, 33), -- DPS #3
+(9504, 11, 15, 2004, 1004, 33), -- DPS #4
+(9505, 12, 16, 2005, 1005, 33); -- DPS #5
 
--- =======================================================================
--- ÉTAPE 2 : CRÉATION DES 5 BESOINS (1 PAR DPS POUR LA CLARTÉ)
--- Ce sont les postes à pourvoir.
--- =======================================================================
+-- Création des 25 besoins.
+-- 5 postes "faciles" (PSE1) que 10 personnes peuvent faire.
+-- 5 postes "difficiles" (PMN) que seulement 5 personnes peuvent faire.
+-- Les autres sont des postes normaux.
 INSERT INTO Besoin (idBesoinDPS, idBesoinComp, nombre) VALUES
-(9401, 7, 1), -- Poste P0 : Nécessite PSE1 (idComp=7)
-(9402, 8, 1), -- Poste P1 : Nécessite PSE2 (idComp=8)
-(9403, 6, 1), -- Poste P2 : Nécessite VPSP (idComp=6)
-(9404, 9, 1), -- Poste P3 : Nécessite Secouriste Montagne (idComp=9)
-(9405, 5, 1); -- Poste P4 : Nécessite Pilote Motoneige (idComp=5)
+(9501, 7, 5), -- 5 postes qui demandent PSE1 (idComp=7)
+(9502, 8, 5), -- 5 postes qui demandent PSE2 (idComp=8)
+(9503, 6, 5), -- 5 postes qui demandent VPSP (idComp=6)
+(9504, 9, 5), -- 5 postes qui demandent Secouriste Montagne (idComp=9)
+(9505, 5, 5); -- LE PIEGE : 5 postes qui demandent Pilote Motoneige (idComp=5)
 
 -- =======================================================================
--- ÉTAPE 3 : CRÉATION DES 5 SECOURISTES POUR LE PIÈGE
+-- ÉTAPE 2 : CRÉATION DES 25 SECOURISTES
 -- =======================================================================
 INSERT INTO User (idUser, mdpUser, nomUser, prenomUser, dateNaissance, emailUser, telUser, adresseUser, isAdmin) VALUES
-(50001, 'pass', 'Polyvalent', 'Paul', '01/01/1990', 'paul.poly@test.com', '0800000001', '1 rue du Piège', 0),
-(50002, 'pass', 'Specialiste', 'Luc', '01/01/1991', 'luc.spe@test.com', '0800000002', '2 rue du Piège', 0),
-(50003, 'pass', 'Specialiste', 'Marc', '01/01/1992', 'marc.spe@test.com', '0800000003', '3 rue du Piège', 0),
-(50004, 'pass', 'Specialiste', 'Anna', '01/01/1993', 'anna.spe@test.com', '0800000004', '4 rue du Piège', 0),
-(50005, 'pass', 'Specialiste', 'Marie', '01/01/1994', 'marie.spe@test.com', '0800000005', '5 rue du Piège', 0);
+(60001, 'pass', 'Polyvalent', 'Un', '01/01/1990', 'p1@test.com', '0900000001', '1 rue Piège', 0),
+(60002, 'pass', 'Polyvalent', 'Deux', '01/01/1990', 'p2@test.com', '0900000002', '2 rue Piège', 0),
+(60003, 'pass', 'Polyvalent', 'Trois', '01/01/1990', 'p3@test.com', '0900000003', '3 rue Piège', 0),
+(60004, 'pass', 'Polyvalent', 'Quatre', '01/01/1990', 'p4@test.com', '0900000004', '4 rue Piège', 0),
+(60005, 'pass', 'Polyvalent', 'Cinq', '01/01/1990', 'p5@test.com', '0900000005', '5 rue Piège', 0),
+(60006, 'pass', 'Specialiste', 'PSE1-A', '01/01/1991', 's1a@test.com', '0900000006', '6 rue Piège', 0),
+(60007, 'pass', 'Specialiste', 'PSE1-B', '01/01/1991', 's1b@test.com', '0900000007', '7 rue Piège', 0),
+(60008, 'pass', 'Specialiste', 'PSE1-C', '01/01/1991', 's1c@test.com', '0900000008', '8 rue Piège', 0),
+(60009, 'pass', 'Specialiste', 'PSE1-D', '01/01/1991', 's1d@test.com', '0900000009', '9 rue Piège', 0),
+(60010, 'pass', 'Specialiste', 'PSE1-E', '01/01/1991', 's1e@test.com', '0900000010', '10 rue Piège', 0),
+(60011, 'pass', 'Specialiste', 'PSE2-A', '01/01/1992', 's2a@test.com', '0900000011', '11 rue Piège', 0),
+(60012, 'pass', 'Specialiste', 'PSE2-B', '01/01/1992', 's2b@test.com', '0900000012', '12 rue Piège', 0),
+(60013, 'pass', 'Specialiste', 'PSE2-C', '01/01/1992', 's2c@test.com', '0900000013', '13 rue Piège', 0),
+(60014, 'pass', 'Specialiste', 'PSE2-D', '01/01/1992', 's2d@test.com', '0900000014', '14 rue Piège', 0),
+(60015, 'pass', 'Specialiste', 'PSE2-E', '01/01/1992', 's2e@test.com', '0900000015', '15 rue Piège', 0),
+(60016, 'pass', 'Specialiste', 'VPSP-A', '01/01/1993', 'vpsp-a@test.com', '0900000016', '16 rue Piège', 0),
+(60017, 'pass', 'Specialiste', 'VPSP-B', '01/01/1993', 'vpsp-b@test.com', '0900000017', '17 rue Piège', 0),
+(60018, 'pass', 'Specialiste', 'VPSP-C', '01/01/1993', 'vpsp-c@test.com', '0900000018', '18 rue Piège', 0),
+(60019, 'pass', 'Specialiste', 'VPSP-D', '01/01/1993', 'vpsp-d@test.com', '0900000019', '19 rue Piège', 0),
+(60020, 'pass', 'Specialiste', 'VPSP-E', '01/01/1993', 'vpsp-e@test.com', '0900000020', '20 rue Piège', 0),
+(60021, 'pass', 'Specialiste', 'SDM-A', '01/01/1994', 'sdm-a@test.com', '0900000021', '21 rue Piège', 0),
+(60022, 'pass', 'Specialiste', 'SDM-B', '01/01/1994', 'sdm-b@test.com', '0900000022', '22 rue Piège', 0),
+(60023, 'pass', 'Specialiste', 'SDM-C', '01/01/1994', 'sdm-c@test.com', '0900000023', '23 rue Piège', 0),
+(60024, 'pass', 'Specialiste', 'SDM-D', '01/01/1994', 'sdm-d@test.com', '0900000024', '24 rue Piège', 0),
+(60025, 'pass', 'Specialiste', 'SDM-E', '01/01/1994', 'sdm-e@test.com', '0900000025', '25 rue Piège', 0);
+
 
 -- =======================================================================
--- ÉTAPE 4 : DÉFINITION DES DISPONIBILITÉS POUR LE 2 JUILLET
+-- ÉTAPE 3 : DÉFINITION DES DISPONIBILITÉS POUR LE 3 JUILLET
 -- =======================================================================
--- On rend nos 5 secouristes disponibles le 2 Juillet (idJournee = 32)
 INSERT INTO Dispo (idSecouriste, idJourneeDispo) VALUES
-(50001, 32), (50002, 32), (50003, 32), (50004, 32), (50005, 32);
+(60001, 33), (60002, 33), (60003, 33), (60004, 33), (60005, 33),
+(60006, 33), (60007, 33), (60008, 33), (60009, 33), (60010, 33),
+(60011, 33), (60012, 33), (60013, 33), (60014, 33), (60015, 33),
+(60016, 33), (60017, 33), (60018, 33), (60019, 33), (60020, 33),
+(60021, 33), (60022, 33), (60023, 33), (60024, 33), (60025, 33);
 
 -- =======================================================================
--- ÉTAPE 5 : ATTRIBUTION DES COMPÉTENCES QUI CRÉENT LE PIÈGE
--- Le secouriste polyvalent (S1) est le seul à pouvoir faire le poste P4,
--- mais il est aussi compatible avec le poste P0, que S2 peut aussi faire.
+-- ÉTAPE 4 : ATTRIBUTION DES COMPÉTENCES QUI CRÉENT LE PIÈGE
 -- =======================================================================
--- Secouriste S1 (ID 50001) - Le Polyvalent (2 compétences)
+-- Les 5 Polyvalents (ID 60001 à 60005)
+-- Ils ont la compétence PSE1 ET la compétence rare PMN.
 INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES
-(50001, 7), -- PSE1 (pour le poste P0)
-(50001, 5); -- Pilote Motoneige (pour le poste P4)
+(60001, 7), (60001, 5), (60002, 7), (60002, 5), (60003, 7), (60003, 5), (60004, 7), (60004, 5), (60005, 7), (60005, 5);
 
--- Secouriste S2 (ID 50002) - Spécialiste P0 (1 compétence)
-INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50002, 7); -- PSE1
+-- Les 5 Spécialistes PSE1 (ID 60006 à 60010)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES
+(60006, 7), (60007, 7), (60008, 7), (60009, 7), (60010, 7);
 
--- Secouriste S3 (ID 50003) - Spécialiste P1 (1 compétence)
-INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50003, 8); -- PSE2
+-- Les 5 Spécialistes PSE2 (ID 60011 à 60015)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES
+(60011, 8), (60012, 8), (60013, 8), (60014, 8), (60015, 8);
 
--- Secouriste S4 (ID 50004) - Spécialiste P2 (1 compétence)
-INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50004, 6); -- VPSP
+-- Les 5 Spécialistes VPSP (ID 60016 à 60020)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES
+(60016, 6), (60017, 6), (60018, 6), (60019, 6), (60020, 6);
 
--- Secouriste S5 (ID 50005) - Spécialiste P3 (1 compétence)
-INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES (50005, 9); -- Secouriste Montagne
+-- Les 5 Spécialistes SDM (ID 60021 à 60025)
+INSERT INTO ListCompSecouriste (idSecouCompList, idCompList) VALUES
+(60021, 9), (60022, 9), (60023, 9), (60024, 9), (60025, 9);
 
--- NOTE : AUCUNE AFFECTATION N'EST INSÉRÉE. C'est le but du jeu.
--- L'algo naïf, en traitant le poste P0 en premier, va probablement affecter S1 (le polyvalent).
--- Du coup, quand il arrivera au poste P4, il n'y aura plus personne pour le prendre.
--- L'algo optimisé, en voyant que P4 est plus "difficile" (un seul candidat), va affecter S1 à P4 en premier,
--- libérant ainsi la voie pour affecter S2 au poste P0.
 
 SELECT
 j.idJournee,

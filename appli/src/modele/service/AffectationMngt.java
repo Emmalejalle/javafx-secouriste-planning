@@ -231,7 +231,7 @@ public class AffectationMngt {
         }
 
         // --- Étape 4 : Appel de l'algorithme d'affectation ---
-        System.out.println("\nLancement de l'algorithme 'Glouton avec Tri de Matrice'...");
+        System.out.println("\nLancement de l'algorithme 'Glouton Naïf'...");
         AffectationMethode algo = new AffectationMethode();
         // NOTE: Assure-toi que la bonne méthode d'algo est appelée ici
         int[] couplage = algo.resoudreAffectationGloutonneNaive(matrice); 
@@ -261,7 +261,6 @@ public class AffectationMngt {
 
     /**
      * Effectue l'affectation automatique gloutonne pour une journée et crée les affectations en base.
-     * CETTE VERSION CONTIENT LA CORRECTION POUR LE PROBLÈME DE LA MATRICE DE COMPATIBILITÉ.
      * @return la liste des affectations créées
      */
     public List<Affectation> affectationAutoExhaustivePourJournee(int jour, int mois, int annee) throws SQLException {
@@ -331,7 +330,7 @@ public class AffectationMngt {
         }
 
         // --- Étape 4 : Appel de l'algorithme d'affectation ---
-        System.out.println("\nLancement de l'algorithme 'Glouton avec Tri de Matrice'...");
+        System.out.println("\nLancement de l'algorithme 'Glouton Exhaustif'...");
         AffectationMethode algo = new AffectationMethode();
         // NOTE: Assure-toi que la bonne méthode d'algo est appelée ici
         int[] couplage = algo.resoudreAffectationExhaustive(matrice); 
