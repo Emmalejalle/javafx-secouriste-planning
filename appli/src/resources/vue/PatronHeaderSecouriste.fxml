@@ -71,7 +71,7 @@
                   <Image url="@../img/LogoHeader.png" />
                </image>
             </ImageView>
-            <Label fx:id="LabelNomDePageSecouriste" prefHeight="100.0" prefWidth="1104.0" text="Titre par défault" textFill="#1e3a8a">
+            <Label fx:id="LabelNomDePageSecouriste" prefHeight="100.0" prefWidth="1104.0" text="Accueil Secouriste" textFill="#1e3a8a">
                <font>
                   <Font size="50.0" />
                </font>

@@ -7,62 +7,63 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  prefWidth="1920" prefHeight="1080" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilSecouristeController">
+<BorderPane maxHeight="1080" maxWidth="1920" minHeight="1080" minWidth="1920" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilSecouristeController">
    <top>
-      <fx:include fx:id="header" source="PatronHeaderSecouriste.fxml"/>
+      <fx:include fx:id="header" source="PatronHeaderSecouriste.fxml" />
    </top>
 
    <bottom>
-      <HBox prefHeight="100.0" style="-fx-background-color: #F97316;" alignment="CENTER"/>
+      <HBox alignment="CENTER" prefHeight="100.0" style="-fx-background-color: #F97316;" />
    </bottom>
 
 
    <center>
-      <VBox prefHeight="880.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="774.0" prefWidth="1666.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="49.0" prefWidth="1920.0" />
-            <HBox prefHeight="798.0" prefWidth="1920.0">
+            <HBox prefHeight="776.0" prefWidth="1778.0">
                <children>
                   <VBox onMouseClicked="#goPlanning" prefHeight="734.0" prefWidth="750.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Pane prefHeight="100.0" prefWidth="90.0" />
                               <VBox>
                                  <children>
-                                    <Pane prefHeight="38.0" prefWidth="200.0" />
                                     <ImageView fitHeight="69.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../img/secouristeAccueilplanning.png" />
                                        </image>
+                                       <VBox.margin>
+                                          <Insets top="40.0" />
+                                       </VBox.margin>
                                     </ImageView>
                                  </children>
+                                 <HBox.margin>
+                                    <Insets top="55.0" />
+                                 </HBox.margin>
                               </VBox>
                            </children>
                         </HBox>
-                        <Pane prefHeight="30.0" prefWidth="697.0" />
                         <HBox>
                            <children>
-                              <Pane prefHeight="461.0" prefWidth="89.0" />
-                              <StackPane>
+                              <StackPane prefHeight="564.0" prefWidth="764.0">
                                  <children>
-                                    <ImageView fitHeight="671.0" fitWidth="839.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="471.0" fitWidth="722.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../img/imagePlannongSecouristeccueil.png" />
                                        </image>
                                     </ImageView>
-                                    <Button fx:id="btnPlanningGlobal" mnemonicParsing="false" onAction="#goPlanning" opacity="0.0" prefHeight="602.0" prefWidth="839.0" text="Button">
+                                    <Button fx:id="btnPlanningGlobal" mnemonicParsing="false" onAction="#goPlanning" opacity="0.0" prefHeight="485.0" prefWidth="636.0" text="Button">
                                        <StackPane.margin>
                                           <Insets bottom="55.0" />
                                        </StackPane.margin></Button>
-                                    <StackPane>
+                                    <StackPane prefHeight="572.0" prefWidth="782.0">
                                        <children>
                                           <ImageView fitHeight="76.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../img/planningAccueilSecouristeBouton.png" />
                                              </image>
                                              <StackPane.margin>
-                                                <Insets left="500.0" top="550.0" />
+                                                <Insets left="500.0" top="450.0" />
                                              </StackPane.margin>
                                           </ImageView>
                                        </children>
@@ -71,20 +72,17 @@
                               </StackPane>
                            </children>
                         </HBox>
-                        <Pane prefHeight="19.0" prefWidth="750.0" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </VBox>
-                  <Pane prefHeight="798.0" prefWidth="57.0" />
-                  <VBox onMouseClicked="#goDisponibilite" prefHeight="792.0" prefWidth="812.0">
+                  <VBox onMouseClicked="#goDisponibilite" prefHeight="790.0" prefWidth="904.0">
                      <children>
                         <Pane prefHeight="190.0" prefWidth="813.0">
                            <children>
                               <HBox layoutY="-32.0" prefHeight="126.0" prefWidth="812.0">
                                  <children>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" />
                                     <StackPane prefHeight="138.0" prefWidth="572.0">
                                        <children>
                                           <ImageView fitHeight="60.0" fitWidth="572.0" pickOnBounds="true" preserveRatio="true">
@@ -92,17 +90,20 @@
                                                 <Image url="@../img/SecourAccueilDispo.png" />
                                              </image>
                                              <StackPane.margin>
-                                                <Insets top="50.0" />
+                                                <Insets right="50.0" top="60.0" />
                                              </StackPane.margin>
                                           </ImageView>
                                        </children>
+                                       <HBox.margin>
+                                          <Insets left="50.0" top="50.0" />
+                                       </HBox.margin>
                                     </StackPane>
                                  </children>
                               </HBox>
                            </children></Pane>
-                        <StackPane prefHeight="687.0" prefWidth="947.0">
+                        <StackPane prefHeight="541.0" prefWidth="836.0">
                            <children>
-                              <ImageView fitHeight="625.0" fitWidth="973.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="533.0" fitWidth="962.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/AccueilSecouristePlanningImage.png" />
                                  </image>
@@ -110,23 +111,18 @@
                                     <Insets />
                                  </StackPane.margin>
                               </ImageView>
-                              <Button fx:id="btnDisponibilite" mnemonicParsing="false" onAction="#goDisponibilite" opacity="0.0" prefHeight="600.0" prefWidth="914.0" text="Button" />
+                              <Button fx:id="btnDisponibilite" mnemonicParsing="false" onAction="#goDisponibilite" opacity="0.0" prefHeight="552.0" prefWidth="842.0" text="Button" />
                               <ImageView fitHeight="76.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/AccueilSecouristeDispoBouton.png" />
                                  </image>
                                  <StackPane.margin>
-                                    <Insets left="650.0" top="500.0" />
+                                    <Insets left="550.0" top="430.0" />
                                  </StackPane.margin>
                               </ImageView>
                            </children>
                         </StackPane>
-                        <HBox prefHeight="0.0" prefWidth="813.0">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Pane prefHeight="28.0" prefWidth="447.0" />
-                           </children>
-                        </HBox>
+                        <HBox prefHeight="0.0" prefWidth="813.0" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />

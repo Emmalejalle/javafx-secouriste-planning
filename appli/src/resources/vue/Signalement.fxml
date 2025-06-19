@@ -22,7 +22,7 @@
         <HBox alignment="BOTTOM_LEFT" prefHeight="100" spacing="10" style="-fx-background-color: #F97316;">
             <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
             <children>
-                <Button fx:id="btnReturn" prefHeight="70" prefWidth="200" styleClass="envoyer-button" text="← Retour" />
+                <Button fx:id="btnReturn" onAction="#onReturn" prefHeight="70" prefWidth="200" styleClass="envoyer-button" text="← Retour" />
             </children>
         </HBox>
     </bottom>

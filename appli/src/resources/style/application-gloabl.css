@@ -1,0 +1,49 @@
+/* Styles globaux pour éviter les débordements */
+.root {
+    -fx-font-family: 'Poppins', 'Roboto', sans-serif;
+    -fx-background-color: #F8FAFC;
+}
+
+/* Container principal responsive */
+.main-container {
+    -fx-max-width: 100vw;
+    -fx-max-height: 100vh;
+    -fx-min-width: 800px;
+    -fx-min-height: 600px;
+}
+
+/* Header responsive */
+.header-container {
+    -fx-pref-height: 100px;
+    -fx-min-height: 100px;
+    -fx-max-height: 100px;
+    -fx-pref-width: 100%;
+}
+
+/* Footer responsive */
+.footer-container {
+    -fx-pref-height: 100px;
+    -fx-min-height: 100px;
+    -fx-max-height: 100px;
+    -fx-pref-width: 100%;
+}
+
+/* Centre adaptatif */
+.center-container {
+    -fx-padding: 10px 20px;
+    -fx-spacing: 20px;
+}
+
+/* Éviter les débordements horizontaux */
+.no-overflow {
+    -fx-max-width: 100%;
+    -fx-pref-width: -1;
+}
+
+/* ScrollPane adaptatif */
+.adaptive-scroll {
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+    -fx-hbar-policy: as_needed;
+    -fx-vbar-policy: as_needed;
+}
