@@ -19,6 +19,13 @@ Le projet suit le modèle MVC :
 - **View** : interfaces JavaFX (FXML)
 - **Controller** : gestion des interactions utilisateur
 
+##  Maquette de l’interface (Figma)
+
+La conception de l’interface a d’abord été réalisée sur Figma avant l’implémentation en JavaFX :
+
+🔗 https://www.figma.com/design/b8SpJ1YygOPfJslwuviAhZ/Maquette-Jo?t=pBUNLK92b7LDozIA-1
+
+
 ##  Lancer le projet
 
 ### Prérequis
