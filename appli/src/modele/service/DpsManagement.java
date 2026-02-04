@@ -37,7 +37,7 @@ public class DpsManagement {
         this.sportDAO = new SportDAO();
         this.journeeDAO = new JourneeDAO();
         this.competenceDAO = new CompetenceDAO();
-        this.affectationDAO = new AffectationDAO(); // <-- AJOUTE CETTE LIGNE
+        this.affectationDAO = new AffectationDAO(); 
     }
 
 
